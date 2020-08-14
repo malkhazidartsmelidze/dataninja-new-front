@@ -1,0 +1,14 @@
+{
+  "menu.dashboard": "Dashboard",
+  "menu.personal_info_header": "Personal Information",
+  "menu.personal_info": "Personal Information",
+  "menu.contact_info": "Contact Info",
+  "menu.education": "Education",
+  "menu.experience": "Experience",
+  "menu.personal_info_desc": "Personal Info, Contact Info, Experience, Education",
+  "menu.academical_activity": "Academical Activity",
+  "menu.prof_competencies": "Prof Competencies",
+  "menu.cover_letter": "Cover Letter",
+  "menu.portfolio": "PortFolio",
+  "menu.my_cv": "My Cv"
+}

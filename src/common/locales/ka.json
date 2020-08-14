@@ -1,0 +1,14 @@
+{
+  "menu.dashboard": "მთავარი",
+  "menu.personal_info_header": "პერსონალური ინფორმაცია",
+  "menu.personal_info": "პირადი ინფორმაცია",
+  "menu.personal_info_desc": "პირადი ინფორმაცია, საკონტაქტო ინფორმაცია, გამოცდილება, განათლება...",
+  "menu.contact_info": "საკონტაქტო ინფორმაცია",
+  "menu.education": "განათლება",
+  "menu.experience": "გამოცდილება",
+  "menu.academical_activity": "აკადემიური აქტივობა",
+  "menu.prof_competencies": "პროფესიული კომპეტენციები",
+  "menu.cover_letter": "სამოტივაციო წერილი",
+  "menu.portfolio": "პორტფოლიო",
+  "menu.my_cv": "ჩემი CV"
+}
