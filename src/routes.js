@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Redirect, Switch, Route as RawRoute } from 'react-router';
+import { Redirect, Switch, Route as ReactRouter } from 'react-router';
 import useUser from 'store/UserContext';
 // import AuthModule from 'modules/Auth/module';
 
@@ -16,7 +16,7 @@ export const routes = [
   },
   {
     path: '/auth',
-    module: AuthModule,
+    component: AuthModule,
   },
   {
     path: '/ad',
@@ -75,5 +75,5 @@ export const Route = ({ secured, guest, ...props }) => {
   if (secured && !auth) return <Redirect to='/auth/login' />;
   if (guest && auth) return <Redirect to='/user/dashboard' />;
 
-  return <RawRoute {...props} />;
+  return <ReactRouter {...props} />;
 };

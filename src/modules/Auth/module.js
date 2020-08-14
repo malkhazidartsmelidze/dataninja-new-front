@@ -6,7 +6,7 @@ export default () => {
     routes: [
       {
         path: '/login',
-        render: () => <div>This is login</div>,
+        render: () => <div>This is login Routes</div>,
       },
     ],
   });

@@ -7,9 +7,12 @@ class Module {
   }
 
   render() {
+    console.log(this.routes);
     if (Array.isArray(this.routes)) {
       return renderRoutes(this.routes);
     }
+
+    return <div>afsafs</div>;
   }
 }
 
