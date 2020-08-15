@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, List, ListItem } from '@material-ui/core/Drawer';
+import { Drawer, List, ListItem } from '@material-ui/core';
 import clsx from 'clsx';
 import NavbarMenu from './components/NavbarMenu';
 import { drawerWidth } from 'consts';

@@ -1,15 +1,16 @@
 import React from 'react';
 import Module from 'modules/Module';
+import { DashboardLayout } from 'layouts';
 
-export default () => {
-  const module = new Module({
+export default ({ route }) => {
+  const AuthModule = new Module({
     routes: [
       {
-        path: '/login',
-        render: () => <div>This is login Routes</div>,
+        path: '/auth/login',
+        component: () => <div>Thiiiiiiiiis is login route</div>,
       },
     ],
+    layout: DashboardLayout,
   });
-
-  return module.render();
+  return AuthModule.render();
 };

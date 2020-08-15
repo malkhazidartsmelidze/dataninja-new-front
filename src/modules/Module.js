@@ -1,18 +1,30 @@
 import React from 'react';
-import { renderRoutes } from '../routes';
+import { renderRoutes } from 'routes';
 
 class Module {
-  constructor(args) {
-    this.routes = args.routes || null;
+  constructor(module) {
+    this.routes = module.routes;
+    this.layout = module.layout;
+  }
+
+  renderRoutes() {
+    return renderRoutes(this.routes);
   }
 
   render() {
-    console.log(this.routes);
-    if (Array.isArray(this.routes)) {
-      return renderRoutes(this.routes);
+    if (this.layout) {
+      return this.renderWithLayout();
+    } else {
+      return this.renderWithoutLayout();
     }
+  }
 
-    return <div>afsafs</div>;
+  renderWithLayout() {
+    return <this.layout>{this.renderRoutes()}</this.layout>;
+  }
+
+  renderWithoutLayout() {
+    return <>{this.renderRoutes()}</>;
   }
 }
 

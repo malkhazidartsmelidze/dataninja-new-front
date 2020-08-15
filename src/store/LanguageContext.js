@@ -42,9 +42,9 @@ export const LanguageContextProvider = ({ children }) => {
         changeLanguage: changeLanguage,
       }}
     >
-      {/* <IntlProvider messages={messages} locale={language}> */}
-      {children}
-      {/* </IntlProvider> */}
+      <IntlProvider messages={messages} locale={language}>
+        {children}
+      </IntlProvider>
     </LanguageContext.Provider>
   );
 };

@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { theme } from 'common/@mui';
 import { LanguageContextProvider } from 'store/LanguageContext';
 import { UserContextProvider } from 'store/UserContext';
+import './index.css';
 
 const Bootstrap = ({ children }) => {
   return (
