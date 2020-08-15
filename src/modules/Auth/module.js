@@ -7,6 +7,7 @@ export default ({ route }) => {
     routes: [
       {
         path: '/auth/login',
+        guest: true,
         component: LoginPage,
       },
     ],

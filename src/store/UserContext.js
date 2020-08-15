@@ -4,11 +4,8 @@ import User from 'common/objects/User';
 const UserContext = createContext('user');
 
 const initState = {
-  user: new User({
-    name: 'Dataninja',
-    email: 'info@dataninja.com',
-  }),
-  auth: true,
+  user: null,
+  auth: false,
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -17,7 +14,7 @@ export const UserContextProvider = ({ children }) => {
   const login = (user) => {
     setState({
       user: user,
-      auth: true,
+      auth: false,
     });
   };
 
