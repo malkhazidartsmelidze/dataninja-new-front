@@ -9,7 +9,6 @@ const initState = {
     email: 'info@dataninja.com',
   }),
   auth: true,
-  loading: true,
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -19,7 +18,6 @@ export const UserContextProvider = ({ children }) => {
     setState({
       user: user,
       auth: true,
-      loading: false,
     });
   };
 
@@ -34,7 +32,6 @@ export const UserContextProvider = ({ children }) => {
       value={{
         auth: state.auth,
         user: state.user,
-        loading: state.loading,
         login: login,
         logout: logout,
       }}

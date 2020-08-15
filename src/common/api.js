@@ -4,7 +4,7 @@ import { tokenKey, languageKey } from 'consts';
 class Api {
   constructor() {
     this.api = axios.create({
-      baseURL: 'http://gocv.test/api/',
+      baseURL: 'http://mydataninja.com/api/',
       timeout: 10000,
     });
     this.authToken = localStorage.getItem(tokenKey) || null;
