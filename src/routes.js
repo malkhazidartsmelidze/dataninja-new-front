@@ -45,7 +45,7 @@ export const routes = [
     path: '*',
     render: () => (
       <div>
-        Error 404 go to <a href='/home'>home</a>
+        Error 404 go to <a href={P.HOME}>home</a>
       </div>
     ),
   },

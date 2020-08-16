@@ -1,8 +1,10 @@
 export default {
-  HOME: '/home/',
-  LOGIN: '/auth/login/',
   LOGIN_MODULE: '/auth/',
+  LOGIN: '/auth/login/',
+
   APP: '/app/',
+
+  HOME: '/app/home/',
 
   DASHBOARD_MODULE: '/app/dashboard/',
 
@@ -13,4 +15,5 @@ export default {
   USER_MODULE: '/app/user/',
 
   CRM_MODULE: '/app/crm/',
+  CRM_FORMS: '/app/crm/forms/',
 };
