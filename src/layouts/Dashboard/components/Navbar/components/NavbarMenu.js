@@ -12,7 +12,6 @@ export default (props) => {
         url='/dashboard'
         showDivider={true}
       />
-
       <MenuItem
         title={<FM id='menu.website_builder' />}
         leftIcon='vertical_split'
@@ -23,7 +22,7 @@ export default (props) => {
       <MenuItem
         title={<FM id='menu.sales_postbacks' />}
         leftIcon='anchor'
-        url='/sales'
+        url='/crm'
         description={<FM id='menu.sales_postbacks_desc' />}
         showDivider={true}
       />
@@ -37,7 +36,7 @@ export default (props) => {
       <MenuItem
         title={<FM id='menu.reporting' />}
         leftIcon='show_chart'
-        url='/reporting'
+        url='/user'
         description={<FM id='menu.reporting_desc' />}
         showDivider={true}
       />
@@ -51,7 +50,7 @@ export default (props) => {
       <MenuItem
         title={<FM id='menu.audiences' />}
         leftIcon='pie_chart'
-        url='/audiences'
+        url='/ad'
         description={<FM id='menu.audiences_desc' />}
         showDivider={true}
       />

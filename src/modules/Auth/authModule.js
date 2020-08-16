@@ -2,7 +2,7 @@ import Module from 'modules/Module';
 import { LoginPage } from 'modules/Auth/Pages';
 
 export default () => {
-  const AuthModule = new Module({
+  const mod = new Module({
     routes: [
       {
         path: '/auth/login',
@@ -11,5 +11,5 @@ export default () => {
       },
     ],
   });
-  return AuthModule.render();
+  return mod.render();
 };

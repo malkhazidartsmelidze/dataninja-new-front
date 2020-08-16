@@ -1,41 +1,45 @@
 import React, { lazy } from 'react';
 import { Redirect, Switch, Route as ReactRouter } from 'react-router';
 import useUser from 'store/UserContext';
-// import AuthModule from 'modules/Auth/module';
+import P from 'paths';
 
-const AuthModule = lazy(() => import('modules/Auth/module'));
+const AuthModule = lazy(() => import('modules/Auth'));
 const UserModule = lazy(() => import('modules/User'));
 const CrmModule = lazy(() => import('modules/Crm'));
 const AdModule = lazy(() => import('modules/Ad'));
-const DashboardModule = lazy(() => import('modules/Dashboard/module'));
-const BuilderModule = lazy(() => import('modules/Builder/module'));
+const DashboardModule = lazy(() => import('modules/Dashboard'));
+const BuilderModule = lazy(() => import('modules/Builder'));
 
 export const routes = [
   {
-    path: '/',
+    path: P.HOME,
     exact: true,
     component: () => <Redirect to='/auth/login' />,
   },
   {
-    path: '/auth',
+    path: P.LOGIN_MODULE,
     component: AuthModule,
   },
   {
-    path: '/ad',
+    path: P.AD_MODULE,
     module: AdModule,
   },
   {
-    path: '/crm',
+    path: P.CRM_MODULE,
     module: CrmModule,
   },
   {
-    path: '/dashboard',
+    path: P.DASHBOARD_MODULE,
     secured: true,
     module: DashboardModule,
   },
   {
-    path: '/builder',
+    path: P.BUILDER_MODULE,
     module: BuilderModule,
+  },
+  {
+    path: P.USER_MODULE,
+    module: UserModule,
   },
   {
     path: '*',
@@ -57,7 +61,7 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
           } else if (route.component) {
             return <route.component {...props} {...extraProps} route={route} />;
           } else if (route.module) {
-            return <route.module />;
+            return <route.module module={route} />;
           }
         };
 

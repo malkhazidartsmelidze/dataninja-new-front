@@ -3,15 +3,15 @@ import Module from 'modules/Module';
 import { DashboardLayout } from 'layouts';
 
 export default () => {
-  const BuilderModule = new Module({
+  const mod = new Module({
     routes: [
       {
-        path: '/builder',
+        path: '/ad',
         secure: true,
-        component: () => <div>this is buiklder module</div>,
+        component: () => <div>this is ad module</div>,
       },
     ],
     layout: DashboardLayout,
   });
-  return BuilderModule.render();
+  return mod.render();
 };
