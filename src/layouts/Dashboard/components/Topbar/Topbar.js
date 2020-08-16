@@ -13,11 +13,13 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import useLanguage from 'store/LanguageContext';
+import useUser from 'store/UserContext';
 
 const Topbar = (props) => {
   const classes = useStyles();
   const { onDrawerToggle } = props;
   const { language, changeLanguage, languages } = useLanguage();
+  const { user } = useUser();
 
   const LanguageSwitcher = (
     <TextField
@@ -60,7 +62,7 @@ const Topbar = (props) => {
           </Grid>
           <Grid item>
             <IconButton className={classes.iconButtonAvatar}>
-              <Avatar src='/images/avatar.jpg' alt='My Avatar' />
+              <Avatar src={user.getAvatar()} alt={user.getName()} />
             </IconButton>
           </Grid>
         </Grid>

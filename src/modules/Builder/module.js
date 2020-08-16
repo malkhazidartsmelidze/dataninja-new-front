@@ -1,17 +1,17 @@
+import React from 'react';
 import Module from 'modules/Module';
 import { DashboardLayout } from 'layouts';
-import DashboardPage from './Pages/Dashboard/DashboardPage';
 
 export default () => {
-  const AuthModule = new Module({
+  const BuilderModule = new Module({
     routes: [
       {
-        path: '/dashboard',
+        path: '/builder',
         secure: true,
-        component: DashboardPage,
+        component: () => <div>this is buiklder module</div>,
       },
     ],
     layout: DashboardLayout,
   });
-  return AuthModule.render();
+  return BuilderModule.render();
 };

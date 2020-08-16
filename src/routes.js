@@ -7,6 +7,8 @@ const AuthModule = lazy(() => import('modules/Auth/module'));
 const UserModule = lazy(() => import('modules/User'));
 const CrmModule = lazy(() => import('modules/Crm'));
 const AdModule = lazy(() => import('modules/Ad'));
+const DashboardModule = lazy(() => import('modules/Dashboard/module'));
+const BuilderModule = lazy(() => import('modules/Builder/module'));
 
 export const routes = [
   {
@@ -23,12 +25,17 @@ export const routes = [
     module: AdModule,
   },
   {
-    path: '/ad',
+    path: '/crm',
     module: CrmModule,
   },
   {
-    path: '/ad',
-    module: UserModule,
+    path: '/dashboard',
+    secured: true,
+    module: DashboardModule,
+  },
+  {
+    path: '/builder',
+    module: BuilderModule,
   },
   {
     path: '*',
@@ -73,7 +80,7 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
 export const Route = ({ secured, guest, ...props }) => {
   const { auth } = useUser();
   if (secured && !auth) return <Redirect to='/auth/login' />;
-  if (guest && auth) return <Redirect to='/user/dashboard' />;
+  if (guest && auth) return <Redirect to='/dashboard' />;
 
   return <ReactRouter {...props} />;
 };

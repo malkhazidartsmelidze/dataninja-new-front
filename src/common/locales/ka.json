@@ -1,14 +1,15 @@
 {
   "menu.dashboard": "მთავარი",
-  "menu.personal_info_header": "პერსონალური ინფორმაცია",
-  "menu.personal_info": "პირადი ინფორმაცია",
-  "menu.personal_info_desc": "პირადი ინფორმაცია, საკონტაქტო ინფორმაცია, გამოცდილება, განათლება...",
-  "menu.contact_info": "საკონტაქტო ინფორმაცია",
-  "menu.education": "განათლება",
-  "menu.experience": "გამოცდილება",
-  "menu.academical_activity": "აკადემიური აქტივობა",
-  "menu.prof_competencies": "პროფესიული კომპეტენციები",
-  "menu.cover_letter": "სამოტივაციო წერილი",
-  "menu.portfolio": "პორტფოლიო",
-  "menu.my_cv": "ჩემი CV"
+  "menu.website_builder": "ვებ-საიტ ედიტორი",
+  "menu.website_builder_desc": "შექმენი შენი საიტი სულ რამდენიმე წუთში",
+  "menu.sales_postbacks": "გაყიდვები და პოსტბექები",
+  "menu.sales_postbacks_desc": "მონაცემები გაყიდვებსა და რეპორტებზე",
+  "menu.ad_creation": "რეკლამის შექმნა",
+  "menu.ad_creation_desc": "რეკლამებისა და კამპანიების შექმნა, ჩასწორება, წაშლა",
+  "menu.reporting": "რეპორტინგი",
+  "menu.reporting_desc": "იხილეთ დეტალური ინფორმაცია გაყიდვებსა და ხარჯებზე",
+  "menu.crm": "CRM",
+  "menu.crm_desc": "დარეგისტრირებული მომხმარებლების მართვა",
+  "menu.audiences": "აუდიტორიები",
+  "menu.audiences_desc": "აუდიტორიების შექმნა / წაშლა / ჩასწორება"
 }

@@ -2,9 +2,12 @@ import api from 'common/api';
 
 class User {
   constructor(obj) {
+    console.log('adasd', obj);
     this.id = obj.id;
     this.name = obj.name;
     this.language = obj.language;
+    this.config = obj.config;
+    this.hasConfig = typeof this.config === 'object';
   }
 
   getLanguage() {
@@ -17,6 +20,13 @@ class User {
 
   getId() {
     return this.id;
+  }
+
+  getAvatar() {
+    console.log(this);
+    if (!this.hasConfig) return null;
+
+    return this.config.avatar;
   }
 
   changeLanguage(languageCode) {
@@ -59,7 +69,8 @@ User.service = {
    * @return Promise
    */
   changeLanguage: (code) => {
-    return api.post('/change-language', {
+    return api.post('/user/actions', {
+      action: 'change-language',
       language: code,
     });
   },

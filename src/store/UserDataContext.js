@@ -1,18 +1,18 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
 import User from 'common/objects/User';
+import UserData from 'common/objects/User';
 
-const UserContext = createContext('user');
+const UserDataContext = createContext('user');
 
 const initState = {
   user: null,
   auth: false,
 };
 
-export const UserContextProvider = ({ children }) => {
+export const UserDataContextProvider = ({ children }) => {
   const [state, setState] = useState(initState);
 
   const login = (user) => {
-    console.log(user);
     setState({
       user: user,
       auth: true,
@@ -20,7 +20,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setState(initState);
+    setState({ ...initState, loading: false });
   };
 
   useEffect(() => {
@@ -31,17 +31,14 @@ export const UserContextProvider = ({ children }) => {
   }, [state.auth]);
 
   return (
-    <UserContext.Provider
+    <UserDataContext.Provider
       value={{
-        auth: state.auth,
-        user: state.user,
-        login: login,
-        logout: logout,
+        accounts: state.accounts,
       }}
     >
       {children}
-    </UserContext.Provider>
+    </UserDataContext.Provider>
   );
 };
 
-export default () => useContext(UserContext);
+export const useUserData = () => useContext(UserDataContext);

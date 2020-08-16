@@ -1,14 +1,15 @@
 {
   "menu.dashboard": "Dashboard",
-  "menu.personal_info_header": "Personal Information",
-  "menu.personal_info": "Personal Information",
-  "menu.contact_info": "Contact Info",
-  "menu.education": "Education",
-  "menu.experience": "Experience",
-  "menu.personal_info_desc": "Personal Info, Contact Info, Experience, Education",
-  "menu.academical_activity": "Academical Activity",
-  "menu.prof_competencies": "Prof Competencies",
-  "menu.cover_letter": "Cover Letter",
-  "menu.portfolio": "PortFolio",
-  "menu.my_cv": "My Cv"
+  "menu.website_builder": "Website Builder",
+  "menu.website_builder_desc": "Build and edit your website with just 3 clicks",
+  "menu.sales_postbacks": "Sales & Postbacks",
+  "menu.sales_postbacks_desc": "See sales and postbacks received from your ads",
+  "menu.ad_creation": "Ad Creation",
+  "menu.ad_creation_desc": "Create & Edit ads in multiple records",
+  "menu.reporting": "Reporting",
+  "menu.reporting_desc": "See detailed reporting of your ads",
+  "menu.crm": "Crm",
+  "menu.crm_desc": "Advanced Customer Relationship Manager",
+  "menu.audiences": "Audiences",
+  "menu.audiences_desc": "Create and manage your audiences"
 }
