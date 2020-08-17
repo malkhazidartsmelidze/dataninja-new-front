@@ -20,7 +20,7 @@ const Topbar = (props) => {
   const { onDrawerToggle } = props;
   const { language, changeLanguage, languages } = useLanguage();
   const { user } = useUser();
-  if (!user) return <div>'asdfds'</div>;
+
   const LanguageSwitcher = (
     <TextField
       select
@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: '#fafafa',
     color: theme.colors.bodyColor,
-    zIndex: 999999,
   },
   toolBar: {
     padding: theme.spacing(0, 1, 0, 1),

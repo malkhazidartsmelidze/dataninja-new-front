@@ -20,6 +20,7 @@ export const routes = [
   },
   {
     path: P.APP,
+    secured: true,
     component: BootstrapAppModule,
   },
 ];

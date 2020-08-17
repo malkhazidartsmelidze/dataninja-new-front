@@ -45,49 +45,46 @@ const Topbar = (props) => {
   );
 
   return (
-    <>
-      <AppBar position='sticky' elevation={0} className={classes.appBar}>
-        <Toolbar disableGutters className={classes.mainBar}>
-          <Grid container spacing={1} alignItems='center'>
-            <Grid item xs />
-            <Grid item>
-              <TextField
-                select
-                variant='outlined'
-                size='small'
-                InputProps={{
-                  classes: { notchedOutline: classes.noBorder, input: classes.langSwitcher },
-                }}
-                // onChange={(event) => }
-              >
-                {googleAccounts.map((acc) => (
-                  <MenuItem key={acc.id} value={acc.id}>
-                    {acc.name}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item>
-              <TextField
-                select
-                variant='outlined'
-                size='small'
-                InputProps={{
-                  classes: { notchedOutline: classes.noBorder, input: classes.langSwitcher },
-                }}
-              >
-                {facebokAccounts.map((acc) => (
-                  <MenuItem key={acc.id} value={acc.id}>
-                    {acc.name}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
+    <AppBar position='sticky' elevation={0} className={classes.appBar}>
+      <Toolbar disableGutters className={classes.mainBar}>
+        <Grid container spacing={1} alignItems='center'>
+          <Grid item xs />
+          <Grid item>
+            <TextField
+              select
+              variant='outlined'
+              size='small'
+              InputProps={{
+                classes: { notchedOutline: classes.noBorder, input: classes.langSwitcher },
+              }}
+              // onChange={(event) => }
+            >
+              {googleAccounts.map((acc) => (
+                <MenuItem key={acc.id} value={acc.id}>
+                  {acc.name}
+                </MenuItem>
+              ))}
+            </TextField>
           </Grid>
-        </Toolbar>
-      </AppBar>
-      <Divider />
-    </>
+          <Grid item>
+            <TextField
+              select
+              variant='outlined'
+              size='small'
+              InputProps={{
+                classes: { notchedOutline: classes.noBorder, input: classes.langSwitcher },
+              }}
+            >
+              {facebokAccounts.map((acc) => (
+                <MenuItem key={acc.id} value={acc.id}>
+                  {acc.name}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
   );
 };
 

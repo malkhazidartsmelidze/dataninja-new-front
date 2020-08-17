@@ -1,6 +1,5 @@
 import React from 'react';
 import Module from 'modules/Module';
-import { DashboardLayout } from 'layouts';
 import P from 'paths';
 
 export default () => {

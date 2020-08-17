@@ -1,5 +1,4 @@
 import React, { Suspense, useState } from 'react';
-import { renderRoutes } from 'routes';
 import { LinearProgress, Hidden } from '@material-ui/core';
 import { Topbar, Navbar, MainBar } from './components';
 import { makeStyles } from '@material-ui/styles';
@@ -27,7 +26,6 @@ export default (props) => {
       </nav>
       <div className={classes.app}>
         <Topbar onDrawerToggle={toggleNavbar} />
-        <MainBar />
 
         <Suspense fallback={<LinearProgress />}>
           <main className={clsx(classes.main, classes.mainBackground)}>{children}</main>

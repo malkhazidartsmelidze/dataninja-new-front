@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import Module from 'modules/Module';
-import { DashboardLayout } from 'layouts';
+import { AppLayout } from 'layouts';
 import { UserDataContextProvider } from 'store/UserDataContext';
 import { LinearProgress } from '@material-ui/core';
 import P from 'paths';
@@ -16,7 +16,6 @@ export default () => {
     routes: [
       {
         path: P.DASHBOARD_MODULE,
-        secured: true,
         module: DashboardModule,
       },
       {
@@ -36,7 +35,7 @@ export default () => {
         module: UserModule,
       },
     ],
-    layout: DashboardLayout,
+    layout: AppLayout,
   });
 
   return (
