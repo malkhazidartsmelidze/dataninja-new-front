@@ -1,49 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { useNewAdContext } from 'store/NewAdContext';
 
-export default ({ onChange }) => {
-  const [googleChecked, setGoogleChecked] = useState(true);
-  const [facebookChecked, setfacebookChecked] = useState(true);
+export default () => {
+  const { networks, setNetwork } = useNewAdContext();
 
-  const handleGoogleChanged = (e) => {
-    setGoogleChecked(e.target.checked);
-    networksChanged();
-  };
-
-  const handleFacebookChanged = (e) => {
-    setfacebookChecked(e.target.checked);
-    networksChanged();
-  };
-
-  const networksChanged = () => {
-    onChange({
-      facebook: facebookChecked,
-      google: googleChecked,
-    });
+  const handleNetworkCheck = (e) => {
+    setNetwork(e.target.name, e.target.checked);
   };
 
   return (
     <>
       <FormControlLabel
         control={
-          <Checkbox
-            checked={facebookChecked}
-            onChange={handleFacebookChanged}
-            name='network'
-            value='facebook'
-          />
+          <Checkbox checked={networks.facebook} onChange={handleNetworkCheck} name='facebook' />
         }
         label='Facebook'
       />
       <FormControlLabel
-        control={
-          <Checkbox
-            checked={googleChecked}
-            onChange={handleGoogleChanged}
-            name='network'
-            value='google'
-          />
-        }
+        control={<Checkbox checked={networks.google} onChange={handleNetworkCheck} name='google' />}
         label='Google'
       />
     </>
