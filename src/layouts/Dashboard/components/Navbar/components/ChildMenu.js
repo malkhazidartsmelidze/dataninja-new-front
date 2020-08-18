@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navLinkActive: {
     '& *': {
-      color: '#d6ca34 !important',
+      color: '#4fc3f7 !important',
     },
   },
   itemIcon: {

@@ -1,8 +1,8 @@
 import React from 'react';
 import MenuItem from './MenuItem';
-// import ChildMenu from './ChildMenu';
 import { FormattedMessage as FM } from 'react-intl';
 import P from 'paths';
+import ChildMenu from './ChildMenu';
 
 export default (props) => {
   return (
@@ -33,7 +33,18 @@ export default (props) => {
         url={P.AD_MODULE}
         description={<FM id='menu.ad_creation_desc' />}
         showDivider={true}
-      />
+      >
+        <ChildMenu
+          title={<FM id='menu.create_ad' />}
+          leftIcon='import_contacts'
+          url={P.AD_CREATE}
+        />
+        <ChildMenu
+          title={<FM id='menu.view_all_ads' />}
+          leftIcon='import_contacts'
+          url={P.AD_VIEW_ALL}
+        />
+      </MenuItem>
       <MenuItem
         title={<FM id='menu.reporting' />}
         leftIcon='show_chart'

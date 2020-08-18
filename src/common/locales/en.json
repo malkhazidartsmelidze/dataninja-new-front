@@ -5,6 +5,8 @@
   "menu.sales_postbacks": "Sales & Postbacks",
   "menu.sales_postbacks_desc": "See sales and postbacks received from your ads",
   "menu.ad_creation": "Ad Creation",
+  "menu.create_ad": "Create new Ad",
+  "menu.view_all_ads": "View All Ads",
   "menu.ad_creation_desc": "Create & Edit ads in multiple records",
   "menu.reporting": "Reporting",
   "menu.reporting_desc": "See detailed reporting of your ads",

@@ -9,6 +9,8 @@ export default {
   DASHBOARD_MODULE: '/app/dashboard/',
 
   AD_MODULE: '/app/ad/',
+  AD_CREATE: '/app/ad/create',
+  AD_VIEW_ALL: '/app/ad/all',
 
   BUILDER_MODULE: '/app/builder/',
 

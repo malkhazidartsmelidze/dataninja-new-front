@@ -10,8 +10,8 @@ export const UserConfigContextProvider = ({ children }) => {
   const { user } = useUser();
   const [state, setState] = useState({
     config: null,
-    fbAccount: null,
-    googleAccount: null,
+    fbAccount: '',
+    googleAccount: '',
   });
 
   const fetchUserConfig = () => {
