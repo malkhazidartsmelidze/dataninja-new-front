@@ -8,37 +8,15 @@ import {
   Toolbar,
   Tooltip,
   Icon,
-  TextField,
-  MenuItem,
   makeStyles,
 } from '@material-ui/core';
-import useLanguage from 'store/LanguageContext';
 import useUser from 'store/UserContext';
+import { LanguageSwitcher, GoogleAccountSwitcher, FbAccountSwitcher } from './components';
 
 const Topbar = (props) => {
   const classes = useStyles();
   const { onDrawerToggle } = props;
-  const { language, changeLanguage, languages } = useLanguage();
   const { user } = useUser();
-
-  const LanguageSwitcher = (
-    <TextField
-      select
-      variant='outlined'
-      size='small'
-      value={language}
-      InputProps={{
-        classes: { notchedOutline: classes.noBorder, input: classes.langSwitcher },
-      }}
-      onChange={(event) => changeLanguage(event.target.value)}
-    >
-      {languages.map((lang) => (
-        <MenuItem key={lang.getCode()} value={lang.getCode()}>
-          {lang.getName()}
-        </MenuItem>
-      ))}
-    </TextField>
-  );
 
   return (
     <AppBar position='sticky' elevation={2} className={classes.appBar}>
@@ -51,7 +29,15 @@ const Topbar = (props) => {
               </IconButton>
             </Grid>
           </Hidden>
-          <Grid item>{LanguageSwitcher}</Grid>
+          <Grid item>
+            <LanguageSwitcher />
+          </Grid>
+          <Grid item>
+            <GoogleAccountSwitcher />
+          </Grid>
+          <Grid item>
+            <FbAccountSwitcher />
+          </Grid>
           <Grid item xs />
           <Grid item>
             <Tooltip title='Alerts • No alters'>
@@ -81,12 +67,6 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButtonAvatar: {
     padding: 4,
-  },
-  noBorder: {
-    border: 0,
-  },
-  langSwitcher: {
-    marginLeft: theme.spacing(),
   },
 }));
 

@@ -6,7 +6,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { theme } from 'common/@mui';
 import { LanguageContextProvider } from 'store/LanguageContext';
 import { UserContextProvider } from 'store/UserContext';
+import Icon from '@mdi/react';
 import './index.css';
+
+Icon.defaultProps.size = '1em';
 
 const Bootstrap = ({ children }) => {
   return (
