@@ -3,28 +3,29 @@ import IconButtonMenu from 'common/@mui/IconButtonMenu';
 import { useUserConfig } from 'store/UserConfigContext';
 import UserConfig from 'common/objects/User/UserConfig';
 import { mdiFacebook } from '@mdi/js';
+import { HeaderSwitcher } from '.';
 
 export default () => {
   /** @var UserConfig */
-  const { userConfig } = useUserConfig();
+  const { userConfig, setFbAccount } = useUserConfig();
+  const fbAccount = 167;
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    if (!(userConfig instanceof UserConfig)) return;
-
-    setOptions(
-      userConfig.getFacebookAccounts().map((acc) => {
-        return { value: acc.name, id: acc.id };
-      })
-    );
+    UserConfig.checkLoaded(userConfig) &&
+      setOptions(
+        userConfig.getFacebookAccounts().map((acc) => {
+          return { name: acc.name, value: acc.id };
+        })
+      );
   }, [userConfig]);
 
   return (
-    <IconButtonMenu
-      id='google-acc-switcher'
+    <HeaderSwitcher
       icon={mdiFacebook}
       options={options}
-      onChoose={(opt) => console.log(opt)}
+      value={fbAccount}
+      onChoose={(opt) => setFbAccount(opt.code)}
     />
   );
 };

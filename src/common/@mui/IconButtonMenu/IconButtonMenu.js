@@ -1,5 +1,5 @@
 import React from 'react';
-import { /* Icon, */ Fade, MenuItem, Menu, IconButton } from '@material-ui/core';
+import { /* Icon, */ Fade, MenuItem, Menu, IconButton, Checkbox, Radio } from '@material-ui/core';
 import Icon from '@mdi/react';
 
 export default ({ icon, id, ButtonProps = {}, MenuProps = {}, options, onChoose }) => {
@@ -12,7 +12,7 @@ export default ({ icon, id, ButtonProps = {}, MenuProps = {}, options, onChoose 
 
   const optionChosen = (option) => {
     onChoose(option);
-    handleClose();
+    // handleClose();
   };
 
   const handleClose = () => {

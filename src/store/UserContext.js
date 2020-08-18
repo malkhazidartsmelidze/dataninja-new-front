@@ -8,7 +8,6 @@ export const UserContextProvider = ({ children }) => {
   const [state, setState] = useState(initState);
 
   const login = (user) => {
-    console.log(user);
     setState({
       user: user,
       auth: true,
@@ -21,10 +20,9 @@ export const UserContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    User.service
-      .me()
-      .then((user) => login(user))
-      .catch(() => logout());
+    User.service.me();
+    // .then((user) => login(user))
+    // .catch(() => logout());
   }, [state.auth]);
 
   return (
