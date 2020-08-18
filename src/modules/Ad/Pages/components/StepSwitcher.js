@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 
 export default ({ onNext, onPrevious, activeStep }) => {
   return (
-    <div>
+    <div style={{ marginTop: '5rem' }}>
       <Button disabled={activeStep === 0} onClick={onPrevious}>
         Back
       </Button>
