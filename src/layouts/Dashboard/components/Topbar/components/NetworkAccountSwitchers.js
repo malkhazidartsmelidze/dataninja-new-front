@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useUserConfig } from 'store/UserConfigContext';
 import UserConfig from 'common/objects/User/UserConfig';
 import { mdiGoogle, mdiFacebook } from '@mdi/js';
-import { HeaderSwitcher } from '.';
+import HeaderSwitcher from './HeaderSwitcher';
 
 export default () => {
   const { userConfig, setGoogleAccount, googleAccount, fbAccount, setFbAccount } = useUserConfig();
