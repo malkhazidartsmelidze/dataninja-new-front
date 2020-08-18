@@ -11,7 +11,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import useUser from 'store/UserContext';
-import { LanguageSwitcher, GoogleAccountSwitcher, FbAccountSwitcher } from './components';
+import { LanguageSwitcher, NetworkAccountSwitchers } from './components';
 
 const Topbar = (props) => {
   const classes = useStyles();
@@ -33,10 +33,7 @@ const Topbar = (props) => {
             <LanguageSwitcher />
           </Grid>
           <Grid item>
-            <GoogleAccountSwitcher />
-          </Grid>
-          <Grid item>
-            <FbAccountSwitcher />
+            <NetworkAccountSwitchers />
           </Grid>
           <Grid item xs />
           <Grid item>
