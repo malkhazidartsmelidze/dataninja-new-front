@@ -11,6 +11,7 @@ export default () => {
 
   useEffect(() => {
     if (!UserConfig.checkLoaded(userConfig)) return;
+
     setGoogleOptions(
       userConfig.getGoogleAccounts().map((acc) => {
         return { name: acc.name, value: acc.id };
