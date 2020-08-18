@@ -1,8 +1,7 @@
-import React, { useContext, useState, createContext, useEffect, useReducer } from 'react';
+import React, { useContext, useState, createContext, useEffect } from 'react';
 import User from 'common/objects/User';
 import UserConfig from 'common/objects/User/UserConfig';
 import useUser from 'store/UserContext';
-import { mdiConsolidate } from '@mdi/js';
 
 const UserConfigContext = createContext('user');
 

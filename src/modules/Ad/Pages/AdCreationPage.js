@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Stepper,
-  Step,
-  StepLabel,
-  StepContent,
-  Button,
-  Paper,
-  Typography,
-} from '@material-ui/core';
+import { Stepper, Step, StepLabel, StepContent } from '@material-ui/core';
 import ChooseAdType from './components/ChooseAdType';
 import ChooseNetworks from './components/ChooseNetworks';
 import StepSwitcher from './components/StepSwitcher';
+import { useNewAdContext } from 'store/NewAdContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +44,8 @@ const getSteps = () => {
 };
 
 export default () => {
+  const { networks } = useNewAdContext();
+  console.log(networks);
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();

@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import Module from 'modules/Module';
 import P from 'paths';
+import { NewAdContextProvider } from 'store/NewAdContext';
 
 const AdCreationPage = lazy(() => import('./Pages/AdCreationPage'));
 
@@ -19,5 +20,6 @@ export default () => {
       },
     ],
   });
-  return mod.render();
+
+  return <NewAdContextProvider>{mod.render()}</NewAdContextProvider>;
 };
