@@ -6,18 +6,21 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { theme } from 'common/@mui';
 import { LanguageContextProvider } from 'store/LanguageContext';
 import { UserContextProvider } from 'store/UserContext';
+import { UserDataContextProvider } from 'store/UserDataContext';
 import './index.css';
 
 const Bootstrap = ({ children }) => {
   return (
     <MuiThemeProvider theme={theme}>
       <UserContextProvider>
-        <CssBaseline />
-        <LanguageContextProvider>
-          <BrowserRouter>
-            <Suspense fallback={<LinearProgress />}>{children}</Suspense>
-          </BrowserRouter>
-        </LanguageContextProvider>
+        <UserDataContextProvider>
+          <CssBaseline />
+          <LanguageContextProvider>
+            <BrowserRouter>
+              <Suspense fallback={<LinearProgress />}>{children}</Suspense>
+            </BrowserRouter>
+          </LanguageContextProvider>
+        </UserDataContextProvider>
       </UserContextProvider>
     </MuiThemeProvider>
   );

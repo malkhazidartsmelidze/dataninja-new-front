@@ -41,7 +41,7 @@ const Topbar = (props) => {
   );
 
   return (
-    <AppBar position='sticky' elevation={1} className={classes.appBar}>
+    <AppBar position='sticky' elevation={2} className={classes.appBar}>
       <Toolbar disableGutters className={classes.toolBar}>
         <Grid container spacing={1} alignItems='center'>
           <Hidden smUp>
@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: '#fafafa',
     color: theme.colors.bodyColor,
+    zIndex: 999999,
   },
   toolBar: {
     padding: theme.spacing(0, 1, 0, 1),

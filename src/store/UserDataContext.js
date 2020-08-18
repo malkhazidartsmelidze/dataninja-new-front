@@ -1,39 +1,24 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
 import User from 'common/objects/User';
-import UserData from 'common/objects/User';
+import UserData from 'common/objects/UserData/UserData';
+import useUser from 'store/UserContext';
 
 const UserDataContext = createContext('user');
 
-const initState = {
-  user: null,
-  auth: false,
-};
-
 export const UserDataContextProvider = ({ children }) => {
-  const [state, setState] = useState(initState);
-
-  const login = (user) => {
-    setState({
-      user: user,
-      auth: true,
-    });
-  };
-
-  const logout = () => {
-    setState({ ...initState, loading: false });
-  };
+  const { user } = useUser();
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    User.service
-      .me()
-      .then((user) => login(user))
-      .catch(() => logout());
-  }, [state.auth]);
+    if (!user instanceof User) return;
+
+    UserData.service.fetch().then((userData) => setUserData(userData));
+  }, [user]);
 
   return (
     <UserDataContext.Provider
       value={{
-        accounts: state.accounts,
+        userData: userData,
       }}
     >
       {children}
