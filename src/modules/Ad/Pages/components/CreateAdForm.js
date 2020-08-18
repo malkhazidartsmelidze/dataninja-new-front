@@ -1,7 +1,8 @@
 import React from 'react';
-import { TextField, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
-import { TextInput } from 'components/inputs';
+import { TextInput, SelectInput } from 'components/inputs';
+import BiddingFields from './BiddingFields';
 
 export default () => {
   const { networks, setNetwork } = useNewAdContext();
@@ -22,8 +23,8 @@ export default () => {
         }}
         name='Asdas'
         value='Traffic Campaign 22'
-        label='Campaign Name'
       />
+      <BiddingFields />
     </Grid>
   );
 };

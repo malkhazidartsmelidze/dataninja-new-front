@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { ownerDocument } from '@material-ui/core';
 
 export const NewAdContext = createContext({});
 
@@ -8,6 +9,11 @@ const initState = {
     google: true,
   },
   ad_type: 'conversions',
+  bid_type: 'pay_per_click',
+  splits: {
+    facebook: {},
+    google: {},
+  },
 };
 
 export const NewAdContextProvider = ({ children }) => {
@@ -18,16 +24,32 @@ export const NewAdContextProvider = ({ children }) => {
   };
 
   const setNetwork = (network, bool) => {
-    setState({ ...state, networks: { ...state.networks, [network]: bool } });
+    setState((old) => {
+      old.networks[network] = bool;
+      return { ...old };
+    });
   };
 
   const setAdType = (type) => {
-    setState({ ...state, ad_type: type });
+    setState((old) => {
+      old.ad_type = type;
+      return { ...old };
+    });
   };
 
   const isAdType = (type) => {
     return state.ad_type === type;
   };
+
+  const splitNetworkField = (network, field, value) => {
+    setState((old) => {
+      if (!old.splits[network]) return;
+      old.splits[network][field] = value;
+      return Object.create(old);
+    });
+  };
+
+  const getState = (field) => {};
 
   return (
     <NewAdContext.Provider
@@ -37,6 +59,8 @@ export const NewAdContextProvider = ({ children }) => {
         isNetworkSelected,
         isAdType,
         setAdType,
+        splitNetworkField,
+        getState,
       }}
     >
       {children}

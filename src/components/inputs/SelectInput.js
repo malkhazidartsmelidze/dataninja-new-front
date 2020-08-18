@@ -18,8 +18,8 @@ export default (p) => {
         {...rest}
       >
         {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
+          <MenuItem key={option.value} value={option.value}>
+            {option.name}
           </MenuItem>
         ))}
       </TextField>
