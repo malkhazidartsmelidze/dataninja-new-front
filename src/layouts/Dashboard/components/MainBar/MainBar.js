@@ -14,16 +14,16 @@ import {
   Divider,
 } from '@material-ui/core';
 import useLanguage from 'store/LanguageContext';
-import { useUserData } from 'store/UserDataContext';
+import { useUserConfig } from 'store/UserConfigContext';
 
 const Topbar = (props) => {
   const classes = useStyles();
   const { language, changeLanguage, languages } = useLanguage();
-  const { userData } = useUserData();
-  if (!userData) return <div>'asdfds'</div>;
+  const { userConfig } = useUserConfig();
+  if (!userConfig) return <div>'asdfds'</div>;
 
-  const googleAccounts = userData.getGoogleAccounts();
-  const facebokAccounts = userData.getFacebookAccounts();
+  const googleAccounts = userConfig.getGoogleAccounts();
+  const facebokAccounts = userConfig.getFacebookAccounts();
 
   const LanguageSwitcher = (
     <TextField

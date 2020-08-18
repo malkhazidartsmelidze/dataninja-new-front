@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import Module from 'modules/Module';
 import { AppLayout } from 'layouts';
-import { UserDataContextProvider } from 'store/UserDataContext';
+import { UserConfigContextProvider } from 'store/UserConfigContext';
 import { LinearProgress } from '@material-ui/core';
 import P from 'paths';
 
@@ -39,8 +39,8 @@ export default () => {
   });
 
   return (
-    <UserDataContextProvider>
+    <UserConfigContextProvider>
       <Suspense fallback={<LinearProgress />}>{mod.render()}</Suspense>
-    </UserDataContextProvider>
+    </UserConfigContextProvider>
   );
 };

@@ -2,7 +2,6 @@ import api from 'common/api';
 
 class User {
   constructor(obj) {
-    console.log('adasd', obj);
     this.id = obj.id;
     this.name = obj.name;
     this.language = obj.language;
@@ -23,7 +22,6 @@ class User {
   }
 
   getAvatar() {
-    console.log(this);
     if (!this.hasConfig) return null;
 
     return this.config.avatar;
@@ -73,6 +71,15 @@ User.service = {
       action: 'change-language',
       language: code,
     });
+  },
+  /**
+   * Get User Config
+   */
+  bootstrapUser: (user) => {
+    return api
+      .post('/user/bootstrap')
+      .then((res) => res.data)
+      .then((res) => console.log(res));
   },
 };
 

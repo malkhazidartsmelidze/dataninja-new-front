@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import IconButtonMenu from 'common/@mui/IconButtonMenu';
-import { useUserData } from 'store/UserDataContext';
-import UserData from 'common/objects/UserData/UserData';
+import { useUserConfig } from 'store/UserConfigContext';
+import UserConfig from 'common/objects/User/UserConfig';
 import { mdiFacebook } from '@mdi/js';
 
 export default () => {
-  /** @var UserData */
-  const { userData } = useUserData();
+  /** @var UserConfig */
+  const { userConfig } = useUserConfig();
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    if (!(userData instanceof UserData)) return;
+    if (!(userConfig instanceof UserConfig)) return;
 
     setOptions(
-      userData.getFacebookAccounts().map((acc) => {
+      userConfig.getFacebookAccounts().map((acc) => {
         return { value: acc.name, id: acc.id };
       })
     );
-  }, [userData]);
+  }, [userConfig]);
 
   return (
     <IconButtonMenu

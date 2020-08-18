@@ -1,7 +1,7 @@
 import api from 'common/api';
 
-class UserData {
-  constructor(obj) {
+class UserConfig {
+  constructor(obj = {}) {
     Object.keys(obj).map((key) => {
       this[key] = obj[key];
     });
@@ -20,12 +20,16 @@ class UserData {
   }
 }
 
-UserData.service = {
+UserConfig.service = {
   fetch: () => {
     return api.post('/user/bootstrap').then((res) => {
-      return new UserData(res.data);
+      return new UserConfig(res.data);
     });
   },
 };
 
-export default UserData;
+UserConfig.checkLoaded = (userConfig) => {
+  return userConfig instanceof UserConfig;
+};
+
+export default UserConfig;
