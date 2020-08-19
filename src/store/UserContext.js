@@ -1,5 +1,6 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
 import User from 'common/objects/User';
+import api from 'common/api';
 
 const UserContext = createContext('user');
 
@@ -12,7 +13,6 @@ export const UserContextProvider = ({ children }) => {
   const [state, setState] = useState(initState);
 
   const login = (user) => {
-    console.log(user);
     setState({
       user: user,
       auth: true,
@@ -21,6 +21,7 @@ export const UserContextProvider = ({ children }) => {
 
   const logout = () => {
     setState(initState);
+    api.setToken(null);
   };
 
   useEffect(() => {

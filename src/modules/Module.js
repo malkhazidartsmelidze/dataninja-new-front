@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderRoutes } from 'routes';
+import { renderRoutes, Errors } from 'routes';
 
 class Module {
   constructor(module) {
@@ -8,6 +8,7 @@ class Module {
   }
 
   renderRoutes() {
+    this.routes.push(...Errors);
     return renderRoutes(this.routes);
   }
 

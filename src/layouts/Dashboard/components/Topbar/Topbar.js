@@ -20,7 +20,7 @@ const Topbar = (props) => {
   const { onDrawerToggle } = props;
   const { language, changeLanguage, languages } = useLanguage();
   const { user } = useUser();
-
+  if (!user) return <div>'asdfds'</div>;
   const LanguageSwitcher = (
     <TextField
       select

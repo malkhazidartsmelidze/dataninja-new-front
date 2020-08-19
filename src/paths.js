@@ -4,7 +4,7 @@ export default {
 
   APP: '/app/',
 
-  HOME: '/app/home/',
+  HOME: '/',
 
   DASHBOARD_MODULE: '/app/dashboard/',
 

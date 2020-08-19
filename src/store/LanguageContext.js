@@ -4,6 +4,7 @@ import { languageKey, defaultLanguage } from 'consts';
 import Language from 'common/objects/Language';
 import getMessages from 'common/message-resolver';
 import useUser from 'store/UserContext';
+import defaultMessages from 'common/locales/en.json';
 
 export const LanguageContext = createContext({});
 
@@ -16,7 +17,7 @@ const aviableLanguages = [
 export const LanguageContextProvider = ({ children }) => {
   const [language, setLangauge] = useState(localStorage.getItem(languageKey) || defaultLanguage);
   const { user } = useUser();
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState(defaultMessages);
 
   const changeLanguage = (chosenLanguageCode) => {
     const chosenLanguage = aviableLanguages.find((l) => l.getCode() == chosenLanguageCode);

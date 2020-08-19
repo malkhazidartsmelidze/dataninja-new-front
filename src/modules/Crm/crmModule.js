@@ -8,16 +8,15 @@ export default () => {
     routes: [
       {
         path: P.CRM_MODULE,
-        secure: true,
+        secured: true,
         component: () => <div>this is CRM Module</div>,
       },
       {
         path: P.CRM_FORMS,
-        secure: true,
+        secured: true,
         component: () => <div>this is Crm</div>,
       },
     ],
-    layout: DashboardLayout,
   });
 
   return mod.render();

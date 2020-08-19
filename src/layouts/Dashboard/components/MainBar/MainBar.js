@@ -14,13 +14,13 @@ import {
   Divider,
 } from '@material-ui/core';
 import useLanguage from 'store/LanguageContext';
-import useUser from 'store/UserContext';
 import { useUserData } from 'store/UserDataContext';
 
 const Topbar = (props) => {
   const classes = useStyles();
   const { language, changeLanguage, languages } = useLanguage();
   const { userData } = useUserData();
+  if (!userData) return <div>'asdfds'</div>;
 
   const googleAccounts = userData.getGoogleAccounts();
   const facebokAccounts = userData.getFacebookAccounts();

@@ -7,7 +7,7 @@ const UserDataContext = createContext('user');
 
 export const UserDataContextProvider = ({ children }) => {
   const { user } = useUser();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     if (!user instanceof User) return;

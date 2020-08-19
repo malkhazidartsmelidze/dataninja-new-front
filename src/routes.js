@@ -1,53 +1,26 @@
 import React, { lazy } from 'react';
-import { Redirect, Switch, Route as ReactRouter } from 'react-router';
+import { Redirect, Switch, Route as ReactRouter } from 'react-router-dom';
 import useUser from 'store/UserContext';
 import P from 'paths';
+import Error404 from 'common/errorPages/Error404';
+
+const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
 
 const AuthModule = lazy(() => import('modules/Auth'));
-const UserModule = lazy(() => import('modules/User'));
-const CrmModule = lazy(() => import('modules/Crm'));
-const AdModule = lazy(() => import('modules/Ad'));
-const DashboardModule = lazy(() => import('modules/Dashboard'));
-const BuilderModule = lazy(() => import('modules/Builder'));
 
 export const routes = [
   {
     path: P.HOME,
     exact: true,
-    component: () => <Redirect to='/auth/login' />,
+    component: () => <Redirect to={P.LOGIN} />,
   },
   {
     path: P.LOGIN_MODULE,
     component: AuthModule,
   },
   {
-    path: P.AD_MODULE,
-    module: AdModule,
-  },
-  {
-    path: P.CRM_MODULE,
-    module: CrmModule,
-  },
-  {
-    path: P.DASHBOARD_MODULE,
-    secured: true,
-    module: DashboardModule,
-  },
-  {
-    path: P.BUILDER_MODULE,
-    module: BuilderModule,
-  },
-  {
-    path: P.USER_MODULE,
-    module: UserModule,
-  },
-  {
-    path: '*',
-    render: () => (
-      <div>
-        Error 404 go to <a href={P.HOME}>home</a>
-      </div>
-    ),
+    path: P.APP,
+    component: BootstrapAppModule,
   },
 ];
 
@@ -83,8 +56,15 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
 
 export const Route = ({ secured, guest, ...props }) => {
   const { auth } = useUser();
-  if (secured && !auth) return <Redirect to='/auth/login' />;
-  if (guest && auth) return <Redirect to='/dashboard' />;
+  if (secured && !auth) return <Redirect to={P.LOGIN} />;
+  if (guest && auth) return <Redirect to={P.DASHBOARD_MODULE} />;
 
   return <ReactRouter {...props} />;
 };
+
+export const Errors = [
+  {
+    path: '*',
+    component: Error404,
+  },
+];

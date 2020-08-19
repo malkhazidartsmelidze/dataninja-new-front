@@ -8,11 +8,10 @@ export default () => {
     routes: [
       {
         path: P.BUILDER_MODULE,
-        secure: true,
+        secured: true,
         component: () => <div>this is buiklder module</div>,
       },
     ],
-    layout: DashboardLayout,
   });
   return mod.render();
 };

@@ -8,11 +8,10 @@ export default () => {
     routes: [
       {
         path: P.USER_MODULE,
-        secure: true,
+        secured: true,
         component: () => <div>This is user module</div>,
       },
     ],
-    layout: DashboardLayout,
   });
   return mod.render();
 };

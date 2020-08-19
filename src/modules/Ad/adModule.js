@@ -8,11 +8,10 @@ export default () => {
     routes: [
       {
         path: P.AD_MODULE,
-        secure: true,
+        secured: true,
         component: () => <div>this is ad module</div>,
       },
     ],
-    layout: DashboardLayout,
   });
   return mod.render();
 };
