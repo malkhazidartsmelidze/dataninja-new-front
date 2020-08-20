@@ -3,15 +3,13 @@ import { ownerDocument } from '@material-ui/core';
 
 export const NewAdContext = createContext({});
 
-const aviableNetworks = ['facebook', 'google'];
-
 const initState = {
   networks: {
     facebook: true,
     google: true,
   },
   ad_type: 'conversions',
-  bid_optimization: 'pay_per_click',
+  bid_optimization_type: 'pay_per_click',
   splits: {
     facebook: {
       bid_type: 'auto',
@@ -45,9 +43,9 @@ export const NewAdContextProvider = ({ children }) => {
     });
   };
 
-  const setBidOptimization = (type) => {
+  const setBidOptimizationType = (type) => {
     setState((old) => {
-      old.bid_optimization = type;
+      old.bid_optimization_type = type;
       return Object.create(old);
     });
   };
@@ -64,7 +62,7 @@ export const NewAdContextProvider = ({ children }) => {
     });
   };
 
-  const getState = (field) => {
+  const getField = (field) => {
     const generalFieldValue = state[field];
     const facebookFieldValue = state.splits.facebook[field] || state[field];
     const googleFieldValue = state.splits.google[field] || state[field];
@@ -78,17 +76,29 @@ export const NewAdContextProvider = ({ children }) => {
     };
   };
 
+  const setField = (field, value, network = null) => {
+    if (network) {
+      setState((old) => {
+        old[network][field] = value;
+        return Object.create(old);
+      });
+    } else {
+      setState({ ...state, [field]: value });
+    }
+  };
+
   return (
     <NewAdContext.Provider
       value={{
         networks: state.networks,
         setNetwork,
-        setBidOptimization,
+        setBidOptimizationType,
         setAdType,
+        setField,
         isNetworkSelected,
         isAdType,
         splitNetworkField,
-        getState,
+        getField,
       }}
     >
       {children}

@@ -3,13 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Accordion, AccordionSummary, Typography, AccordionDetails } from '@material-ui/core';
 import ChooseAdType from './components/ChooseAdType';
 import ChooseNetworks from './components/ChooseNetworks';
-import CreateAdForm from './components/CreateAdForm';
-import { mdiPlus } from '@mdi/js';
+import { mdiArrowLeft } from '@mdi/js';
 import Icon from '@mdi/react';
+import CampaignNameInput from './components/CampaignNameInput';
+import BiddingInputs from './components/BidInputs/BidInputs';
 
 export default () => {
   const classes = useStyles();
-  const [activeAccordions, setActiveAccordions] = useState(['networks']);
+  const [activeAccordions, setActiveAccordions] = useState(['networks', 'ad_type', 'ad_create']);
 
   const handleAccordionChange = (name) => {
     setActiveAccordions((old) => {
@@ -28,11 +29,11 @@ export default () => {
         {steps.map((step) => (
           <Accordion
             key={step.name}
-            expanded={activeAccordions.indexOf(step.name) > -1}
+            expanded={true || activeAccordions.indexOf(step.name) > -1}
             onChange={() => handleAccordionChange(step.name)}
           >
             <AccordionSummary
-              expandIcon={<Icon path={mdiPlus} />}
+              expandIcon={<Icon path={mdiArrowLeft} />}
               aria-controls='panel1bh-content'
               id='panel1bh-header'
             >
@@ -50,9 +51,6 @@ export default () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     flexBasis: '33.33%',
@@ -78,10 +76,16 @@ const steps = [
     name: 'ad_types',
   },
   {
-    component: CreateAdForm,
-    label: 'Create Ad Config',
-    description: 'Create Ad Config',
-    name: 'ad_create',
+    component: CampaignNameInput,
+    label: 'Campaign Name',
+    description: 'Choose Campaign Name',
+    name: 'campaign_name',
+  },
+  {
+    component: BiddingInputs,
+    label: 'Bidding Options',
+    description: 'Choose Bidding Options for each networks',
+    name: 'bidding_options',
   },
   // {
   //   name: 'ad_createss',

@@ -4,25 +4,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 
 export default (p) => {
-  const { sizes, options, ...rest } = p;
+  const { options, ...rest } = p;
 
   return (
-    <Grid item {...sizes}>
-      <TextField
-        fullWidth
-        variant='outlined'
-        size='small'
-        autoComplete='off'
-        select={true}
-        style={{ marginBottom: '4px' }}
-        {...rest}
-      >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.name}
-          </MenuItem>
-        ))}
-      </TextField>
-    </Grid>
+    <TextField autoComplete='off' select={true} {...rest}>
+      {options.map((option) => (
+        <MenuItem key={option.value} value={option.value}>
+          {option.name}
+        </MenuItem>
+      ))}
+    </TextField>
   );
 };

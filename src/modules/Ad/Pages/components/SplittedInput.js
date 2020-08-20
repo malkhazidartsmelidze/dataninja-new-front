@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { InputAdornment, Grid, IconButton } from '@material-ui/core';
+import { InputAdornment, Grid, IconButton, makeStyles } from '@material-ui/core';
 import Icon from '@mdi/react';
 import { mdiLink, mdiLinkOff } from '@mdi/js';
 
-export default ({ children, splitted: _splitted, networks }) => {
+export default ({ children, splitted: _splitted, networks, onSplitProps }) => {
+  const classes = useStyles();
   const [splitted, setSplitted] = useState(_splitted);
   const [renderChildren, setRenderChildren] = useState(children);
   if (!React.Children.only(children)) {
@@ -18,7 +19,6 @@ export default ({ children, splitted: _splitted, networks }) => {
 
   const mergeInputs = () => {
     const singleInput = React.cloneElement(children, {
-      sizes: { xs: 6 },
       InputProps: {
         startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,
       },
@@ -31,15 +31,20 @@ export default ({ children, splitted: _splitted, networks }) => {
     const _chidrenToRender = [];
 
     networks.map((network) => {
-      _chidrenToRender.push(
-        React.cloneElement(children, {
-          sizes: { xs: 12 },
-          InputProps: {
-            'data-network': network,
-            startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,
-          },
-        })
-      );
+      const splitProps = onSplitProps[network] ? onSplitProps[network] : {};
+      const el = React.cloneElement(children, {
+        label: network,
+        key: network,
+        className: classes.splittedInput,
+        InputProps: {
+          'data-network': network,
+          startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,
+          ...(splitProps.InputProps ? splitProps.InputProps : {}),
+        },
+        ...splitProps,
+      });
+
+      _chidrenToRender.push(el);
     });
 
     setRenderChildren(_chidrenToRender);
@@ -55,3 +60,9 @@ export default ({ children, splitted: _splitted, networks }) => {
 
   return renderChildren;
 };
+
+const useStyles = makeStyles((theme) => ({
+  splittedInput: {
+    marginRight: theme.spacing(2),
+  },
+}));
