@@ -2,6 +2,7 @@ import React from 'react';
 import { SelectInput, NumberInput } from 'components/inputs';
 import { InputAdornment } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
+import SplittedInput from './SplittedInput';
 
 export default () => {
   const { getState, setBidOptimization } = useNewAdContext();
@@ -30,6 +31,24 @@ export default () => {
           { value: 'landing_page_views', name: 'Landing Page Views' },
         ]}
       />
+
+      <SplittedInput networks={['facebook', 'google']} splitted={true}>
+        <SelectInput
+          sizes={{
+            xs: 12,
+          }}
+          label='Bid Type'
+          value={bidType.value}
+          name='bid_optimization'
+          onChange={handleBidOptimizationChange}
+          options={[
+            { value: 'pay_per_click', name: 'Pay Per Click' },
+            { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
+            { value: 'maximize_clicks', name: 'Maximize Clicks' },
+            { value: 'landing_page_views', name: 'Landing Page Views' },
+          ]}
+        />
+      </SplittedInput>
 
       <NumberInput
         sizes={{
