@@ -7,7 +7,6 @@ export default () => {
   const { getField, setBidOptimization, setField } = useNewAdContext();
   const bidOptimizationType = getField('bid_optimization_type');
   const bidType = getField('bid_type');
-  const bidAmount = getField('bid_amount');
 
   const facebookBidTypeChanged = (e) => {
     setField('bid_type', e.target.value, 'facebook');
@@ -28,49 +27,44 @@ export default () => {
           onSplitProps={{
             facebook: {
               value: bidType.facebook,
+              select: true,
               onChange: facebookBidTypeChanged,
-              children: <FacebookBidTypeOptions />,
+              children: Object.values(bidTypeFacebookOptions).map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.name}
+                </MenuItem>
+              )),
             },
             google: {
               value: bidType.google,
-              children: <GoogleBidTypeOptions />,
+              select: true,
+              onChange: googleBidTypeChanged,
+              children: Object.values(bidTypeGoogleOptions).map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.name}
+                </MenuItem>
+              )),
             },
           }}
+          disableMerge={true}
+          key={bidType.facebook + bidType.google}
           splitted={true}
         >
-          <TextField fullWidth={false} value={bidType.value} name='bid_optimization' select={true}>
-            <MenuItem />
-          </TextField>
+          <TextField fullWidth={false} value={bidType.value} name='bid_optimization' />
         </SplittedInput>
       </Grid>
     </Grid>
   );
 };
 
-const FacebookBidTypeOptions = () => {
-  const bidTypeFacebookOptions = {
-    auto: { value: 'auto', name: 'Automatic' },
-    manual: { value: 'manual', name: 'Manual' },
-  };
-
-  return Object.values(bidTypeFacebookOptions).map((option) => (
-    <MenuItem key={option.value} value={option.value}>
-      {option.name}
-    </MenuItem>
-  ));
+const bidTypeFacebookOptions = {
+  auto: { value: 'auto', name: 'Automatic' },
+  manual: { value: 'manual', name: 'Manual' },
 };
 
-const GoogleBidTypeOptions = () => {
-  const bidTypeGoogleOptions = {
-    target_cpa: { value: 'target_cpa', name: 'Pay Per Click' },
-    target_roas: { value: 'target_roas', name: 'Target Roas' },
-    maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
-    maximize_clicks: { value: 'landing_page_views', name: 'Landing Page Views' },
-  };
-
-  return bidTypeGoogleOptions.map((option) => (
-    <MenuItem key={option.value} value={option.value}>
-      {option.name}
-    </MenuItem>
-  ));
+const bidTypeGoogleOptions = {
+  manual_cpc: { value: 'manual_cpc', name: 'Pay Per Click' },
+  target_roas: { value: 'target_roas', name: 'Target Roas' },
+  maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
+  maximize_clicks: { value: 'landing_page_views', name: 'Landing Page Views' },
 };

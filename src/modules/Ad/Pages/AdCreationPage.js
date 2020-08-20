@@ -40,7 +40,7 @@ export default () => {
               <Typography className={classes.heading}>{step.label}</Typography>
               <Typography className={classes.secondaryHeading}>{step.description}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className={classes.accordionDetails}>
               <step.component />
             </AccordionDetails>
           </Accordion>
@@ -59,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
+  },
+  accordionDetails: {
+    display: 'block',
   },
 }));
 
@@ -87,9 +90,4 @@ const steps = [
     description: 'Choose Bidding Options for each networks',
     name: 'bidding_options',
   },
-  // {
-  //   name: 'ad_createss',
-  //   component: ChooseAdType,
-  //   label: 'Review & Publish Your Ad',
-  // },
 ];

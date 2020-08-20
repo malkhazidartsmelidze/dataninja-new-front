@@ -79,7 +79,7 @@ export const NewAdContextProvider = ({ children }) => {
   const setField = (field, value, network = null) => {
     if (network) {
       setState((old) => {
-        old[network][field] = value;
+        old.splits[network][field] = value;
         return Object.create(old);
       });
     } else {

@@ -1,7 +1,13 @@
 import React from 'react';
 import { MenuItem, TextField, Grid, Typography } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
-import SplittedInput from '../SplittedInput';
+
+const bidOptimizationOptions = {
+  pay_per_click: { value: 'pay_per_click', name: 'Pay Per Click' },
+  pay_per_impressions: { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
+  maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
+  landing_page_views: { value: 'landing_page_views', name: 'Landing Page Views' },
+};
 
 export default () => {
   const { getField, setBidOptimizationType } = useNewAdContext();
@@ -19,30 +25,18 @@ export default () => {
       </Grid>
       <Grid item>
         <TextField
-          fullWidth={false}
           value={bidOptimizationType.value}
           name='bid_optimization'
           onChange={handleBidOptimizationChange}
           select={true}
         >
-          <GoogleBidOptimizationOptions />
+          {Object.values(bidOptimizationOptions).map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.name}
+            </MenuItem>
+          ))}
         </TextField>
       </Grid>
     </Grid>
   );
-};
-
-const GoogleBidOptimizationOptions = () => {
-  const bidOptimizationOptions = {
-    pay_per_click: { value: 'pay_per_click', name: 'Pay Per Click' },
-    pay_per_impressions: { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
-    maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
-    landing_page_views: { value: 'landing_page_views', name: 'Landing Page Views' },
-  };
-
-  return Object.values(bidOptimizationOptions).map((option) => (
-    <MenuItem key={option.value} value={option.value}>
-      {option.name}
-    </MenuItem>
-  ));
 };

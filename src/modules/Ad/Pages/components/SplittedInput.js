@@ -2,17 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { InputAdornment, Grid, IconButton, makeStyles } from '@material-ui/core';
 import Icon from '@mdi/react';
 import { mdiLink, mdiLinkOff } from '@mdi/js';
+import { useNewAdContext } from 'store/NewAdContext';
 
-export default ({ children, splitted: _splitted, networks, onSplitProps }) => {
+export default ({
+  children,
+  splitted: _splitted,
+  networks,
+  onSplitProps,
+  disableSplit,
+  disableMerge,
+}) => {
   const classes = useStyles();
   const [splitted, setSplitted] = useState(_splitted);
   const [renderChildren, setRenderChildren] = useState(children);
+
   if (!React.Children.only(children)) {
     throw 'Split Element has to have only one children';
   }
 
   const splitButton = (
-    <IconButton onClick={() => setSplitted(!splitted)}>
+    <IconButton
+      onClick={() => setSplitted(!splitted)}
+      disabled={(disableMerge && splitted) || (disableSplit && !splitted)}
+    >
       <Icon path={splitted ? mdiLink : mdiLinkOff} />
     </IconButton>
   );
@@ -32,6 +44,7 @@ export default ({ children, splitted: _splitted, networks, onSplitProps }) => {
 
     networks.map((network) => {
       const splitProps = onSplitProps[network] ? onSplitProps[network] : {};
+
       const el = React.cloneElement(children, {
         label: network,
         key: network,
@@ -52,9 +65,9 @@ export default ({ children, splitted: _splitted, networks, onSplitProps }) => {
 
   useEffect(() => {
     if (!splitted) {
-      return mergeInputs();
+      mergeInputs();
     } else {
-      return splitInputs();
+      splitInputs();
     }
   }, [splitted]);
 
