@@ -3,6 +3,7 @@ import { MenuItem, Grid } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
 import BidOptimizationInput from './BidOptimizationInput';
 import BidTypeInput from './BidTypeInput';
+import FacebookPayFor from './FacebookPayFor';
 
 export default () => {
   const { getField, setBidOptimization, setField } = useNewAdContext();
@@ -27,6 +28,7 @@ export default () => {
     <Fragment>
       <BidOptimizationInput />
       <BidTypeInput />
+      <FacebookPayFor />
     </Fragment>
   );
 

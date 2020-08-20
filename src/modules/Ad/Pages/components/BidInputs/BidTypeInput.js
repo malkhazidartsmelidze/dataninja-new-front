@@ -19,7 +19,7 @@ export default () => {
   return (
     <Grid container spacing={2} alignItems='center'>
       <Grid item>
-        <Typography color='textSecondary'>Bid Optimization Goal Type:</Typography>
+        <Typography color='textSecondary'>Bid Type:</Typography>
       </Grid>
       <Grid item>
         <SplittedInput

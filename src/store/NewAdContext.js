@@ -13,6 +13,7 @@ const initState = {
   splits: {
     facebook: {
       bid_type: 'auto',
+      pay_for: 'pay_for_impressions',
       bid_amount: 1.0,
     },
     google: {
