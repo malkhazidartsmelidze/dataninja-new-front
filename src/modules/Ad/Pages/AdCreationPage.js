@@ -1,73 +1,91 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Stepper, Step, StepLabel, StepContent, Grid } from '@material-ui/core';
+import { Grid, Accordion, AccordionSummary, Typography, AccordionDetails } from '@material-ui/core';
 import ChooseAdType from './components/ChooseAdType';
 import ChooseNetworks from './components/ChooseNetworks';
-import StepSwitcher from './components/StepSwitcher';
-import { useNewAdContext } from 'store/NewAdContext';
 import CreateAdForm from './components/CreateAdForm';
+import { mdiPlus } from '@mdi/js';
+import Icon from '@mdi/react';
 
 export default () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(2);
-  const steps = getSteps();
+  const [activeAccordions, setActiveAccordions] = useState(['networks']);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const handleAccordionChange = (name) => {
+    setActiveAccordions((old) => {
+      if (old.indexOf(name) > -1) {
+        old.splice(old.indexOf(name), 1);
+      } else {
+        old.push(name);
+      }
+      return [...old];
+    });
   };
 
   return (
     <Grid container>
-      <Grid item md={8} xs={12}>
-        <Stepper activeStep={activeStep} orientation='vertical'>
-          {steps.map((step, index) => (
-            <Step key={step.label}>
-              <StepLabel>{step.label}</StepLabel>
-              <StepContent>
-                <div className={classes.stepContent}>
-                  <step.component />
-                  <StepSwitcher
-                    onNext={handleNext}
-                    onPrevious={handleBack}
-                    activeStep={activeStep}
-                  />
-                </div>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
+      <Grid item xs={12}>
+        {steps.map((step) => (
+          <Accordion
+            key={step.name}
+            expanded={activeAccordions.indexOf(step.name) > -1}
+            onChange={() => handleAccordionChange(step.name)}
+          >
+            <AccordionSummary
+              expandIcon={<Icon path={mdiPlus} />}
+              aria-controls='panel1bh-content'
+              id='panel1bh-header'
+            >
+              <Typography className={classes.heading}>{step.label}</Typography>
+              <Typography className={classes.secondaryHeading}>{step.description}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <step.component />
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </Grid>
     </Grid>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
-  stepContent: {
-    paddingTop: theme.spacing(5),
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
   },
 }));
 
-const getSteps = () => {
-  return [
-    {
-      component: ChooseNetworks,
-      label: 'Select Networks',
-    },
-    {
-      component: ChooseAdType,
-      label: 'Select Ad Type',
-    },
-    {
-      component: CreateAdForm,
-      label: 'Create Campaign AD & Asets',
-    },
-    {
-      component: ChooseAdType,
-      label: 'Review & Publish Your Ad',
-    },
-  ];
-};
+const steps = [
+  {
+    component: ChooseNetworks,
+    label: 'Choose Networks',
+    description: 'Select Networks where you want to create ads',
+    name: 'networks',
+  },
+  {
+    component: ChooseAdType,
+    label: 'Select Ad Type',
+    description: 'Choose Ad types',
+    name: 'ad_types',
+  },
+  {
+    component: CreateAdForm,
+    label: 'Create Ad Config',
+    description: 'Create Ad Config',
+    name: 'ad_create',
+  },
+  // {
+  //   name: 'ad_createss',
+  //   component: ChooseAdType,
+  //   label: 'Review & Publish Your Ad',
+  // },
+];

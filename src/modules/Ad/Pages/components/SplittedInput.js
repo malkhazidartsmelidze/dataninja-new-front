@@ -7,7 +7,7 @@ export default ({ children, splitted: _splitted, networks }) => {
   const [splitted, setSplitted] = useState(_splitted);
   const [renderChildren, setRenderChildren] = useState(children);
   if (!React.Children.only(children)) {
-    throw 'Children must be only 1';
+    throw 'Split Element has to have only one children';
   }
 
   const splitButton = (
@@ -26,13 +26,14 @@ export default ({ children, splitted: _splitted, networks }) => {
 
     setRenderChildren(singleInput);
   };
+
   const splitInputs = () => {
     const _chidrenToRender = [];
 
     networks.map((network) => {
       _chidrenToRender.push(
         React.cloneElement(children, {
-          sizes: { xs: 6 },
+          sizes: { xs: 12 },
           InputProps: {
             'data-network': network,
             startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,

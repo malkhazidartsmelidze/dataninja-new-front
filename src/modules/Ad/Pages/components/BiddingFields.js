@@ -16,21 +16,23 @@ export default () => {
 
   return (
     <>
-      <SelectInput
-        sizes={{
-          xs: 6,
-        }}
-        label='Bid Optimization Goal Type'
-        value={bidType.value}
-        name='bid_optimization'
-        onChange={handleBidOptimizationChange}
-        options={[
-          { value: 'pay_per_click', name: 'Pay Per Click' },
-          { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
-          { value: 'maximize_clicks', name: 'Maximize Clicks' },
-          { value: 'landing_page_views', name: 'Landing Page Views' },
-        ]}
-      />
+      <SplittedInput networks={['facebook', 'google']} splitted={false}>
+        <SelectInput
+          sizes={{
+            xs: 12,
+          }}
+          label='Bid Optimization Goal Type'
+          value={bidType.value}
+          name='bid_optimization'
+          onChange={handleBidOptimizationChange}
+          options={[
+            { value: 'pay_per_click', name: 'Pay Per Click' },
+            { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
+            { value: 'maximize_clicks', name: 'Maximize Clicks' },
+            { value: 'landing_page_views', name: 'Landing Page Views' },
+          ]}
+        />
+      </SplittedInput>
 
       <SplittedInput networks={['facebook', 'google']} splitted={true}>
         <SelectInput
@@ -42,8 +44,8 @@ export default () => {
           name='bid_optimization'
           onChange={handleBidOptimizationChange}
           options={[
-            { value: 'pay_per_click', name: 'Pay Per Click' },
-            { value: 'pay_per_impressions', name: 'Pay Per Impressions' },
+            { value: 'manual_cpc', name: 'Manual Cpc' },
+            { value: 'manual_cpm', name: 'Manual Cpm' },
             { value: 'maximize_clicks', name: 'Maximize Clicks' },
             { value: 'landing_page_views', name: 'Landing Page Views' },
           ]}
