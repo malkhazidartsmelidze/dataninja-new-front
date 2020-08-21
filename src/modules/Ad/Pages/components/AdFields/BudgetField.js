@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import { MenuItem, TextField, Grid, Typography } from '@material-ui/core';
+import { MenuItem, TextField, Grid, Typography, InputAdornment } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
 import SplittedInput from '../SplittedInput';
+import PanelField from 'components/ExpansionPanel/PanelField';
+import Icon from '@mdi/react';
+import { mdiCurrencyEur } from '@mdi/js';
 
 export default () => {
   const { getField, setField } = useNewAdContext();
@@ -22,16 +25,9 @@ export default () => {
     setField('budget', budget, 'facebook');
   };
 
-  const logitem = (item) => {
-    setTimeout(() => console.log(item), item);
-  };
-
   return (
-    <Grid container spacing={2} alignItems='center'>
-      <Grid item>
-        <Typography color='textSecondary'>Enter Campaign Budget:</Typography>
-      </Grid>
-      <Grid item>
+    <PanelField
+      content={
         <SplittedInput
           networks={['facebook', 'google']}
           onSplitProps={{
@@ -39,11 +35,25 @@ export default () => {
               label: 'Facebook',
               value: budget.facebook,
               onChange: handleFacebookBudgetChange,
+              InputProps: {
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <Icon path={mdiCurrencyEur} />
+                  </InputAdornment>
+                ),
+              },
             },
             google: {
               label: 'Google',
               value: budget.google,
               onChange: handleGoogleBudgetChange,
+              InputProps: {
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <Icon path={mdiCurrencyEur} />
+                  </InputAdornment>
+                ),
+              },
             },
           }}
         >
@@ -54,7 +64,7 @@ export default () => {
             onChange={handleBudgetChangeInput}
           />
         </SplittedInput>
-      </Grid>
-    </Grid>
+      }
+    />
   );
 };

@@ -43,13 +43,10 @@ export default () => {
   if (!show) return null;
 
   return (
-    <Grid container spacing={2} alignItems='center'>
-      <Grid item>
-        <Typography color='textSecondary'>Google Bid Options:</Typography>
-      </Grid>
+    <>
       <Grid item>
         <TextField
-          fullWidth={false}
+          fullWidth={true}
           value='manual_cpc'
           name='google_bid_type'
           select={true}
@@ -84,6 +81,6 @@ export default () => {
           }}
         />
       </Grid>
-    </Grid>
+    </>
   );
 };

@@ -7,8 +7,8 @@ import {
   BidOptimizationField,
   BidTypeFields,
   BidOptionFields,
+  BudgetField,
 } from './components/AdFields';
-import BudgetInputs from './components/BudgetInputs/BudgetInputs';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
 export default () => {
@@ -65,7 +65,7 @@ const steps = [
     subTitle: 'Google And Facebook bid Option Fields',
   },
   {
-    component: BudgetInputs,
+    component: BudgetField,
     title: 'Budgets',
     subTitle: 'Enter Campaign Budgets Here',
   },

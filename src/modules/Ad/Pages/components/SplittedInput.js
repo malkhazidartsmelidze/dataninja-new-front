@@ -44,15 +44,16 @@ export default ({
 
     networks.map((network) => {
       const splitProps = onSplitProps[network] ? onSplitProps[network] : {};
-
+      const InputProps = {
+        'data-network': network,
+        startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,
+        endAdornment: splitProps?.InputProps?.endAdornment,
+      };
+      delete splitProps.InputProps;
       const el = React.cloneElement(children, {
         key: network,
         className: classes.splittedInput,
-        InputProps: {
-          'data-network': network,
-          startAdornment: <InputAdornment position='start'>{splitButton}</InputAdornment>,
-          ...(splitProps.InputProps ? splitProps.InputProps : {}),
-        },
+        InputProps: InputProps,
         ...splitProps,
       });
 

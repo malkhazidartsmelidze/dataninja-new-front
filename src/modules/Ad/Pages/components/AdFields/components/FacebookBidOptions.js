@@ -8,10 +8,13 @@ import {
   InputAdornment,
   FormControlLabel,
   Radio,
+  Card,
+  CardContent,
 } from '@material-ui/core';
 import { useNewAdContext } from 'store/NewAdContext';
 import { mdiCurrencyEur } from '@mdi/js';
 import Icon from '@mdi/react';
+import PanelField from 'components/ExpansionPanel/PanelField';
 /**
  * If facebook pay_per_click is chosen make link_clicks
  */
@@ -53,25 +56,20 @@ export default () => {
   const showBidAmountInput = bidType.facebook == 'manual';
 
   return (
-    <Grid container spacing={2} alignItems='center'>
-      <Grid item>
-        <Typography color='textSecondary'>Facebook Bid Options:</Typography>
-      </Grid>
-      <Grid item>
-        <TextField
-          fullWidth={false}
-          value={payFor.facebook}
-          onChange={handleChangePayFor}
-          name='pay_for'
-          select={true}
-        >
-          {Object.values(payForOption).map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.name}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Grid>
+    <>
+      <TextField
+        value={payFor.facebook}
+        onChange={handleChangePayFor}
+        name='pay_for'
+        key='pay_for'
+        select={true}
+      >
+        {Object.values(payForOption).map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.name}
+          </MenuItem>
+        ))}
+      </TextField>
       {showBidAmountInput && (
         <>
           <Grid item>
@@ -114,6 +112,6 @@ export default () => {
           </Grid>
         </>
       )}
-    </Grid>
+    </>
   );
 };
