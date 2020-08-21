@@ -8,12 +8,13 @@ import {
   BidTypeFields,
   BidOptionFields,
   BudgetField,
-  TargetingFields,
 } from './components/AdFields';
-import { GenderTargetingField } from './components/TargetingFields';
-
+import {
+  GenderTargetingField,
+  AgeTargetingField,
+  LocationTargetingField,
+} from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import AgeTargetingField from './components/TargetingFields/AgeTargetingField';
 
 export default () => {
   return (
@@ -90,5 +91,10 @@ const steps = [
     component: AgeTargetingField,
     title: 'Choose Age Range',
     subTitle: 'Age of audience',
+  },
+  {
+    component: LocationTargetingField,
+    title: 'Choose Location',
+    subTitle: 'Exclude or include targeting location',
   },
 ];
