@@ -1,33 +1,21 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import { Grid } from '@material-ui/core';
-import ChooseAdType from './components/ChooseAdType';
-import ChooseNetworks from './components/ChooseNetworks';
-import CampaignNameInput from './components/CampaignNameInput';
+import { ChooseNetworkField, CampaignNameField, AdTypeField } from './components/AdFields';
 import BiddingInputs from './components/BidInputs/BidInputs';
 import BudgetInputs from './components/BudgetInputs/BudgetInputs';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
 export default () => {
-  const classes = useStyles();
-  const [activeAccordions, setActiveAccordions] = useState(['networks', 'ad_type', 'ad_create']);
-
-  const handleAccordionChange = (name) => {
-    setActiveAccordions((old) => {
-      if (old.indexOf(name) > -1) {
-        old.splice(old.indexOf(name), 1);
-      } else {
-        old.push(name);
-      }
-      return [...old];
-    });
-  };
-
   return (
     <Grid container>
       <Grid item xs={12}>
         {steps.map((step) => (
-          <ExpansionPanel text={step.title} subText={step.subTitle}>
+          <ExpansionPanel
+            title={step.title}
+            subTitle={step.subTitle}
+            titleWhenOpen={step.titleWhenOpen}
+            subTitleWhenOpen={step.subTitleWhenOpen}
+          >
             <step.component />
           </ExpansionPanel>
         ))}
@@ -36,36 +24,23 @@ export default () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-  accordionDetails: {
-    display: 'block',
-  },
-}));
-
 const steps = [
   {
-    component: ChooseNetworks,
+    component: ChooseNetworkField,
     title: 'Choose Networks',
+    titleWhenOpen: 'Check Networks',
     subTitle: 'Select Networks where you want to create ads',
+    subTitleWhenOpen: 'Choose From facebook and google',
     name: 'networks',
   },
   {
-    component: ChooseAdType,
+    component: AdTypeField,
     title: 'Select Ad Type',
     subTitle: 'Choose Ad types',
     name: 'ad_types',
   },
   {
-    component: CampaignNameInput,
+    component: CampaignNameField,
     title: 'Campaign Name',
     subTitle: 'Choose Campaign Name',
     name: 'campaign_name',

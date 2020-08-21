@@ -11,7 +11,7 @@ import Icon from '@mdi/react';
 
 export default (props) => {
   const [expanded, setExpanded] = useState(false);
-  const { text, subText, doc, children } = props;
+  const { title, subTitle, doc, children, subTitleWhenOpen, titleWhenOpen } = props;
   const classes = useStyles();
 
   const handleAccordionTitleClick = () => {
@@ -32,8 +32,12 @@ export default (props) => {
         }
         onClick={handleAccordionTitleClick}
       >
-        <Typography className={classes.heading}>{text}</Typography>
-        <Typography className={classes.secondaryHeading}>{subText}</Typography>
+        <Typography className={classes.heading}>
+          {titleWhenOpen && expanded ? titleWhenOpen : title}
+        </Typography>
+        <Typography className={classes.secondaryHeading}>
+          {subTitleWhenOpen && expanded ? subTitleWhenOpen : subTitle}
+        </Typography>
       </AccordionSummary>
       <AccordionDetails className={classes.accordionDetails}>{children}</AccordionDetails>
     </Accordion>
