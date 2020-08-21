@@ -5,8 +5,9 @@ import {
   CampaignNameField,
   AdTypeField,
   BidOptimizationField,
+  BidTypeFields,
+  BidOptionFields,
 } from './components/AdFields';
-import BiddingInputs from './components/BidInputs/BidInputs';
 import BudgetInputs from './components/BudgetInputs/BudgetInputs';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
@@ -16,6 +17,7 @@ export default () => {
       <Grid item xs={12}>
         {steps.map((step) => (
           <ExpansionPanel
+            key={step.title}
             title={step.title}
             subTitle={step.subTitle}
             titleWhenOpen={step.titleWhenOpen}
@@ -36,30 +38,35 @@ const steps = [
     titleWhenOpen: 'Check Networks',
     subTitle: 'Select Networks where you want to create ads',
     subTitleWhenOpen: 'Choose From facebook and google',
-    name: 'networks',
   },
   {
     component: AdTypeField,
     title: 'Select Ad Type',
     subTitle: 'Choose Ad types',
-    name: 'ad_types',
   },
   {
     component: CampaignNameField,
     title: 'Campaign Name',
     subTitle: 'Choose Campaign Name',
-    name: 'campaign_name',
   },
   {
     component: BidOptimizationField,
-    title: 'Bid Optimization Field',
+    title: 'Bid Optimization',
     subTitle: 'Choose Bidding Options for each networks',
-    name: 'bidding_options',
+  },
+  {
+    component: BidTypeFields,
+    title: 'Bid Types',
+    subTitle: 'Choose Bid Types',
+  },
+  {
+    component: BidOptionFields,
+    title: 'Additional Bid Options',
+    subTitle: 'Google And Facebook bid Option Fields',
   },
   {
     component: BudgetInputs,
     title: 'Budgets',
     subTitle: 'Enter Campaign Budgets Here',
-    name: 'budget_options',
   },
 ];

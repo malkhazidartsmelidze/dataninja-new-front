@@ -14,7 +14,7 @@ export default () => {
     <PanelField
       title='Choose Network'
       content={[
-        <FormControl fullWidth>
+        <FormControl fullWidth key='fb'>
           <FormControlLabel
             control={
               <Checkbox checked={networks.facebook} onChange={handleNetworkCheck} name='facebook' />
@@ -22,7 +22,7 @@ export default () => {
             label='Facebook'
           />
         </FormControl>,
-        <FormControl fullWidth>
+        <FormControl fullWidth key='google'>
           <FormControlLabel
             control={
               <Checkbox checked={networks.google} onChange={handleNetworkCheck} name='google' />

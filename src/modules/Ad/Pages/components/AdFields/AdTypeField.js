@@ -24,7 +24,7 @@ export default () => {
     <PanelField
       title='Choose Network'
       content={[
-        <FormControl fullWidth>
+        <FormControl fullWidth key='conversions'>
           <FormControlLabel
             control={
               <Radio
@@ -36,7 +36,7 @@ export default () => {
             label='Conversions'
           />
         </FormControl>,
-        <FormControl fullWidth>
+        <FormControl fullWidth key='traffic_to_website'>
           <FormControlLabel
             control={
               <Radio
@@ -49,7 +49,7 @@ export default () => {
           />
         </FormControl>,
         isNetworkSelected('google') && (
-          <FormControl fullWidth>
+          <FormControl fullWidth key='search_ads'>
             <FormControlLabel
               control={
                 <Radio
@@ -63,7 +63,7 @@ export default () => {
             />
           </FormControl>
         ),
-        <FormControl fullWidth>
+        <FormControl fullWidth key='retarget'>
           <FormControlLabel
             control={
               <Radio

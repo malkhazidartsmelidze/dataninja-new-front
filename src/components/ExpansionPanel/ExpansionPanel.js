@@ -11,25 +11,17 @@ import Icon from '@mdi/react';
 
 export default (props) => {
   const [expanded, setExpanded] = useState(false);
-  const { title, subTitle, doc, children, subTitleWhenOpen, titleWhenOpen } = props;
+  const { title, subTitle, children, subTitleWhenOpen, titleWhenOpen } = props;
   const classes = useStyles();
 
   const handleAccordionTitleClick = () => {
-    return handleAccordionIconClick();
-    if (expanded) return;
-    setExpanded(true);
-  };
-
-  const handleAccordionIconClick = () => {
     setExpanded(!expanded);
   };
 
   return (
     <Accordion expanded={expanded} classes={{}}>
       <AccordionSummary
-        expandIcon={
-          <Icon path={expanded ? mdiMinus : mdiPlus} onClick={handleAccordionIconClick} />
-        }
+        expandIcon={<Icon path={expanded ? mdiMinus : mdiPlus} />}
         onClick={handleAccordionTitleClick}
       >
         <Typography className={classes.heading}>
