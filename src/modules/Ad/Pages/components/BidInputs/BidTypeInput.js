@@ -16,6 +16,10 @@ export default () => {
     setField('bid_type', e.target.value, 'google');
   };
 
+  if (bidOptimizationType == 'pay_per_impressions') {
+    bidType.google = 'viewable_cpm';
+  }
+
   return (
     <Grid container spacing={2} alignItems='center'>
       <Grid item>
@@ -63,8 +67,8 @@ const bidTypeFacebookOptions = {
 };
 
 const bidTypeGoogleOptions = {
-  manual_cpc: { value: 'manual_cpc', name: 'Pay Per Click' },
-  target_roas: { value: 'target_roas', name: 'Target Roas' },
-  maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
-  maximize_clicks: { value: 'landing_page_views', name: 'Landing Page Views' },
+  manual_cpc: { value: 'manual_cpc', name: 'Manual CPC' },
+  viewable_cpm: { value: 'viewable_cpm', name: 'Viewable CPM' },
+  // maximize_clicks: { value: 'maximize_clicks', name: 'Maximize Clicks' },
+  // maximize_clicks: { value: 'landing_page_views', name: 'Landing Page Views' },
 };

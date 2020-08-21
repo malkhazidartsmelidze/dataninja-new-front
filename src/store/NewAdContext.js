@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { ownerDocument } from '@material-ui/core';
 
 export const NewAdContext = createContext({});
 
@@ -15,10 +14,12 @@ const initState = {
       bid_type: 'auto',
       pay_for: 'pay_for_impressions',
       bid_amount: 1.0,
+      cost_or_bid: 'cost',
     },
     google: {
       bid_type: 'manual_cpc',
-      bid_amount: 2.0,
+      enhanced_bid: true,
+      bid_amount: 1.0,
     },
   },
 };
