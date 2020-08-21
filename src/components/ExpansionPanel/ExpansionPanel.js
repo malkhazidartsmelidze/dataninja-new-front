@@ -11,7 +11,15 @@ import Icon from '@mdi/react';
 
 export default (props) => {
   const [expanded, setExpanded] = useState(false);
-  const { title, subTitle, children, subTitleWhenOpen, titleWhenOpen } = props;
+  const {
+    title,
+    subTitle,
+    children,
+    subTitleWhenOpen,
+    titleWhenOpen,
+    titleBefore,
+    subTitleBefore,
+  } = props;
   const classes = useStyles();
 
   const handleAccordionTitleClick = () => {
@@ -19,20 +27,32 @@ export default (props) => {
   };
 
   return (
-    <Accordion expanded={expanded} classes={{}}>
-      <AccordionSummary
-        expandIcon={<Icon path={expanded ? mdiMinus : mdiPlus} />}
-        onClick={handleAccordionTitleClick}
-      >
-        <Typography className={classes.heading}>
-          {titleWhenOpen && expanded ? titleWhenOpen : title}
-        </Typography>
-        <Typography className={classes.secondaryHeading}>
-          {subTitleWhenOpen && expanded ? subTitleWhenOpen : subTitle}
-        </Typography>
-      </AccordionSummary>
-      <AccordionDetails className={classes.accordionDetails}>{children}</AccordionDetails>
-    </Accordion>
+    <>
+      {(titleBefore || subTitleBefore) && (
+        <div>
+          <Typography className={classes.contentBeforeTitle} color='textPrimary'>
+            {titleBefore}
+          </Typography>
+          <Typography className={classes.contentBeforeSubTitle} color='textPrimary'>
+            {subTitleBefore}
+          </Typography>
+        </div>
+      )}
+      <Accordion expanded={expanded} classes={{}}>
+        <AccordionSummary
+          expandIcon={<Icon path={expanded ? mdiMinus : mdiPlus} />}
+          onClick={handleAccordionTitleClick}
+        >
+          <Typography className={classes.heading}>
+            {titleWhenOpen && expanded ? titleWhenOpen : title}
+          </Typography>
+          <Typography className={classes.secondaryHeading}>
+            {subTitleWhenOpen && expanded ? subTitleWhenOpen : subTitle}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails className={classes.accordionDetails}>{children}</AccordionDetails>
+      </Accordion>
+    </>
   );
 };
 
@@ -48,5 +68,13 @@ const useStyles = makeStyles((theme) => ({
   },
   accordionDetails: {
     display: 'block',
+  },
+  contentBeforeTitle: {
+    fontSize: '16px',
+    margin: '44px 0 8px 8px',
+  },
+  contentBeforeSubTitle: {
+    margin: theme.spacing(0, 0, 1, 1),
+    fontSize: '13px',
   },
 }));

@@ -10,6 +10,9 @@ const initState = {
   ad_type: 'conversions',
   bid_optimization_type: 'pay_per_click',
   budget: 30,
+  targeting_gender: 'all',
+  targeting_age_from: 15,
+  targeting_age_to: 65,
   splits: {
     facebook: {
       bid_type: 'auto',

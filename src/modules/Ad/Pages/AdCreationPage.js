@@ -8,23 +8,31 @@ import {
   BidTypeFields,
   BidOptionFields,
   BudgetField,
+  TargetingFields,
 } from './components/AdFields';
+import { GenderTargetingField } from './components/TargetingFields';
+
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import AgeTargetingField from './components/TargetingFields/AgeTargetingField';
 
 export default () => {
   return (
     <Grid container>
       <Grid item xs={12}>
         {steps.map((step) => (
-          <ExpansionPanel
-            key={step.title}
-            title={step.title}
-            subTitle={step.subTitle}
-            titleWhenOpen={step.titleWhenOpen}
-            subTitleWhenOpen={step.subTitleWhenOpen}
-          >
-            <step.component />
-          </ExpansionPanel>
+          <>
+            <ExpansionPanel
+              key={step.title}
+              title={step.title}
+              subTitle={step.subTitle}
+              titleWhenOpen={step.titleWhenOpen}
+              subTitleWhenOpen={step.subTitleWhenOpen}
+              titleBefore={step.titleBefore}
+              subTitleBefore={step.subTitleBefore}
+            >
+              <step.component />
+            </ExpansionPanel>
+          </>
         ))}
       </Grid>
     </Grid>
@@ -50,6 +58,8 @@ const steps = [
     subTitle: 'Choose Campaign Name',
   },
   {
+    titleBefore: 'Bidding Options',
+    subTitleBefore: 'Bidding Options Subtitle',
     component: BidOptimizationField,
     title: 'Bid Optimization',
     subTitle: 'Choose Bidding Options for each networks',
@@ -68,5 +78,17 @@ const steps = [
     component: BudgetField,
     title: 'Budgets',
     subTitle: 'Enter Campaign Budgets Here',
+  },
+  {
+    titleBefore: 'Targeting Options',
+    subTitleBefore: 'Targeting Options Subtitle',
+    component: GenderTargetingField,
+    title: 'Choose Gender',
+    subTitle: 'Gender of audience',
+  },
+  {
+    component: AgeTargetingField,
+    title: 'Choose Age Range',
+    subTitle: 'Age of audience',
   },
 ];

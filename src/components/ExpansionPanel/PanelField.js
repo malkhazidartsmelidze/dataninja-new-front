@@ -10,7 +10,6 @@ export default (props) => {
       <Grid item xs={3}>
         {leftContent}
       </Grid>
-
       <Grid item>
         {helper && (
           <Typography variant='body1' color='textSecondary'>
