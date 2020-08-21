@@ -1,6 +1,11 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { ChooseNetworkField, CampaignNameField, AdTypeField } from './components/AdFields';
+import {
+  ChooseNetworkField,
+  CampaignNameField,
+  AdTypeField,
+  BidOptimizationField,
+} from './components/AdFields';
 import BiddingInputs from './components/BidInputs/BidInputs';
 import BudgetInputs from './components/BudgetInputs/BudgetInputs';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
@@ -46,8 +51,8 @@ const steps = [
     name: 'campaign_name',
   },
   {
-    component: BiddingInputs,
-    title: 'Bidding Options',
+    component: BidOptimizationField,
+    title: 'Bid Optimization Field',
     subTitle: 'Choose Bidding Options for each networks',
     name: 'bidding_options',
   },
