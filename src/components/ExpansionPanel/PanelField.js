@@ -10,7 +10,7 @@ export default (props) => {
       <Grid item xs={3}>
         {leftContent}
       </Grid>
-      <Grid item>
+      <Grid item xs={9}>
         {helper && (
           <Typography variant='body1' color='textSecondary'>
             {helper}
