@@ -13,6 +13,13 @@ import {
   Card,
   List,
   CircularProgress,
+  Avatar,
+  Chip,
+  Paper,
+  Grid,
+  Typography,
+  CardHeader,
+  CardContent,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import AdForm from 'common/objects/Ad/AdForm';
@@ -44,7 +51,10 @@ export default () => {
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
-
+  useEffect(() => {
+    console.log('targetted:', targetedLocations);
+    console.log('excluded:', excludedLocations);
+  }, [targetedLocations, excludedLocations]);
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -57,11 +67,121 @@ export default () => {
     return excludedLocations[key] !== undefined;
   };
 
+  const targetLocation = (location) => {
+    if (!location.key || isLocationTargetted(location.key)) return;
+    setTargetedlocations({ ...targetedLocations, [location.key]: location });
+    if (isLocationExcluded(location.key)) {
+      deleteFromExcluded(location.key);
+    }
+  };
+
+  const excludeLocation = (location) => {
+    if (!location.key || isLocationExcluded(location.key)) return;
+    setExcludedLocations({ ...excludedLocations, [location.key]: location });
+    if (isLocationTargetted(location.key)) {
+      deleteFromTargetted(location.key);
+    }
+  };
+
+  const deleteFromExcluded = (key) => {
+    setExcludedLocations((old) => {
+      delete old[key];
+      return { ...old };
+    });
+  };
+
+  const deleteFromTargetted = (key) => {
+    setTargetedlocations((old) => {
+      delete old[key];
+      return { ...old };
+    });
+  };
+
+  const renderIncludedLocations = () => {
+    const locs = Object.values(targetedLocations);
+
+    return (
+      <Card>
+        <CardHeader
+          className={classes.chipsCardHeader}
+          title='Targetted Locations'
+          titleTypographyProps={{ variant: 'body2' }}
+        />
+        <CardContent className={classes.chipsCardContent}>
+          {!locs.length ? (
+            'Not any Targetted location'
+          ) : (
+            <ul className={classes.chipsContainerUl}>
+              {locs.map((loc) => {
+                return (
+                  <li key={loc.key}>
+                    <Chip
+                      color='primary'
+                      size='small'
+                      label={`${loc.name} (${loc.type})`}
+                      className={classes.chip}
+                      onDelete={() => deleteFromTargetted(loc.key)}
+                      avatar={<Avatar>{loc.country_code}</Avatar>}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </CardContent>
+      </Card>
+    );
+  };
+
+  const renderExcludedLocations = () => {
+    const locs = Object.values(excludedLocations);
+
+    return (
+      <Card>
+        <CardHeader
+          className={classes.chipsCardHeader}
+          title='Excluded Locations'
+          titleTypographyProps={{ variant: 'body2' }}
+        />
+        <CardContent className={classes.chipsCardContent}>
+          {!locs.length ? (
+            'Not any excluded location'
+          ) : (
+            <ul className={classes.chipsContainerUl}>
+              {locs.map((loc) => {
+                return (
+                  <li key={loc.key}>
+                    <Chip
+                      color='primary'
+                      label={`${loc.name} (${loc.type})`}
+                      size='small'
+                      className={classes.chip}
+                      onDelete={() => deleteFromExcluded(loc.key)}
+                      avatar={<Avatar>{loc.country_code}</Avatar>}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
     <PanelField
       title='Enter Location'
       content={[
         <div>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {renderIncludedLocations()}
+            </Grid>
+            <Grid item xs={6}>
+              {renderExcludedLocations()}
+            </Grid>
+          </Grid>
           <TextField
             label='Enter Location'
             onChange={handleInputChange}
@@ -94,6 +214,7 @@ export default () => {
                           edge='end'
                           aria-label='comments'
                           disabled={isLocationTargetted(option.key)}
+                          onClick={() => targetLocation(option)}
                         >
                           <Icon path={mdiPlus} />
                         </IconButton>
@@ -102,6 +223,7 @@ export default () => {
                           edge='end'
                           aria-label='comments'
                           disabled={isLocationExcluded(option.key)}
+                          onClick={() => excludeLocation(option)}
                         >
                           <Icon path={mdiMinus} />
                         </IconButton>
@@ -127,5 +249,21 @@ const useStyles = makeStyles((theme) => ({
   listItemRoot: {
     paddingTop: 0,
     paddingBottom: 0,
+  },
+  chipsContainerUl: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    padding: theme.spacing(0.5),
+    margin: 0,
+  },
+  chipsCardContent: {
+    padding: theme.spacing(0.5),
+  },
+  chipsCardHeader: {
+    padding: theme.spacing(0.5),
+  },
+  chip: {
+    margin: theme.spacing(0.5),
   },
 }));
