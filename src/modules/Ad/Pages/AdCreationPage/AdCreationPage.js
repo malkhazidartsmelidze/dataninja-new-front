@@ -13,6 +13,7 @@ import {
   GenderTargetingField,
   AgeTargetingField,
   LocationTargetingField,
+  LocationTypeField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
@@ -98,7 +99,7 @@ const steps = [
     subTitle: 'Exclude or include targeting location',
   },
   {
-    component: LocationTargetingField,
+    component: LocationTypeField,
     title: 'Location Type',
     subTitle: 'Living in location, Searching, Interested etc...',
   },
