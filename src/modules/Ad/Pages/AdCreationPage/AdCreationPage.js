@@ -14,6 +14,7 @@ import {
   AgeTargetingField,
   LocationTargetingField,
   LocationTypeField,
+  LanguageTargetingField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
@@ -104,7 +105,7 @@ const steps = [
     subTitle: 'Living in location, Searching, Interested etc...',
   },
   {
-    component: LocationTargetingField,
+    component: LanguageTargetingField,
     title: 'Languages',
     subTitle: 'Choose targeting languages',
   },

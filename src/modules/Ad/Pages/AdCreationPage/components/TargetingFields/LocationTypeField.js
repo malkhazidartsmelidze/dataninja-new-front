@@ -11,11 +11,11 @@ const aviableOptions = {
 
 export default () => {
   const { getField, setField } = useNewAdContext();
-  const locationType = getField('location_type');
+  const locationType = getField('targeting_location_type');
 
   const handleLocationTypeRadio = (e) => {
     const chosenType = e.target.value;
-    setField('location_type', chosenType);
+    setField('targeting_location_type', chosenType);
   };
 
   const isLocationType = (val) => {
@@ -32,7 +32,7 @@ export default () => {
               <Radio
                 checked={isLocationType('living')}
                 onChange={handleLocationTypeRadio}
-                name='location_type'
+                name='targeting_location_type'
                 value='living'
               />
             }
@@ -45,7 +45,7 @@ export default () => {
               <Radio
                 checked={isLocationType('recent')}
                 onChange={handleLocationTypeRadio}
-                name='location_type'
+                name='targeting_location_type'
                 value='recent'
               />
             }
@@ -58,7 +58,7 @@ export default () => {
               <Radio
                 checked={isLocationType('interest')}
                 onChange={handleLocationTypeRadio}
-                name='location_type'
+                name='targeting_location_type'
                 value='interest'
               />
             }

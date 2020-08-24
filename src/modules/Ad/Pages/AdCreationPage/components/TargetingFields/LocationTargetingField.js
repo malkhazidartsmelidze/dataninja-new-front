@@ -51,10 +51,7 @@ export default () => {
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
-  useEffect(() => {
-    console.log('targetted:', targetedLocations);
-    console.log('excluded:', excludedLocations);
-  }, [targetedLocations, excludedLocations]);
+
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };

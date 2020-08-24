@@ -1,33 +1,37 @@
 import React from 'react';
 import { useNewAdContext } from 'store/NewAdContext';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import { TextField, MenuItem } from '@material-ui/core';
+import { TextField, MenuItem, CircularProgress } from '@material-ui/core';
 
 export default () => {
-  const { getField, setField, config } = useNewAdContext();
-  const gender = getField('targeting_gender');
+  const { getField, setField, formConfig } = useNewAdContext();
+  const language = getField('targeting_languages');
 
   const handleFieldChange = (e) => {
-    const chosenGender = e.target.value;
-    setField('targeting_gender', chosenGender);
+    const chosenLanguages = e.target.value;
+    setField('targeting_languages', chosenLanguages);
   };
 
   return (
     <PanelField
-      title='Choose Bid Optimization'
+      title='Choose language'
       content={
         <TextField
-          value={gender.value}
-          name='gender'
+          value={language.value || ''}
+          name='language'
           onChange={handleFieldChange}
+          multiple
           select={true}
-          fullWidth
         >
-          {Object.values(aviableOptions).map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.name}
-            </MenuItem>
-          ))}
+          {Array.isArray(formConfig.languages) ? (
+            formConfig.languages.map((option) => (
+              <MenuItem key={option.key} value={option.key}>
+                {option.name}
+              </MenuItem>
+            ))
+          ) : (
+            <CircularProgress />
+          )}
         </TextField>
       }
     />

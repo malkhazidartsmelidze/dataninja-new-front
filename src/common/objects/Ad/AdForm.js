@@ -13,6 +13,6 @@ AdForm.service = {
       .then((data) => data.data);
   },
   getFormConfig: () => {
-    return api.get('/ad/form/action/get-config').then((data) => data.data);
+    return api.post('/ad/form/action/get-config').then((data) => data.data);
   },
 };
