@@ -8,8 +8,11 @@ AdForm.service = {
   searchLocation: (q) => {
     return api
       .post('/ad/form/action/search-locations', {
-        q: q,
+        q,
       })
       .then((data) => data.data);
+  },
+  getFormConfig: () => {
+    return api.get('/ad/form/action/get-config').then((data) => data.data);
   },
 };

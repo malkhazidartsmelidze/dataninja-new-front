@@ -174,7 +174,7 @@ export default () => {
       title='Enter Location'
       content={[
         <div>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} className={classes.chipsGrid}>
             <Grid item xs={6}>
               {renderIncludedLocations()}
             </Grid>
@@ -262,6 +262,9 @@ const useStyles = makeStyles((theme) => ({
   },
   chipsCardHeader: {
     padding: theme.spacing(0.5),
+  },
+  chipsGrid: {
+    marginBottom: theme.spacing(3),
   },
   chip: {
     margin: theme.spacing(0.5),

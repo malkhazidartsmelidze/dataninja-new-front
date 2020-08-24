@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import AdForm from 'common/objects/Ad/AdForm';
 
 export const NewAdContext = createContext({});
 
@@ -33,6 +34,7 @@ const initState = {
 
 export const NewAdContextProvider = ({ children }) => {
   const [state, setState] = useState(initState);
+  const [formConfig, setFormConfig] = useState({});
 
   const isNetworkSelected = (network) => {
     return state.networks[network];
@@ -77,6 +79,10 @@ export const NewAdContextProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    AdForm.service.getFormConfig().then((config) => setFormConfig(config));
+  }, []);
+
   return (
     <NewAdContext.Provider
       value={{
@@ -86,6 +92,7 @@ export const NewAdContextProvider = ({ children }) => {
         isNetworkSelected,
         setField,
         getField,
+        formConfig,
       }}
     >
       {children}
