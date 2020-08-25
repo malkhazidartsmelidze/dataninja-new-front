@@ -10,6 +10,7 @@ const CrmModule = lazy(() => import('modules/Crm'));
 const AdModule = lazy(() => import('modules/Ad'));
 const DashboardModule = lazy(() => import('modules/Dashboard'));
 const BuilderModule = lazy(() => import('modules/Builder'));
+const AudiencesModule = lazy(() => import('modules/Audiences'));
 
 export default () => {
   const mod = new Module({
@@ -33,6 +34,10 @@ export default () => {
       {
         path: P.USER_MODULE,
         module: UserModule,
+      },
+      {
+        path: P.AUDIENCES_MODULE,
+        module: AudiencesModule,
       },
     ],
     layout: AppLayout,

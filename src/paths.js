@@ -18,4 +18,7 @@ export default {
 
   CRM_MODULE: '/app/crm/',
   CRM_FORMS: '/app/crm/forms/',
+
+  AUDIENCES_MODULE: '/app/audiences/',
+  AUDIENCES_CREATE: '/app/audiences/create',
 };

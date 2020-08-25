@@ -62,10 +62,16 @@ export default (props) => {
       <MenuItem
         title={<FM id='menu.audiences' />}
         leftIcon='pie_chart'
-        url={P.AD_MODULE}
+        url={P.AUDIENCES_MODULE}
         description={<FM id='menu.audiences_desc' />}
         showDivider={true}
-      />
+      >
+        <ChildMenu
+          title={<FM id='menu.audiences_create' />}
+          leftIcon='import_contacts'
+          url={P.AUDIENCES_CREATE}
+        />
+      </MenuItem>
     </div>
   );
 };

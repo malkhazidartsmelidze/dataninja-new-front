@@ -13,5 +13,6 @@
   "menu.crm": "CRM",
   "menu.crm_desc": "Advanced Customer Relationship Manager",
   "menu.audiences": "Audiences",
-  "menu.audiences_desc": "Create and manage your audiences"
+  "menu.audiences_desc": "Create and manage your audiences",
+  "menu.audiences_create": "Create Audience"
 }
