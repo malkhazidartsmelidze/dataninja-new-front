@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { SelectField } from 'components/Fields';
-import { Divider, makeStyles } from '@material-ui/core';
+import { Divider, makeStyles, Fade } from '@material-ui/core';
 import ReMarketingAudienceForm from './ReMarketingAudienceForm';
 import CustomAudiencesForm from './CustomAudiencesForm';
 
@@ -23,8 +23,16 @@ export default () => {
         onChange={audienceTypeChanged}
       />
       <Divider className={classes.divider} />
-      {audienceType == 'remarketing' && <ReMarketingAudienceForm />}
-      {audienceType == 'custom' && <CustomAudiencesForm />}
+      {audienceType == 'remarketing' && (
+        <Fade>
+          <ReMarketingAudienceForm />
+        </Fade>
+      )}
+      {audienceType == 'custom' && (
+        <Fade>
+          <CustomAudiencesForm />
+        </Fade>
+      )}
     </Fragment>
   );
 };

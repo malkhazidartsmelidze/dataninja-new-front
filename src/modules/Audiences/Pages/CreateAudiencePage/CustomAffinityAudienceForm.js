@@ -5,9 +5,9 @@ import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import AudienceDescriptionField from './components/AudienceDescriptionField';
 import CustomAffinityAudienceFields from './components/CustomAffinityAudienceFields';
 
-export default () => {
+export default (props) => {
   return (
-    <Grid container>
+    <Grid container {...props}>
       <Grid item xs={12}>
         {steps.map((step) => (
           <>

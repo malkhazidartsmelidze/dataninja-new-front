@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { SelectField } from 'components/Fields';
 import CustomIntentAudienceForm from './CustomIntentAudienceForm';
 import CustomAffinityAudienceForm from './CustomAffinityAudienceForm';
-import { Divider } from '@material-ui/core';
+import { Divider, Grow } from '@material-ui/core';
 
 export default () => {
   const [customAudienceType, setCustomAudienceType] = useState('affinity');
@@ -21,8 +21,16 @@ export default () => {
         onChange={onAudienceTypeChange}
       />
       <Divider style={{ marginTop: 8, marginBottom: 8 }} />
-      {customAudienceType == 'intent' && <CustomIntentAudienceForm />}
-      {customAudienceType == 'affinity' && <CustomAffinityAudienceForm />}
+      {customAudienceType == 'intent' && (
+        <Grow in={true}>
+          <CustomIntentAudienceForm />
+        </Grow>
+      )}
+      {customAudienceType == 'affinity' && (
+        <Grow in={true}>
+          <CustomAffinityAudienceForm />
+        </Grow>
+      )}
     </Fragment>
   );
 };
