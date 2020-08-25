@@ -18,6 +18,7 @@ const initState = {
   targeting_language: '',
   targeting_expansion: 50,
   targeting_devices: ['mobile', 'desktop', 'tablet'],
+  targeting_household_income: [],
   targeting_parental_status: '',
   splits: {
     facebook: {

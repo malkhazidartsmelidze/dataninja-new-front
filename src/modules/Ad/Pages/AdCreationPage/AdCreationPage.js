@@ -17,6 +17,8 @@ import {
   LanguageTargetingField,
   TargetingExpansionField,
   DeviceTargetingField,
+  ParentalStatusTargetingField,
+  HouseHoldIncomeTargetingField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
@@ -114,12 +116,12 @@ const steps = [
   {
     titleBefore: 'Advanced targeting options',
     subTitleBefore: 'Income, Interests, Devices etc...',
-    component: LocationTargetingField,
+    component: HouseHoldIncomeTargetingField,
     title: 'Household Income (Google)',
     subTitle: 'Choose Household Income',
   },
   {
-    component: LocationTargetingField,
+    component: ParentalStatusTargetingField,
     title: 'Parental status (Google)',
     subTitle: 'Choose Parental Status',
   },
