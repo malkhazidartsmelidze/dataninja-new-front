@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core';
+import { indigo } from '@material-ui/core/colors';
 
 export default createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: indigo,
+  },
   typography: {
     fontFamily: ['Roboto', 'Bpg-Arial', 'Helvetica', 'Arial'].join(','),
     fontSize: 13,
@@ -9,7 +14,6 @@ export default createMuiTheme({
     },
   },
   colors: {
-    yellow: 'rgb(255, 242, 18)',
     mainText: 'rgba(255, 255, 255, 0.7)',
     secondaryText: 'rgba(255, 255, 255, 0.3)',
     borderColor: '#051e34',

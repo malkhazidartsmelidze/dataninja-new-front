@@ -46,7 +46,6 @@ export default ({
       const splitProps = onSplitProps[network] ? onSplitProps[network] : {};
 
       const el = React.cloneElement(children, {
-        label: network,
         key: network,
         className: classes.splittedInput,
         InputProps: {

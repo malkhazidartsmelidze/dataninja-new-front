@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Accordion, AccordionSummary, Typography, AccordionDetails } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ChooseAdType from './components/ChooseAdType';
 import ChooseNetworks from './components/ChooseNetworks';
-import { mdiArrowLeft } from '@mdi/js';
-import Icon from '@mdi/react';
 import CampaignNameInput from './components/CampaignNameInput';
 import BiddingInputs from './components/BidInputs/BidInputs';
+import BudgetInputs from './components/BudgetInputs/BudgetInputs';
+import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
 export default () => {
   const classes = useStyles();
@@ -27,23 +27,9 @@ export default () => {
     <Grid container>
       <Grid item xs={12}>
         {steps.map((step) => (
-          <Accordion
-            key={step.name}
-            expanded={true || activeAccordions.indexOf(step.name) > -1}
-            onChange={() => handleAccordionChange(step.name)}
-          >
-            <AccordionSummary
-              expandIcon={<Icon path={mdiArrowLeft} />}
-              aria-controls='panel1bh-content'
-              id='panel1bh-header'
-            >
-              <Typography className={classes.heading}>{step.label}</Typography>
-              <Typography className={classes.secondaryHeading}>{step.description}</Typography>
-            </AccordionSummary>
-            <AccordionDetails className={classes.accordionDetails}>
-              <step.component />
-            </AccordionDetails>
-          </Accordion>
+          <ExpansionPanel text={step.title} subText={step.subTitle}>
+            <step.component />
+          </ExpansionPanel>
         ))}
       </Grid>
     </Grid>
@@ -68,26 +54,32 @@ const useStyles = makeStyles((theme) => ({
 const steps = [
   {
     component: ChooseNetworks,
-    label: 'Choose Networks',
-    description: 'Select Networks where you want to create ads',
+    title: 'Choose Networks',
+    subTitle: 'Select Networks where you want to create ads',
     name: 'networks',
   },
   {
     component: ChooseAdType,
-    label: 'Select Ad Type',
-    description: 'Choose Ad types',
+    title: 'Select Ad Type',
+    subTitle: 'Choose Ad types',
     name: 'ad_types',
   },
   {
     component: CampaignNameInput,
-    label: 'Campaign Name',
-    description: 'Choose Campaign Name',
+    title: 'Campaign Name',
+    subTitle: 'Choose Campaign Name',
     name: 'campaign_name',
   },
   {
     component: BiddingInputs,
-    label: 'Bidding Options',
-    description: 'Choose Bidding Options for each networks',
+    title: 'Bidding Options',
+    subTitle: 'Choose Bidding Options for each networks',
     name: 'bidding_options',
+  },
+  {
+    component: BudgetInputs,
+    title: 'Budgets',
+    subTitle: 'Enter Campaign Budgets Here',
+    name: 'budget_options',
   },
 ];

@@ -4,7 +4,7 @@ import { useNewAdContext } from 'store/NewAdContext';
 import SplittedInput from '../SplittedInput';
 
 export default () => {
-  const { getField, setBidOptimization, setField } = useNewAdContext();
+  const { getField, setField } = useNewAdContext();
   const bidOptimizationType = getField('bid_optimization_type');
   const bidType = getField('bid_type');
 
@@ -31,6 +31,7 @@ export default () => {
           onSplitProps={{
             facebook: {
               value: bidType.facebook,
+              label: 'Facebook',
               select: true,
               onChange: facebookBidTypeChanged,
               children: Object.values(bidTypeFacebookOptions).map((option) => (
@@ -42,6 +43,7 @@ export default () => {
             google: {
               value: bidType.google,
               select: true,
+              label: 'Google',
               onChange: googleBidTypeChanged,
               children: Object.values(bidTypeGoogleOptions).map((option) => (
                 <MenuItem key={option.value} value={option.value}>

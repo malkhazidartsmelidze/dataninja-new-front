@@ -9,16 +9,19 @@ const initState = {
   },
   ad_type: 'conversions',
   bid_optimization_type: 'pay_per_click',
+  budget: 30,
   splits: {
     facebook: {
       bid_type: 'auto',
       pay_for: 'pay_for_impressions',
       bid_amount: 1.0,
       cost_or_bid: 'cost',
+      budget: 10,
     },
     google: {
       bid_type: 'manual_cpc',
       enhanced_bid: true,
+      budget: 20,
       bid_amount: 1.0,
     },
   },
