@@ -19,6 +19,7 @@ import {
   DeviceTargetingField,
   ParentalStatusTargetingField,
   HouseHoldIncomeTargetingField,
+  AdRotationField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import {
@@ -136,6 +137,11 @@ const steps = [
     component: DeviceTargetingField,
     title: 'Devices',
     subTitle: 'Choose devices where your ad will be displayed',
+  },
+  {
+    component: AdRotationField,
+    title: 'Ad Rotation',
+    subTitle: 'Choose Ad Rotation Type',
   },
   {
     component: TargetingExpansionField,

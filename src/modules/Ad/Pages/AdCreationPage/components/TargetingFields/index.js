@@ -7,3 +7,4 @@ export { default as TargetingExpansionField } from './TargetingExpansionField';
 export { default as DeviceTargetingField } from './DeviceTargetingField';
 export { default as ParentalStatusTargetingField } from './ParentalStatusTargetingField';
 export { default as HouseHoldIncomeTargetingField } from './HouseHoldIncomeTargetingField';
+export { default as AdRotationField } from './AdRotationField';

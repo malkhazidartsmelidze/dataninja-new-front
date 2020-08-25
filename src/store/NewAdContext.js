@@ -21,6 +21,7 @@ const initState = {
   targeting_devices: ['mobile', 'desktop', 'tablet'],
   targeting_household_income: [],
   targeting_parental_status: '',
+  targeting_ad_rotation: 'optimize',
   creative_name: 'Dataninja-Trafic-Ad-2223',
   creative_headlines: { headline1: 'Example Headline 1' },
   creative_primary_texts: { primarytext1: 'Example Primary Text 1' },
