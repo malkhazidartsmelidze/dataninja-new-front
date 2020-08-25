@@ -21,7 +21,11 @@ import {
   HouseHoldIncomeTargetingField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import { CreativeNameField, CreativeHeadlineField } from './components/CreativeFields';
+import {
+  CreativeNameField,
+  CreativeHeadlineField,
+  CreativeLongHeadlineField,
+} from './components/CreativeFields';
 
 export default () => {
   return (
@@ -165,12 +169,12 @@ const steps = [
     subTitle: 'Enter Ad Headline',
   },
   {
-    component: CreativeHeadlineField,
+    component: CreativeLongHeadlineField,
     title: 'Long Headline',
     subTitle: 'Enter Long Headline',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeHeadlineField,
     title: 'Primary text',
     subTitle: 'Enter Primary text',
   },

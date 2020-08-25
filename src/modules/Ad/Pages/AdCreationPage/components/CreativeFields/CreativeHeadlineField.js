@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNewAdContext } from 'store/NewAdContext';
 import { TextField, InputAdornment, IconButton, Grid } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import { useEffect } from 'react';
 import Icon from '@mdi/react';
 import { mdiDelete, mdiPlus } from '@mdi/js';
 
@@ -45,7 +44,7 @@ export default () => {
 
   return (
     <PanelField
-      title='Enter Ad NAme'
+      title='Enter Headlines'
       content={
         <>
           {Object.keys(stateFields).map((key) => {

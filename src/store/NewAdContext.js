@@ -23,6 +23,7 @@ const initState = {
   targeting_parental_status: '',
   creative_name: 'Dataninja-Trafic-Ad-2223',
   creative_headlines: { headline1: 'Example Headline Text 1' },
+  creative_long_headline: 'Example Long Headline',
   splits: {
     facebook: {
       bid_type: 'auto',
