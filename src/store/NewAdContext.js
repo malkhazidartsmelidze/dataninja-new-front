@@ -8,6 +8,7 @@ const initState = {
     facebook: true,
     google: true,
   },
+  is_responsive: true,
   ad_type: 'conversions',
   bid_optimization_type: 'pay_per_click',
   budget: 30,
@@ -20,6 +21,8 @@ const initState = {
   targeting_devices: ['mobile', 'desktop', 'tablet'],
   targeting_household_income: [],
   targeting_parental_status: '',
+  creative_name: 'Dataninja-Trafic-Ad-2223',
+  creative_headlines: { headline1: 'Example Headline Text 1' },
   splits: {
     facebook: {
       bid_type: 'auto',
@@ -74,6 +77,7 @@ export const NewAdContextProvider = ({ children }) => {
   };
 
   const setField = (field, value, network = null) => {
+    console.log(field, value, network);
     if (network) {
       setState((old) => {
         old.splits[network][field] = value;

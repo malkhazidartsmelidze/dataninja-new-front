@@ -21,6 +21,7 @@ import {
   HouseHoldIncomeTargetingField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { CreativeNameField, CreativeHeadlineField } from './components/CreativeFields';
 
 export default () => {
   return (
@@ -149,22 +150,22 @@ const steps = [
   {
     titleBefore: 'Ad Parameters',
     subTitleBefore: 'Enter ad parameters here, Headline, image, link etc...',
-    component: LocationTargetingField,
-    title: 'Choose Image',
-    subTitle: 'Select Image From Gallery or upload new',
-  },
-  {
-    component: LocationTargetingField,
+    component: CreativeNameField,
     title: 'Ad Name',
     subTitle: 'Enter Ad Name. Current: Dataninja-Trafic-Ad-2223',
   },
   {
     component: LocationTargetingField,
+    title: 'Choose Image',
+    subTitle: 'Select Image From Gallery or upload new',
+  },
+  {
+    component: CreativeHeadlineField,
     title: 'Headline',
     subTitle: 'Enter Ad Headline',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeHeadlineField,
     title: 'Long Headline',
     subTitle: 'Enter Long Headline',
   },
