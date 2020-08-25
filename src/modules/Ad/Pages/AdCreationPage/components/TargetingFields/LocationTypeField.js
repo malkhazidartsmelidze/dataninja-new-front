@@ -3,12 +3,6 @@ import { useNewAdContext } from 'store/NewAdContext';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { TextField, MenuItem, FormControl, FormControlLabel, Radio } from '@material-ui/core';
 
-const aviableOptions = {
-  all: { value: 'all', name: 'All' },
-  male: { value: 'male', name: 'Male' },
-  female: { value: 'female', name: 'Female' },
-};
-
 export default () => {
   const { getField, setField } = useNewAdContext();
   const locationType = getField('targeting_location_type');

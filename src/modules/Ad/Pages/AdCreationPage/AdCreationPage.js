@@ -15,6 +15,8 @@ import {
   LocationTargetingField,
   LocationTypeField,
   LanguageTargetingField,
+  TargetingExpansionField,
+  DeviceTargetingField,
 } from './components/TargetingFields';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 
@@ -122,12 +124,12 @@ const steps = [
     subTitle: 'Choose Parental Status',
   },
   {
-    component: LocationTargetingField,
+    component: DeviceTargetingField,
     title: 'Devices',
     subTitle: 'Choose devices where your ad will be displayed',
   },
   {
-    component: LocationTargetingField,
+    component: TargetingExpansionField,
     title: 'Targeting Expansion',
     subTitle: 'Choose targeting expansion',
   },
