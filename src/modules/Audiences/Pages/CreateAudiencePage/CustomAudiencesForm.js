@@ -5,7 +5,7 @@ import CustomAffinityAudienceForm from './CustomAffinityAudienceForm';
 import { Divider } from '@material-ui/core';
 
 export default () => {
-  const [customAudienceType, setCustomAudienceType] = useState('intent');
+  const [customAudienceType, setCustomAudienceType] = useState('affinity');
 
   const onAudienceTypeChange = (e) => {
     setCustomAudienceType(e.target.value);
