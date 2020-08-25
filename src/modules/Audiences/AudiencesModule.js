@@ -1,6 +1,7 @@
 import React from 'react';
 import Module from 'modules/Module';
 import P from 'paths';
+import { CreateAudiencePage } from './Pages';
 
 export default () => {
   const mod = new Module({
@@ -15,7 +16,7 @@ export default () => {
         path: P.AUDIENCES_CREATE,
         secured: true,
         exact: true,
-        component: () => <div>this is Audience Create</div>,
+        component: CreateAudiencePage,
       },
     ],
   });
