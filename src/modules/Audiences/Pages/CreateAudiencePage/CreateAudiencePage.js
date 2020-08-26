@@ -7,7 +7,6 @@ import CustomAudiencesForm from './CustomAudiencesForm';
 export default () => {
   const classes = useStyles();
   const [audienceType, setAudienceType] = useState('custom');
-  const [audienceForm, setAudienceForm] = useState(ReMarketingAudienceForm);
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);
@@ -28,11 +27,7 @@ export default () => {
           <ReMarketingAudienceForm />
         </Fade>
       )}
-      {audienceType == 'custom' && (
-        <Fade>
-          <CustomAudiencesForm />
-        </Fade>
-      )}
+      {audienceType == 'custom' && <CustomAudiencesForm />}
     </Fragment>
   );
 };
