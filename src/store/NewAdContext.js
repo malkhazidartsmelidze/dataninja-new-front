@@ -40,29 +40,10 @@ export const NewAdContextProvider = ({ children }) => {
       return { ...old };
     });
   };
-
-  const setAdType = (type) => {
-    setState((old) => {
-      old.ad_type = type;
-      return { ...old };
-    });
-  };
-
+  /** @todo remove */
   const setBidOptimizationType = (type) => {
     setState((old) => {
       old.bid_optimization_type = type;
-      return Object.create(old);
-    });
-  };
-
-  const isAdType = (type) => {
-    return state.ad_type === type;
-  };
-
-  const splitNetworkField = (network, field, value) => {
-    setState((old) => {
-      if (!old.splits[network]) return;
-      old.splits[network][field] = value;
       return Object.create(old);
     });
   };
@@ -98,11 +79,8 @@ export const NewAdContextProvider = ({ children }) => {
         networks: state.networks,
         setNetwork,
         setBidOptimizationType,
-        setAdType,
-        setField,
         isNetworkSelected,
-        isAdType,
-        splitNetworkField,
+        setField,
         getField,
       }}
     >

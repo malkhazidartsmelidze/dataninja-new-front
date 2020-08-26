@@ -6,14 +6,19 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 export default () => {
   const { getField, setField, isNetworkSelected } = useNewAdContext();
   const adType = getField('ad_type');
+  const networks = getField('networks');
 
-  const handleTypeCheck = (e) => {
+  const handleTypeRadioField = (e) => {
     setField('ad_type', e.target.name);
   };
 
   const isAdType = (type) => {
     return adType.value == type;
   };
+
+  if (networks.value.facebook && isAdType('search_ads')) {
+    setField('ad_type', 'conversions');
+  }
 
   return (
     <PanelField
@@ -24,7 +29,7 @@ export default () => {
             control={
               <Radio
                 checked={isAdType('conversions')}
-                onChange={handleTypeCheck}
+                onChange={handleTypeRadioField}
                 name='conversions'
               />
             }
@@ -36,7 +41,7 @@ export default () => {
             control={
               <Radio
                 checked={isAdType('traffic_to_website')}
-                onChange={handleTypeCheck}
+                onChange={handleTypeRadioField}
                 name='traffic_to_website'
               />
             }
@@ -50,7 +55,7 @@ export default () => {
                 <Radio
                   disabled={isNetworkSelected('facebook')}
                   checked={isAdType('search_ads')}
-                  onChange={handleTypeCheck}
+                  onChange={handleTypeRadioField}
                   name='search_ads'
                 />
               }
@@ -61,7 +66,11 @@ export default () => {
         <FormControl fullWidth>
           <FormControlLabel
             control={
-              <Radio checked={isAdType('retarget')} onChange={handleTypeCheck} name='retarget' />
+              <Radio
+                checked={isAdType('retarget')}
+                onChange={handleTypeRadioField}
+                name='retarget'
+              />
             }
             label='Retarget'
           />
