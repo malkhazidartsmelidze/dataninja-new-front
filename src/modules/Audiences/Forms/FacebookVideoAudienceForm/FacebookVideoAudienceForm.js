@@ -12,7 +12,7 @@ export default () => {
   const [state, setState] = useState({
     name: 'Example Audience Name',
     description: 'Example Audience Description',
-    engagment_type: 3,
+    engagment_type: 'video_watched',
     days: 365,
     network: 'facebook',
     type: 'video',
