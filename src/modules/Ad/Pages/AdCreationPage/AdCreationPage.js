@@ -28,6 +28,7 @@ import {
   CreativeLongHeadlineField,
   CreativePrimaryTextField,
   CreativeDescriptionField,
+  CreativeLinksField,
 } from './components/CreativeFields';
 
 export default () => {
@@ -192,7 +193,7 @@ const steps = [
     subTitle: 'Enter Description',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeLinksField,
     title: 'Links',
     subTitle: 'Choose Pages Or Enter Links',
   },

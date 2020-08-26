@@ -27,6 +27,7 @@ const initState = {
   creative_primary_texts: { primarytext1: 'Example Primary Text 1' },
   creative_descriptions: { description1: 'Example Description' },
   creative_long_headline: 'Example Long Headline',
+  creative_link: '',
   splits: {
     facebook: {
       bid_type: 'auto',
