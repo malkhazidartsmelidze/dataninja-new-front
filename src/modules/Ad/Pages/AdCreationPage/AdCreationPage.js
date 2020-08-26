@@ -25,6 +25,8 @@ import {
   CreativeNameField,
   CreativeHeadlineField,
   CreativeLongHeadlineField,
+  CreativePrimaryTextField,
+  CreativeDescriptionField,
 } from './components/CreativeFields';
 
 export default () => {
@@ -174,12 +176,12 @@ const steps = [
     subTitle: 'Enter Long Headline',
   },
   {
-    component: CreativeHeadlineField,
+    component: CreativePrimaryTextField,
     title: 'Primary text',
     subTitle: 'Enter Primary text',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeDescriptionField,
     title: 'Description',
     subTitle: 'Enter Description',
   },

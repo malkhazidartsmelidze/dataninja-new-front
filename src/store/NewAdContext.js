@@ -22,7 +22,9 @@ const initState = {
   targeting_household_income: [],
   targeting_parental_status: '',
   creative_name: 'Dataninja-Trafic-Ad-2223',
-  creative_headlines: { headline1: 'Example Headline Text 1' },
+  creative_headlines: { headline1: 'Example Headline 1' },
+  creative_primary_texts: { primarytext1: 'Example Primary Text 1' },
+  creative_descriptions: { description1: 'Example Description' },
   creative_long_headline: 'Example Long Headline',
   splits: {
     facebook: {
