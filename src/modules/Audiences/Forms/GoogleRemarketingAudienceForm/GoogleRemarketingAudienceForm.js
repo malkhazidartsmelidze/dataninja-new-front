@@ -7,7 +7,7 @@ import {
   RemarketingPrefillOptionsField,
   RemarketingMemberShipDurationField,
   RemarketingVisitedPagesField,
-} from 'modules/Audiences/Forms/components';
+} from 'modules/Audiences/Forms/components/Google';
 
 export default () => {
   return steps.map((step) => (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Modal } from '@material-ui/core';
 import {
   ChooseNetworkField,
   CampaignNameField,
@@ -30,6 +30,7 @@ import {
   CreativeDescriptionField,
   CreativeLinksField,
 } from './components/CreativeFields';
+import { CreateAudiencePage } from 'modules/Audiences/Pages';
 
 export default () => {
   return (

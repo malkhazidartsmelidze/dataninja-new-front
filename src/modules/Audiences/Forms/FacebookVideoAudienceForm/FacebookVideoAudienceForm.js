@@ -7,7 +7,7 @@ import {
   CustomAudienceUrlsField,
   CustomAudienceAppsField,
   CustomAudiencePlacesField,
-} from 'modules/Audiences/Forms/components/Google';
+} from 'modules/Audiences/Forms/components';
 
 export default () => {
   return steps.map((step) => (
