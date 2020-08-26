@@ -2,9 +2,9 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { languageKey, defaultLanguage } from 'consts';
 import Language from 'common/objects/Language';
-import getMessages from 'common/message-resolver';
+import getMessages from 'i18n/message-resolver';
 import useUser from 'store/UserContext';
-import defaultMessages from 'common/locales/en.json';
+import defaultMessages from 'i18n/messages/en.json';
 
 export const LanguageContext = createContext({});
 
