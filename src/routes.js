@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { Redirect, Switch, Route as ReactRouter } from 'react-router-dom';
 import useUser from 'store/UserContext';
 import P from 'paths';
-import Error404 from 'common/errorPages/Error404';
+import { Error404Page } from 'modules/Errors';
 
 const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
 
@@ -66,6 +66,6 @@ export const Route = ({ secured, guest, ...props }) => {
 export const Errors = [
   {
     path: '*',
-    component: Error404,
+    component: Error404Page,
   },
 ];
