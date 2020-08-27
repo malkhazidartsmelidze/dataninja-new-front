@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, InputAdornment, Grid, IconButton, Icon, Button } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
 import { mdiDelete } from '@mdi/js';
 import { AudienceRulesField } from '.';
 
-export default () => {
+export default ({ value, onChange, name }) => {
   const pixelOptions = [{ name: 'Pixel 1', value: 'pixel1' }];
   const visitorTypeOptions = [
     { name: 'All website visitors', value: 'all_visitors' },
@@ -24,10 +24,7 @@ export default () => {
   const [period, setPeriod] = useState(30);
   const [visitorType, setVisitorType] = useState('all_visitors');
   const [timePercent, setTimePercent] = useState('25');
-  const [rules, setRules] = useState([
-    { urlType: 'url', condition: 'equals', values: ['http://facebook.com', 'http://google.com'] },
-    { urlType: 'url', condition: 'contains', values: ['http://google.com'] },
-  ]);
+  const [rules, setRules] = useState(value.rules || []);
 
   const onPixelChange = (e) => {
     setPixel(e.target.value);
@@ -81,6 +78,13 @@ export default () => {
       return [...r];
     });
   };
+
+  useEffect(() => {
+    onChange(name, {
+      ...value,
+      rules: rules,
+    });
+  }, [rules]);
 
   return (
     <PanelField

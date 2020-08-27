@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
-import PeopleAudienceOptions from '../components/Facebook/PeopleAudienceOptions';
-import { AudienceVideoEngagmentType, AudienceVideoDaysField } from '../components/Facebook';
-import { useState } from 'react';
+import {
+  AudienceVideoEngagmentType,
+  AudienceVideoDaysField,
+} from 'modules/Audiences/Forms/components/Facebook';
+import { Button } from '@material-ui/core';
+import Audience from 'common/objects/Audience';
 
 export default () => {
   const [state, setState] = useState({
@@ -11,6 +14,8 @@ export default () => {
     description: 'Example Audience Description',
     engagment_type: 3,
     days: 365,
+    network: 'facebook',
+    type: 'video',
   });
 
   const onFieldChange = (field, value) => {
@@ -56,17 +61,32 @@ export default () => {
     },
   ];
 
-  return steps.map((step) => (
-    <ExpansionPanel
-      key={step.title}
-      title={step.title}
-      subTitle={step.subTitle}
-      titleWhenOpen={step.titleWhenOpen}
-      subTitleWhenOpen={step.subTitleWhenOpen}
-      titleBefore={step.titleBefore}
-      subTitleBefore={step.subTitleBefore}
-    >
-      <step.component {...step.props} onChange={onFieldChange} />
-    </ExpansionPanel>
-  ));
+  const submitButtonClicked = () => {
+    const data = state;
+
+    Audience.service.create(data).then((d) => console.log(d));
+  };
+
+  return (
+    <Fragment>
+      {steps.map((step) => (
+        <ExpansionPanel
+          key={step.title}
+          title={step.title}
+          subTitle={step.subTitle}
+          titleWhenOpen={step.titleWhenOpen}
+          subTitleWhenOpen={step.subTitleWhenOpen}
+          titleBefore={step.titleBefore}
+          subTitleBefore={step.subTitleBefore}
+        >
+          <step.component {...step.props} onChange={onFieldChange} />
+        </ExpansionPanel>
+      ))}
+      <div style={{ marginTop: 16 }}>
+        <Button onClick={submitButtonClicked} size='large' color='primary' variant='contained'>
+          Create
+        </Button>
+      </div>
+    </Fragment>
+  );
 };

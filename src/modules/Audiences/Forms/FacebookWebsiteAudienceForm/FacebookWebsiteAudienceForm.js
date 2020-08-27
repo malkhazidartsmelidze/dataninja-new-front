@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
 import {
@@ -7,6 +7,8 @@ import {
   AudienceCriterionType,
   PeopleAudienceOptions,
 } from 'modules/Audiences/Forms/components/Facebook';
+import Audience from 'common/objects/Audience';
+import { Button } from '@material-ui/core';
 
 export default () => {
   const [state, setState] = useState({
@@ -19,6 +21,19 @@ export default () => {
     frequency_condition: 'greater_or_equal',
     frequency_value: 2,
     devices: 'all',
+    exclusions: [],
+    inclusions: {
+      rules: [
+        {
+          urlType: 'url',
+          condition: 'equals',
+          values: ['http://facebook.com', 'http://google.com'],
+        },
+        { urlType: 'url', condition: 'contains', values: ['http://google.com'] },
+      ],
+    },
+    network: 'facebook',
+    type: 'website',
   });
 
   const onFieldChange = (field, value) => {
@@ -58,8 +73,8 @@ export default () => {
       title: 'Include People',
       subTitle: 'Include People Based on following conditions: ',
       props: {
-        name: 'criterion_type',
-        value: state.criterion_type,
+        name: 'inclusions',
+        value: state.inclusions,
       },
     },
     {
@@ -92,18 +107,33 @@ export default () => {
       },
     },
   ];
-  console.log(state);
-  return steps.map((step) => (
-    <ExpansionPanel
-      key={step.title}
-      title={step.title}
-      subTitle={step.subTitle}
-      titleWhenOpen={step.titleWhenOpen}
-      subTitleWhenOpen={step.subTitleWhenOpen}
-      titleBefore={step.titleBefore}
-      subTitleBefore={step.subTitleBefore}
-    >
-      <step.component {...step.props} onChange={onFieldChange} />
-    </ExpansionPanel>
-  ));
+
+  const submitButtonClicked = () => {
+    const data = state;
+
+    Audience.service.create(data).then((d) => console.log(d));
+  };
+
+  return (
+    <Fragment>
+      {steps.map((step) => (
+        <ExpansionPanel
+          key={step.title}
+          title={step.title}
+          subTitle={step.subTitle}
+          titleWhenOpen={step.titleWhenOpen}
+          subTitleWhenOpen={step.subTitleWhenOpen}
+          titleBefore={step.titleBefore}
+          subTitleBefore={step.subTitleBefore}
+        >
+          <step.component {...step.props} onChange={onFieldChange} />
+        </ExpansionPanel>
+      ))}
+      <div style={{ marginTop: 16 }}>
+        <Button onClick={submitButtonClicked} size='large' color='primary' variant='contained'>
+          Create
+        </Button>
+      </div>
+    </Fragment>
+  );
 };

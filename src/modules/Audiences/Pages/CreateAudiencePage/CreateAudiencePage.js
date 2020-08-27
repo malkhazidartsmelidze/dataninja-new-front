@@ -11,7 +11,7 @@ import {
 export default () => {
   const classes = useStyles();
   const [network, setNetwork] = useState('facebook');
-  const [audienceType, setAudienceType] = useState('video');
+  const [audienceType, setAudienceType] = useState('website');
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);
