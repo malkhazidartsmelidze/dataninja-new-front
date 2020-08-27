@@ -1,13 +1,12 @@
 import React from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
 import {
-  AudienceDescriptionField,
-  AudienceNameField,
-  CustomAudienceIntentOrCustomField,
-  CustomAudienceUrlsField,
-  CustomAudienceAppsField,
-  CustomAudiencePlacesField,
-} from 'modules/Audiences/Forms/components';
+  RefineByFrequency,
+  RefineByDevice,
+  AudienceCriterionType,
+  PeopleAudienceOptions,
+} from 'modules/Audiences/Forms/components/Facebook';
 
 export default () => {
   return steps.map((step) => (
@@ -37,24 +36,28 @@ const steps = [
     subTitle: 'Enter Audience Description',
   },
   {
-    component: CustomAudienceIntentOrCustomField,
-    title: 'Choose Audience Type',
-    subTitle:
-      'People with any of these interests or purchase intentions Or People who searched for any of these terms on Google',
+    component: AudienceCriterionType,
+    title: 'Criterion Type',
+    subTitle: 'Include people who meet following criterions ',
   },
   {
-    component: CustomAudienceUrlsField,
-    title: 'people who browse websites similar to',
-    subTitle: 'Enter website addresses (URLs) that your ideal customer might visit',
+    component: PeopleAudienceOptions,
+    title: 'Include People',
+    subTitle: 'Include People Based on following conditions: ',
   },
   {
-    component: CustomAudienceAppsField,
-    title: 'people who use apps similar to',
-    subTitle: 'Enter the names of apps that you think your ideal customer might use',
+    component: PeopleAudienceOptions,
+    title: 'Exclude People',
+    subTitle: 'Exclude People Based on following conditions: ',
   },
   {
-    component: CustomAudiencePlacesField,
-    title: 'people who visited these places',
-    subTitle: 'Enter the types of places where your ideal customer might spend time',
+    component: RefineByFrequency,
+    title: 'Frequency Refine',
+    subTitle: 'Refine Audience By Frequency: ',
+  },
+  {
+    component: RefineByDevice,
+    title: 'Frequency Devices',
+    subTitle: 'Refine Audience By Device: ',
   },
 ];

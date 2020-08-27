@@ -1,8 +1,7 @@
 import React from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
 import {
-  AudienceDescriptionField,
-  AudienceNameField,
   RemarketingListMembersField,
   RemarketingPrefillOptionsField,
   RemarketingMemberShipDurationField,

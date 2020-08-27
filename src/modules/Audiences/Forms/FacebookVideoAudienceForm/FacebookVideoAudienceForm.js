@@ -1,13 +1,14 @@
 import React from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
+import PeopleAudienceOptions from '../components/Facebook/PeopleAudienceOptions';
 import {
-  AudienceDescriptionField,
-  AudienceNameField,
-  CustomAudienceIntentOrCustomField,
-  CustomAudienceUrlsField,
-  CustomAudienceAppsField,
-  CustomAudiencePlacesField,
-} from 'modules/Audiences/Forms/components';
+  RefineByFrequency,
+  RefineByDevice,
+  AudienceCriterionType,
+  AudienceVideoEngagmentType,
+} from '../components/Facebook';
+import AudienceVideoDaysField from '../components/Facebook/AudienceVideoDaysField';
 
 export default () => {
   return steps.map((step) => (
@@ -37,24 +38,13 @@ const steps = [
     subTitle: 'Enter Audience Description',
   },
   {
-    component: CustomAudienceIntentOrCustomField,
-    title: 'Choose Audience Type',
-    subTitle:
-      'People with any of these interests or purchase intentions Or People who searched for any of these terms on Google',
+    component: AudienceVideoEngagmentType,
+    title: 'Engagement Type',
+    subTitle: 'Choose the type of content that you want to use to create your audience',
   },
   {
-    component: CustomAudienceUrlsField,
-    title: 'people who browse websites similar to',
-    subTitle: 'Enter website addresses (URLs) that your ideal customer might visit',
-  },
-  {
-    component: CustomAudienceAppsField,
-    title: 'people who use apps similar to',
-    subTitle: 'Enter the names of apps that you think your ideal customer might use',
-  },
-  {
-    component: CustomAudiencePlacesField,
-    title: 'people who visited these places',
-    subTitle: 'Enter the types of places where your ideal customer might spend time',
+    component: AudienceVideoDaysField,
+    title: 'Engagement Type',
+    subTitle: 'Choose the type of content that you want to use to create your audience',
   },
 ];

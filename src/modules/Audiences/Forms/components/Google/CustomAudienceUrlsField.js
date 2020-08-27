@@ -31,7 +31,7 @@ export default () => {
         <>
           <ChipsCard values={values} onDelete={deleteFromValues} />
           <TextField
-            placeholder={'Add Urls'}
+            placeholder='Add Urls'
             style={{ width: 400 }}
             value={value}
             type='url'
