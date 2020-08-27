@@ -4,7 +4,13 @@ import { TextField, Grid } from '@material-ui/core';
 import ChipsCard from 'components/ChipsCard';
 import { SelectField } from 'components/Fields';
 
-export default () => {
+export default ({
+  onChange,
+  frequencyConditionName,
+  frequencyCondition,
+  frequencyValueName,
+  frequencyValue,
+}) => {
   const conditionOptions = [
     { name: 'Is Greater Than Or Equal To (≥)', value: 'greater_or_equal' },
     { name: 'Is Greater Than (>)', value: 'greater_than' },
@@ -15,16 +21,19 @@ export default () => {
   ];
   const frequencyOptions = [{ value: 'frequency', name: 'Frequency' }];
 
-  const [value, setValue] = useState(2);
-  const [condition, setCondition] = useState('greater_or_equal');
+  const [value, setValue] = useState(frequencyValue);
+  const [condition, setCondition] = useState(frequencyCondition);
 
   const onConditionChange = (e) => {
+    onChange(frequencyConditionName, e.target.value);
     setCondition(e.target.value);
   };
 
   const onValueChange = (e) => {
+    onChange(frequencyValueName, e.target.value);
     setValue(e.target.value);
   };
+
   return (
     <PanelField
       content={

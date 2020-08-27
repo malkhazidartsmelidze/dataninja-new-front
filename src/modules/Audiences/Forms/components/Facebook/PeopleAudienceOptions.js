@@ -7,7 +7,7 @@ import { AudienceRulesField } from '.';
 
 export default () => {
   const pixelOptions = [{ name: 'Pixel 1', value: 'pixel1' }];
-  const peopleTypeOptions = [
+  const visitorTypeOptions = [
     { name: 'All website visitors', value: 'all_visitors' },
     { name: 'People who visited specific web pages', value: 'specific_page_visitors' },
     { name: 'Visitors by time spent', value: 'visitors_by_time' },
@@ -22,7 +22,7 @@ export default () => {
 
   const [pixel, setPixel] = useState('pixel1');
   const [period, setPeriod] = useState(30);
-  const [peopleType, setPeopleType] = useState('all_visitors');
+  const [visitorType, setVisitorType] = useState('all_visitors');
   const [timePercent, setTimePercent] = useState('25');
   const [rules, setRules] = useState([
     { urlType: 'url', condition: 'equals', values: ['http://facebook.com', 'http://google.com'] },
@@ -37,8 +37,8 @@ export default () => {
     setTimePercent(e.target.value);
   };
 
-  const onPeopleTypeChange = (e) => {
-    setPeopleType(e.target.value);
+  const onVisitorTypeChange = (e) => {
+    setVisitorType(e.target.value);
   };
 
   const deleteRule = (key) => {
@@ -99,14 +99,14 @@ export default () => {
             <Grid container spacing={1}>
               <Grid item>
                 <SelectField
-                  options={peopleTypeOptions}
+                  options={visitorTypeOptions}
                   style={inputStyle}
-                  value={peopleType}
-                  onChange={onPeopleTypeChange}
+                  value={visitorType}
+                  onChange={onVisitorTypeChange}
                   label='Select type'
                 />
               </Grid>
-              {peopleType == 'visitors_by_time' && (
+              {visitorType == 'visitors_by_time' && (
                 <Grid item>
                   <SelectField
                     options={timePercentOptions}
