@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   gridTile: {
     position: 'relative',
     cursor: 'pointer',
-    transition: '0.3s all ease-in-out',
+    transition: '0.1s all ease-in-out',
   },
   linkButton: {
     position: 'absolute',
@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Gallery({ open, handleClose, data, multiple }) {
+export default function Gallery({ open, handleClose, data, multiple, onChoose }) {
   const classes = useStyles();
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(multiple ? [] : '');
 
   const selectToggle = (id) => {
     setSelected((old) => {
@@ -70,6 +70,10 @@ export default function Gallery({ open, handleClose, data, multiple }) {
     } else {
       return selected === id;
     }
+  };
+
+  const handleChoose = () => {
+    onChoose && onChoose(selected);
   };
 
   return (
@@ -115,7 +119,7 @@ export default function Gallery({ open, handleClose, data, multiple }) {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose} color='primary'>
+        <Button autoFocus onClick={handleChoose} color='primary'>
           Choose
         </Button>
       </DialogActions>

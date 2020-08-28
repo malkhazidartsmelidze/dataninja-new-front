@@ -78,6 +78,8 @@ export default () => {
     Audience.service.create(data).then((d) => console.log(d));
   };
 
+  console.log(state);
+
   return (
     <Fragment>
       {steps.map((step) => (

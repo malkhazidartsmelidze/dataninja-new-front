@@ -5,9 +5,10 @@ import api from 'common/api';
 import { useEffect } from 'react';
 import { Button } from '@material-ui/core';
 
-export default () => {
+export default ({ name, onChange }) => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
+  const [videoIds, setVideoIds] = useState([]);
 
   useEffect(() => {
     api.get('/utils/facebook-videos').then((res) => {
@@ -16,6 +17,10 @@ export default () => {
     });
   }, []);
 
+  useEffect(() => {
+    onChange && onChange(name, videoIds);
+  }, [videoIds]);
+
   return (
     <PanelField
       content={
@@ -23,7 +28,13 @@ export default () => {
           <Button onClick={() => setOpen(true)} variant='contained'>
             Browse Videos
           </Button>
-          <Gallery open={open} handleClose={() => setOpen(false)} data={data} />
+          <Gallery
+            onChoose={(ids) => setVideoIds(ids)}
+            multiple
+            open={open}
+            handleClose={() => setOpen(false)}
+            data={data}
+          />
         </Fragment>
       }
     />
