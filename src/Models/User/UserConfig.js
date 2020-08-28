@@ -23,20 +23,21 @@ class UserConfig {
     return defaultAvatar;
   };
 
-  setDefaultAccounts = (accounts) => {
-    this.defaultAccounts = accounts;
-  };
-
-  getDefaultAccount = (network) => {
+  getDefaultAccountId = (network) => {
     if (!this.defaultAccounts[network]) return null;
 
-    return this.defaultAccounts[network];
+    return this.defaultAccounts[network].id;
   };
 
   getAdAccounts = (network) => {
     if (this.adAccounts[network] === undefined) throw 'Undefined Network';
 
     return this.adAccounts[network];
+  };
+
+  setDefaultAccounts = (accounts) => {
+    this.defaultAccounts = accounts;
+    return this;
   };
 
   setAdAccounts = (accounts) => {
@@ -49,6 +50,8 @@ class UserConfig {
     this.adAccounts.facebook = accounts.facebook.map((acc) => {
       return new AdAccount(acc).setNetwork('facebook');
     });
+
+    return this;
   };
 }
 

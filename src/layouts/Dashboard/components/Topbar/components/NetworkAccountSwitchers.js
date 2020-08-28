@@ -5,36 +5,40 @@ import { mdiGoogle, mdiFacebook } from '@mdi/js';
 import HeaderSwitcher from './HeaderSwitcher';
 import UserActions from 'Models/User/UserActions';
 import useUser from 'store/UserContext';
+import AdAccount from 'Models/AdAccount/AdAccount';
 
 export default () => {
   const { config } = useUser();
-  // const googleAccount = config.getDefaultAccount('google');
-  // const fbAccount = config.getDefaultAccount('facebook');
-  const { userConfig, setGoogleAccount, googleAccount, fbAccount, setFbAccount } = useUserConfig();
+
+  const [googleAccount, setGoogleAccount] = useState(config.getDefaultAccountId('google'));
+  const [facebookAccount, setFacebookAccount] = useState(config.getDefaultAccountId('facebook'));
   const [googleOptions, setGoogleOptions] = useState([]);
-  const [fbOptions, setFbOptions] = useState([]);
+  const [facebookOptions, setFacebookbOptions] = useState([]);
 
   useEffect(() => {
-    console.log(config);
-    setGoogleOptions(
-      config.getAdAccounts('google').map((acc) => {
+    setGoogleOptions(() => {
+      return config.getAdAccounts('google').map((acc) => {
         return { name: acc.name, value: acc.id };
-      })
-    );
-    setFbOptions(
-      config.getAdAccounts('facebook').map((acc) => {
+      });
+    });
+    setFacebookbOptions(() => {
+      return config.getAdAccounts('facebook').map((acc) => {
         return { name: acc.name, value: acc.id };
-      })
-    );
+      });
+    });
   }, [config]);
 
-  useEffect(() => {
-    UserActions.service.setDefaulGoogleAccount(googleAccount).then((data) => console.log(data));
-  }, [googleAccount]);
+  const onChangeGoogleAccount = (accountId) => {
+    AdAccount.service.setDefaultGoogleAccount(accountId).then(() => {
+      setGoogleAccount(accountId);
+    });
+  };
 
-  useEffect(() => {
-    UserActions.service.setDefaulFacebookAccount(fbAccount).then((data) => console.log(data));
-  }, [fbAccount]);
+  const onChangeFacebookAccount = (accountId) => {
+    AdAccount.service.setDefaultFacebookAccount(accountId).then(() => {
+      setFacebookAccount(accountId);
+    });
+  };
 
   return (
     <Fragment>
@@ -42,13 +46,13 @@ export default () => {
         icon={mdiGoogle}
         options={googleOptions}
         value={googleAccount}
-        onChange={(val) => setGoogleAccount(val)}
+        onChange={onChangeGoogleAccount}
       />
       <HeaderSwitcher
         icon={mdiFacebook}
-        options={fbOptions}
-        value={fbAccount}
-        onChange={(val) => setFbAccount(val)}
+        options={facebookOptions}
+        value={facebookAccount}
+        onChange={onChangeFacebookAccount}
       />
     </Fragment>
   );

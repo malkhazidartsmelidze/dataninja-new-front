@@ -29,14 +29,14 @@ class AdAccount {
 AdAccount.service = {
   setDefaultFacebookAccount: (id) => {
     return api
-      .call('post', '/user/actions/set-default-facebook-account', {
+      .call('post', '/user/action/set-default-facebook-account', {
         account_id: id,
       })
       .then(api.getData);
   },
   setDefaultGoogleAccount: (id) => {
     return api
-      .call('post', '/user/actions/set-default-google-account', {
+      .call('post', '/user/action/set-default-google-account', {
         account_id: id,
       })
       .then(api.getData);

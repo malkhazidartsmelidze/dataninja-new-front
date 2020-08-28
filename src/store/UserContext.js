@@ -8,7 +8,7 @@ const UserContext = createContext('user');
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(new User({}));
-  const [userConfig, setUserConfig] = useState(new UserConfig({}));
+  const [userConfig, setUserConfig] = useState(null);
   const [auth, setAuth] = useState(false);
 
   const login = (user) => {
@@ -37,18 +37,17 @@ export const UserContextProvider = ({ children }) => {
 
   const configAndLoginuser = (data) => {
     const user = new User(data.user);
-    const userConfg = new UserConfig(data.config);
-    userConfg.setDefaultAccounts(data.default_accounts);
-    userConfg.setAdAccounts(data.ad_accounts);
+    const _userConfg = new UserConfig(data.config);
+    _userConfg.setDefaultAccounts(data.default_accounts).setAdAccounts(data.ad_accounts);
 
     ReactDOM.unstable_batchedUpdates(() => {
       setUser(user);
-      setUserConfig(userConfig);
+      setUserConfig(_userConfg);
+      setAuth(true);
     });
-    setAuth(true);
   };
 
-  console.log('reander');
+  console.log('rendered auth context');
   return (
     <UserContext.Provider
       value={{
