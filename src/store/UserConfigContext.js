@@ -1,5 +1,5 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
-import User from 'common/objects/User';
+import User from 'Models/User/User';
 import UserConfig from 'common/objects/User/UserConfig';
 import useUser from 'store/UserContext';
 

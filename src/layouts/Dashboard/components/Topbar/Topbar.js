@@ -16,7 +16,7 @@ import { LanguageSwitcher, NetworkAccountSwitchers } from './components';
 const Topbar = (props) => {
   const classes = useStyles();
   const { onDrawerToggle } = props;
-  const { user } = useUser();
+  const { user, config } = useUser();
 
   return (
     <AppBar position='sticky' elevation={2} className={classes.appBar}>
@@ -45,7 +45,7 @@ const Topbar = (props) => {
           </Grid>
           <Grid item>
             <IconButton className={classes.iconButtonAvatar}>
-              <Avatar src={user.getAvatar()} alt={user.getName()} />
+              <Avatar src={config.getAvatar()} alt={user.getName()} />
             </IconButton>
           </Grid>
         </Grid>

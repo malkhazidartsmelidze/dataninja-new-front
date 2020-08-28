@@ -1,35 +1,58 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
-import User from 'common/objects/User';
+import ReactDOM from 'react-dom';
 import api from 'common/api';
+import { User, UserConfig } from 'Models/User';
+import { tokenKey } from 'consts';
 
 const UserContext = createContext('user');
 
 export const UserContextProvider = ({ children }) => {
-  const [state, setState] = useState(initState);
+  const [user, setUser] = useState(new User({}));
+  const [userConfig, setUserConfig] = useState(new UserConfig({}));
+  const [auth, setAuth] = useState(false);
 
   const login = (user) => {
-    setState({
-      user: user,
-      auth: true,
-    });
+    setUser(user);
+    setAuth(true);
   };
 
   const logout = () => {
-    setState(initState);
+    setUser();
     api.setToken(null);
   };
 
   useEffect(() => {
-    User.service.me();
-    // .then((user) => login(user))
-    // .catch(() => logout());
-  }, [state.auth]);
+    if (!localStorage.getItem(tokenKey)) return;
+    User.service
+      .bootstrap()
+      .then((data) => {
+        if (typeof data.user !== 'object') throw 'Undefined User';
+        configAndLoginuser(data);
+      })
+      .catch((e) => {
+        // logout()
+        console.log(e);
+      });
+  }, []);
+
+  const configAndLoginuser = (data) => {
+    const user = new User(data.user);
+    const userConfg = new UserConfig(data.config);
+    userConfg.setDefaultAccounts(data.default_accounts);
+
+    ReactDOM.unstable_batchedUpdates(() => {
+      setUser(user);
+      setAuth(true);
+      setUserConfig(userConfig);
+    });
+  };
 
   return (
     <UserContext.Provider
       value={{
-        auth: state.auth,
-        user: state.user,
+        auth: auth,
+        user: user,
+        config: userConfig,
         login: login,
         logout: logout,
       }}
@@ -41,20 +64,20 @@ export const UserContextProvider = ({ children }) => {
 
 export default () => useContext(UserContext);
 
-const _logedUser = new User({
-  config: {
-    avatar:
-      'https://www.google.com/s2/u/0/photos/public/AIbEiAIAAABDCP3d8JHk5tKWXCILdmNhcmRfcGhvdG8qKDgwNTQ1MGVmMDk4MThkMzc0NzllZGY5M2YyYzc5YTUwZmMxNWJiNjAwAecFeG_QETl0cjpqF-7hUNz8QkSf?sz=48',
-    language: 'en',
-    user_id: 1,
-  },
-  hasConfig: true,
-  id: 1,
-  language: null,
-  name: 'Gurami Tateshvili',
-});
+// const _logedUser = new User({
+//   config: {
+//     avatar:
+//       '',
+//     language: 'en',
+//     user_id: 1,
+//   },
+//   hasConfig: true,
+//   id: 1,
+//   language: null,
+//   name: 'Gurami Tateshvili',
+// });
 
-const initState = {
-  user: _logedUser,
-  auth: true,
-};
+// const initState = {
+//   user: _logedUser,
+//   auth: true,
+// };

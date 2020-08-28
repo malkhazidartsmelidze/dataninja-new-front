@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import useUser from 'store/UserContext';
-import User from 'common/objects/User';
+import User from 'Models/User/User';
 
 export default () => {
   const classes = useStyles();

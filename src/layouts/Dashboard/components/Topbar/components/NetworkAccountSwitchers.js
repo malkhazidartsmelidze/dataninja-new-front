@@ -3,6 +3,7 @@ import { useUserConfig } from 'store/UserConfigContext';
 import UserConfig from 'common/objects/User/UserConfig';
 import { mdiGoogle, mdiFacebook } from '@mdi/js';
 import HeaderSwitcher from './HeaderSwitcher';
+import UserActions from 'Models/User/UserActions';
 
 export default () => {
   const { userConfig, setGoogleAccount, googleAccount, fbAccount, setFbAccount } = useUserConfig();
@@ -23,6 +24,14 @@ export default () => {
       })
     );
   }, [userConfig]);
+
+  useEffect(() => {
+    UserActions.service.setDefaulGoogleAccount(googleAccount).then((data) => console.log(data));
+  }, [googleAccount]);
+
+  useEffect(() => {
+    UserActions.service.setDefaulFacebookAccount(fbAccount).then((data) => console.log(data));
+  }, [fbAccount]);
 
   return (
     <>

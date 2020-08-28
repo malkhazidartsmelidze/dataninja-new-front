@@ -44,8 +44,8 @@ export default () => {
   });
 
   return (
-    <UserConfigContextProvider>
-      <Suspense fallback={<LinearProgress />}>{mod.render()}</Suspense>
-    </UserConfigContextProvider>
+    // <UserConfigContextProvider>
+    <Suspense fallback={<LinearProgress />}>{mod.render()}</Suspense>
+    // </UserConfigContextProvider>
   );
 };
