@@ -2,6 +2,7 @@ import React from 'react';
 import Module from 'modules/Module';
 import P from 'paths';
 import { CreateAudiencePage } from './Pages';
+import { NewAdContextProvider } from 'store/NewAdContext';
 
 export default () => {
   const mod = new Module({
@@ -21,5 +22,5 @@ export default () => {
     ],
   });
 
-  return mod.render();
+  return <NewAdContextProvider>{mod.render()}</NewAdContextProvider>;
 };

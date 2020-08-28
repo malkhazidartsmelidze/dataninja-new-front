@@ -7,11 +7,12 @@ import {
   FacebookVideoAudienceForm,
   FacebookWebsiteAudienceForm,
 } from 'modules/Audiences/Forms';
+import GoogleAudienceForm from 'modules/Audiences/Forms/GoogleAudienceForm/GoogleAudienceForm';
 
 export default () => {
   const classes = useStyles();
-  const [network, setNetwork] = useState('google');
-  const [audienceType, setAudienceType] = useState('custom');
+  const [network, setNetwork] = useState('facebook');
+  const [audienceType, setAudienceType] = useState('video');
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);
@@ -31,6 +32,8 @@ export default () => {
     AudienceForm = FacebookVideoAudienceForm;
   } else if (audienceType === 'website') {
     AudienceForm = FacebookWebsiteAudienceForm;
+  } else if (audienceType === 'google_audience') {
+    AudienceForm = GoogleAudienceForm;
   } else {
     return null;
   }
@@ -72,6 +75,7 @@ const audienceOptions = {
   google: [
     { name: 'Custom Audiences', value: 'custom' },
     { name: 'Remarketing Audiences', value: 'remarketing' },
+    { name: 'Audience', value: 'google_audience' },
   ],
   facebook: [
     { name: 'Video', value: 'video' },

@@ -6,3 +6,4 @@ export { default as RemarketingListMembersField } from './RemarketingListMembers
 export { default as RemarketingMemberShipDurationField } from './RemarketingMemberShipDurationField';
 export { default as RemarketingPrefillOptionsField } from './RemarketingPrefillOptionsField';
 export { default as RemarketingVisitedPagesField } from './RemarketingVisitedPagesField';
+export { default as CategoryTree } from './CategoryTree';

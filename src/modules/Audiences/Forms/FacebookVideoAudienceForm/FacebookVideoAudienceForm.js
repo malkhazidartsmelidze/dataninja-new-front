@@ -4,6 +4,7 @@ import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/F
 import {
   AudienceVideoEngagmentType,
   AudienceVideoDaysField,
+  AudienceVideoField,
 } from 'modules/Audiences/Forms/components/Facebook';
 import { Button } from '@material-ui/core';
 import Audience from 'common/objects/Audience';
@@ -13,8 +14,9 @@ export default () => {
     name: 'Example Audience Name',
     description: 'Example Audience Description',
     engagment_type: 'video_watched',
-    days: 365,
+    retention_days: 365,
     network: 'facebook',
+    video: '',
     type: 'video',
   });
 
@@ -42,6 +44,15 @@ export default () => {
       },
     },
     {
+      component: AudienceVideoField,
+      title: 'Choose Video',
+      subTitle: 'Choose Video',
+      props: {
+        name: 'video',
+        value: state.video,
+      },
+    },
+    {
       component: AudienceVideoEngagmentType,
       title: 'Engagement Type',
       subTitle: 'Choose the type of content that you want to use to create your audience',
@@ -55,8 +66,8 @@ export default () => {
       title: 'In the past',
       subTitle: 'Choose Days Here',
       props: {
-        name: 'days',
-        value: state.days,
+        name: 'retention_days',
+        value: state.retention_days,
       },
     },
   ];

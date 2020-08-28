@@ -8,6 +8,9 @@ Audience.service = {
   create: (data) => {
     return api.post('/audience/create', data).then((data) => data);
   },
+  getTargetingTrees: () => {
+    return api.post('/audience/google/get-tree').then((data) => data);
+  },
 };
 
 export default Audience;
