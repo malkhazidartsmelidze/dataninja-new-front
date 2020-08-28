@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import ChipsCard from 'components/ChipsCard';
 
-export default () => {
-  const [intentOrCustom, setIntentOrCustom] = useState('intent');
+export default ({ name, onChange, value: intentOrCustomValue }) => {
+  const [intentOrCustom, setIntentOrCustom] = useState(intentOrCustomValue);
   const [placeHolder, setPlaceHolder] = useState('');
   const [value, setValue] = useState([]);
   const [values, setValues] = useState([]);
@@ -37,6 +37,14 @@ export default () => {
     if (values.indexOf(e.target.value) > -1) return;
     setValues([...values, e.target.value]);
   };
+
+  useEffect(() => {
+    onChange &&
+      onChange(name, {
+        audience_type: intentOrCustom,
+        values: values,
+      });
+  }, [intentOrCustom, values]);
 
   return (
     <PanelField

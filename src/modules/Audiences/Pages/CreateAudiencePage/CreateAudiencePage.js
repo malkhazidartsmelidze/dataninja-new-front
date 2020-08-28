@@ -10,8 +10,8 @@ import {
 
 export default () => {
   const classes = useStyles();
-  const [network, setNetwork] = useState('facebook');
-  const [audienceType, setAudienceType] = useState('website');
+  const [network, setNetwork] = useState('google');
+  const [audienceType, setAudienceType] = useState('custom');
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);

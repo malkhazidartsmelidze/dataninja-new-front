@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { TextField } from '@material-ui/core';
 import ChipsCard from 'components/ChipsCard';
 
-export default () => {
-  const [value, setValue] = useState([]);
+export default ({ onChange, name, value: similarWebsites }) => {
+  const [value, setValue] = useState(similarWebsites);
   const [values, setValues] = useState([]);
 
   const onInputChange = (e) => {
@@ -24,6 +24,10 @@ export default () => {
     if (values.indexOf(e.target.value) > -1) return;
     setValues([...values, e.target.value]);
   };
+
+  useEffect(() => {
+    onChange && onChange(name, values);
+  }, [values]);
 
   return (
     <PanelField

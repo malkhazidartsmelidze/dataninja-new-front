@@ -31,6 +31,12 @@ import {
   CreativeLinksField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
+import {
+  SiteLinkExtension,
+  CalloutExtension,
+  StructuredSnippetExtension,
+  CallExtension,
+} from './components/Extensions';
 
 export default () => {
   return (
@@ -202,5 +208,27 @@ const steps = [
     component: LocationTargetingField,
     title: 'Call to action',
     subTitle: 'Choose Call to action button text',
+  },
+  {
+    titleBefore: 'Extensions',
+    subTitleBefore: 'Sitelink, Callout, Structured Snippet, Call ... (Only For Google)',
+    component: SiteLinkExtension,
+    title: 'Sitelink extension',
+    subTitle: 'Sitelink extension module (Only For Google)',
+  },
+  {
+    component: CalloutExtension,
+    title: 'Callout extension',
+    subTitle: 'Callout extension module (Only For Google)',
+  },
+  {
+    component: StructuredSnippetExtension,
+    title: 'Structured Snippet extension',
+    subTitle: 'Structured Snippet module (Only For Google)',
+  },
+  {
+    component: CallExtension,
+    title: 'Call extension',
+    subTitle: 'Call extension module (Only For Google)',
   },
 ];
