@@ -22,6 +22,12 @@ class Api {
     return this.api.post(...params);
   };
 
+  call = (method, ...params) => {
+    return this.api[method](...params);
+  };
+
+  getData = (res) => res.data;
+
   setToken(token) {
     this.authToken = token;
     this.api.defaults.headers.common['Authorization'] = `Bearer ${token}`;

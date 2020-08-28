@@ -8,6 +8,7 @@ import {
 } from 'modules/Audiences/Forms/components/Facebook';
 import { Button } from '@material-ui/core';
 import Audience from 'common/objects/Audience';
+import { FacebookAudience } from 'modules/Audiences/Objects';
 
 export default () => {
   const [state, setState] = useState({
@@ -75,7 +76,7 @@ export default () => {
   const submitButtonClicked = () => {
     const data = state;
 
-    Audience.service.create(data).then((d) => console.log(d));
+    FacebookAudience.service.create(data).then((d) => console.log(d));
   };
 
   console.log(state);
