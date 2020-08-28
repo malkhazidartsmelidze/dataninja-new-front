@@ -10,6 +10,7 @@ class AdAccount {
 
   setNetwork = (network) => {
     this.network = network;
+    return this;
   };
 
   isDefault = () => {

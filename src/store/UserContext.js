@@ -43,11 +43,12 @@ export const UserContextProvider = ({ children }) => {
 
     ReactDOM.unstable_batchedUpdates(() => {
       setUser(user);
-      setAuth(true);
       setUserConfig(userConfig);
     });
+    setAuth(true);
   };
 
+  console.log('reander');
   return (
     <UserContext.Provider
       value={{

@@ -40,7 +40,7 @@ class UserConfig {
   };
 
   setAdAccounts = (accounts) => {
-    if (!typeof accounts === 'object') return;
+    if (!typeof accounts === 'object') throw 'must provide ad account object';
 
     this.adAccounts.google = accounts.google.map((acc) => {
       return new AdAccount(acc).setNetwork('google');
