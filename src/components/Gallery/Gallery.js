@@ -45,23 +45,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Gallery({ open, handleClose, data }) {
+export default function Gallery({ open, handleClose, data, multiple }) {
   const classes = useStyles();
   const [selected, setSelected] = useState([]);
 
   const selectToggle = (id) => {
     setSelected((old) => {
-      if (old.indexOf(id) > -1) {
-        old.splice(old.indexOf(id), 1);
+      if (multiple) {
+        if (old.indexOf(id) > -1) {
+          old.splice(old.indexOf(id), 1);
+        } else {
+          old.push(id);
+        }
+        return [...old];
       } else {
-        old.push(id);
+        return id;
       }
-      return [...old];
     });
   };
 
   const isSelected = (id) => {
-    return selected.indexOf(id) > -1;
+    if (multiple) {
+      return selected.indexOf(id) > -1;
+    } else {
+      return selected === id;
+    }
   };
 
   return (

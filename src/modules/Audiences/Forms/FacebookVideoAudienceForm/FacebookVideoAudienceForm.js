@@ -13,10 +13,10 @@ export default () => {
   const [state, setState] = useState({
     name: 'Example Audience Name',
     description: 'Example Audience Description',
-    engagment_type: 'video_watched',
+    video_engagment_type: 'video_watched',
     retention_days: 365,
     network: 'facebook',
-    video: '',
+    video_ids: [],
     type: 'video',
   });
 
@@ -48,8 +48,8 @@ export default () => {
       title: 'Choose Video',
       subTitle: 'Choose Video',
       props: {
-        name: 'video',
-        value: state.video,
+        name: 'video_ids',
+        value: state.video_ids,
       },
     },
     {
@@ -57,8 +57,8 @@ export default () => {
       title: 'Engagement Type',
       subTitle: 'Choose the type of content that you want to use to create your audience',
       props: {
-        name: 'engagment_type',
-        value: state.engagment_type,
+        name: 'video_engagment_type',
+        value: state.video_engagment_type,
       },
     },
     {
