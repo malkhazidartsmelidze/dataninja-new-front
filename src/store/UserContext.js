@@ -39,6 +39,7 @@ export const UserContextProvider = ({ children }) => {
     const user = new User(data.user);
     const userConfg = new UserConfig(data.config);
     userConfg.setDefaultAccounts(data.default_accounts);
+    userConfg.setAdAccounts(data.ad_accounts);
 
     ReactDOM.unstable_batchedUpdates(() => {
       setUser(user);
@@ -63,21 +64,3 @@ export const UserContextProvider = ({ children }) => {
 };
 
 export default () => useContext(UserContext);
-
-// const _logedUser = new User({
-//   config: {
-//     avatar:
-//       '',
-//     language: 'en',
-//     user_id: 1,
-//   },
-//   hasConfig: true,
-//   id: 1,
-//   language: null,
-//   name: 'Gurami Tateshvili',
-// });
-
-// const initState = {
-//   user: _logedUser,
-//   auth: true,
-// };
