@@ -12,6 +12,8 @@ const initState = {
   ad_type: 'conversions',
   bid_optimization_type: 'pay_per_click',
   budget: 30,
+  objective: 'traffic',
+  campaign_name: 'Sample Campaign NAme',
   targeting_gender: 'all',
   targeting_age_from: 15,
   targeting_age_to: 65,

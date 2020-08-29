@@ -29,6 +29,12 @@ class UserConfig {
     return this.defaultAccounts[network].id;
   };
 
+  getDefaultAccount = (network) => {
+    if (!this.defaultAccounts[network]) return null;
+
+    return this.defaultAccounts[network];
+  };
+
   getAdAccounts = (network) => {
     if (this.adAccounts[network] === undefined) throw 'Undefined Network';
 
@@ -36,7 +42,14 @@ class UserConfig {
   };
 
   setDefaultAccounts = (accounts) => {
-    this.defaultAccounts = accounts;
+    if (typeof accounts.google === 'object') {
+      this.defaultAccounts.google = new AdAccount(accounts.google).setNetwork('google');
+    }
+
+    if (typeof accounts.facebook === 'object') {
+      this.defaultAccounts.facebook = new AdAccount(accounts.facebook).setNetwork('facebook');
+    }
+
     return this;
   };
 
