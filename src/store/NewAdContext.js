@@ -19,7 +19,7 @@ const initState = {
   targeting_age_from: 15,
   targeting_age_to: 65,
   targeting_location_type: 'living',
-  targeting_language: '',
+  targeting_languages: [],
   targeting_expansion: 50,
   targeting_devices: ['mobile', 'desktop', 'tablet'],
   targeting_household_income: [],
