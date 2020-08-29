@@ -1,9 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { useUserConfig } from 'store/UserConfigContext';
-import UserConfig from 'common/objects/User/UserConfig';
 import { mdiGoogle, mdiFacebook } from '@mdi/js';
 import HeaderSwitcher from './HeaderSwitcher';
-import UserActions from 'Models/User/UserActions';
 import useUser from 'store/UserContext';
 import AdAccount from 'Models/AdAccount/AdAccount';
 

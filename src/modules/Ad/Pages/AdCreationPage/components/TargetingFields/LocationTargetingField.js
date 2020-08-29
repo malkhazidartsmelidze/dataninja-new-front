@@ -22,7 +22,7 @@ import {
   CardContent,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import AdForm from 'common/objects/Ad/AdForm';
+import AdForm from 'Models/Ad/AdForm';
 import Icon from '@mdi/react';
 import { mdiPlus, mdiMinus } from '@mdi/js';
 import { theme } from 'common/@mui';

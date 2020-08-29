@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { languageKey, defaultLanguage } from 'consts';
-import Language from 'common/objects/Language';
+import Language from 'Models/Language';
 import getMessages from 'i18n/message-resolver';
 import useUser from 'store/UserContext';
 import defaultMessages from 'i18n/messages/en.json';

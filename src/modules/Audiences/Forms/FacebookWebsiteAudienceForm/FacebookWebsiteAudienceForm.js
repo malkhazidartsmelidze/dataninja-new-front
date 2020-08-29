@@ -7,7 +7,7 @@ import {
   AudienceCriterionType,
   PeopleAudienceOptions,
 } from 'modules/Audiences/Forms/components/Facebook';
-import Audience from 'common/objects/Audience';
+import Audience from 'Models/Audience/Audience';
 import { Button } from '@material-ui/core';
 
 export default () => {

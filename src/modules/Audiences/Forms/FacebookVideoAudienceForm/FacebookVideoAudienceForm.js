@@ -7,8 +7,7 @@ import {
   AudienceVideoField,
 } from 'modules/Audiences/Forms/components/Facebook';
 import { Button } from '@material-ui/core';
-import Audience from 'common/objects/Audience';
-import { FacebookAudience } from 'modules/Audiences/Objects';
+import { FacebookVideoAudience } from 'Models/Audience';
 
 export default () => {
   const [state, setState] = useState({
@@ -76,7 +75,7 @@ export default () => {
   const submitButtonClicked = () => {
     const data = state;
 
-    FacebookAudience.service.create(data).then((d) => console.log(d));
+    FacebookVideoAudience.service.create(data).then((d) => console.log(d));
   };
 
   console.log(state);

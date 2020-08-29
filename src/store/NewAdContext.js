@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import AdForm from 'common/objects/Ad/AdForm';
+import AdForm from 'Models/Ad/AdForm';
 
 export const NewAdContext = createContext({});
 

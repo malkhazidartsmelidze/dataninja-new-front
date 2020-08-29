@@ -8,7 +8,7 @@ import {
   CustomAudiencePlacesField,
 } from 'modules/Audiences/Forms/components/Google';
 import { Button } from '@material-ui/core';
-import Audience from 'common/objects/Audience';
+import Audience from 'Models/Audience/Audience';
 
 export default () => {
   const [state, setState] = useState({
