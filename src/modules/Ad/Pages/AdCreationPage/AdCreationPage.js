@@ -36,6 +36,7 @@ import {
   CreativePlatformsField,
   CreativeGmailFields,
   CreativeParametersField,
+  CreativeCallToActionField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -273,7 +274,7 @@ const steps = [
     subTitle: 'Enter Url Parameters',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeCallToActionField,
     title: 'Call to action',
     subTitle: 'Choose Call to action button text',
   },

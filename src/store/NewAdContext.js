@@ -41,6 +41,7 @@ const initState = {
   creative_business_name: 'Exammple Business Name',
   creative_link: '',
   creative_link_parameters: '',
+  call_to_action_text: '',
   gmail_subject: 'Example gmail subject',
   gmail_description: 'Example gmail description',
   splits: {
