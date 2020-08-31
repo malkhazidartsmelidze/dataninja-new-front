@@ -11,3 +11,4 @@ export { default as CreativeGmailFields } from './CreativeGmailFields';
 export { default as CreativeParametersField } from './CreativeParametersField';
 export { default as CreativeCallToActionField } from './CreativeCallToActionField';
 export { default as CreativeFacebookPageId } from './CreativeFacebookPageId';
+export { default as CreativeImageField } from './CreativeImageField';

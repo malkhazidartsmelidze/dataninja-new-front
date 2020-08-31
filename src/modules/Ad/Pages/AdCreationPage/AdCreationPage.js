@@ -38,6 +38,7 @@ import {
   CreativeParametersField,
   CreativeCallToActionField,
   CreativeFacebookPageId,
+  CreativeImageField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -225,7 +226,7 @@ const steps = [
     subTitle: 'Select Facebook Page',
   },
   {
-    component: LocationTargetingField,
+    component: CreativeImageField,
     title: 'Choose Image',
     subTitle: 'Select Image From Gallery or upload new',
   },
