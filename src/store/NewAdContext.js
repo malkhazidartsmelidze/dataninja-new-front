@@ -30,6 +30,8 @@ const initState = {
   creative_primary_texts: { primarytext1: 'Example Primary Text 1' },
   creative_descriptions: { description1: 'Example Description' },
   creative_long_headline: 'Example Long Headline',
+  creative_promo_text: 'Exammple Promo Text',
+  creative_business_name: 'Exammple Business Name',
   creative_link: '',
   splits: {
     facebook: {

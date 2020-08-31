@@ -4,3 +4,5 @@ export { default as CreativeLongHeadlineField } from './CreativeLongHeadlineFiel
 export { default as CreativePrimaryTextField } from './CreativePrimaryTextField';
 export { default as CreativeDescriptionField } from './CreativeDescriptionField';
 export { default as CreativeLinksField } from './CreativeLinksField';
+export { default as CreativePromoTextField } from './CreativePromoTextField';
+export { default as CreativeBusinessNameField } from './CreativeBusinessNameField';

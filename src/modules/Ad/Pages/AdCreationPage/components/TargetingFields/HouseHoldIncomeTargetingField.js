@@ -5,10 +5,10 @@ import { FormControl, FormControlLabel, Checkbox, Tooltip, Radio } from '@materi
 
 const options = {
   top_10: { name: 'Top 10%' },
-  11_20: { name: '11 - 20%' },
-  21_30: { name: '21 - 30%' },
-  31_40: { name: '31 - 40%' },
-  41_50: { name: '41 - 50%' },
+  '11_20': { name: '11 - 20%' },
+  '21_30': { name: '21 - 30%' },
+  '31_40': { name: '31 - 40%' },
+  '41_50': { name: '41 - 50%' },
   lower_50: { name: 'Lower 50%' },
   unknown: { name: 'Unknown' },
 };

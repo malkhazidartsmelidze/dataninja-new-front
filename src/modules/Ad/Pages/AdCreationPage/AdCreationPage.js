@@ -30,6 +30,8 @@ import {
   CreativePrimaryTextField,
   CreativeDescriptionField,
   CreativeLinksField,
+  CreativePromoTextField,
+  CreativeBusinessNameField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -194,6 +196,16 @@ const steps = [
     component: CreativeLongHeadlineField,
     title: 'Long Headline',
     subTitle: 'Enter Long Headline',
+  },
+  {
+    component: CreativePromoTextField,
+    title: 'Promo text',
+    subTitle: 'Enter promo text',
+  },
+  {
+    component: CreativeBusinessNameField,
+    title: 'Business Name',
+    subTitle: 'Enter Business Name',
   },
   {
     component: CreativePrimaryTextField,
