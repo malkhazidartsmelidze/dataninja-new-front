@@ -3,6 +3,7 @@ import Module from 'modules/Module';
 import P from 'paths';
 import { CreateAudiencePage } from './Pages';
 import { NewAdContextProvider } from 'store/NewAdContext';
+import { Error404Page } from 'modules/Errors';
 
 export default () => {
   const mod = new Module({
@@ -17,7 +18,7 @@ export default () => {
         path: P.AUDIENCES_CREATE,
         secured: true,
         exact: true,
-        component: CreateAudiencePage,
+        component: Error404Page,
       },
     ],
   });

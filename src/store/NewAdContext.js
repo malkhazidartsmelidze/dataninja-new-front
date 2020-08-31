@@ -15,6 +15,8 @@ const initState = {
   objective: 'traffic',
   campaign_name: 'Sample Campaign NAme',
   adset_name: 'Sample Adset Name',
+  start_date: '2020-09-25',
+  end_date: '2020-09-30',
   targeting_gender: 'all',
   targeting_age_from: 15,
   targeting_age_to: 65,
