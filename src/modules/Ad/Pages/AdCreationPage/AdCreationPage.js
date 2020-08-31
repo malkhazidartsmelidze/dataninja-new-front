@@ -33,6 +33,7 @@ import {
   CreativeLinksField,
   CreativePromoTextField,
   CreativeBusinessNameField,
+  CreativePlatformsField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -253,6 +254,11 @@ const steps = [
     component: CreativeLinksField,
     title: 'Links',
     subTitle: 'Choose Pages Or Enter Links',
+  },
+  {
+    component: CreativePlatformsField,
+    title: 'Choose Platforms',
+    subTitle: 'Choose Platforms Here',
   },
   {
     component: LocationTargetingField,
