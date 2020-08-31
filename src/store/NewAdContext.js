@@ -42,6 +42,7 @@ const initState = {
   creative_link: '',
   creative_link_parameters: '',
   call_to_action_text: '',
+  facebook_page_id: '',
   gmail_subject: 'Example gmail subject',
   gmail_description: 'Example gmail description',
   splits: {

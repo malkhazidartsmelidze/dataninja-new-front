@@ -37,6 +37,7 @@ import {
   CreativeGmailFields,
   CreativeParametersField,
   CreativeCallToActionField,
+  CreativeFacebookPageId,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -217,6 +218,11 @@ const steps = [
     component: CreativeNameField,
     title: 'Ad Name',
     subTitle: 'Enter Ad Name. Current: Dataninja-Trafic-Ad-2223',
+  },
+  {
+    component: CreativeFacebookPageId,
+    title: 'Choose Facebook Page',
+    subTitle: 'Select Facebook Page',
   },
   {
     component: LocationTargetingField,

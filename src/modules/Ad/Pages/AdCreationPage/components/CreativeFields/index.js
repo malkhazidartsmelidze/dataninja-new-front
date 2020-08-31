@@ -10,3 +10,4 @@ export { default as CreativePlatformsField } from './CreativePlatformsField';
 export { default as CreativeGmailFields } from './CreativeGmailFields';
 export { default as CreativeParametersField } from './CreativeParametersField';
 export { default as CreativeCallToActionField } from './CreativeCallToActionField';
+export { default as CreativeFacebookPageId } from './CreativeFacebookPageId';
