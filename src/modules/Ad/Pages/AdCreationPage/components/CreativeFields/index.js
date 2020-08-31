@@ -8,3 +8,4 @@ export { default as CreativePromoTextField } from './CreativePromoTextField';
 export { default as CreativeBusinessNameField } from './CreativeBusinessNameField';
 export { default as CreativePlatformsField } from './CreativePlatformsField';
 export { default as CreativeGmailFields } from './CreativeGmailFields';
+export { default as CreativeParametersField } from './CreativeParametersField';

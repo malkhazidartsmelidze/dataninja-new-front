@@ -35,6 +35,7 @@ import {
   CreativeBusinessNameField,
   CreativePlatformsField,
   CreativeGmailFields,
+  CreativeParametersField,
 } from './components/CreativeFields';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import {
@@ -265,6 +266,11 @@ const steps = [
     component: CreativeGmailFields,
     title: 'Gmail Fields',
     subTitle: 'Enter Subject And Description',
+  },
+  {
+    component: CreativeParametersField,
+    title: 'Url Parameters',
+    subTitle: 'Enter Url Parameters',
   },
   {
     component: LocationTargetingField,

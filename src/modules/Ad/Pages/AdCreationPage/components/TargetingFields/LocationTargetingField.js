@@ -202,7 +202,7 @@ export default () => {
                     >
                       <ListItemText
                         secondary={option.type}
-                        primary={`${option.name},${option.region && option.region},${
+                        primary={`${option.name},${option.region ? `${option.region},` : ''}${
                           option.country_code && option.country_code
                         }`}
                       />

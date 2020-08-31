@@ -40,6 +40,7 @@ const initState = {
   creative_promo_text: 'Exammple Promo Text',
   creative_business_name: 'Exammple Business Name',
   creative_link: '',
+  creative_link_parameters: '',
   gmail_subject: 'Example gmail subject',
   gmail_description: 'Example gmail description',
   splits: {
