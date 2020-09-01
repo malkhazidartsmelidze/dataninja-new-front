@@ -41,8 +41,20 @@ import {
   StructuredSnippetExtension,
   CallExtension,
 } from './components/Extensions';
+import { useNewAdContext } from 'store/NewAdContext';
+import Ad from 'Models/Ad/Ad';
 
 export default () => {
+  const { data } = useNewAdContext();
+
+  const createInGoogle = () => {
+    Ad.service.createInGoogle(data);
+  };
+
+  const createInFacebook = () => {
+    Ad.service.createInFacebook(data);
+  };
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -61,6 +73,20 @@ export default () => {
             </ExpansionPanel>
           </>
         ))}
+        <div style={{ marginTop: 16 }}>
+          <Button
+            onClick={createInGoogle}
+            size='large'
+            color='primary'
+            style={{ marginRight: 16 }}
+            variant='contained'
+          >
+            Create Google Ad
+          </Button>
+          <Button onClick={createInFacebook} size='large' color='primary' variant='contained'>
+            Create Facebook Ad
+          </Button>
+        </div>
       </Grid>
     </Grid>
   );
@@ -101,11 +127,11 @@ const steps = [
     title: 'Bid Optimization',
     subTitle: 'Choose Bidding Options for each networks',
   },
-  {
-    component: BidTypeFields,
-    title: 'Bid Types',
-    subTitle: 'Choose Bid Types',
-  },
+  // {
+  //   component: BidTypeFields,
+  //   title: 'Bid Types',
+  //   subTitle: 'Choose Bid Types',
+  // },
   {
     component: BidOptionFields,
     title: 'Additional Bid Options',
@@ -170,17 +196,17 @@ const steps = [
     title: 'Targeting Expansion',
     subTitle: 'Choose targeting expansion',
   },
-  {
-    titleBefore: 'Audience Settings',
-    subTitleBefore: 'Choose Existing Audience',
-    component: LocationTargetingField,
-    title: 'Choose Audience',
-    subTitle: (
-      <span>
-        Choose from existing audiences <Button variant='outlined'>Or Create New</Button>
-      </span>
-    ),
-  },
+  // {
+  //   titleBefore: 'Audience Settings',
+  //   subTitleBefore: 'Choose Existing Audience',
+  //   component: LocationTargetingField,
+  //   title: 'Choose Audience',
+  //   subTitle: (
+  //     <span>
+  //       Choose from existing audiences <Button variant='outlined'>Or Create New</Button>
+  //     </span>
+  //   ),
+  // },
   {
     titleBefore: 'Ad Parameters',
     subTitleBefore: 'Enter ad parameters here, Headline, image, link etc...',

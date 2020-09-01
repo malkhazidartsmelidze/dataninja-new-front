@@ -13,6 +13,7 @@ export default () => {
           <Grid item xs={6}>
             <TextField
               label='Start Date'
+              InputLabelProps={{ shrink: true }}
               name='start_date'
               value={getField('start_date').value}
               onChange={(e) => setField('start_date', e.target.value)}
@@ -23,6 +24,7 @@ export default () => {
           <Grid item xs={6}>
             <TextField
               label='End Date'
+              InputLabelProps={{ shrink: true }}
               name='end_date'
               value={getField('end_date').value}
               onChange={(e) => setField('end_date', e.target.value)}

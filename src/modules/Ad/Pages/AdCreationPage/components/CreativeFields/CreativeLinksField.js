@@ -12,7 +12,7 @@ export default () => {
 
   useEffect(() => {
     if (link.value == stateLink) return;
-    const deb = setTimeout(() => setField('creative_link', link), 500);
+    const deb = setTimeout(() => setField('creative_link', stateLink), 500);
     return () => clearTimeout(deb);
   }, [stateLink]);
 
