@@ -3,18 +3,22 @@ import AdForm from 'Models/Ad/AdForm';
 
 export const NewAdContext = createContext({});
 
+const getRandomNumber = () => {
+  return Math.round(Math.random() * 1000);
+};
+
 const initState = {
   networks: {
     facebook: true,
     google: true,
   },
   is_responsive: true,
-  ad_type: 'conversions',
+  ad_type: 'traffic',
   bid_optimization_type: 'pay_per_click',
   budget: 30,
   objective: 'traffic',
-  campaign_name: 'Sample Campaign NAme',
-  adset_name: 'Sample Adset Name',
+  campaign_name: 'Traffic-Campaign-' + getRandomNumber(),
+  adset_name: 'Adset-' + getRandomNumber(),
   start_date: '2020-09-25',
   end_date: '',
   targeting_gender: 'all',
@@ -96,6 +100,12 @@ export const NewAdContextProvider = ({ children }) => {
         return Object.create(old);
       });
     } else {
+      if (field == 'ad_type') {
+        state.campaign_name = `${
+          value.charAt(0).toUpperCase() + value.slice(1)
+        }-Campaign-${getRandomNumber()}`;
+      }
+      console.log(state);
       setState({ ...state, [field]: value });
     }
   };

@@ -16,7 +16,7 @@ export default () => {
     return adType.value == type;
   };
 
-  if (networks.value.facebook && isAdType('search_ads')) {
+  if (networks.value.facebook && isAdType('search')) {
     setField('ad_type', 'conversions');
   }
 
@@ -36,27 +36,23 @@ export default () => {
             label='Conversions'
           />
         </FormControl>,
-        <FormControl fullWidth key='traffic_to_website'>
+        <FormControl fullWidth key='traffic'>
           <FormControlLabel
             control={
-              <Radio
-                checked={isAdType('traffic_to_website')}
-                onChange={handleTypeRadioField}
-                name='traffic_to_website'
-              />
+              <Radio checked={isAdType('traffic')} onChange={handleTypeRadioField} name='traffic' />
             }
             label='Traffic to website'
           />
         </FormControl>,
         isNetworkSelected('google') && (
-          <FormControl fullWidth key='search_ads'>
+          <FormControl fullWidth key='search'>
             <FormControlLabel
               control={
                 <Radio
                   disabled={isNetworkSelected('facebook')}
-                  checked={isAdType('search_ads')}
+                  checked={isAdType('search')}
                   onChange={handleTypeRadioField}
-                  name='search_ads'
+                  name='search'
                 />
               }
               label='Search Ads'
