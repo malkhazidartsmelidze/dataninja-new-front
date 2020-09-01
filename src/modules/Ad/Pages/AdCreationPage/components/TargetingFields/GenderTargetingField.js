@@ -7,6 +7,7 @@ const aviableOptions = {
   all: { value: 'all', name: 'All' },
   male: { value: 'male', name: 'Male' },
   female: { value: 'female', name: 'Female' },
+  unspecified: { value: 'unspecified', name: 'Unspecified' },
 };
 
 export default () => {
