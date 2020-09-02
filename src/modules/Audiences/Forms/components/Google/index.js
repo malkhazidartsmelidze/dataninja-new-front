@@ -1,4 +1,4 @@
-export { default as CustomAudienceIntentOrCustomField } from './CustomAudienceIntentOrCustomField';
+export { default as CustomAudienceKeywordsField } from './CustomAudienceKeywordsField';
 export { default as CustomAudienceAppsField } from './CustomAudienceAppsField';
 export { default as CustomAudiencePlacesField } from './CustomAudiencePlacesField';
 export { default as CustomAudienceUrlsField } from './CustomAudienceUrlsField';

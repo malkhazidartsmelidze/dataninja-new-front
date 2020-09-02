@@ -65,6 +65,7 @@ export default (props) => {
         url={P.AUDIENCES_MODULE}
         description={<FM id='menu.audiences_desc' />}
         showDivider={true}
+        opened={true}
       >
         <ChildMenu
           title={<FM id='menu.audiences_create' />}

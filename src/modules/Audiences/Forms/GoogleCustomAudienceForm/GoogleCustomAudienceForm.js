@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
 import {
-  CustomAudienceIntentOrCustomField,
+  CustomAudienceKeywordsField,
   CustomAudienceUrlsField,
   CustomAudienceAppsField,
   CustomAudiencePlacesField,
@@ -14,7 +14,7 @@ export default () => {
   const [state, setState] = useState({
     name: 'Example Google Name',
     description: 'Example Google Description',
-    audience_type: 'intent',
+    keywords: [],
     similar_websites: [],
     similar_apps: [],
     similar_places: [],
@@ -46,13 +46,12 @@ export default () => {
       },
     },
     {
-      component: CustomAudienceIntentOrCustomField,
-      title: 'Choose Audience Type',
-      subTitle:
-        'People with any of these interests or purchase intentions Or People who searched for any of these terms on Google',
+      component: CustomAudienceKeywordsField,
+      title: 'Choose Search Keywords',
+      subTitle: 'Enter Affinity Audience Seatch Keywords',
       props: {
-        name: 'audience_type',
-        value: state.audience_type,
+        name: 'keywords',
+        value: state.keywords,
       },
     },
     {
@@ -64,15 +63,15 @@ export default () => {
         value: state.similar_websites,
       },
     },
-    // {
-    //   component: CustomAudienceAppsField,
-    //   title: 'people who use apps similar to',
-    //   subTitle: 'Enter the names of apps that you think your ideal customer might use',
-    //   props: {
-    //     name: 'similar_apps',
-    //     value: state.similar_apps,
-    //   },
-    // },
+    {
+      component: CustomAudienceAppsField,
+      title: 'people who use apps similar to',
+      subTitle: 'Enter app that your ideal customer might use',
+      props: {
+        name: 'similar_websites',
+        value: state.similar_websites,
+      },
+    },
     {
       component: CustomAudiencePlacesField,
       title: 'people who visited these places',
@@ -87,7 +86,7 @@ export default () => {
   const submitButtonClicked = () => {
     const data = state;
 
-    Audience.service.create(data).then((d) => console.log(d));
+    Audience.service.createGoogleCustomAudience(data).then((d) => console.log(d));
   };
 
   console.log(state);

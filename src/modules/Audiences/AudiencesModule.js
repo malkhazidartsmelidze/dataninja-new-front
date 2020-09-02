@@ -18,7 +18,7 @@ export default () => {
         path: P.AUDIENCES_CREATE,
         secured: true,
         exact: true,
-        component: Error404Page,
+        component: CreateAudiencePage,
       },
     ],
   });

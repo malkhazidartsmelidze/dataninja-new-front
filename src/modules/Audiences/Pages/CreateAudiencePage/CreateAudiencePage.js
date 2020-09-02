@@ -11,8 +11,8 @@ import GoogleAudienceForm from 'modules/Audiences/Forms/GoogleAudienceForm/Googl
 
 export default () => {
   const classes = useStyles();
-  const [network, setNetwork] = useState('facebook');
-  const [audienceType, setAudienceType] = useState('video');
+  const [network, setNetwork] = useState('google');
+  const [audienceType, setAudienceType] = useState('custom');
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);
