@@ -16,6 +16,7 @@ const initState = {
   targeting_age_to: 65,
   targeting_location_type: 'living',
   targeting_language: '',
+  targeting_expansion: 50,
   splits: {
     facebook: {
       bid_type: 'auto',
