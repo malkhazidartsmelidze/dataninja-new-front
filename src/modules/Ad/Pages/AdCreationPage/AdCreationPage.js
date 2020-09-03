@@ -53,17 +53,13 @@ import AudienceField from './components/AudienceField';
 
 export default () => {
   const { data } = useNewAdContext();
-  const [audienceModalOpen, setAudienceModalOpen] = useState(false);
+
   const createInGoogle = () => {
     Ad.service.createInGoogle(data);
   };
 
   const createInFacebook = () => {
     Ad.service.createInFacebook(data);
-  };
-
-  const handleClose = () => {
-    setAudienceModalOpen(false);
   };
 
   return (
