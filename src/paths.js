@@ -9,8 +9,8 @@ export default {
   DASHBOARD_MODULE: '/app/dashboard/',
 
   AD_MODULE: '/app/ad/',
-  AD_CREATION: '/app/ad/:type/:network/:goal',
-  AD_CREATE: '/app/ad/create',
+  AD_CREATE_NEW: '/app/ad/new/:network/:goal',
+  AD_CREATE_EXISTING: '/app/ad/existing/:network/:campaign/:adset?',
   AD_VIEW_ALL: '/app/ad/all',
 
   BUILDER_MODULE: '/app/builder/',

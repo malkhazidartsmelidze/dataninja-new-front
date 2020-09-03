@@ -10,7 +10,7 @@ import { mdiPlus, mdiMinus } from '@mdi/js';
 import Icon from '@mdi/react';
 
 export default (props) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(props.expanded);
   const {
     title,
     subTitle,

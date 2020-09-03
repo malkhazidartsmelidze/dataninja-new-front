@@ -34,7 +34,7 @@ export default (props) => {
   };
 
   const startAdCreation = () => {
-    const url = `/app/ad/existing/${network}`;
+    const url = `/app/ad/existing/${network}/${campaign}/${adgroup ? adgroup : ''}`;
     history.push(url);
   };
 

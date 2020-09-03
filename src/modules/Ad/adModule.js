@@ -3,7 +3,7 @@ import Module from 'modules/Module';
 import P from 'paths';
 import { NewAdContextProvider } from 'store/NewAdContext';
 import IndexPage from './Pages/IndexPage';
-import CreateAdPage from './Pages/CreateAdPage';
+import { CreateNewAdPage, CreateExistingAdPage } from './Pages/CreateAdPages';
 
 const AdCreationPage = lazy(() => import('./Pages/AdCreationPage'));
 
@@ -16,15 +16,20 @@ export default () => {
         component: IndexPage,
       },
       {
-        path: P.AD_CREATE,
+        path: P.AD_CREATE_NEW,
         exact: true,
-        component: AdCreationPage,
+        component: CreateNewAdPage,
       },
       {
-        path: P.AD_CREATION,
+        path: P.AD_CREATE_EXISTING,
         exact: true,
-        component: CreateAdPage,
+        component: CreateExistingAdPage,
       },
+      // {
+      //   path: P.AD_CREATION,
+      //   exact: true,
+      //   component: CreateAdPage,
+      // },
     ],
   });
 
