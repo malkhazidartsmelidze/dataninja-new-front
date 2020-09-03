@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Button, Modal } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Grid, Button, Modal, Dialog, DialogTitle, Paper, DialogContent } from '@material-ui/core';
 import {
   ChooseNetworkField,
   CampaignNameField,
@@ -49,16 +49,21 @@ import {
 } from './components/Extensions';
 import { useNewAdContext } from 'store/NewAdContext';
 import Ad from 'Models/Ad/Ad';
+import AudienceField from './components/AudienceField';
 
 export default () => {
   const { data } = useNewAdContext();
-
+  const [audienceModalOpen, setAudienceModalOpen] = useState(false);
   const createInGoogle = () => {
     Ad.service.createInGoogle(data);
   };
 
   const createInFacebook = () => {
     Ad.service.createInFacebook(data);
+  };
+
+  const handleClose = () => {
+    setAudienceModalOpen(false);
   };
 
   return (
@@ -202,17 +207,13 @@ const steps = [
     title: 'Targeting Expansion',
     subTitle: 'Choose targeting expansion',
   },
-  // {
-  //   titleBefore: 'Audience Settings',
-  //   subTitleBefore: 'Choose Existing Audience',
-  //   component: LocationTargetingField,
-  //   title: 'Choose Audience',
-  //   subTitle: (
-  //     <span>
-  //       Choose from existing audiences <Button variant='outlined'>Or Create New</Button>
-  //     </span>
-  //   ),
-  // },
+  {
+    titleBefore: 'Audience Settings',
+    subTitleBefore: 'Choose Existing Audience',
+    component: AudienceField,
+    title: 'Choose Audience',
+    subTitle: 'Create or choose existing audience',
+  },
   {
     titleBefore: 'Ad Parameters',
     subTitleBefore: 'Enter ad parameters here, Headline, image, link etc...',
