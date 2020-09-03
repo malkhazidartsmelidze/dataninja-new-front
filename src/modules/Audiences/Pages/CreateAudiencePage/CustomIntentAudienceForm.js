@@ -7,6 +7,7 @@ import ListMembersField from './components/ListMembersField';
 import PrefillOptionsField from './components/PrefillOptionsField';
 import MemberShipDurationField from './components/MemberShipDurationField';
 import VisitedPagesField from './components/VisitedPagesField';
+import CustomIntentAudienceFields from './components/CustomIntentAudienceFields';
 
 export default () => {
   return (
@@ -44,23 +45,8 @@ const steps = [
     subTitle: 'Enter Audience Description',
   },
   {
-    component: ListMembersField,
-    title: 'List Members',
-    subTitle: "Select the type of visitors from which you'd like to create an audience",
-  },
-  {
-    component: VisitedPagesField,
-    title: 'Visited pages',
-    subTitle: 'Include people that visited a page with the following rules',
-  },
-  {
-    component: PrefillOptionsField,
-    title: 'Pre-fill options',
-    subTitle: 'Choose between pre-filling the list or starting with an empty one',
-  },
-  {
-    component: MemberShipDurationField,
-    title: 'Membership duration',
-    subTitle: 'Enter the number of days someone stays in this audience',
+    component: CustomIntentAudienceFields,
+    title: 'Audience Config',
+    subTitle: 'Enter Keyowords Or Search Terms',
   },
 ];

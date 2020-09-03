@@ -6,21 +6,12 @@ import CustomAudiencesForm from './CustomAudiencesForm';
 
 export default () => {
   const classes = useStyles();
-  const [audienceType, setAudienceType] = useState('remarketing');
+  const [audienceType, setAudienceType] = useState('custom');
   const [audienceForm, setAudienceForm] = useState(ReMarketingAudienceForm);
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);
   };
-
-  useEffect(() => {
-    switch (audienceType) {
-      case 'remarketing':
-        return setAudienceForm(ReMarketingAudienceForm);
-      case 'custom':
-        return setAudienceForm(CustomAudiencesForm);
-    }
-  }, [audienceType]);
 
   return (
     <Fragment>
@@ -28,10 +19,12 @@ export default () => {
         options={audienceOptions}
         value={audienceType}
         label='Choose Audience Type'
+        style={{ width: 400 }}
         onChange={audienceTypeChanged}
       />
       <Divider className={classes.divider} />
-      {audienceForm}
+      {audienceType == 'remarketing' && <ReMarketingAudienceForm />}
+      {audienceType == 'custom' && <CustomAudiencesForm />}
     </Fragment>
   );
 };
