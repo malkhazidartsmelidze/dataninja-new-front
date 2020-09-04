@@ -1,8 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { SelectField } from 'components/Fields';
-import { Divider, makeStyles, Fade } from '@material-ui/core';
-import ReMarketingAudienceForm from './ReMarketingAudienceForm';
-import CustomAudiencesForm from './CustomAudiencesForm';
+import { Divider, makeStyles, Fade, Grid } from '@material-ui/core';
+import { GoogleRemarketingAudienceForm, GoogleCustomAudienceForm } from 'modules/Audiences/Forms';
 
 export default () => {
   const classes = useStyles();
@@ -22,12 +21,20 @@ export default () => {
         onChange={audienceTypeChanged}
       />
       <Divider className={classes.divider} />
-      {audienceType == 'remarketing' && (
-        <Fade>
-          <ReMarketingAudienceForm />
-        </Fade>
-      )}
-      {audienceType == 'custom' && <CustomAudiencesForm />}
+      <Grid container>
+        <Grid item xs={12}>
+          {audienceType == 'remarketing' && (
+            <Fade>
+              <GoogleRemarketingAudienceForm />
+            </Fade>
+          )}
+          {audienceType == 'custom' && (
+            <Fade>
+              <GoogleCustomAudienceForm />
+            </Fade>
+          )}
+        </Grid>
+      </Grid>
     </Fragment>
   );
 };

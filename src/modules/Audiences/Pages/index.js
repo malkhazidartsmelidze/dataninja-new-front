@@ -1,1 +1,1 @@
-export { default as CreateAudiencePage } from './CreateAudiencePage/CreateAudiencePage';
+export { default as CreateAudiencePage } from './CreateAudiencePage';
