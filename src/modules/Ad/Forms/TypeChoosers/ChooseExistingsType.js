@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { mdiFacebook, mdiGoogle, mdiSync } from '@mdi/js';
+import { mdiFacebook, mdiGoogle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { makeStyles, Typography, Button, Divider, IconButton } from '@material-ui/core';
+import { makeStyles, Typography, Button, Divider } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { SelectField } from 'components/Fields';
 import CampaignService from 'modules/Ad/Services/CampaignService';
@@ -39,6 +39,7 @@ export default (props) => {
   };
 
   const fetchCampaigns = () => {
+    if (!network) return;
     CampaignService.getCampaigns(network).then((data) => {
       if (!Array.isArray(data)) return;
       setCampaigns(
@@ -50,6 +51,7 @@ export default (props) => {
   };
 
   const fetchAdGroups = () => {
+    if (!network || !campaign) return;
     AdGroupService.getCampaignAdGroups(network, campaign).then((data) => {
       if (!Array.isArray(data)) return;
       setAdGroups(
@@ -61,11 +63,8 @@ export default (props) => {
   };
 
   useEffect(() => {
-    if (!network) {
-      setCampaigns([]);
-      setAdGroups([]);
-      return;
-    }
+    setCampaigns([]);
+    setAdGroups([]);
     fetchCampaigns();
   }, [network]);
 
