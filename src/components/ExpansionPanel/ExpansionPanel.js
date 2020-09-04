@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { mdiPlus, mdiMinus } from '@mdi/js';
 import Icon from '@mdi/react';
+import clsx from 'clsx';
 
 export default (props) => {
   const [expanded, setExpanded] = useState(props.expanded);
@@ -19,6 +20,7 @@ export default (props) => {
     titleWhenOpen,
     titleBefore,
     subTitleBefore,
+    transparent,
   } = props;
   const classes = useStyles();
 
@@ -50,7 +52,11 @@ export default (props) => {
             {subTitleWhenOpen && expanded ? subTitleWhenOpen : subTitle}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className={classes.accordionDetails}>{children}</AccordionDetails>
+        <AccordionDetails
+          className={clsx(classes.accordionDetails, transparent && classes.transparent)}
+        >
+          {children}
+        </AccordionDetails>
       </Accordion>
     </>
   );
@@ -68,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
   },
   accordionDetails: {
     display: 'block',
+  },
+  transparent: {
+    background: 'transparent',
   },
   contentBeforeTitle: {
     fontSize: '16px',

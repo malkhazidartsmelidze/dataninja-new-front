@@ -16,6 +16,7 @@ import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
 import AdRotationTargetingField from './TargetingFields/AdRotationTargetingField';
 import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansionTargetingField';
 import LocationTargetingField from './TargetingFields/LocationTargetingField';
+import ChooseAudienceField from './ChooseAudienceField';
 
 export default (props) => {
   const { context, setContext, networks } = props;
@@ -32,13 +33,19 @@ export default (props) => {
   return (
     <form>
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item>
           <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
             <AdGroupNameField
               name='name'
               defaultValue={context.name}
               onChange={(e) => console.log(e.target.value)}
             />
+          </ExpansionPanel>
+          <ExpansionPanel
+            title='Choose Audience'
+            subTitle='Choose Existing Audince Or Creat New One'
+          >
+            <ChooseAudienceField />
           </ExpansionPanel>
           <ExpansionPanel title='Enter Dates' subTitle='Start And End Dates'>
             <AdGroupDatesField
@@ -87,7 +94,6 @@ export default (props) => {
             />
           </ExpansionPanel>
           <ExpansionPanel
-            expanded
             title='Gender'
             subTitle='Choose Gender'
             titleBefore='Targeting Options'
@@ -99,7 +105,7 @@ export default (props) => {
               style={{ width: 300 }}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Audience Age' subTitle='Choose Ages'>
+          <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
             <AgeTargetingField
               ageFromProps={{
                 name: 'targetings[age_min]',
@@ -115,49 +121,42 @@ export default (props) => {
               }}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Languages' subTitle='Enter Languages'>
+          <ExpansionPanel title='Languages' subTitle='Enter Languages'>
             <LanguageTargetingField
               name='targetings[locations]'
               value={context.targetings.languages}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Locations' subTitle='Enter Locations in both networks'>
+          <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
             <LocationTargetingField
               name='targetings[locations]'
               value={context.targetings.languages}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Location Type' subTitle='Enter Location Type'>
+          <ExpansionPanel title='Location Type' subTitle='Enter Location Type'>
             <LocationTypeTargetingField
               name='targetings[location_type]'
               value={context.targetings.location_type}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Income Targeting' subTitle='Enter HouseHold Income'>
+          <ExpansionPanel title='Income Targeting' subTitle='Enter HouseHold Income'>
             <HouseHoldIncomeTargetingField
               name='targetings[household_income]'
               value={context.targetings.household_income}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Parental Status' subTitle='Select Parental Status'>
+          <ExpansionPanel title='Parental Status' subTitle='Select Parental Status'>
             <ParentalStatusTargetingField name='targetings[parental_status]' />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Device Targetings' subTitle='Select Devices'>
+          <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
             <DeviceTargetingField name='targetings[devices]' />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
+          <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
             <AdRotationTargetingField name='targetings[ad_rotation]' />
           </ExpansionPanel>
-          <ExpansionPanel
-            expanded
-            title='Targeting Expansion'
-            subTitle='Choose Targeting Expansion'
-          >
+          <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
             <TargetingExpansionTargetingField name='targetings[targeting_expansion]' />
           </ExpansionPanel>
-        </Grid>
-        <Grid item xs={4}>
-          This is Adset Config
         </Grid>
       </Grid>
     </form>

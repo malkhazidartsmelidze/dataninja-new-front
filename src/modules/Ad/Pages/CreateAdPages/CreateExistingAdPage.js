@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
+import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
+import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { Grid } from '@material-ui/core';
 
 export default (props) => {
   const {
@@ -46,8 +49,18 @@ export default (props) => {
   const [ad, setAd] = useState();
 
   return (
-    <div>
-      <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} />
-    </div>
+    <Grid container>
+      <Grid item xs={8}>
+        <ExpansionPanel transparent title='Ad Group Config' subtitle='Set Ad Group Config'>
+          <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Create Ad Config' subtitle='Set Ad Config'>
+          <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} />
+        </ExpansionPanel>
+      </Grid>
+      <Grid item xs={4}>
+        Config
+      </Grid>
+    </Grid>
   );
 };
