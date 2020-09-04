@@ -9,6 +9,7 @@ export default {
   DASHBOARD_MODULE: '/app/dashboard/',
 
   AD_MODULE: '/app/ad/',
+  AD_CREATION: '/app/ad/:type/:network/:goal',
   AD_CREATE: '/app/ad/create',
   AD_VIEW_ALL: '/app/ad/all',
 

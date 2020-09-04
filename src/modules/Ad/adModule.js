@@ -3,6 +3,7 @@ import Module from 'modules/Module';
 import P from 'paths';
 import { NewAdContextProvider } from 'store/NewAdContext';
 import IndexPage from './Pages/IndexPage';
+import CreateAdPage from './Pages/CreateAdPage';
 
 const AdCreationPage = lazy(() => import('./Pages/AdCreationPage'));
 
@@ -18,6 +19,11 @@ export default () => {
         path: P.AD_CREATE,
         exact: true,
         component: AdCreationPage,
+      },
+      {
+        path: P.AD_CREATION,
+        exact: true,
+        component: CreateAdPage,
       },
     ],
   });

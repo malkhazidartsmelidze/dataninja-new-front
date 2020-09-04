@@ -1,6 +1,15 @@
 import React from 'react';
-import { CreateNewAdButtons } from 'modules/Ad/components';
+import { Grid, Paper } from '@material-ui/core';
+import { AdCreationBlock, AdTypeChooser } from 'modules/Ad/components';
 
 export default () => {
-  return <CreateNewAdButtons />;
+  return (
+    <Grid container>
+      <Grid item xs={6}>
+        <Paper elevation={4}>
+          <AdTypeChooser />
+        </Paper>
+      </Grid>
+    </Grid>
+  );
 };

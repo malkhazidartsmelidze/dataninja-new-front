@@ -1,1 +1,1 @@
-export { default as CreateNewAdButtons } from './CreateNewAdButtons';
+export { default as AdTypeChooser } from './AdTypeChooser';
