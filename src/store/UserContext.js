@@ -9,7 +9,7 @@ const UserContext = createContext('user');
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(new User({}));
   const [userConfig, setUserConfig] = useState(null);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   const login = (user) => {
     setUser(user);

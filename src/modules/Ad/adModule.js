@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import Module from 'modules/Module';
 import P from 'paths';
 import { NewAdContextProvider } from 'store/NewAdContext';
+import IndexPage from './Pages/IndexPage';
 
 const AdCreationPage = lazy(() => import('./Pages/AdCreationPage'));
 
@@ -11,7 +12,7 @@ export default () => {
       {
         path: P.AD_MODULE,
         exact: true,
-        component: () => <div>this is ad module</div>,
+        component: IndexPage,
       },
       {
         path: P.AD_CREATE,

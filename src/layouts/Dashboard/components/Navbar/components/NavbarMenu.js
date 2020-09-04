@@ -33,7 +33,9 @@ export default (props) => {
         url={P.AD_MODULE}
         description={<FM id='menu.ad_creation_desc' />}
         showDivider={true}
+        opened={true}
       >
+        <ChildMenu title={<FM id='menu.ads' />} leftIcon='import_contacts' url={P.AD_MODULE} />
         <ChildMenu
           title={<FM id='menu.create_ad' />}
           leftIcon='import_contacts'
