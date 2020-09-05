@@ -5,12 +5,11 @@ import AdFormService from 'modules/Ad/Services/AdFormService';
 
 export default () => {
   const [languageValues, setLanguageValues] = useState([]);
+  const [languages, setLanguages] = useState([]);
 
   const onLanguageAutoCompleteChange = (e, newValues) => {
-    console.log(newValues);
-    return;
     if (!Array.isArray(newValues)) return;
-    setLanguages(newValues.map((opt) => opt.key));
+    setLanguages(newValues.map((opt) => opt.value));
   };
 
   useEffect(() => {

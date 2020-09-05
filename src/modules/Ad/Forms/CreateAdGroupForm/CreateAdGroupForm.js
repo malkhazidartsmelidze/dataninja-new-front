@@ -9,6 +9,10 @@ import FacebookBidValue from './FacebookBidValue';
 import GenderTargetingField from './TargetingFields/GenderTargetingField';
 import AgeTargetingField from './TargetingFields/AgeTargetingField';
 import LocationTypeTargetingField from './TargetingFields/LocationTypeTargetingField';
+import LanguageTargetingField from './TargetingFields/LanguageTargetingField';
+import HouseHoldIncomeTargetingField from './TargetingFields/HouseHoldIncomeTargetingField';
+import ParentalStatusTargetingField from './TargetingFields/ParentalStatusTargetingField';
+import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
 
 export default (props) => {
   const { context, setContext, networks } = props;
@@ -108,11 +112,29 @@ export default (props) => {
               }}
             />
           </ExpansionPanel>
+          <ExpansionPanel expanded title='Languages' subTitle='Enter Languages'>
+            <LanguageTargetingField
+              name='targetings[locations]'
+              value={context.targetings.languages}
+            />
+          </ExpansionPanel>
           <ExpansionPanel expanded title='Location Type' subTitle='Enter Location Type'>
             <LocationTypeTargetingField
               name='targetings[location_type]'
               value={context.targetings.location_type}
             />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Income Targeting' subTitle='Enter HouseHold Income'>
+            <HouseHoldIncomeTargetingField
+              name='targetings[household_income]'
+              value={context.targetings.household_income}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Parental Status' subTitle='Select Parental Status'>
+            <ParentalStatusTargetingField name='targetings[parental_status]' />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Device Targetings' subTitle='Select Devices'>
+            <DeviceTargetingField name='targetings[devices]' />
           </ExpansionPanel>
         </Grid>
         <Grid item xs={4}>

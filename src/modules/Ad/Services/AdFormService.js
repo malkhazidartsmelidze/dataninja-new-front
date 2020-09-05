@@ -2,7 +2,7 @@ import api from 'common/api';
 
 class AdFormService {
   static getAllLanguages() {
-    return api.call('get', `/adform/languages`).then(api.getData);
+    return api.call('post', `/adform/languages`).then(api.getData);
   }
 }
 
