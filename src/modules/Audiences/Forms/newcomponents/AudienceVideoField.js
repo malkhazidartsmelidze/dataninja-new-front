@@ -15,24 +15,25 @@ export default ({ name, onChange }) => {
 
   useEffect(() => {
     api.get('/utils/facebook-videos').then((res) => {
-      console.log(res);
       setData(res.data);
     });
   }, []);
-
-  useEffect(() => {
-    onChange && onChange(name, videoIds);
-  }, [videoIds]);
 
   return (
     <PanelField
       content={
         <Fragment>
+          {videoIds.map((id) => {
+            return <input type='hidden' name={`${name}[]`} value={id} />;
+          })}
           <Button onClick={() => setOpen(true)} variant='contained'>
             Browse Videos
           </Button>
           <Gallery
-            onChoose={(ids) => setVideoIds(ids)}
+            onChoose={(ids) => {
+              setVideoIds(ids);
+              setOpen(false);
+            }}
             multiple
             open={open}
             handleClose={() => setOpen(false)}

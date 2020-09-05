@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import { AudienceVideoDaysField } from 'modules/Audiences/Forms/components/Facebook';
 import { Button } from '@material-ui/core';
 import { FacebookVideoAudience } from 'Models/Audience';
 import AudienceNameField from '../newcomponents/AudienceNameField';
@@ -9,6 +8,8 @@ import AudienceVideoEngagmentType from '../newcomponents/AudienceVideoEngagmentT
 import AudienceVideoField from '../newcomponents/AudienceVideoField';
 import AudienceRetentionDaysField from '../newcomponents/AudienceRetentionDaysField';
 import AudiencePixelField from '../newcomponents/AudiencePixelField';
+import AudiencePageId from '../newcomponents/AudiencePageId';
+import AudienceService from 'modules/Audiences/Services/AudienceService';
 
 export default () => {
   const [state, setState] = useState({
@@ -66,14 +67,22 @@ export default () => {
   //   },
   // ];
 
-  const submitButtonClicked = () => {
-    const data = state;
+  const submitButtonClicked = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
 
-    FacebookVideoAudience.service.create(data).then((d) => console.log(d));
+    AudienceService.createFacebookVideoAudience(formData).then((res) => {
+      console.log(res);
+    });
+
+    // const data = state;
+
+    // FacebookVideoAudience.service.create(data).then((d) => console.log(d));
   };
 
   return (
-    <Fragment>
+    <form onSubmit={submitButtonClicked}>
       <ExpansionPanel title='Audience Name' subTitle='Enter Audience Name'>
         <AudienceNameField name='name' />
       </ExpansionPanel>
@@ -82,6 +91,9 @@ export default () => {
       </ExpansionPanel>
       <ExpansionPanel title='Choose Pixel' subTitle='Choose Pixel Id'>
         <AudiencePixelField name='pixel_id' />
+      </ExpansionPanel>
+      <ExpansionPanel title='Choose Page' subTitle='Choose Facebook Page'>
+        <AudiencePageId name='page_id' />
       </ExpansionPanel>
       <ExpansionPanel title='Video Engagment Type' subTitle='Enter Video Engagment Type'>
         <AudienceVideoEngagmentType name='engagment_type' />
@@ -93,10 +105,10 @@ export default () => {
         <AudienceRetentionDaysField name='retention_days' defaultValue='365' />
       </ExpansionPanel>
       <div style={{ marginTop: 16 }}>
-        <Button onClick={submitButtonClicked} size='large' color='primary' variant='contained'>
+        <Button type='submit' size='large' color='primary' variant='contained'>
           Create
         </Button>
       </div>
-    </Fragment>
+    </form>
   );
 };
