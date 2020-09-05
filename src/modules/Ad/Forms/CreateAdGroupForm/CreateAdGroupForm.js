@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import AdGroupNameField from './AdGroupNameField';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import AdGroupDatesField from './AdGroupDatesField';
@@ -13,6 +13,8 @@ import LanguageTargetingField from './TargetingFields/LanguageTargetingField';
 import HouseHoldIncomeTargetingField from './TargetingFields/HouseHoldIncomeTargetingField';
 import ParentalStatusTargetingField from './TargetingFields/ParentalStatusTargetingField';
 import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
+import AdRotationTargetingField from './TargetingFields/AdRotationTargetingField';
+import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansionTargetingField';
 
 export default (props) => {
   const { context, setContext, networks } = props;
@@ -135,6 +137,16 @@ export default (props) => {
           </ExpansionPanel>
           <ExpansionPanel expanded title='Device Targetings' subTitle='Select Devices'>
             <DeviceTargetingField name='targetings[devices]' />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
+            <AdRotationTargetingField name='targetings[ad_rotation]' />
+          </ExpansionPanel>
+          <ExpansionPanel
+            expanded
+            title='Targeting Expansion'
+            subTitle='Choose Targeting Expansion'
+          >
+            <TargetingExpansionTargetingField name='targetings[targeting_expansion]' />
           </ExpansionPanel>
         </Grid>
         <Grid item xs={4}>
