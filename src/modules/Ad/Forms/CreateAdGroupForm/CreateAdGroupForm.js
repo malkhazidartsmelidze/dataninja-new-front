@@ -6,6 +6,9 @@ import AdGroupDatesField from './AdGroupDatesField';
 import OptimizationGoal from './OptimizationGoal';
 import FacebookAdGroupBidType from './FacebookAdGroupBidType';
 import FacebookBidValue from './FacebookBidValue';
+import GenderTargetingField from './TargetingFields/GenderTargetingField';
+import AgeTargetingField from './TargetingFields/AgeTargetingField';
+import LocationTypeTargetingField from './TargetingFields/LocationTypeTargetingField';
 
 export default (props) => {
   const { context, setContext, networks } = props;
@@ -23,14 +26,14 @@ export default (props) => {
     <form>
       <Grid container>
         <Grid item xs={8}>
-          <ExpansionPanel expanded title='Enter Adset Name' subTitle='Adset Name Field'>
+          <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
             <AdGroupNameField
               name='name'
               defaultValue={context.name}
               onChange={(e) => console.log(e.target.value)}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Enter Dates' subTitle='Start And End Dates'>
+          <ExpansionPanel title='Enter Dates' subTitle='Start And End Dates'>
             <AdGroupDatesField
               dateStartProps={{
                 label: 'Start Date',
@@ -46,7 +49,7 @@ export default (props) => {
               }}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Optimize Bid To' subTitle='Enter Bid Optimization'>
+          <ExpansionPanel title='Optimize Bid To' subTitle='Enter Bid Optimization'>
             <OptimizationGoal
               name='optimization_goal'
               label='Choose Optimization Goal'
@@ -54,7 +57,7 @@ export default (props) => {
               style={{ width: 300 }}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Bid Options' subTitle='Enter Bid Options'>
+          <ExpansionPanel title='Bid Options' subTitle='Enter Bid Options'>
             <FacebookAdGroupBidType
               name='bid_type'
               label='Choose Bid Type'
@@ -63,7 +66,7 @@ export default (props) => {
               style={{ width: 300 }}
             />
           </ExpansionPanel>
-          <ExpansionPanel expanded title='Bid Value' subTitle='Enter Bid Value'>
+          <ExpansionPanel title='Bid Value' subTitle='Enter Bid Value'>
             <FacebookBidValue
               bidValueProps={{
                 name: 'bid_amount',
@@ -74,6 +77,41 @@ export default (props) => {
               bidStrategyProps={{
                 name: 'bid_strategy',
               }}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel
+            expanded
+            title='Gender'
+            subTitle='Choose Gender'
+            titleBefore='Targeting Options'
+            subTitleBefore='Targeting Options Subtitle'
+          >
+            <GenderTargetingField
+              name='targetings[gender]'
+              value={context.targetings.gender}
+              style={{ width: 300 }}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Audience Age' subTitle='Choose Ages'>
+            <AgeTargetingField
+              ageFromProps={{
+                name: 'targetings[age_min]',
+                value: context.targetings.age_min,
+                label: 'Minimum Age',
+                style: { width: 200 },
+              }}
+              ageToProps={{
+                name: 'targetings[age_max]',
+                label: 'Maximum Age',
+                value: context.targetings.age_max,
+                style: { width: 200 },
+              }}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Location Type' subTitle='Enter Location Type'>
+            <LocationTypeTargetingField
+              name='targetings[location_type]'
+              value={context.targetings.location_type}
             />
           </ExpansionPanel>
         </Grid>

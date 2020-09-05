@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useNewAdContext } from 'store/NewAdContext';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import AutocompleteField from 'components/Fields/AutocompleteField';
+import AdFormService from 'modules/Ad/Services/AdFormService';
 
 export default () => {
-  const { getField, setField, formConfig } = useNewAdContext();
-  const [languages, setLanguages] = useState(getField('targeting_languages').value);
-
-  useEffect(() => {
-    const deb = setTimeout(() => setField('targeting_languages', languages));
-    return () => clearTimeout(deb);
-  }, [languages]);
+  const [languageValues, setLanguageValues] = useState([]);
 
   const onLanguageAutoCompleteChange = (e, newValues) => {
+    console.log(newValues);
+    return;
     if (!Array.isArray(newValues)) return;
     setLanguages(newValues.map((opt) => opt.key));
   };
+
+  useEffect(() => {
+    AdFormService.getAllLanguages().then((data) => {
+      if (!Array.isArray(data)) return;
+      setLanguageValues(data);
+    });
+  }, []);
 
   return (
     <PanelField
@@ -23,7 +26,7 @@ export default () => {
       content={
         <AutocompleteField
           placeholder='Enter Languages'
-          options={formConfig.languages || []}
+          options={languageValues || []}
           onChange={onLanguageAutoCompleteChange}
         />
       }
