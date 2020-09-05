@@ -15,6 +15,7 @@ import ParentalStatusTargetingField from './TargetingFields/ParentalStatusTarget
 import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
 import AdRotationTargetingField from './TargetingFields/AdRotationTargetingField';
 import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansionTargetingField';
+import LocationTargetingField from './TargetingFields/LocationTargetingField';
 
 export default (props) => {
   const { context, setContext, networks } = props;
@@ -116,6 +117,12 @@ export default (props) => {
           </ExpansionPanel>
           <ExpansionPanel expanded title='Languages' subTitle='Enter Languages'>
             <LanguageTargetingField
+              name='targetings[locations]'
+              value={context.targetings.languages}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel expanded title='Locations' subTitle='Enter Locations in both networks'>
+            <LocationTargetingField
               name='targetings[locations]'
               value={context.targetings.languages}
             />
