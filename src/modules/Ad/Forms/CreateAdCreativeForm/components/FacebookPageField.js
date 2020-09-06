@@ -4,7 +4,7 @@ import { CircularProgress } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { useEffect } from 'react';
 import { SelectField } from 'components/Fields';
-import AdFormService from 'modules/Ad/Services/AdFormService';
+import AdFormService from 'services/AdFormService';
 
 export default (props) => {
   const [pages, setPages] = useState([]);

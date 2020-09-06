@@ -5,7 +5,7 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
 import { Audience } from 'Models/Audience';
 import SyncAudienceButton from 'modules/Audiences/components/SyncAudienceButton';
-import AudienceService from 'modules/Audiences/Services/AudienceService';
+import AudienceService from 'services/AudienceService';
 
 export default () => {
   const [audienceModalOpen, setAudienceModalOpen] = useState(false);

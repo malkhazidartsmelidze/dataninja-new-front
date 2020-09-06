@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CampaignService from '../Services/CampaignService';
+import CampaignService from 'services/CampaignService';
 import { IconButton } from '@material-ui/core';
 import { mdiSync } from '@mdi/js';
 import Icon from '@mdi/react';

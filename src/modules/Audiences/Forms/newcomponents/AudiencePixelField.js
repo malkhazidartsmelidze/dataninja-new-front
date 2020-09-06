@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
-import PixelService from 'modules/Pixel/Services/PixelService';
+import PixelService from 'services/PixelService';
 import SyncPixelsButton from 'modules/Pixel/components/SyncPixelsButton';
 
 export default (props) => {

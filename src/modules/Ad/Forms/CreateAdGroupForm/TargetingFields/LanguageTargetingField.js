@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import AutocompleteField from 'components/Fields/AutocompleteField';
-import AdFormService from 'modules/Ad/Services/AdFormService';
+import AdFormService from 'services/AdFormService';
 
 export default () => {
   const [languageValues, setLanguageValues] = useState([]);

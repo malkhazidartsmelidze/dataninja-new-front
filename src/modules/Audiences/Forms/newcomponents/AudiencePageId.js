@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
-import FacebookPageService from 'modules/Page/Services/FacebookPageService';
+import FacebookPageService from 'services/FacebookPageService';
 import SyncFacebookPagesButton from 'modules/Page/components/SyncFacebookPagesButton';
 
 export default (props) => {

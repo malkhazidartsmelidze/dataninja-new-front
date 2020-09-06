@@ -8,6 +8,10 @@ class FacebookPageService {
   static sync() {
     return api.call('post', '/facebook/page/sync').then(api.getData);
   }
+
+  static getPageVideos(pageId) {
+    return api.call('get', `/facebook/page/${pageId}/videos`).then(api.getData);
+  }
 }
 
 export default FacebookPageService;

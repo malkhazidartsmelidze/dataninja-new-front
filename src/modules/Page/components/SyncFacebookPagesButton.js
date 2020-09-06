@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton } from '@material-ui/core';
 import { mdiSync } from '@mdi/js';
 import Icon from '@mdi/react';
-import FacebookPageService from '../Services/FacebookPageService';
+import FacebookPageService from 'services/FacebookPageService';
 
 export default ({ onDone }) => {
   const [diabled, setDisabled] = useState(false);

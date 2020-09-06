@@ -7,10 +7,10 @@ import Icon from '@mdi/react';
 import { makeStyles, Typography, Button, Divider } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { SelectField } from 'components/Fields';
-import CampaignService from 'modules/Ad/Services/CampaignService';
+import CampaignService from 'services/CampaignService';
 import SyncCampaignButton from 'modules/Ad/components/SyncCampaignButton';
 import SyncAdGroupButton from 'modules/Ad/components/SyncAdGroupButton';
-import AdGroupService from 'modules/Ad/Services/AdGroupService';
+import AdGroupService from 'services/AdGroupService';
 
 export default (props) => {
   const classes = useStyles();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AdGroupService from '../Services/AdGroupService';
+import AdGroupService from 'services/AdGroupService';
 import { IconButton } from '@material-ui/core';
 import { mdiSync } from '@mdi/js';
 import Icon from '@mdi/react';
