@@ -2,21 +2,40 @@ import React, { useState, Fragment } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import Gallery from 'components/Gallery';
 import { useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import FacebookPageService from 'services/FacebookPageService';
 
 export default (props) => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [videoIds, setVideoIds] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { pageId } = props;
+
+  const fetchVideos = () => {
+    setLoading(true);
+    FacebookPageService.getPageVideos(pageId)
+      .then((videos) => {
+        if (!Array.isArray(videos)) return;
+        setData(videos);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     if (!pageId) return;
-    FacebookPageService.getPageVideos(pageId).then((videos) => {
-      console.log(videos);
-    });
+    fetchVideos();
   }, [pageId]);
+
+  if (loading) return <CircularProgress />;
+
+  if (!pageId) return <PanelField content={<div>Please Choose Page First</div>} />;
+
+  if (pageId && !data.length)
+    return <PanelField content={<div>No Videos Found On This Page</div>} />;
 
   return (
     <PanelField

@@ -7,6 +7,7 @@ import { theme } from 'common/@mui';
 import { LanguageContextProvider } from 'store/LanguageContext';
 import { UserContextProvider } from 'store/UserContext';
 import Icon from '@mdi/react';
+import { NotificationsContextProvider, RenderedNotifications } from 'store/NotificationsContext';
 import './index.css';
 
 Icon.defaultProps.size = '1em';
@@ -18,7 +19,10 @@ const Bootstrap = ({ children }) => {
         <UserContextProvider>
           <CssBaseline />
           <LanguageContextProvider>
-            <Suspense fallback={<LinearProgress />}>{children}</Suspense>
+            <NotificationsContextProvider>
+              <Suspense fallback={<LinearProgress />}>{children}</Suspense>
+              <RenderedNotifications />
+            </NotificationsContextProvider>
           </LanguageContextProvider>
         </UserContextProvider>
       </BrowserRouter>

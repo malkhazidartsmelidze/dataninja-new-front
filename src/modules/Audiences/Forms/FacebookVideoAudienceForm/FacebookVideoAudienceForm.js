@@ -9,9 +9,11 @@ import AudienceRetentionDaysField from '../newcomponents/AudienceRetentionDaysFi
 import AudiencePixelField from '../newcomponents/AudiencePixelField';
 import AudiencePageId from '../newcomponents/AudiencePageId';
 import AudienceService from 'services/AudienceService';
+import useNotif from 'store/NotificationsContext';
 
 export default () => {
   const [pageId, setPageId] = useState(null);
+  const { notify } = useNotif();
 
   const submitButtonClicked = (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ export default () => {
     const formData = new FormData(form);
 
     AudienceService.createFacebookVideoAudience(formData).then((res) => {
-      console.log(res);
+      notify('Audience Successfully Created');
     });
   };
 
