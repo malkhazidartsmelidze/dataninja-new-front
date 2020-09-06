@@ -19,6 +19,7 @@ export default (props) => {
   };
 
   const onInputKeyPress = (e) => {
+    e.preventDefault();
     if (e.key !== 'Enter') return;
     const val = e.target.value;
     setRules({

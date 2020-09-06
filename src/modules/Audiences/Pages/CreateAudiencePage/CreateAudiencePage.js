@@ -8,6 +8,7 @@ import {
   FacebookWebsiteAudienceForm,
 } from 'modules/Audiences/Forms';
 import GoogleAudienceForm from 'modules/Audiences/Forms/GoogleAudienceForm/GoogleAudienceForm';
+import FacebookLookalikeAudienceForm from 'modules/Audiences/Forms/FacebookLookalikeAudienceForm';
 
 export default () => {
   const classes = useStyles();
@@ -34,6 +35,8 @@ export default () => {
     AudienceForm = FacebookWebsiteAudienceForm;
   } else if (audienceType === 'google_audience') {
     AudienceForm = GoogleAudienceForm;
+  } else if (audienceType === 'lookalike') {
+    AudienceForm = FacebookLookalikeAudienceForm;
   } else {
     return null;
   }
@@ -80,6 +83,7 @@ const audienceOptions = {
   facebook: [
     { name: 'Video', value: 'video' },
     { name: 'Website', value: 'website' },
+    { name: 'Lookalike', value: 'lookalike' },
   ],
 };
 

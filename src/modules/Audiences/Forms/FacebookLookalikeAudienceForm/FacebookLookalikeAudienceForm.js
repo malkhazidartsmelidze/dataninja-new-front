@@ -30,18 +30,7 @@ export default () => {
       <ExpansionPanel title='Audience Description' subTitle='Enter Audience Descriptin'>
         <AudienceDescriptionField name='description' />
       </ExpansionPanel>
-      <ExpansionPanel title='Choose Pixel' subTitle='Choose Pixel Id'>
-        <AudiencePixelField name='pixel_id' />
-      </ExpansionPanel>
-      <ExpansionPanel title='Criterion Type' subTitle='Criterion Type'>
-        <WebsiteAudienceCriterionType name='criterion_type' />
-      </ExpansionPanel>
-      <ExpansionPanel expanded title='Include People' subTitle='Include People'>
-        <WebsiteAudiencePeopleOptions peopletype='include' />
-      </ExpansionPanel>
-      <ExpansionPanel title='Exclude People' subTitle='Exclude People'>
-        <WebsiteAudiencePeopleOptions peopletype='exclude' />
-      </ExpansionPanel>
+
       <div style={{ marginTop: 16 }}>
         <Button type='submit' size='large' color='primary' variant='contained'>
           Create
