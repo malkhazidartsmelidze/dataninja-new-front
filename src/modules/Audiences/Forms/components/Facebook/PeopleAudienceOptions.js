@@ -137,19 +137,12 @@ export default ({ value, onChange, name }) => {
                 />
               </Grid>
               <Grid item xs={12} style={{ marginTop: 32 }}>
-                {rules.map((rule, key) => {
-                  return (
-                    <AudienceRulesField
-                      key={key}
-                      index={key}
-                      urlType={rule.urlType}
-                      values={rule.values}
-                      condition={rule.condition}
-                      onChange={onChangeRule}
-                      button={key == rules.length - 1 ? AddButton() : DeleteButton(key)}
-                    />
-                  );
-                })}
+                <AudienceRulesField
+                  key={key}
+                  index={key}
+                  onChange={onChangeRule}
+                  button={key == rules.length - 1 ? AddButton() : DeleteButton(key)}
+                />
               </Grid>
             </Grid>
           </Grid>
