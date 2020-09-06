@@ -34,7 +34,7 @@ export default () => {
         <AudiencePixelField name='pixel_id' />
       </ExpansionPanel>
       <ExpansionPanel title='Criterion Type' subTitle='Criterion Type'>
-        <WebsiteAudienceCriterionType />
+        <WebsiteAudienceCriterionType name='criterion_type' />
       </ExpansionPanel>
       <ExpansionPanel expanded title='Include People' subTitle='Include People'>
         <WebsiteAudiencePeopleOptions peopletype='include' />

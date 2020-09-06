@@ -16,15 +16,17 @@ export default ({ peopletype }) => {
         <Grid container spacing={1} direction='column'>
           <Grid container spacing={1} direction='row'>
             <Grid item>
-              <SelectField
-                label='Select Visitor Type'
-                options={visitorTypeOptions}
-                name={`rules[${peopletype}][visitor_type]`}
-                style={inputStyle}
-                onChange={(e) => setVisitorType(e.target.value)}
-              />
+              {visitorType !== 'all_visitors' && (
+                <SelectField
+                  label='Select Visitor Type'
+                  options={visitorTypeOptions}
+                  name={`rules[${peopletype}][visitor_type]`}
+                  style={inputStyle}
+                  onChange={(e) => setVisitorType(e.target.value)}
+                />
+              )}
             </Grid>
-            {visitorType == 'visitors_by_time' && (
+            {visitorType === 'visitors_by_time' && (
               <Grid item>
                 <SelectField
                   options={timePercentOptions}
@@ -40,7 +42,7 @@ export default ({ peopletype }) => {
                 label='Enter Days'
                 name={`rules[${peopletype}][days]`}
                 InputProps={{
-                  endAdornment: <InputAdornment>days</InputAdornment>,
+                  endAdornment: <InputAdornment>Days</InputAdornment>,
                   startAdornment: (
                     <InputAdornment style={{ paddingRight: 8 }}>In The Past</InputAdornment>
                   ),
