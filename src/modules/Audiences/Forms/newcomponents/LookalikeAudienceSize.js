@@ -4,18 +4,18 @@ import { SelectField } from 'components/Fields';
 import { Slider, Grid, Typography } from '@material-ui/core';
 
 export default (props) => {
-  const [sizeRanges, setSizeRanges] = useState([0, 10]);
+  const [ratioRanges, setRatioRanges] = useState([0, 10]);
 
   const handleSizeRangeChange = (_, newValue) => {
-    setSizeRanges(newValue);
+    setRatioRanges(newValue);
   };
 
   return (
     <PanelField
       content={
         <Grid container direction='column' spacing={2}>
-          <input type='hidden' name='size[from]' value={sizeRanges[0] / 10} />
-          <input type='hidden' name='size[to]' value={sizeRanges[1] / 10} />
+          <input type='hidden' name='ratio[from]' value={ratioRanges[0] / 10} />
+          <input type='hidden' name='ratio[to]' value={ratioRanges[1] / 10} />
           <Grid item xs={12}>
             <SelectField
               style={{ width: 500 }}
@@ -32,7 +32,7 @@ export default (props) => {
               lookalike source. Increasing the percentage creates a bigger, broader audience
             </Typography>
             <Slider
-              defaultValue={sizeRanges}
+              defaultValue={ratioRanges}
               valueLabelFormat={valueLabelFormat}
               onChange={handleSizeRangeChange}
               aria-labeledby='discrete-slider-custom'

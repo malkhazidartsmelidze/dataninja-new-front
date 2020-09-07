@@ -42,7 +42,7 @@ export default (props) => {
       content={
         <Grid container spacing={2} direction='column'>
           <input type='hidden' name='source_type' value={type} />
-          <input type='hidden' name='source' value={value} />
+          <input type='hidden' name='source_id' value={value} />
           <Grid item>
             <SelectField
               label='Select Type'

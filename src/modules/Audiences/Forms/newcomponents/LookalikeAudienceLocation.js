@@ -35,7 +35,7 @@ export default (props) => {
       content={
         <Fragment>
           {countries.map((c) => {
-            return <input type='hidden' name='locations[]' value={c.value} />;
+            return <input type='hidden' name='countries[]' value={c.value} />;
           })}
           <Autocomplete
             multiple
