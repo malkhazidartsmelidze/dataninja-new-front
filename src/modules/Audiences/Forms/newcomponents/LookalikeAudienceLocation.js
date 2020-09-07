@@ -7,34 +7,48 @@ import { TextField } from '@material-ui/core';
 export default (props) => {
   const [options, setOptions] = useState([]);
   const [query, setQuery] = useState('');
+  const [countries, setCountries] = useState([]);
 
   const onInputChange = (e) => {
-    console.log(e.target.value);
+    setQuery(e.target.value);
+  };
+
+  const onCountriesChange = (_, newValue) => {
+    setCountries(newValue);
+  };
+
+  const searchLocation = () => {
+    FacebookTargetingService.searchCountries(query).then((res) => {
+      if (!Array.isArray(res)) return;
+      setOptions(res);
+    });
   };
 
   useEffect(() => {
-    if (query.length < 2) return;
-    FacebookTargetingService.searchCountries(query).then((res) => {
-      console.log(res);
-    });
+    if (query.length < 2) return setOptions([]);
+    const deb = setTimeout(() => searchLocation(), 300);
+    return () => clearTimeout(deb);
   }, [query]);
 
   return (
     <PanelField
       content={
         <Fragment>
+          {countries.map((c) => {
+            return <input type='hidden' name='locations[]' value={c.value} />;
+          })}
           <Autocomplete
             multiple
-            id='tags-standard'
             options={options}
+            onChange={onCountriesChange}
             getOptionLabel={(option) => option.name}
             renderInput={(params) => (
               <TextField
                 {...params}
                 onChange={onInputChange}
                 variant='standard'
-                label='Multiple values'
-                placeholder='Favorites'
+                label='Search Countries'
+                placeholder='Enter Min 2 symbol'
               />
             )}
           />

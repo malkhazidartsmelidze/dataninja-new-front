@@ -3,7 +3,7 @@ import api from 'common/api';
 class FacebookTargetingService {
   static searchCountries(query) {
     return api
-      .call('get', '/facebook/targeting/countries', { params: { query } })
+      .call('get', '/facebook/targeting/search/country', { params: { q: query } })
       .then(api.getData);
   }
 }
