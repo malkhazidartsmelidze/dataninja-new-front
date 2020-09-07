@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
-import PixelService from 'services/PixelService';
+import FacebookPixelService from 'services/FacebookPixelService';
 import SyncPixelsButton from 'modules/Pixel/components/SyncPixelsButton';
 
 export default (props) => {
   const [pixels, setPixels] = useState([]);
 
   const fetchPixels = () => {
-    PixelService.getAll().then((pxs) => {
+    FacebookPixelService.getAll().then((pxs) => {
       if (!Array.isArray(pxs)) return;
       const pixs = pxs.map((p) => {
         return { name: p.name, value: p.id };

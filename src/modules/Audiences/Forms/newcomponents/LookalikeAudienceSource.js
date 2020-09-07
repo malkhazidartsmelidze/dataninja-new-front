@@ -1,37 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
-import FacebookPageService from 'services/FacebookPageService';
+import FacebookPixelService from 'services/FacebookPixelService';
 import SyncFacebookPagesButton from 'modules/Page/components/SyncFacebookPagesButton';
+import AudienceService from 'services/AudienceService';
+import { Grid } from '@material-ui/core';
 
 export default (props) => {
-  const [pages, setPages] = useState([]);
+  const [type, setType] = useState('audiences');
+  const [options, setOptions] = useState([]);
+  const [value, setValue] = useState('');
 
-  const fetchPages = () => {
-    FacebookPageService.getAll().then((_pages) => {
-      if (!Array.isArray(_pages)) return;
-      const pgs = _pages.map((p) => {
-        return { name: p.name, value: p.id };
+  const fetchOptions = () => {
+    setOptions([]);
+    setValue('');
+    if (type === 'audiences') {
+      AudienceService.getAudiences('facebook').then((audiences) => {
+        setOptions(
+          audiences.map((aud) => {
+            return { value: aud.id, name: aud.name };
+          })
+        );
       });
-      setPages(pgs);
-    });
+    } else if (type === 'pixels') {
+      FacebookPixelService.getAll().then((pixels) => {
+        setOptions(
+          pixels.map((px) => {
+            return { value: px.id, name: px.name };
+          })
+        );
+      });
+    }
   };
 
   useEffect(() => {
-    fetchPages();
-  }, []);
+    fetchOptions();
+  }, [type]);
 
   return (
     <PanelField
       content={
-        <SelectField
-          InputProps={{
-            startAdornment: <SyncFacebookPagesButton onDone={fetchPages} />,
-          }}
-          style={{ width: 500 }}
-          options={pages}
-          {...props}
-        />
+        <Grid container spacing={2} direction='column'>
+          <input type='hidden' name='source_type' value={type} />
+          <input type='hidden' name='source' value={value} />
+          <Grid item>
+            <SelectField
+              label='Select Type'
+              style={{ width: 300 }}
+              onChange={(e) => setType(e.target.value)}
+              defaultValue={type}
+              options={[
+                { name: 'Audiences', value: 'audiences' },
+                { name: 'Pixels', value: 'pixels' },
+              ]}
+            />
+          </Grid>
+          <Grid item>
+            <SelectField
+              label='Select Source'
+              style={{ width: 300 }}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              options={options}
+            />
+          </Grid>
+        </Grid>
       }
     />
   );

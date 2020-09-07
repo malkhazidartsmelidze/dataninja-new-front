@@ -24,19 +24,19 @@ export default () => {
 
   return (
     <form onSubmit={submitButtonClicked}>
-      <ExpansionPanel title='Audience Name' subTitle='Enter Audience Name'>
+      <ExpansionPanel expanded title='Audience Name' subTitle='Enter Audience Name'>
         <AudienceNameField name='name' />
       </ExpansionPanel>
-      <ExpansionPanel title='Audience Description' subTitle='Enter Audience Descriptin'>
+      <ExpansionPanel expanded title='Audience Description' subTitle='Enter Audience Descriptin'>
         <AudienceDescriptionField name='description' />
       </ExpansionPanel>
-      <ExpansionPanel title='Audience Source' subTitle='Select Audience Source'>
+      <ExpansionPanel expanded title='Audience Source' subTitle='Select Audience Source'>
         <LookalikeAudienceSource name='source' />
       </ExpansionPanel>
-      <ExpansionPanel title='Audience Location' expand subTitle='Select Audience Location'>
+      <ExpansionPanel expanded title='Audience Location' expand subTitle='Select Audience Location'>
         <LookalikeAudienceLocation name='location' />
       </ExpansionPanel>
-      <ExpansionPanel title='Audience Size' subTitle='Select Audience Size'>
+      <ExpansionPanel expanded title='Audience Size' subTitle='Select Audience Size'>
         <LookalikeAudienceSize name='size' />
       </ExpansionPanel>
 
