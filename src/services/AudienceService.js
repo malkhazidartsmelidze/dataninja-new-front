@@ -13,6 +13,10 @@ class AudienceService {
     return api.call('post', `/facebook/audience/website/create`, data).then(api.getData);
   }
 
+  static createFacebookLookalikeAudience(data) {
+    return api.call('post', `/facebook/audience/lookalike/create`, data).then(api.getData);
+  }
+
   static sync(network) {
     return api.call('post', `/${network}/audience/sync`).then(api.getData);
   }
