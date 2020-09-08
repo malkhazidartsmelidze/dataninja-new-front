@@ -5,6 +5,7 @@ import ChipsCard from 'components/ChipsCard';
 
 export default () => {
   const [values, setValues] = useState([]);
+  const [error, setError] = useState(false);
 
   const deleteFromValues = (key) => {
     setValues((vals) => {
@@ -32,6 +33,7 @@ export default () => {
           <TextField
             style={{ width: 400 }}
             type='text'
+            error={error}
             placeholder='Enter correct url'
             label='Enter correct url'
             onKeyPress={onInputKeyPress}
