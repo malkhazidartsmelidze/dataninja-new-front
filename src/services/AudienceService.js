@@ -17,6 +17,10 @@ class AudienceService {
     return api.call('post', `/facebook/audience/lookalike/create`, data).then(api.getData);
   }
 
+  static createGoogleCustomAudience(data) {
+    return api.call('post', `/google/audience/custom/create`, data).then(api.getData);
+  }
+
   static sync(network) {
     return api.call('post', `/${network}/audience/sync`).then(api.getData);
   }
