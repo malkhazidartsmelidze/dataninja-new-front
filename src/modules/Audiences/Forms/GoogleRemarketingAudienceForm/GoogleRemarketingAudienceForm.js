@@ -1,58 +1,70 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import { AudienceDescriptionField, AudienceNameField } from 'modules/Audiences/Forms/components';
-import {
-  RemarketingListMembersField,
-  RemarketingPrefillOptionsField,
-  RemarketingMemberShipDurationField,
-  RemarketingVisitedPagesField,
-} from 'modules/Audiences/Forms/components/Google';
+import AudienceService from 'services/AudienceService';
+import useNotif from 'store/NotificationsContext';
+import AudienceDescriptionField from '../newcomponents/AudienceDescriptionField';
+import AudienceNameField from '../newcomponents/AudienceNameField';
+import { RemarketingVisitedPagesField } from '../components/Google';
+import GoogleRemarketingAudiencePrefillOptionField from '../newcomponents/GoogleRemarketingAudiencePrefillOptionField';
+import GoogleRemarketingAudienceListMembersField from '../newcomponents/GoogleRemarketingAudienceListMembersField';
+import GoogleRemarketingMembershipDurationField from '../newcomponents/GoogleRemarketingMembershipDurationField';
 
 export default () => {
-  return steps.map((step) => (
-    <ExpansionPanel
-      key={step.title}
-      title={step.title}
-      subTitle={step.subTitle}
-      titleWhenOpen={step.titleWhenOpen}
-      subTitleWhenOpen={step.subTitleWhenOpen}
-      titleBefore={step.titleBefore}
-      subTitleBefore={step.subTitleBefore}
-    >
-      <step.component />
-    </ExpansionPanel>
-  ));
-};
+  const { notify } = useNotif();
 
-const steps = [
-  {
-    component: AudienceNameField,
-    title: 'Audience Name',
-    subTitle: 'Enter Audience Name',
-  },
-  {
-    component: AudienceDescriptionField,
-    title: 'Audience Description',
-    subTitle: 'Enter Audience Description',
-  },
-  {
-    component: RemarketingListMembersField,
-    title: 'List Members',
-    subTitle: "Select the type of visitors from which you'd like to create an audience",
-  },
-  {
-    component: RemarketingVisitedPagesField,
-    title: 'Visited pages',
-    subTitle: 'Include people that visited a page with the following rules',
-  },
-  {
-    component: RemarketingPrefillOptionsField,
-    title: 'Pre-fill options',
-    subTitle: 'Choose between pre-filling the list or starting with an empty one',
-  },
-  {
-    component: RemarketingMemberShipDurationField,
-    title: 'Membership duration',
-    subTitle: 'Enter the number of days someone stays in this audience',
-  },
-];
+  const submitButtonClicked = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    AudienceService.createGoogleCustomAudience(formData).then((res) => {
+      notify('Audience Successfully Created');
+    });
+  };
+
+  return (
+    <form onSubmit={submitButtonClicked}>
+      <ExpansionPanel title='Audience Name' subTitle='Enter Audience Name'>
+        <AudienceNameField name='name' />
+      </ExpansionPanel>
+      <ExpansionPanel title='Audience Description' subTitle='Enter Audience Descriptin'>
+        <AudienceDescriptionField name='description' />
+      </ExpansionPanel>
+      <ExpansionPanel
+        expanded
+        title='List Members'
+        subTitle="Select the type of visitors from which you'd like to create an audience"
+      >
+        <GoogleRemarketingAudienceListMembersField />
+      </ExpansionPanel>
+      <ExpansionPanel
+        expanded
+        title='Visited pages'
+        subTitle='Include people that visited a page with the following rules'
+      >
+        <RemarketingVisitedPagesField />
+      </ExpansionPanel>
+      <ExpansionPanel
+        expanded
+        title='Pre-fill options'
+        subTitle='Choose between pre-filling the list or starting with an empty one'
+      >
+        <GoogleRemarketingAudiencePrefillOptionField />
+      </ExpansionPanel>
+      <ExpansionPanel
+        expanded
+        title='Membership duration'
+        subTitle='Enter the number of days someone stays in this audience'
+      >
+        <GoogleRemarketingMembershipDurationField />
+      </ExpansionPanel>
+
+      <div style={{ marginTop: 16 }}>
+        <Button type='submit' size='large' color='primary' variant='contained'>
+          Create
+        </Button>
+      </div>
+    </form>
+  );
+};
