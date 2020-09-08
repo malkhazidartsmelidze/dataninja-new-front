@@ -30,7 +30,7 @@ export default (props) => {
       <MenuItem
         title={<FM id='menu.ad_creation' />}
         leftIcon='addchart'
-        url={P.AD_MODULE}
+        url={P.AD_CREATE}
         description={<FM id='menu.ad_creation_desc' />}
         showDivider={true}
       />

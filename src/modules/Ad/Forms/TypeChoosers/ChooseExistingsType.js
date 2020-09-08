@@ -76,17 +76,6 @@ export default (props) => {
   return (
     <Grid container spacing={2} direction='column'>
       <Grid item>
-        <Typography variant='body2'>Please Select Network</Typography>
-        <ToggleButtonGroup size='medium' value={network} exclusive onChange={handleNetworkChange}>
-          <ToggleButton className={classes.button} value='google'>
-            <Icon path={mdiGoogle} className={classes.iconButton} size={1} /> Google
-          </ToggleButton>
-          <ToggleButton className={classes.button} value='facebook'>
-            <Icon path={mdiFacebook} className={classes.iconButton} size={1} /> Facebook
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Grid>
-      <Grid item>
         <Divider />
       </Grid>
       <Grid item>

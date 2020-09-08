@@ -16,15 +16,15 @@ export default () => {
         component: IndexPage,
       },
       {
-        path: P.AD_CREATE_NEW,
+        path: P.AD_CREATE,
         exact: true,
         component: CreateNewAdPage,
       },
-      {
-        path: P.AD_CREATE_EXISTING,
-        exact: true,
-        component: CreateExistingAdPage,
-      },
+      // {
+      //   path: P.AD_CREATE_EXISTING,
+      //   exact: true,
+      //   component: CreateExistingAdPage,
+      // },
       // {
       //   path: P.AD_CREATION,
       //   exact: true,
