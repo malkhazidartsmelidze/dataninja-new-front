@@ -12,7 +12,9 @@ export default (props) => {
             { value: 'automatic', name: 'Automatic' },
             { value: 'manual', name: 'Manual' },
           ]}
-          {...props}
+          label='Choose Bid Type'
+          name='bid_type'
+          width={300}
         />
       }
     />

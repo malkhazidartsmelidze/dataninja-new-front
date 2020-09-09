@@ -8,10 +8,10 @@ export default ({ dateStartProps, dateEndProps }) => {
       content={
         <Grid container>
           <Grid item xs={6}>
-            <TextField {...dateStartProps} />
+            <TextField name='date_from' label='Date from' />
           </Grid>
           <Grid item xs={6}>
-            <TextField {...dateEndProps} />
+            <TextField name='date_to' label='Date to' />
           </Grid>
         </Grid>
       }

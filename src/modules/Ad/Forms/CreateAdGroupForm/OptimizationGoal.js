@@ -13,7 +13,9 @@ export default (props) => {
             { value: 'impressions', name: 'Pay Per Impressions' },
             { value: 'page_views', name: 'Landing Page Views' },
           ]}
-          {...props}
+          width={400}
+          name='optimization_goal'
+          label='Choose Optimization Goal'
         />
       }
     />

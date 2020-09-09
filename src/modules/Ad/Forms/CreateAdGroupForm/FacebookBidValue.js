@@ -3,22 +3,18 @@ import { TextField, Grid } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField, RadioField } from 'components/Fields';
 
-export default ({ bidValueProps, bidStrategyProps }) => {
-  const [bidStrategy, setBidStrategy] = useState(bidStrategyProps.value);
-
+export default () => {
   return (
     <PanelField
       content={
         <Fragment>
-          <TextField {...bidValueProps} />
+          <TextField name='bid_amount' label='Bid Amount' style={{ width: 300 }} />
           <RadioField
             options={[
               { name: 'Cost Cap', value: 'cost_cap' },
               { name: 'Bid Cap', value: 'bid_cap' },
             ]}
-            {...bidStrategyProps}
-            onChange={(e) => setBidStrategy(e.target.value)}
-            value={bidStrategy}
+            name='bid_strategy'
           />
         </Fragment>
       }

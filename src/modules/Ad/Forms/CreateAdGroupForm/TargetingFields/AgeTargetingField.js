@@ -8,10 +8,10 @@ export default ({ ageFromProps, ageToProps }) => {
       content={
         <Grid container spacing={2}>
           <Grid item>
-            <TextField {...ageToProps} />
+            <TextField name='age_from' label='Age From' style={{ width: 200 }} />
           </Grid>
           <Grid item>
-            <TextField {...ageFromProps} />
+            <TextField name='age_to' label='Age To' style={{ width: 200 }} />
           </Grid>
         </Grid>
       }
