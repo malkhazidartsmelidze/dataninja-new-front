@@ -21,6 +21,10 @@ class AudienceService {
     return api.call('post', `/google/audience/custom/create`, data).then(api.getData);
   }
 
+  static createGoogleRemarketingAudience(data) {
+    return api.call('post', `/google/audience/remarketing/create`, data).then(api.getData);
+  }
+
   static sync(network) {
     return api.call('post', `/${network}/audience/sync`).then(api.getData);
   }

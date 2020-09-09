@@ -9,6 +9,7 @@ import { RemarketingVisitedPagesField } from '../components/Google';
 import GoogleRemarketingAudiencePrefillOptionField from '../newcomponents/GoogleRemarketingAudiencePrefillOptionField';
 import GoogleRemarketingAudienceListMembersField from '../newcomponents/GoogleRemarketingAudienceListMembersField';
 import GoogleRemarketingMembershipDurationField from '../newcomponents/GoogleRemarketingMembershipDurationField';
+import GoogleRemarketingAudienceListRules from '../newcomponents/GoogleRemarketingAudienceListRules';
 
 export default () => {
   const { notify } = useNotif();
@@ -18,7 +19,7 @@ export default () => {
     const form = e.target;
     const formData = new FormData(form);
 
-    AudienceService.createGoogleCustomAudience(formData).then((res) => {
+    AudienceService.createGoogleRemarketingAudience(formData).then((res) => {
       notify('Audience Successfully Created');
     });
   };
@@ -43,7 +44,7 @@ export default () => {
         title='Visited pages'
         subTitle='Include people that visited a page with the following rules'
       >
-        <RemarketingVisitedPagesField />
+        <GoogleRemarketingAudienceListRules />
       </ExpansionPanel>
       <ExpansionPanel
         expanded

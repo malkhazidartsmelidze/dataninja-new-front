@@ -10,8 +10,9 @@ export default () => {
         <Grid container alignItems='center'>
           <Grid item>
             <TextField
-              name='membership_duration'
+              name='membership_life_span'
               type='number'
+              defaultValue={365}
               placeholder='Enter Membership Duration'
             />
           </Grid>
