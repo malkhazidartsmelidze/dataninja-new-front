@@ -49,27 +49,35 @@ export default (props) => {
 
   const [ad, setAd] = useState();
 
+  const formSubmitted = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    console.log(form);
+  };
+
   return (
-    <Grid container>
-      <Grid item xs={8}>
-        <ExpansionPanel
-          expanded
-          transparent
-          title='Choose Campaign Config'
-          subtitle='Enter Campaign Config Here'
-        >
-          <CreateCampaignForm networks={[network]} context={adgroup} setContext={setAdGroup} />
-        </ExpansionPanel>
-        <ExpansionPanel transparent title='Ad Group Config' subtitle='Set Ad Group Config'>
-          <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} />
-        </ExpansionPanel>
-        <ExpansionPanel title='Create Ad Config' subtitle='Set Ad Config'>
-          <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} />
-        </ExpansionPanel>
+    <form onSubmit={formSubmitted}>
+      <Grid container>
+        <Grid item xs={8}>
+          <ExpansionPanel
+            expanded
+            transparent
+            title='Choose Campaign Config'
+            subtitle='Enter Campaign Config Here'
+          >
+            <CreateCampaignForm networks={[network]} context={adgroup} setContext={setAdGroup} />
+          </ExpansionPanel>
+          <ExpansionPanel transparent title='Ad Group Config' subtitle='Set Ad Group Config'>
+            <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} />
+          </ExpansionPanel>
+          <ExpansionPanel title='Create Ad Config' subtitle='Set Ad Config'>
+            <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} />
+          </ExpansionPanel>
+        </Grid>
+        <Grid item xs={4}>
+          Config
+        </Grid>
       </Grid>
-      <Grid item xs={4}>
-        Config
-      </Grid>
-    </Grid>
+    </form>
   );
 };

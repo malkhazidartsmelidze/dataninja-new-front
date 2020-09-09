@@ -7,19 +7,8 @@ import CampaignStatusField from './fields/CampaignStatusField';
 import ExistingCampaignField from './fields/ExistingCampaignField';
 
 export default (props) => {
-  const { context, setContext, networks } = props;
-  const [bidType, setBidType] = useState('automatic');
-
-  const isNetworkEnabled = (n) => {
-    return networks.indexOf(n) !== -1;
-  };
-
-  const handleBidTypeChange = (e) => {
-    setBidType(e.target.value);
-  };
-
   return (
-    <form>
+    <div>
       <Grid container>
         <Grid item xs={12}>
           <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
@@ -36,6 +25,6 @@ export default (props) => {
           </ExpansionPanel>
         </Grid>
       </Grid>
-    </form>
+    </div>
   );
 };
