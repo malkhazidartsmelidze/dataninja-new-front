@@ -24,6 +24,13 @@ import TargetingExpansionTargetingField from 'modules/Ad/Forms/CreateAdGroupForm
 import LocationTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/LocationTargetingField';
 import ChooseAudienceField from 'modules/Ad/Forms/CreateAdGroupForm/ChooseAudienceField';
 import AdGroupNameField from 'modules/Ad/Forms/CreateAdGroupForm/AdGroupNameField';
+import CreativeNameField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeNameField';
+import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/FacebookPageField';
+import CreativeFacebookImageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeFacebookImageField';
+import CreativeHeadlinesField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeHeadlinesField';
+import CreativeLongHeadlineField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeLongHeadlineField';
+import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
+import CreativePrimaryTextField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativePrimaryTextField';
 
 export default (props) => {
   const {
@@ -78,7 +85,7 @@ export default (props) => {
   return (
     <form onSubmit={formSubmitted}>
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <ExpansionPanel
             transparent
             title='Choose Campaign Config'
@@ -110,9 +117,10 @@ export default (props) => {
             {/* <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} /> */}
             <Grid container>
               <Grid item>
-                <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
-                  <AdGroupNameField name='name' onChange={(e) => console.log(e.target.value)} />
-                </ExpansionPanel>
+                <ExpansionPanel
+                  title='Enter Adset Name'
+                  subTitle='Adset Name Field'
+                ></ExpansionPanel>
                 <ExpansionPanel
                   title='Choose Audience'
                   subTitle='Choose Existing Audince Or Creat New One'
@@ -137,43 +145,74 @@ export default (props) => {
                   titleBefore='Targeting Options'
                   subTitleBefore='Targeting Options'
                 >
-                  <GenderTargetingField name='targetings[gender]' style={{ width: 300 }} />
+                  <GenderTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
                   <AgeTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Languages' subTitle='Enter Languages'>
-                  <LanguageTargetingField name='targetings[locations]' />
+                  <LanguageTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
-                  <LocationTargetingField name='targetings[locations]' />
+                  <LocationTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Location Type' subTitle='Enter Location Type'>
-                  <LocationTypeTargetingField name='targetings[location_type]' />
+                  <LocationTypeTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Income Targeting' subTitle='Enter HouseHold Income'>
-                  <HouseHoldIncomeTargetingField name='targetings[household_income]' />
+                  <HouseHoldIncomeTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Parental Status' subTitle='Select Parental Status'>
-                  <ParentalStatusTargetingField name='targetings[parental_status]' />
+                  <ParentalStatusTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
-                  <DeviceTargetingField name='targetings[devices]' />
+                  <DeviceTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
-                  <AdRotationTargetingField name='targetings[ad_rotation]' />
+                  <AdRotationTargetingField />
                 </ExpansionPanel>
                 <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
-                  <TargetingExpansionTargetingField name='targetings[targeting_expansion]' />
+                  <TargetingExpansionTargetingField />
                 </ExpansionPanel>
               </Grid>
             </Grid>
           </ExpansionPanel>
-          <ExpansionPanel title='Create Ad Config' subtitle='Set Ad Config'>
-            <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} />
+          <ExpansionPanel expanded title='Create Ad Config' subtitle='Set Ad Config'>
+            {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}
+            <Grid container>
+              <Grid item xs={12}>
+                <ExpansionPanel title='Creative Name' subTitle='Enter Creative Name'>
+                  <CreativeNameField />
+                </ExpansionPanel>
+                <ExpansionPanel title='Choose Facebook Page' subTitle='Choose Facebook Page'>
+                  <FacebookPageField />
+                </ExpansionPanel>
+                <ExpansionPanel title='Choose Facebook Image' subTitle='Choose Facebook Image'>
+                  <CreativeFacebookImageField />
+                </ExpansionPanel>
+                <ExpansionPanel
+                  title='Choose Facebook Headlines'
+                  subTitle='Choose Facebook Headlines'
+                >
+                  <CreativeHeadlinesField />
+                </ExpansionPanel>
+                <ExpansionPanel
+                  title='Choose Facebook Description'
+                  subTitle='Choose Facebook Description'
+                >
+                  <CreativeLongHeadlineField />
+                </ExpansionPanel>
+                <ExpansionPanel title='Primary Text' subTitle='Choose Facebook Primary Text'>
+                  <CreativePrimaryTextField />
+                </ExpansionPanel>
+                <ExpansionPanel title='Display Link' subTitle='Choose Facebook Display Link'>
+                  <CreativeDisplayLinkField />
+                </ExpansionPanel>
+              </Grid>
+            </Grid>
           </ExpansionPanel>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           Config
         </Grid>
       </Grid>

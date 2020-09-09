@@ -24,6 +24,7 @@ export default () => {
       title='Choose language'
       content={
         <AutocompleteField
+          name='targetings[locations]'
           placeholder='Enter Languages'
           options={languageValues || []}
           onChange={onLanguageAutoCompleteChange}

@@ -14,6 +14,7 @@ export default (props) => {
   return (
     <PanelField
       title='Choose Location Type'
+      name='targetings[parental_status]'
       content={<RadioField options={options} onChange={() => {}} {...props} />}
     />
   );

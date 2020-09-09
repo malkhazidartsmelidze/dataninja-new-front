@@ -12,6 +12,7 @@ export default ({ props }) => {
   return (
     <PanelField
       title='Choose Location Type'
+      name='targetings[location_type]'
       content={[<RadioField options={options} {...props} />]}
     />
   );

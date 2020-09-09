@@ -19,7 +19,13 @@ export default (props) => {
   return (
     <PanelField
       content={
-        <SelectField name='facebook_page_id' style={{ width: 200 }} options={pages} {...props} />
+        <SelectField
+          label='Choose Facebook Page'
+          name='facebook_page_id'
+          style={{ width: 200 }}
+          options={pages}
+          {...props}
+        />
       }
     />
   );

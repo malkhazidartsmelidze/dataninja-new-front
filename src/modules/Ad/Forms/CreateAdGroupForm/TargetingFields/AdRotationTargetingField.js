@@ -8,5 +8,9 @@ const options = [
 ];
 
 export default () => {
-  return <PanelField content={<RadioField options={options} onChange={() => {}} />} />;
+  return (
+    <PanelField
+      content={<RadioField name='targetings[ad_rotation]' options={options} onChange={() => {}} />}
+    />
+  );
 };
