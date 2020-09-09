@@ -31,6 +31,7 @@ import CreativeHeadlinesField from 'modules/Ad/Forms/CreateAdCreativeForm/compon
 import CreativeLongHeadlineField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeLongHeadlineField';
 import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
 import CreativePrimaryTextField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativePrimaryTextField';
+import ChooseExistingAdgroupField from 'modules/Ad/Forms/CreateAdGroupForm/ChooseExistingAdgroupField';
 
 export default (props) => {
   const {
@@ -73,13 +74,26 @@ export default (props) => {
       audiences: [23845468848830561],
     },
   });
-
   const [ad, setAd] = useState();
+  const [existingCampaign, setExistingCampaign] = useState(null);
+  const [networks, setNetworks] = useState(['facebook', 'google']);
 
   const formSubmitted = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     console.log(form);
+  };
+
+  const isNetworkEnabled = (n) => {
+    return networks.indexOf(n) !== -1;
+  };
+
+  const existingCampaignChoosed = (c) => {
+    setExistingCampaign(c);
+  };
+
+  const onNetworkChange = (n) => {
+    setNetworks([n]);
   };
 
   return (
@@ -94,7 +108,10 @@ export default (props) => {
             <Grid container>
               <Grid item xs={12}>
                 <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
-                  <ExistingCampaignField />
+                  <ExistingCampaignField
+                    onCampaignChoose={existingCampaignChoosed}
+                    onNetworkChange={onNetworkChange}
+                  />
                 </ExpansionPanel>
                 <ExpansionPanel title='Campaign Name' subTitle='Enter Campaign Name'>
                   <CampaignNameField />
@@ -117,10 +134,14 @@ export default (props) => {
             {/* <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} /> */}
             <Grid container>
               <Grid item>
-                <ExpansionPanel
-                  title='Enter Adset Name'
-                  subTitle='Adset Name Field'
-                ></ExpansionPanel>
+                {existingCampaign && (
+                  <ExpansionPanel title='Choose Existing Adset' subTitle=''>
+                    <ChooseExistingAdgroupField />
+                  </ExpansionPanel>
+                )}
+                <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
+                  <AdGroupNameField />
+                </ExpansionPanel>
                 <ExpansionPanel
                   title='Choose Audience'
                   subTitle='Choose Existing Audince Or Creat New One'

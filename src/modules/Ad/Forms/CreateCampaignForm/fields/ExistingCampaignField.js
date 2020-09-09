@@ -9,7 +9,7 @@ const networks = [
   { name: 'Google', value: 'google' },
 ];
 
-export default () => {
+export default (props) => {
   const [network, setNetwork] = useState('');
   const [campaigns, setCampaigns] = useState([]);
   const [campaign, setCampaign] = useState('');
@@ -27,7 +27,11 @@ export default () => {
       .then(() => setLoading(false));
   }, [network]);
 
-  console.log(campaign);
+  useEffect(() => {
+    if (!campaign) return;
+    props.onCampaignChoose && props.onCampaignChoose(campaign);
+    props.onNetworkChange && props.onNetworkChange(network);
+  }, [campaign]);
 
   return (
     <PanelField
