@@ -1,37 +1,16 @@
-import React, { useState } from 'react';
-import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
-import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
+import { Button, Grid } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import { Grid } from '@material-ui/core';
-import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
-import ExistingCampaignField from 'modules/Ad/Forms/CreateCampaignForm/fields/ExistingCampaignField';
-import CampaignNameField from 'modules/Ad/Forms/CreateCampaignForm/fields/CampaignNameField';
-import CampaignObjectiveField from 'modules/Ad/Forms/CreateCampaignForm/fields/CampaignObjectiveField';
-import CampaignStatusField from 'modules/Ad/Forms/CreateCampaignForm/fields/CampaignStatusField';
-import AdGroupDatesField from 'modules/Ad/Forms/CreateAdGroupForm/AdGroupDatesField';
-import OptimizationGoal from 'modules/Ad/Forms/CreateAdGroupForm/OptimizationGoal';
-import FacebookAdGroupBidType from 'modules/Ad/Forms/CreateAdGroupForm/FacebookAdGroupBidType';
-import FacebookBidValue from 'modules/Ad/Forms/CreateAdGroupForm/FacebookBidValue';
-import GenderTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/GenderTargetingField';
-import AgeTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/AgeTargetingField';
-import LocationTypeTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/LocationTypeTargetingField';
-import LanguageTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/LanguageTargetingField';
-import HouseHoldIncomeTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/HouseHoldIncomeTargetingField';
-import ParentalStatusTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/ParentalStatusTargetingField';
-import DeviceTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/DeviceTargetingField';
-import AdRotationTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/AdRotationTargetingField';
-import TargetingExpansionTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/TargetingExpansionTargetingField';
-import LocationTargetingField from 'modules/Ad/Forms/CreateAdGroupForm/TargetingFields/LocationTargetingField';
-import ChooseAudienceField from 'modules/Ad/Forms/CreateAdGroupForm/ChooseAudienceField';
-import AdGroupNameField from 'modules/Ad/Forms/CreateAdGroupForm/AdGroupNameField';
-import CreativeNameField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeNameField';
-import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/FacebookPageField';
+import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
 import CreativeFacebookImageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeFacebookImageField';
 import CreativeHeadlinesField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeHeadlinesField';
 import CreativeLongHeadlineField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeLongHeadlineField';
-import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
+import CreativeNameField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeNameField';
 import CreativePrimaryTextField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativePrimaryTextField';
-import ChooseExistingAdgroupField from 'modules/Ad/Forms/CreateAdGroupForm/ChooseExistingAdgroupField';
+import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/FacebookPageField';
+import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
+import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
+import React, { useRef, useState } from 'react';
+import CampaignService from 'services/CampaignService';
 
 export default (props) => {
   const {
@@ -77,6 +56,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [networks, setNetworks] = useState(['facebook', 'google']);
+  const campaignFormRef = useRef();
 
   const formSubmitted = (e) => {
     e.preventDefault();
@@ -96,20 +76,30 @@ export default (props) => {
     setNetworks([n]);
   };
 
-  const campaignFormSubmitted = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  const createCampaign = (data) => {
+    CampaignService.createCampaign('facebook', data).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const createAd = () => {
+    const campaignData = new FormData(campaignFormRef.current);
+    createCampaign(campaignData);
   };
 
   return (
     <Grid container>
       <Grid item xs={9}>
+        <Button variant='contained' onClick={createAd}>
+          Submit
+        </Button>
         <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
-          <CreateCampaignForm
-            onExistingChoose={existingCampaignChoosed}
-            onNetworkChange={onNetworkChange}
-            onSubmit={campaignFormSubmitted}
-          />
+          <form ref={campaignFormRef}>
+            <CreateCampaignForm
+              onExistingChoose={existingCampaignChoosed}
+              onNetworkChange={onNetworkChange}
+            />
+          </form>
         </ExpansionPanel>
         <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
           <CreateAdGroupForm campaign={existingCampaign} />

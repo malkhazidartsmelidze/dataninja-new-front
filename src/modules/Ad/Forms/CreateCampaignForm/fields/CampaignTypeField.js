@@ -5,7 +5,7 @@ import { SelectField } from 'components/Fields';
 export default () => {
   return (
     <PanelField
-      content={<SelectField name='campaign_objective' defaultValue='traffic' options={options} />}
+      content={<SelectField name='campaign_type' defaultValue='traffic' options={options} />}
     />
   );
 };
