@@ -159,7 +159,6 @@ export default () => {
 
   return (
     <PanelField
-      title='Enter Location'
       content={[
         <div>
           <Grid container spacing={2} className={classes.chipsGrid}>

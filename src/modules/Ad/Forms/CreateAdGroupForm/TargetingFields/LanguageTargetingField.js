@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import AutocompleteField from 'components/Fields/AutocompleteField';
 import AdFormService from 'services/AdFormService';
@@ -21,14 +21,17 @@ export default () => {
 
   return (
     <PanelField
-      title='Choose language'
       content={
-        <AutocompleteField
-          name='targetings[locations]'
-          placeholder='Enter Languages'
-          options={languageValues || []}
-          onChange={onLanguageAutoCompleteChange}
-        />
+        <Fragment>
+          {languages.map((l) => {
+            return <input type='hidden' name='targetings[language][]' value={l.value} />;
+          })}
+          <AutocompleteField
+            placeholder='Enter Languages'
+            options={languageValues || []}
+            onChange={onLanguageAutoCompleteChange}
+          />
+        </Fragment>
       }
     />
   );

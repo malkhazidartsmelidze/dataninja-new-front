@@ -12,7 +12,6 @@ export default () => {
   return (
     <PanelField
       name='targetings[devices]'
-      title='Choose Location Type'
       content={<CheckboxField onChange={() => {}} options={options} />}
     />
   );

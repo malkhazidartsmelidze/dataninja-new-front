@@ -11,7 +11,6 @@ export default (props) => {
 
   return (
     <PanelField
-      title='Choose Targeting expansion'
       content={
         <Fragment>
           <Typography gutterBottom>{value}%</Typography>

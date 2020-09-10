@@ -15,7 +15,6 @@ const options = [
 export default ({ ...props }) => {
   return (
     <PanelField
-      title='Choose Household Income'
       name='targetings[household_income]'
       content={<CheckboxField options={options} {...props} onChange={() => {}} />}
     />
