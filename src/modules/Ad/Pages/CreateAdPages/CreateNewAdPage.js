@@ -98,6 +98,7 @@ export default (props) => {
 
   return (
     <form onSubmit={formSubmitted}>
+      <input onChange={(e) => setAd(e.target.value)} />
       <Grid container>
         <Grid item xs={9}>
           <ExpansionPanel
@@ -105,25 +106,10 @@ export default (props) => {
             title='Choose Campaign Config'
             subtitle='Enter Campaign Config Here'
           >
-            <Grid container>
-              <Grid item xs={12}>
-                <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
-                  <ExistingCampaignField
-                    onCampaignChoose={existingCampaignChoosed}
-                    onNetworkChange={onNetworkChange}
-                  />
-                </ExpansionPanel>
-                <ExpansionPanel title='Campaign Name' subTitle='Enter Campaign Name'>
-                  <CampaignNameField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Campaign Objective' subTitle='Choose Campaign Objective'>
-                  <CampaignObjectiveField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Campaign Status' subTitle='Choose Campaign Status'>
-                  <CampaignStatusField />
-                </ExpansionPanel>
-              </Grid>
-            </Grid>
+            <CreateCampaignForm
+              onExistingChoose={existingCampaignChoosed}
+              onNetworkChange={onNetworkChange}
+            />
           </ExpansionPanel>
           <ExpansionPanel
             expanded
@@ -131,72 +117,7 @@ export default (props) => {
             title='Ad Group Config'
             subtitle='Set Ad Group Config'
           >
-            {/* <CreateAdGroupForm networks={[network]} context={adgroup} setContext={setAdGroup} /> */}
-            <Grid container>
-              <Grid item>
-                {existingCampaign && (
-                  <ExpansionPanel title='Choose Existing Adset' subTitle=''>
-                    <ChooseExistingAdgroupField />
-                  </ExpansionPanel>
-                )}
-                <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
-                  <AdGroupNameField />
-                </ExpansionPanel>
-                <ExpansionPanel
-                  title='Choose Audience'
-                  subTitle='Choose Existing Audince Or Creat New One'
-                >
-                  <ChooseAudienceField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Enter Dates' subTitle='Start And End Dates'>
-                  <AdGroupDatesField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Optimize Bid To' subTitle='Enter Bid Optimization'>
-                  <OptimizationGoal />
-                </ExpansionPanel>
-                <ExpansionPanel title='Bid Options' subTitle='Enter Bid Options'>
-                  <FacebookAdGroupBidType />
-                </ExpansionPanel>
-                <ExpansionPanel title='Bid Value' subTitle='Enter Bid Value'>
-                  <FacebookBidValue />
-                </ExpansionPanel>
-                <ExpansionPanel
-                  title='Gender'
-                  subTitle='Choose Gender'
-                  titleBefore='Targeting Options'
-                  subTitleBefore='Targeting Options'
-                >
-                  <GenderTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
-                  <AgeTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Languages' subTitle='Enter Languages'>
-                  <LanguageTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
-                  <LocationTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Location Type' subTitle='Enter Location Type'>
-                  <LocationTypeTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Income Targeting' subTitle='Enter HouseHold Income'>
-                  <HouseHoldIncomeTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Parental Status' subTitle='Select Parental Status'>
-                  <ParentalStatusTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
-                  <DeviceTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
-                  <AdRotationTargetingField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
-                  <TargetingExpansionTargetingField />
-                </ExpansionPanel>
-              </Grid>
-            </Grid>
+            <CreateAdGroupForm campaign={existingCampaign} />
           </ExpansionPanel>
           <ExpansionPanel expanded title='Create Ad Config' subtitle='Set Ad Config'>
             {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}

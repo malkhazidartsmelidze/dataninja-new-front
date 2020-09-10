@@ -16,18 +16,18 @@ export default (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log(campaign);
     if (!campaign) return;
 
     setLoading(true);
     setAdGroups([]);
     AdGroupService.getCampaignAdGroups(network)
       .then((data) => {
+        console.log(data);
         setAdGroups(data.map((c) => ({ name: c.name, value: c.id })));
       })
       .then(() => setLoading(false));
   }, [network]);
-
-  console.log(campaign);
 
   return (
     <PanelField
