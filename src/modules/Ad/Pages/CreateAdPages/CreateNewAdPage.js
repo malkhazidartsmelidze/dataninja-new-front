@@ -10,6 +10,7 @@ import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
 import React, { useRef, useState } from 'react';
+import AdGroupService from 'services/AdGroupService';
 import CampaignService from 'services/CampaignService';
 
 export default (props) => {
@@ -57,6 +58,7 @@ export default (props) => {
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [networks, setNetworks] = useState(['facebook', 'google']);
   const campaignFormRef = useRef();
+  const adGroupFormRef = useRef();
 
   const formSubmitted = (e) => {
     e.preventDefault();
@@ -82,9 +84,18 @@ export default (props) => {
     });
   };
 
+  const createAdGroup = (data) => {
+    AdGroupService.createAdGroup('facebook', data).then((res) => {
+      console.log(res);
+    });
+  };
+
   const createAd = () => {
-    const campaignData = new FormData(campaignFormRef.current);
-    createCampaign(campaignData);
+    // const campaignData = new FormData(campaignFormRef.current);
+    // createCampaign(campaignData);
+
+    const adgroupData = new FormData(adGroupFormRef.current);
+    createAdGroup(adgroupData);
   };
 
   return (
@@ -101,10 +112,12 @@ export default (props) => {
             />
           </form>
         </ExpansionPanel>
-        <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
-          <CreateAdGroupForm campaign={existingCampaign} />
+        <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
+          <form ref={adGroupFormRef}>
+            <CreateAdGroupForm campaign={existingCampaign} />
+          </form>
         </ExpansionPanel>
-        <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
+        <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
           {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}
           <Grid container>
             <Grid item xs={12}>

@@ -8,13 +8,13 @@ export default () => {
     <PanelField
       content={
         <Fragment>
-          <TextField name='bid_amount' label='Bid Amount' style={{ width: 300 }} />
+          <TextField name='adgroup_bid_amount' label='Bid Amount' style={{ width: 300 }} />
           <RadioField
             options={[
               { name: 'Cost Cap', value: 'cost_cap' },
               { name: 'Bid Cap', value: 'bid_cap' },
             ]}
-            name='bid_strategy'
+            name='adgroup_bid_strategy'
           />
         </Fragment>
       }

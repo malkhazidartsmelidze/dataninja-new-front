@@ -14,8 +14,9 @@ export default (props) => {
             { value: 'page_views', name: 'Landing Page Views' },
           ]}
           width={400}
-          name='optimization_goal'
+          name='adgroup_optimization_goal'
           label='Choose Optimization Goal'
+          defaultValue='link_clicks'
         />
       }
     />

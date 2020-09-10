@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CampaignNameField from './fields/CampaignNameField';

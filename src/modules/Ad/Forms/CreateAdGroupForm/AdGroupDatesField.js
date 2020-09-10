@@ -8,10 +8,10 @@ export default ({ dateStartProps, dateEndProps }) => {
       content={
         <Grid container>
           <Grid item xs={6}>
-            <TextField name='date_from' label='Date from' />
+            <TextField name='adgroup_date_from' label='Date from' defaultValue='2020-10-15' />
           </Grid>
           <Grid item xs={6}>
-            <TextField name='date_to' label='Date to' />
+            <TextField name='adgroup_date_to' label='Date to' defaultValue='2020-10-25' />
           </Grid>
         </Grid>
       }

@@ -13,7 +13,7 @@ export default (props) => {
             { value: 'manual', name: 'Manual' },
           ]}
           label='Choose Bid Type'
-          name='bid_type'
+          name='adgroup_bid_type'
           width={300}
         />
       }
