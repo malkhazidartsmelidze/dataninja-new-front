@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import AdGroupNameField from './AdGroupNameField';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import AdGroupDatesField from './AdGroupDatesField';
-import OptimizationGoal from './OptimizationGoal';
+import OptimizationGoal from './AdGroupOptimizationGoal';
 import FacebookAdGroupBidType from './FacebookAdGroupBidType';
 import FacebookBidValue from './FacebookBidValue';
 import GenderTargetingField from './TargetingFields/GenderTargetingField';
@@ -18,6 +18,7 @@ import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansi
 import LocationTargetingField from './TargetingFields/LocationTargetingField';
 import ChooseAudienceField from './ChooseAudienceField';
 import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
+import AdGroupBillingEventField from './AdGroupBillingEventField';
 
 export default (props) => {
   const { campaign } = props;
@@ -39,8 +40,8 @@ export default (props) => {
         <ExpansionPanel title='Optimize Bid To' subTitle='Enter Bid Optimization'>
           <OptimizationGoal />
         </ExpansionPanel>
-        <ExpansionPanel title='Bid Options' subTitle='Enter Bid Options'>
-          <FacebookAdGroupBidType />
+        <ExpansionPanel title='Billing Event' subTitle='Enter When You are paying'>
+          <AdGroupBillingEventField />
         </ExpansionPanel>
         <ExpansionPanel title='Bid Value' subTitle='Enter Bid Value'>
           <FacebookBidValue />
@@ -56,14 +57,14 @@ export default (props) => {
         <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Languages' subTitle='Enter Languages'>
-          <LanguageTargetingField />
-        </ExpansionPanel>
         <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />
         </ExpansionPanel>
         <ExpansionPanel title='Location Type' subTitle='Enter Location Type'>
           <LocationTypeTargetingField />
+        </ExpansionPanel>
+        <ExpansionPanel title='Languages' subTitle='Enter Languages'>
+          <LanguageTargetingField />
         </ExpansionPanel>
         <ExpansionPanel title='Income Targeting' subTitle='Enter HouseHold Income'>
           <HouseHoldIncomeTargetingField />

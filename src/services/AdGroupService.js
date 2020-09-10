@@ -6,7 +6,7 @@ class AdGroupService {
   }
 
   static createAdGroup(network, data) {
-    return api.call('create', `/${network}/adgroup/create`, data).then(api.getData);
+    return api.call('post', `/${network}/adgroup/create`, data).then(api.getData);
   }
 
   static sync(network) {

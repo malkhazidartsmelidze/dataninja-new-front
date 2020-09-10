@@ -9,14 +9,15 @@ export default (props) => {
       content={
         <SelectField
           options={[
-            { value: 'link_clicks', name: 'Pay Per Click' },
-            { value: 'impressions', name: 'Pay Per Impressions' },
-            { value: 'page_views', name: 'Landing Page Views' },
+            { value: 'clicks', name: 'Optimize For Clicks' },
+            { value: 'views', name: 'Optimize For Impressions' },
+            { value: 'page_views', name: 'Optimize For Landing Page Views' },
+            { value: 'maximize_clicks', name: 'Optimize For Maximum Clicks' },
           ]}
           width={400}
           name='adgroup_optimization_goal'
           label='Choose Optimization Goal'
-          defaultValue='link_clicks'
+          defaultValue='clicks'
         />
       }
     />

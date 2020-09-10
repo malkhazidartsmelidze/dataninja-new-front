@@ -46,7 +46,7 @@ export default () => {
             <Grid item xs={12}>
               <SelectField
                 label='Choose Facebook Audience'
-                name='adgroup_facebook_audience_id'
+                name='targetings[audiences][facebook]'
                 options={facebookAudiences}
                 style={{ width: 200, marginRight: 16 }}
                 InputProps={{
@@ -62,7 +62,7 @@ export default () => {
               <SelectField
                 label='Choose Google Audience'
                 options={googleAudiences}
-                name='adgroup_google_audience_id'
+                name='targetings[audiences][google]'
                 style={{ width: 200 }}
                 InputProps={{
                   startAdornment: (

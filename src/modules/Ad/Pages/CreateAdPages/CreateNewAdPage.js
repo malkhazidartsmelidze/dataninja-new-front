@@ -100,10 +100,15 @@ export default (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={9}>
+      <Grid item xs={12}>
         <Button variant='contained' onClick={createAd}>
           Submit
         </Button>
+        <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
+          <form ref={adGroupFormRef}>
+            <CreateAdGroupForm campaign={existingCampaign} />
+          </form>
+        </ExpansionPanel>
         <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
           <form ref={campaignFormRef}>
             <CreateCampaignForm
@@ -112,11 +117,7 @@ export default (props) => {
             />
           </form>
         </ExpansionPanel>
-        <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
-          <form ref={adGroupFormRef}>
-            <CreateAdGroupForm campaign={existingCampaign} />
-          </form>
-        </ExpansionPanel>
+
         <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
           {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}
           <Grid container>
@@ -151,9 +152,6 @@ export default (props) => {
             </Grid>
           </Grid>
         </ExpansionPanel>
-      </Grid>
-      <Grid item xs={3}>
-        Config
       </Grid>
     </Grid>
   );
