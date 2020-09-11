@@ -289,7 +289,7 @@ const RadiusInput = () => {
             label='Choose Unit'
             fullWidth
             options={[
-              { name: 'Km', value: 'km' },
+              { name: 'Km', value: 'kilometer' },
               { name: 'Mile', value: 'mile' },
             ]}
             onChange={(e) => setUnit(e.target.value)}

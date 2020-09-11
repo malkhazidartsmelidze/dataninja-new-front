@@ -18,6 +18,7 @@ import LocationTargetingField from './TargetingFields/LocationTargetingField';
 import ChooseAudienceField from './ChooseAudienceField';
 import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
 import AdGroupBillingEventField from './AdGroupBillingEventField';
+import AdGroupBudgetField from './AdGroupBudgetField';
 
 export default (props) => {
   const { campaign } = props;
@@ -29,6 +30,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
           <AdGroupNameField />
+        </ExpansionPanel>
+        <ExpansionPanel title='Enter Adset Budget' subTitle='Choose Budget here'>
+          <AdGroupBudgetField />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Audience' subTitle='Choose Existing Audince Or Creat New One'>
           <ChooseAudienceField />
