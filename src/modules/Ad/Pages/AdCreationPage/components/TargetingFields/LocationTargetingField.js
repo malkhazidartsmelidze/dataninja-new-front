@@ -20,11 +20,12 @@ import {
   Typography,
   CardHeader,
   CardContent,
+  InputAdornment,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import AdForm from 'Models/Ad/AdForm';
 import Icon from '@mdi/react';
-import { mdiPlus, mdiMinus } from '@mdi/js';
+import { mdiPlus, mdiMinus, mdiClose } from '@mdi/js';
 import { theme } from 'common/@mui';
 
 export default () => {
@@ -36,9 +37,11 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  console.log(excludedLocations, targetLocation);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
+      setOptions([]);
       if (searchTerm.length < 3) return;
       setLoading(true);
       AdForm.service.searchLocation(searchTerm).then((data) => {

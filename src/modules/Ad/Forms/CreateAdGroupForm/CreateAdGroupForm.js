@@ -4,7 +4,6 @@ import AdGroupNameField from './AdGroupNameField';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import AdGroupDatesField from './AdGroupDatesField';
 import OptimizationGoal from './AdGroupOptimizationGoal';
-import FacebookAdGroupBidType from './FacebookAdGroupBidType';
 import FacebookBidValue from './FacebookBidValue';
 import GenderTargetingField from './TargetingFields/GenderTargetingField';
 import AgeTargetingField from './TargetingFields/AgeTargetingField';

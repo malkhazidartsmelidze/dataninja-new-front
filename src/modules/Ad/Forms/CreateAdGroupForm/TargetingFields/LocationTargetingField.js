@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   Avatar,
   Card,
@@ -8,17 +8,21 @@ import {
   CircularProgress,
   Grid,
   IconButton,
+  InputAdornment,
   List,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
   makeStyles,
+  Slider,
   TextField,
+  Typography,
 } from '@material-ui/core';
-import { mdiMinus, mdiPlus } from '@mdi/js';
+import { mdiClose, mdiMinus, mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import AdForm from 'Models/Ad/AdForm';
+import { SelectField } from 'components/Fields';
 
 export default () => {
   const classes = useStyles();
@@ -27,7 +31,7 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
+  console.log(targetedLocations, excludedLocations);
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm.length < 3) return;
@@ -103,6 +107,11 @@ export default () => {
               {locs.map((loc) => {
                 return (
                   <li key={loc.key}>
+                    <input
+                      type='hidden'
+                      name={`targetings[included_locations][${loc.type}][]`}
+                      value={loc.key}
+                    />
                     <Chip
                       color='primary'
                       size='small'
@@ -139,6 +148,11 @@ export default () => {
               {locs.map((loc) => {
                 return (
                   <li key={loc.key}>
+                    <input
+                      type='hidden'
+                      name={`targetings[excluded_locations][${loc.type}][]`}
+                      value={loc.key}
+                    />
                     <Chip
                       color='primary'
                       label={`${loc.name} (${loc.type})`}
@@ -168,62 +182,137 @@ export default () => {
             <Grid item xs={6}>
               {renderExcludedLocations()}
             </Grid>
-          </Grid>
-          <TextField
-            label='Enter Location'
-            onChange={handleInputChange}
-            value={searchTerm}
-            fullWidth
-            key='input'
-          />
-          <Card className={classes.card} elevation={4}>
-            {loading ? (
-              <CircularProgress size={30} />
-            ) : (
-              <List>
-                {options.length === 0 && 'No Options Aviable'}
-                {options.map((option) => {
-                  return (
-                    <ListItem
-                      classes={{
-                        root: classes.listItemRoot,
-                      }}
-                      key={option.key}
-                    >
-                      <ListItemText
-                        secondary={option.type}
-                        primary={`${option.name},${option.region ? `${option.region},` : ''}${
-                          option.country_code && option.country_code
-                        }`}
-                      />
-                      <ListItemSecondaryAction>
-                        <IconButton
-                          edge='end'
-                          aria-label='comments'
-                          disabled={isLocationTargetted(option.key)}
-                          onClick={() => targetLocation(option)}
+            <Grid item xs={12}>
+              <TextField
+                label='Enter Location'
+                onChange={handleInputChange}
+                value={searchTerm}
+                fullWidth
+                key='input'
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment>
+                      <IconButton
+                        onClick={() => {
+                          setOptions([]);
+                          setSearchTerm('');
+                        }}
+                      >
+                        <Icon path={mdiClose} />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Card className={classes.card} elevation={4}>
+                {loading ? (
+                  <CircularProgress size={30} />
+                ) : (
+                  <List>
+                    {options.length === 0 && 'No Options Aviable'}
+                    {options.map((option) => {
+                      return (
+                        <ListItem
+                          classes={{
+                            root: classes.listItemRoot,
+                          }}
+                          key={option.key}
                         >
-                          <Icon path={mdiPlus} />
-                        </IconButton>
+                          <ListItemText
+                            secondary={option.type}
+                            primary={`${option.name},${option.region ? `${option.region},` : ''}${
+                              option.country_code && option.country_code
+                            }`}
+                          />
+                          <ListItemSecondaryAction>
+                            <IconButton
+                              edge='end'
+                              aria-label='comments'
+                              disabled={isLocationTargetted(option.key)}
+                              onClick={() => targetLocation(option)}
+                            >
+                              <Icon path={mdiPlus} />
+                            </IconButton>
 
-                        <IconButton
-                          edge='end'
-                          aria-label='comments'
-                          disabled={isLocationExcluded(option.key)}
-                          onClick={() => excludeLocation(option)}
-                        >
-                          <Icon path={mdiMinus} />
-                        </IconButton>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  );
-                })}
-              </List>
-            )}
-          </Card>
+                            <IconButton
+                              edge='end'
+                              aria-label='comments'
+                              disabled={isLocationExcluded(option.key)}
+                              onClick={() => excludeLocation(option)}
+                            >
+                              <Icon path={mdiMinus} />
+                            </IconButton>
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
+                )}
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <RadiusInput />
+            </Grid>
+          </Grid>
         </div>,
       ]}
     />
+  );
+};
+
+const RadiusInput = () => {
+  const [value, setValue] = useState(10);
+  const [unit, setUnit] = useState('km');
+  const [max, setMax] = useState(100);
+
+  const valueChange = (_, value) => {
+    setValue(value);
+  };
+
+  useEffect(() => {
+    if (unit == 'mile') {
+      setMax(62);
+    } else {
+      setMax(100);
+    }
+  }, [unit]);
+
+  return (
+    <Fragment>
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <SelectField
+            name='targetings[distance_unit]'
+            value={unit}
+            label='Choose Unit'
+            fullWidth
+            options={[
+              { name: 'Km', value: 'km' },
+              { name: 'Mile', value: 'mile' },
+            ]}
+            onChange={(e) => setUnit(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <TextField
+            name='targetings[radius]'
+            value={value}
+            label='Radius'
+            fullWidth
+            onChange={(e) => setValue(e.target.value)}
+            InputProps={{
+              endAdornment: <InputAdornment>{unit}</InputAdornment>,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant='body2'>Choose Radius</Typography>
+          <Slider onChange={valueChange} defaultValue={20} max={max} />
+        </Grid>
+      </Grid>
+    </Fragment>
   );
 };
 
