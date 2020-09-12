@@ -12,7 +12,7 @@ export default ({ props }) => {
   return (
     <PanelField
       name='targetings[location_type]'
-      content={[<RadioField options={options} {...props} />]}
+      content={<RadioField options={options} {...props} />}
     />
   );
 };

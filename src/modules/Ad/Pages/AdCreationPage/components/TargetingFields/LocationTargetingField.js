@@ -112,9 +112,9 @@ export default () => {
             'Not any Targetted location'
           ) : (
             <ul className={classes.chipsContainerUl}>
-              {locs.map((loc) => {
+              {locs.map((loc, k) => {
                 return (
-                  <li key={loc.key}>
+                  <li key={k}>
                     <Chip
                       color='primary'
                       size='small'
@@ -148,9 +148,9 @@ export default () => {
             'Not any excluded location'
           ) : (
             <ul className={classes.chipsContainerUl}>
-              {locs.map((loc) => {
+              {locs.map((loc, k) => {
                 return (
-                  <li key={loc.key}>
+                  <li key={k}>
                     <Chip
                       color='primary'
                       label={`${loc.name} (${loc.type})`}
@@ -195,13 +195,13 @@ export default () => {
             ) : (
               <List>
                 {options.length === 0 && 'No Options Aviable'}
-                {options.map((option) => {
+                {options.map((option, k) => {
                   return (
                     <ListItem
                       classes={{
                         root: classes.listItemRoot,
                       }}
-                      key={option.key}
+                      key={k}
                     >
                       <ListItemText
                         secondary={option.type}

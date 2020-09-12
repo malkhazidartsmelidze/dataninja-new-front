@@ -10,6 +10,7 @@ import CreativeDisplayLinkField from './components/CreativeDisplayLinkField';
 import CreativePrimaryTextField from './components/CreativePrimaryTextField';
 import CreativeUrlField from './components/CreativeUrlField';
 import CreativePixelField from './components/CreativePixelField';
+import { CreativeGmailFields } from 'modules/Ad/Pages/AdCreationPage/components/CreativeFields';
 
 export default (props) => {
   return (
@@ -49,6 +50,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
           <CreativeDisplayLinkField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
+          <CreativeGmailFields />
         </ExpansionPanel>
       </Grid>
     </Grid>

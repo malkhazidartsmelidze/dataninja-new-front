@@ -25,7 +25,7 @@ export default (props) => {
     <PanelField
       content={
         <SelectField
-          InputAdornment={{
+          InputProps={{
             startAdornment: <SyncPixelsButton onDone={fetchPixels} />,
           }}
           style={{ width: 500 }}

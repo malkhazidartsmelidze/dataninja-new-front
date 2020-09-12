@@ -104,13 +104,13 @@ export default () => {
             'Not any Targetted location'
           ) : (
             <ul className={classes.chipsContainerUl}>
-              {locs.map((loc) => {
+              {locs.map((loc, k) => {
                 return (
                   <li key={loc.key}>
                     <input
                       type='hidden'
                       name={`targetings[included_locations][${loc.type}][]`}
-                      value={loc.key}
+                      value={k}
                     />
                     <Chip
                       color='primary'
@@ -145,13 +145,13 @@ export default () => {
             'Not any excluded location'
           ) : (
             <ul className={classes.chipsContainerUl}>
-              {locs.map((loc) => {
+              {locs.map((loc, k) => {
                 return (
                   <li key={loc.key}>
                     <input
                       type='hidden'
                       name={`targetings[excluded_locations][${loc.type}][]`}
-                      value={loc.key}
+                      value={k}
                     />
                     <Chip
                       color='primary'
@@ -173,7 +173,7 @@ export default () => {
 
   return (
     <PanelField
-      content={[
+      content={
         <div>
           <Grid container spacing={2} className={classes.chipsGrid}>
             <Grid item xs={6}>
@@ -212,13 +212,13 @@ export default () => {
                 ) : (
                   <List>
                     {options.length === 0 && 'No Options Aviable'}
-                    {options.map((option) => {
+                    {options.map((option, k) => {
                       return (
                         <ListItem
                           classes={{
                             root: classes.listItemRoot,
                           }}
-                          key={option.key}
+                          key={k}
                         >
                           <ListItemText
                             secondary={option.type}
@@ -256,8 +256,8 @@ export default () => {
               <RadiusInput />
             </Grid>
           </Grid>
-        </div>,
-      ]}
+        </div>
+      }
     />
   );
 };
