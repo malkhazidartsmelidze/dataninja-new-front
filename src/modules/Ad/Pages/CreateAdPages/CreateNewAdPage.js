@@ -10,10 +10,11 @@ import CreativePrimaryTextField from 'modules/Ad/Forms/CreateAdCreativeForm/comp
 import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/FacebookPageField';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AdCreativeService from 'services/AdCreativeService';
 import AdGroupService from 'services/AdGroupService';
 import CampaignService from 'services/CampaignService';
+import NetworkSuccesses from './components/NetworkSuccesses';
 
 export default (props) => {
   const [ad, setAd] = useState();
@@ -23,6 +24,19 @@ export default (props) => {
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
+  const [currentStep, setCurrentStep] = useState('');
+  const [existing, setExisting] = useState({
+    google: {
+      campaign: null,
+      adgroup: null,
+      ad: null,
+    },
+    facebook: {
+      campaign: null,
+      adgroup: null,
+      ad: null,
+    },
+  });
 
   const existingCampaignChoosed = (c) => {
     setExistingCampaign(c);
@@ -61,12 +75,17 @@ export default (props) => {
     createAdCreative(adCreativeData);
   };
 
+  useEffect(() => {
+    timeOutSteps(setExisting, setCurrentStep);
+  }, []);
+
   return (
     <Grid container>
       <Grid item xs={12}>
         <Button variant='contained' onClick={createAd}>
           Submit
         </Button>
+        <NetworkSuccesses open={true} created={existing} currentStep={currentStep} />
         <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
           <form ref={adCreativeFormRef}>
             <CreateAdCreativeForm adgroup={existingAdGroup} />
@@ -88,4 +107,56 @@ export default (props) => {
       </Grid>
     </Grid>
   );
+};
+
+const timeOutSteps = (setExisting, setCurrentStep) => {
+  setTimeout(() => {
+    setTimeout(() => {
+      setCurrentStep('facebook_campaign');
+      setExisting((old) => {
+        old.facebook.campaign = true;
+        return { ...old };
+      });
+    }, 1500);
+
+    setTimeout(() => {
+      setCurrentStep('facebook_adgroup');
+      setExisting((old) => {
+        old.facebook.adgroup = true;
+        return { ...old };
+      });
+    }, 2500);
+
+    setTimeout(() => {
+      setCurrentStep('facebook_ad');
+      setExisting((old) => {
+        old.facebook.ad = true;
+        return { ...old };
+      });
+    }, 4000);
+
+    setTimeout(() => {
+      setCurrentStep('google_campaign');
+      setExisting((old) => {
+        old.google.campaign = true;
+        return { ...old };
+      });
+    }, 5000);
+
+    setTimeout(() => {
+      setCurrentStep('google_adgroup');
+      setExisting((old) => {
+        old.google.adgroup = true;
+        return { ...old };
+      });
+    }, 6500);
+
+    setTimeout(() => {
+      setCurrentStep('google_ad');
+      setExisting((old) => {
+        old.google.ad = true;
+        return { ...old };
+      });
+    }, 8000);
+  }, 1000);
 };
