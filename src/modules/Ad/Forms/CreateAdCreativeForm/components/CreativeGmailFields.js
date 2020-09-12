@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 
 export default (props) => {
@@ -7,14 +7,14 @@ export default (props) => {
     <PanelField
       content={
         <Grid container spacing={2}>
-          <Grid item>
+          <Grid item xs={12}>
             <TextField
               label='Subject Line'
               defaultValue='Example Subject Line'
               name='creative_gmail_subject_name'
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <TextField
               label='Description'
               defaultValue='Example Description'

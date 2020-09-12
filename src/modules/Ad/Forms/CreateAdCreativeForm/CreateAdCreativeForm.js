@@ -10,7 +10,8 @@ import CreativeDisplayLinkField from './components/CreativeDisplayLinkField';
 import CreativePrimaryTextField from './components/CreativePrimaryTextField';
 import CreativeUrlField from './components/CreativeUrlField';
 import CreativePixelField from './components/CreativePixelField';
-import { CreativeGmailFields } from 'modules/Ad/Pages/AdCreationPage/components/CreativeFields';
+import CreativeGmailFields from './components/CreativeGmailFields';
+import CallToActionsField from './components/CallToActionsField';
 
 export default (props) => {
   return (
@@ -51,7 +52,10 @@ export default (props) => {
         <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
           <CreativeDisplayLinkField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
+        <ExpansionPanel expanded title='Call To Actions' subTitle='Choose Call To Action'>
+          <CallToActionsField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Gmail Fields' subTitle='Enter Gmail Ad Fields'>
           <CreativeGmailFields />
         </ExpansionPanel>
       </Grid>
