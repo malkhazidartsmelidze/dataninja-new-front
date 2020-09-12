@@ -8,7 +8,8 @@ export default (props) => {
       content={
         <TextField
           label='Enter Description'
-          name='descriptions[]'
+          defaultValue='Example Descirption'
+          name='creative_description'
           placeholder='Enter Ad Long Headline'
           {...props}
         />

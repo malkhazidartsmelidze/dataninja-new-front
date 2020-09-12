@@ -21,7 +21,7 @@ export default (props) => {
       content={
         <SelectField
           label='Choose Facebook Page'
-          name='facebook_page_id'
+          name='creative_facebook_page_id'
           style={{ width: 200 }}
           options={pages}
           {...props}

@@ -44,8 +44,10 @@ export default () => {
               <Grid item key={key}>
                 <TextField
                   value={stateFields[key]}
+                  name='creative_headlines[]'
                   onChange={(e) => onChange(key, e.target.value)}
                   placeholder='Enter Ad NAme'
+                  defaultValue='Example Headline Text'
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position='start' onClick={() => removeHeadline(key)}>

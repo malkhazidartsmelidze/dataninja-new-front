@@ -11,6 +11,7 @@ import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
 import React, { useRef, useState } from 'react';
+import AdCreativeService from 'services/AdCreativeService';
 import AdGroupService from 'services/AdGroupService';
 import CampaignService from 'services/CampaignService';
 
@@ -43,12 +44,21 @@ export default (props) => {
     });
   };
 
+  const createAdCreative = (data) => {
+    AdCreativeService.createAdCreative('facebook', data).then((res) => {
+      console.log(res);
+    });
+  };
+
   const createAd = () => {
     // const campaignData = new FormData(campaignFormRef.current);
     // createCampaign(campaignData);
 
-    const adgroupData = new FormData(adGroupFormRef.current);
-    createAdGroup(adgroupData);
+    // const adgroupData = new FormData(adGroupFormRef.current);
+    // createAdGroup(adgroupData);
+
+    const adCreativeData = new FormData(adCreativeFormRef.current);
+    createAdCreative(adCreativeData);
   };
 
   return (
@@ -57,7 +67,7 @@ export default (props) => {
         <Button variant='contained' onClick={createAd}>
           Submit
         </Button>
-        <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
+        <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
           <form ref={adCreativeFormRef}>
             <CreateAdCreativeForm adgroup={existingAdGroup} />
           </form>

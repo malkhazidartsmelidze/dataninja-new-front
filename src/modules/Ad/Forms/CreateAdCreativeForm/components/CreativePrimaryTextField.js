@@ -8,8 +8,9 @@ export default (props) => {
       content={
         <TextField
           label='Enter Primary Text'
-          name='primary_text'
+          name='creative_primary_text'
           placeholder='Enter Ad Long Headline'
+          defaultValue='Example Primary Text'
           {...props}
         />
       }

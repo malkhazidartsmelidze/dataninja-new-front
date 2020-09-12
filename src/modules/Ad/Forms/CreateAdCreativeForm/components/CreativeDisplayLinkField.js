@@ -8,8 +8,9 @@ export default (props) => {
       content={
         <TextField
           label='Display Link'
-          name='display_link'
+          name='creative_display_link'
           placeholder='Enter Ad Long Headline'
+          defaultValue='Example Display Link'
           {...props}
         />
       }

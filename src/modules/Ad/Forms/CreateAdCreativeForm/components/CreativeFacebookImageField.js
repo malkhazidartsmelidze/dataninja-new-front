@@ -71,6 +71,7 @@ export default ({ name, onChange }) => {
     <PanelField
       content={
         <Fragment>
+          <input type='hidden' name='creative_media' value={image} />
           <Button onClick={() => setOpen(true)} variant='contained'>
             Browse Image Here
           </Button>
