@@ -9,6 +9,7 @@ import CreativeLongHeadlineField from './components/CreativeLongHeadlineField';
 import CreativeDisplayLinkField from './components/CreativeDisplayLinkField';
 import CreativePrimaryTextField from './components/CreativePrimaryTextField';
 import CreativeUrlField from './components/CreativeUrlField';
+import CreativePixelField from './components/CreativePixelField';
 
 export default (props) => {
   return (
@@ -19,6 +20,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel expanded title='Creative Link' subTitle='Enter Creative Link Here'>
           <CreativeUrlField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Choose Pixel' subTitle='Choose Facebook pixel Here'>
+          <CreativePixelField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Choose Facebook Page' subTitle='Choose Facebook Page'>
           <FacebookPageField />
