@@ -8,6 +8,7 @@ import CreativeHeadlinesField from './components/CreativeHeadlinesField';
 import CreativeLongHeadlineField from './components/CreativeLongHeadlineField';
 import CreativeDisplayLinkField from './components/CreativeDisplayLinkField';
 import CreativePrimaryTextField from './components/CreativePrimaryTextField';
+import CreativeUrlField from './components/CreativeUrlField';
 
 export default (props) => {
   return (
@@ -15,6 +16,9 @@ export default (props) => {
       <Grid item xs={12}>
         <ExpansionPanel expanded title='Creative Name' subTitle='Enter Creative Name'>
           <CreativeNameField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Creative Link' subTitle='Enter Creative Link Here'>
+          <CreativeUrlField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Choose Facebook Page' subTitle='Choose Facebook Page'>
           <FacebookPageField />
