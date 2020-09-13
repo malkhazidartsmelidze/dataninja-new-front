@@ -67,7 +67,37 @@ export default (props) => {
     });
   };
 
+  const createGoogleAd = () => {
+    const adGroupFormData = new FormData(adGroupFormRef.current);
+    const campaignFormData = new FormData(campaignFormRef.current);
+    const adCreativeFormData = new FormData(adCreativeFormRef.current);
+
+    const campaignData = mergeFormData(campaignFormData, adGroupFormData);
+    const adGroupData = mergeFormData(adGroupFormData, campaignFormData);
+    const adCreativeData = adCreativeFormData;
+
+    let createdCampaign,
+      createdAdGroup,
+      createdAdCreative = null;
+
+    CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
+      createdCampaign = campaignRes;
+      console.log('campaignRes', campaignRes);
+
+      AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+        createdAdGroup = adGroupRes;
+        console.log('adGroupRes', adGroupRes);
+
+        AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
+          createdAdCreative = adCreativeRes;
+          console.log('adCreativeRes', adCreativeRes);
+        });
+      });
+    });
+  };
+
   const createAd = () => {
+    return createGoogleAd();
     // timeOutSteps(setExisting, setCurrentStep);
     // setSuccessModal(true);
     const adgroupData = new FormData(adGroupFormRef.current);
