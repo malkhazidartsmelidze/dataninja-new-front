@@ -1,4 +1,5 @@
 import { Button, Card, CardContent, CardHeader, Grid } from '@material-ui/core';
+import mergeFormData from 'common/mergeFormData';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
@@ -49,34 +50,35 @@ export default (props) => {
   };
 
   const createCampaign = (data) => {
-    CampaignService.createCampaign('facebook', data).then((res) => {
+    CampaignService.createCampaign('google', data).then((res) => {
       console.log(res);
     });
   };
 
   const createAdGroup = (data) => {
-    AdGroupService.createAdGroup('facebook', data).then((res) => {
+    AdGroupService.createAdGroup('google', data).then((res) => {
       console.log(res);
     });
   };
 
   const createAdCreative = (data) => {
-    AdCreativeService.createAdCreative('facebook', data).then((res) => {
+    AdCreativeService.createAdCreative('google', data).then((res) => {
       console.log(res);
     });
   };
 
   const createAd = () => {
-    timeOutSteps(setExisting, setCurrentStep);
-    setSuccessModal(true);
-    // const campaignData = new FormData(campaignFormRef.current);
-    // createCampaign(campaignData);
+    // timeOutSteps(setExisting, setCurrentStep);
+    // setSuccessModal(true);
+    const adgroupData = new FormData(adGroupFormRef.current);
+    const adCreativeData = new FormData(adCreativeFormRef.current);
+    const campaignData = mergeFormData(new FormData(campaignFormRef.current), adgroupData);
 
-    // const adgroupData = new FormData(adGroupFormRef.current);
+    createCampaign(campaignData);
+
     // createAdGroup(adgroupData);
 
-    const adCreativeData = new FormData(adCreativeFormRef.current);
-    createAdCreative(adCreativeData);
+    // createAdCreative(adCreativeData);
   };
 
   const generatePreview = () => {
