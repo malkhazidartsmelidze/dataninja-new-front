@@ -12,22 +12,23 @@ const networks = [
 export default (props) => {
   const [network, setNetwork] = useState(props.network || 'facebook');
   const [adGroups, setAdGroups] = useState([]);
-  const [campaign, setCampaign] = useState(props.campaign || null);
+  const campaign = props.campaign || null;
   const [loading, setLoading] = useState(false);
+  const [adgroup, setAdGroup] = useState('');
 
   useEffect(() => {
     console.log(campaign);
     if (!campaign) return;
-
+    setAdGroup('');
     setLoading(true);
     setAdGroups([]);
-    AdGroupService.getCampaignAdGroups(network)
+    AdGroupService.getCampaignAdGroups(network, campaign)
       .then((data) => {
         console.log(data);
         setAdGroups(data.map((c) => ({ name: c.name, value: c.id })));
       })
       .then(() => setLoading(false));
-  }, [network]);
+  }, [network, campaign]);
 
   return (
     <PanelField
@@ -39,7 +40,7 @@ export default (props) => {
               fullWidth
               disabled={loading}
               options={adGroups}
-              onChange={(e) => setCampaign(e.target.value)}
+              onChange={(e) => setAdGroup(e.target.value)}
             />
           </Grid>
         </Grid>

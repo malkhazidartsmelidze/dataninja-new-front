@@ -10,7 +10,7 @@ export default (props) => {
           label='Display Link'
           name='creative_display_link'
           placeholder='Enter Ad Long Headline'
-          defaultValue='Example Display Link'
+          defaultValue='https://facebook.com/displaylink'
           {...props}
         />
       }

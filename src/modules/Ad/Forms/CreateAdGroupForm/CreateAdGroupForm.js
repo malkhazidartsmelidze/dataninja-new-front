@@ -19,15 +19,19 @@ import ChooseAudienceField from './ChooseAudienceField';
 import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
 import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
+import AdGroupService from 'services/AdGroupService';
 
 export default (props) => {
-  const { campaign } = props;
+  const { campaign, network } = props;
+  console.log(campaign);
   return (
     <Grid container>
       <Grid item>
-        <ExpansionPanel title='Choose Existing Adset' subTitle=''>
-          <ChooseExistingAdgroupField />
-        </ExpansionPanel>
+        {campaign && (
+          <ExpansionPanel title='Choose Existing Adset' subTitle=''>
+            <ChooseExistingAdgroupField campaign={campaign} network={network} />
+          </ExpansionPanel>
+        )}
         <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
           <AdGroupNameField />
         </ExpansionPanel>

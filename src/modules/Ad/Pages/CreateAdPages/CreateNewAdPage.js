@@ -1,4 +1,4 @@
-import { Button, Grid } from '@material-ui/core';
+import { Button, Card, CardContent, CardHeader, Grid } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
@@ -10,7 +10,7 @@ import CreativePrimaryTextField from 'modules/Ad/Forms/CreateAdCreativeForm/comp
 import FacebookPageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/FacebookPageField';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import AdCreativeService from 'services/AdCreativeService';
 import AdGroupService from 'services/AdGroupService';
 import CampaignService from 'services/CampaignService';
@@ -24,7 +24,9 @@ export default (props) => {
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
+  const previewRef = useRef();
   const [currentStep, setCurrentStep] = useState('');
+  const [successModal, setSuccessModal] = useState(false);
   const [existing, setExisting] = useState({
     google: {
       campaign: null,
@@ -65,6 +67,8 @@ export default (props) => {
   };
 
   const createAd = () => {
+    timeOutSteps(setExisting, setCurrentStep);
+    setSuccessModal(true);
     // const campaignData = new FormData(campaignFormRef.current);
     // createCampaign(campaignData);
 
@@ -75,37 +79,63 @@ export default (props) => {
     createAdCreative(adCreativeData);
   };
 
-  useEffect(() => {
-    timeOutSteps(setExisting, setCurrentStep);
-  }, []);
+  const generatePreview = () => {
+    const adCreativeData = new FormData(adCreativeFormRef.current);
+    AdCreativeService.generatePreview(adCreativeData).then((res) => {
+      console.log(res);
+      previewRef.current.innerHTML = res;
+    });
+  };
+
+  // useEffect(() => {
+  //   ;
+  // }, []);
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Button variant='contained' onClick={createAd}>
-          Submit
-        </Button>
-        <NetworkSuccesses open={true} created={existing} currentStep={currentStep} />
-        <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
-          <form ref={adCreativeFormRef}>
-            <CreateAdCreativeForm adgroup={existingAdGroup} />
-          </form>
-        </ExpansionPanel>
-        <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
-          <form ref={adGroupFormRef}>
-            <CreateAdGroupForm campaign={existingCampaign} />
-          </form>
-        </ExpansionPanel>
-        <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
-          <form ref={campaignFormRef}>
-            <CreateCampaignForm
-              onExistingChoose={existingCampaignChoosed}
-              onNetworkChange={onNetworkChange}
-            />
-          </form>
-        </ExpansionPanel>
+    <Fragment>
+      <Button variant='contained' onClick={createAd}>
+        Submit
+      </Button>
+      <Button variant='contained' onClick={generatePreview}>
+        Preview
+      </Button>
+      <Grid container spacing={2}>
+        <Grid item xs={8}>
+          <NetworkSuccesses
+            key={successModal}
+            open={successModal}
+            created={existing}
+            currentStep={currentStep}
+          />
+          <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
+            <form ref={campaignFormRef}>
+              <CreateCampaignForm
+                onExistingChoose={existingCampaignChoosed}
+                onNetworkChange={onNetworkChange}
+              />
+            </form>
+          </ExpansionPanel>
+          <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
+            <form ref={adGroupFormRef}>
+              <CreateAdGroupForm
+                campaign={existingCampaign}
+                network={networks.length == 1 ? networks[0] : null}
+              />
+            </form>
+          </ExpansionPanel>
+          <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
+            <form ref={adCreativeFormRef}>
+              <CreateAdCreativeForm adgroup={existingAdGroup} />
+            </form>
+          </ExpansionPanel>
+        </Grid>
+        <Grid item xs={4}>
+          <ExpansionPanel expanded transparent titleBefore='Ad Preview' title='Preview'>
+            <div ref={previewRef}></div>
+          </ExpansionPanel>
+        </Grid>
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
 
@@ -135,28 +165,28 @@ const timeOutSteps = (setExisting, setCurrentStep) => {
       });
     }, 4000);
 
-    setTimeout(() => {
-      setCurrentStep('google_campaign');
-      setExisting((old) => {
-        old.google.campaign = true;
-        return { ...old };
-      });
-    }, 5000);
+    // setTimeout(() => {
+    //   setCurrentStep('google_campaign');
+    //   setExisting((old) => {
+    //     old.google.campaign = true;
+    //     return { ...old };
+    //   });
+    // }, 5000);
 
-    setTimeout(() => {
-      setCurrentStep('google_adgroup');
-      setExisting((old) => {
-        old.google.adgroup = true;
-        return { ...old };
-      });
-    }, 6500);
+    // setTimeout(() => {
+    //   setCurrentStep('google_adgroup');
+    //   setExisting((old) => {
+    //     old.google.adgroup = true;
+    //     return { ...old };
+    //   });
+    // }, 6500);
 
-    setTimeout(() => {
-      setCurrentStep('google_ad');
-      setExisting((old) => {
-        old.google.ad = true;
-        return { ...old };
-      });
-    }, 8000);
+    // setTimeout(() => {
+    //   setCurrentStep('google_ad');
+    //   setExisting((old) => {
+    //     old.google.ad = true;
+    //     return { ...old };
+    //   });
+    // }, 8000);
   }, 1000);
 };
