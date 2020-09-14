@@ -8,6 +8,7 @@ import {
   BidTypeFields,
   BidOptionFields,
   BudgetField,
+  AdsetNameField,
 } from './components/AdFields';
 import {
   GenderTargetingField,
@@ -79,6 +80,11 @@ const steps = [
     component: CampaignNameField,
     title: 'Campaign Name',
     subTitle: 'Choose Campaign Name',
+  },
+  {
+    component: AdsetNameField,
+    title: 'Adset Name',
+    subTitle: 'Enter Adset Name',
   },
   {
     titleBefore: 'Bidding Options',

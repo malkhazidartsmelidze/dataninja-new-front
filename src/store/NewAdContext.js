@@ -14,6 +14,7 @@ const initState = {
   budget: 30,
   objective: 'traffic',
   campaign_name: 'Sample Campaign NAme',
+  adset_name: 'Sample Adset Name',
   targeting_gender: 'all',
   targeting_age_from: 15,
   targeting_age_to: 65,
