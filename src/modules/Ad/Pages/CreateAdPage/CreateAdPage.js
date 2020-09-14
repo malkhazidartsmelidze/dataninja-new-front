@@ -90,10 +90,6 @@ export default (props) => {
     });
   };
 
-  // useEffect(() => {
-  //   ;
-  // }, []);
-
   return (
     <Fragment>
       <Button variant='contained' onClick={createAd}>
