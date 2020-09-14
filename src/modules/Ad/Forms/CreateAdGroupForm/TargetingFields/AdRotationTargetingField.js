@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { RadioField } from 'components/Fields';
 
@@ -8,9 +8,18 @@ const options = [
 ];
 
 export default () => {
+  const [value, setValue] = useState('');
+
   return (
     <PanelField
-      content={<RadioField name='targetings[ad_rotation]' options={options} onChange={() => {}} />}
+      content={
+        <RadioField
+          name='targetings[ad_rotation]'
+          options={options}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      }
     />
   );
 };

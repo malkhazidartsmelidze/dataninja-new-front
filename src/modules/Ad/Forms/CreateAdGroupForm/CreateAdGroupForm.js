@@ -88,6 +88,7 @@ export default (props) => {
         <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
           <TargetingExpansionTargetingField />
         </ExpansionPanel>
+        <input type='hidden' value='display' name='google_ad_type' />
       </Grid>
     </Grid>
   );

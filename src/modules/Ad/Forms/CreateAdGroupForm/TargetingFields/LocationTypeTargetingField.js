@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { RadioField } from 'components/Fields';
 
@@ -9,10 +9,19 @@ const options = [
 ];
 
 export default ({ props }) => {
+  const [value, setValue] = useState('');
+
   return (
     <PanelField
-      name='targetings[location_type]'
-      content={<RadioField options={options} {...props} />}
+      content={
+        <RadioField
+          options={options}
+          name='targetings[location_type]'
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          {...props}
+        />
+      }
     />
   );
 };

@@ -73,12 +73,13 @@ export default (props) => {
     const adgroupData = new FormData(adGroupFormRef.current);
     const adCreativeData = new FormData(adCreativeFormRef.current);
     const campaignData = mergeFormData(new FormData(campaignFormRef.current), adgroupData);
+    const adGroupData = mergeFormData(adgroupData, campaignData);
 
-    createCampaign(campaignData);
+    // createCampaign(campaignData);
 
     // createAdGroup(adgroupData);
 
-    // createAdCreative(adCreativeData);
+    createAdCreative(adCreativeData);
   };
 
   const generatePreview = () => {
