@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreativeNameField from './components/CreativeNameField';
@@ -12,6 +12,9 @@ import CreativeUrlField from './components/CreativeUrlField';
 import CreativePixelField from './components/CreativePixelField';
 import CreativeGmailFields from './components/CreativeGmailFields';
 import CallToActionsField from './components/CallToActionsField';
+import CreativeDescriptionFields from './components/CreativeDescriptionFields';
+import CreativeBusinessNameField from './components/CreativeBusinessNameField';
+import CreativeParametersField from './components/CreativeParametersField';
 
 export default (props) => {
   return (
@@ -41,6 +44,13 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel
           expanded
+          title='Choose Facebook Descriptions'
+          subTitle='Choose Facebook Descriptions'
+        >
+          <CreativeDescriptionFields />
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded
           title='Choose Facebook Description'
           subTitle='Choose Facebook Description'
         >
@@ -48,6 +58,12 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel expanded title='Primary Text' subTitle='Choose Facebook Primary Text'>
           <CreativePrimaryTextField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Business Name' subTitle='Choose Google Business Name'>
+          <CreativeBusinessNameField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Enter Parameters' subTitle='Choose Ad Parameters'>
+          <CreativeParametersField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
           <CreativeDisplayLinkField />

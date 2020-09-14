@@ -48,7 +48,7 @@ export default (props) => {
             <SelectField
               fullWidth
               options={googleOptions}
-              defaultValue='open_link'
+              defaultValue='See More'
               label='Call To Action For Google'
               name='creative_google_call_to_action'
             />
