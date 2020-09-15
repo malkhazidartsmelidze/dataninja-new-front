@@ -51,7 +51,7 @@ const NetworkSuccesses = (props) => {
               />
             </FormGroup>
           </Grid>
-          <Grid item xs={6} direction='column'>
+          <Grid item xs={6}>
             <FormGroup>
               <CheckableStep
                 checked={props.created.google.campaign}

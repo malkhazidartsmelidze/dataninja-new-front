@@ -68,6 +68,8 @@ export default (props) => {
   };
 
   const createGoogleAd = () => {
+    setSuccessModal(true);
+
     const adGroupFormData = new FormData(adGroupFormRef.current);
     const campaignFormData = new FormData(campaignFormRef.current);
     const adCreativeFormData = new FormData(adCreativeFormRef.current);
@@ -80,14 +82,19 @@ export default (props) => {
       createdAdGroup,
       createdAdCreative = null;
 
+    setCurrentStep('google_campaign');
     CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
       createdCampaign = campaignRes;
       console.log('campaignRes', campaignRes);
+      adGroupData.append('adgroup_campaign_id', createdCampaign.id);
 
+      setCurrentStep('google_adgroup');
       AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
         createdAdGroup = adGroupRes;
         console.log('adGroupRes', adGroupRes);
+        adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
 
+        setCurrentStep('google_ad');
         AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
           createdAdCreative = adCreativeRes;
           console.log('adCreativeRes', adCreativeRes);
