@@ -79,16 +79,7 @@ const TabPanel = (props) => {
 const BrowseTree = (props) => {
   const tree = props.tree;
   const [checkeds, setCheckeds] = useState([]);
-  const [expanded, setExpanded] = useState([]);
-  const [selected, setSelected] = useState([]);
-
-  const handleToggle = (event, nodeIds) => {
-    setExpanded(nodeIds);
-  };
-
-  const handleSelect = (event, nodeIds) => {
-    setSelected(nodeIds);
-  };
+  // const [selected, setSelected] = useState([]);
 
   const renderTree = (nodes) => {
     return nodes.map((node) => {
@@ -98,7 +89,7 @@ const BrowseTree = (props) => {
           nodeId={node.id}
           label={
             <div>
-              <Checkbox onChange={onCheckChange} value={node.id} />
+              <Checkbox onChange={onCheckChange} value={node.criterion_id} />
               {node.name}
             </div>
           }
@@ -120,13 +111,13 @@ const BrowseTree = (props) => {
       return [...old];
     });
   };
-
+  console.log(checkeds);
   return (
     <TreeView
       style={{ width: 500 }}
       defaultCollapseIcon={<Icon path={mdiArrowTopLeft} />}
       defaultExpanded={['root']}
-      selected={selected}
+      // selected={selected}
       defaultExpandIcon={<Icon path={mdiArrowRight} />}
     >
       {renderTree(tree)}

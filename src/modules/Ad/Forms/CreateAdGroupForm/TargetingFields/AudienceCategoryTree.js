@@ -1,11 +1,23 @@
 import React, { Fragment, useState } from 'react';
-import { AppBar, Tabs, Tab, Box, Grid, Checkbox } from '@material-ui/core';
+import {
+  AppBar,
+  Tabs,
+  Tab,
+  Box,
+  Grid,
+  Checkbox,
+  TextField,
+  InputAdornment,
+  LinearProgress,
+  Badge,
+} from '@material-ui/core';
 import { useEffect } from 'react';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { mdiArrowRight, mdiArrowTopLeft } from '@mdi/js';
+import { mdiArrowRight, mdiArrowTopLeft, mdiMapSearch, mdiSearchWeb, mdiTextSearch } from '@mdi/js';
 import Icon from '@mdi/react';
 import AudienceService from 'services/AudienceService';
+import PanelField from 'components/ExpansionPanel/PanelField';
 
 const a11yProps = (index) => {
   return {
@@ -19,8 +31,10 @@ export default () => {
   const [affinityTree, setAffinityTree] = useState([]);
   const [inMarketTree, setInMarketTree] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
+    setLoading(true);
     AudienceService.browseInMarketTree().then((data) => {
       if (!Array.isArray(data)) return;
       setInMarketTree(data);
@@ -28,6 +42,7 @@ export default () => {
     AudienceService.browseAffinityTree().then((data) => {
       if (!Array.isArray(data)) return;
       setAffinityTree(data);
+      setLoading(false);
     });
   }, []);
 
@@ -36,25 +51,41 @@ export default () => {
   };
 
   return (
-    <Fragment>
-      <AppBar position='static'>
-        <Tabs value={value} onChange={handleChange}>
-          <Tab label='Affinity Categories' {...a11yProps(0)} />
-          <Tab label='In Market Categories' {...a11yProps(1)} />
-        </Tabs>
-      </AppBar>
-      <Grid container>
-        <Grid item xs={6}>
-          <TabPanel value={value} index={0}>
-            <BrowseTree tree={affinityTree} loading={loading} />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <BrowseTree tree={inMarketTree} loading={loading} />
-          </TabPanel>
+    <PanelField
+      content={
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder='Search'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment>
+                    <Icon path={mdiMapSearch} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <AppBar position='static'>
+              <Tabs value={value} onChange={handleChange}>
+                <Tab label='Affinity Category' {...a11yProps(0)} />
+
+                <Tab label='In Market Category' {...a11yProps(1)} />
+              </Tabs>
+            </AppBar>
+            <TabPanel value={value} index={0}>
+              <BrowseTree tree={affinityTree} loading={loading} search={query} />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <BrowseTree tree={inMarketTree} loading={loading} search={query} />
+            </TabPanel>
+          </Grid>
         </Grid>
-        <Grid item xs={6}></Grid>
-      </Grid>
-    </Fragment>
+      }
+    />
   );
 };
 
@@ -74,29 +105,40 @@ const TabPanel = (props) => {
   );
 };
 
-const BrowseTree = (props) => {
-  const tree = props.tree;
+const BrowseTree = ({ tree, loading, search }) => {
   const [checkeds, setCheckeds] = useState([]);
-  const [expanded, setExpanded] = useState([]);
-  const [selected, setSelected] = useState([]);
 
-  const handleToggle = (event, nodeIds) => {
-    setExpanded(nodeIds);
-  };
+  const nodeContainsSearch = (node) => {
+    const nodeContains = node.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    if (nodeContains) {
+      return true;
+    }
 
-  const handleSelect = (event, nodeIds) => {
-    setSelected(nodeIds);
+    if (!nodeContains && !Array.isArray(node.children)) return false;
+
+    let contains = false;
+
+    for (let i = 0, l = node.children.length; i < l; i++) {
+      if (nodeContainsSearch(node.children[i])) {
+        contains = true;
+        break;
+      }
+    }
+
+    return contains;
   };
 
   const renderTree = (nodes) => {
     return nodes.map((node) => {
+      if (search && !nodeContainsSearch(node)) return null;
+
       return (
         <TreeItem
           key={node.id}
           nodeId={node.id}
           label={
             <div>
-              <Checkbox onChange={onCheckChange} value={node.id} />
+              <Checkbox onChange={onCheckChange} value={node.criterion_id} />
               {node.name}
             </div>
           }
@@ -119,15 +161,24 @@ const BrowseTree = (props) => {
     });
   };
 
+  if (loading) {
+    return <LinearProgress />;
+  }
+
   return (
-    <TreeView
-      style={{ width: 500 }}
-      defaultCollapseIcon={<Icon path={mdiArrowTopLeft} />}
-      defaultExpanded={['root']}
-      selected={selected}
-      defaultExpandIcon={<Icon path={mdiArrowRight} />}
-    >
-      {renderTree(tree)}
-    </TreeView>
+    <Fragment>
+      {checkeds.map((id) => {
+        return <input type='hidden' name='targetings[google_affinity_categories][]' value={id} />;
+      })}
+      <TreeView
+        style={{ width: 500 }}
+        defaultCollapseIcon={<Icon path={mdiArrowTopLeft} />}
+        defaultExpanded={['root']}
+        // selected={selected}
+        defaultExpandIcon={<Icon path={mdiArrowRight} />}
+      >
+        {renderTree(tree)}
+      </TreeView>
+    </Fragment>
   );
 };

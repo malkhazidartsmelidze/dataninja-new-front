@@ -61,7 +61,11 @@ export default (props) => {
     let createdCampaign,
       createdAdGroup,
       createdAdCreative = null;
-
+    return AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+      createdAdGroup = adGroupRes;
+      console.log('adGroupRes', adGroupRes);
+      // adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
+    });
     setCurrentStep('google_campaign');
     CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
       createdCampaign = campaignRes;

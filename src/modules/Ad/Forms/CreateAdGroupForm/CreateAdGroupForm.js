@@ -21,7 +21,7 @@ import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
 import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
-import { CategoryTree } from 'modules/Audiences/Forms/components/Google';
+import AudienceCategoryTree from './TargetingFields/AudienceCategoryTree';
 
 export default (props) => {
   const { campaign, network } = props;
@@ -69,9 +69,6 @@ export default (props) => {
         <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Interests' subTitle='Enter Interst Targeting'>
-          <InterestTargetingField />
-        </ExpansionPanel>
         <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />
         </ExpansionPanel>
@@ -90,8 +87,11 @@ export default (props) => {
         <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
           <DeviceTargetingField />
         </ExpansionPanel>
+        <ExpansionPanel title='Facebook Interests' subTitle='Enter Facebook'>
+          <InterestTargetingField />
+        </ExpansionPanel>
         <ExpansionPanel title='Audience' subTitle='Select Audience Tree'>
-          <CategoryTree />
+          <AudienceCategoryTree />
         </ExpansionPanel>
         <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
           <AdRotationTargetingField />
