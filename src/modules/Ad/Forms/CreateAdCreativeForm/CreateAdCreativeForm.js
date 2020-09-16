@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreativeNameField from './components/CreativeNameField';
 import FacebookPageField from './components/FacebookPageField';
-import CreativeFacebookImageField from './components/CreativeFacebookImageField';
+import CreativeImageField from './components/CreativeImageField';
 import CreativeHeadlinesField from './components/CreativeHeadlinesField';
 import CreativeLongHeadlineField from './components/CreativeLongHeadlineField';
 import CreativeDisplayLinkField from './components/CreativeDisplayLinkField';
@@ -32,8 +32,8 @@ export default (props) => {
         <ExpansionPanel expanded title='Choose Facebook Page' subTitle='Choose Facebook Page'>
           <FacebookPageField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Choose Facebook Image' subTitle='Choose Facebook Image'>
-          <CreativeFacebookImageField />
+        <ExpansionPanel expanded title='Choose Image Image' subTitle='Choose Image Image'>
+          <CreativeImageField />
         </ExpansionPanel>
         <ExpansionPanel
           expanded

@@ -3,7 +3,7 @@ import mergeFormData from 'common/mergeFormData';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreativeDisplayLinkField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeDisplayLinkField';
-import CreativeFacebookImageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeFacebookImageField';
+import CreativeFacebookImageField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeImageField';
 import CreativeHeadlinesField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeHeadlinesField';
 import CreativeLongHeadlineField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeLongHeadlineField';
 import CreativeNameField from 'modules/Ad/Forms/CreateAdCreativeForm/components/CreativeNameField';
@@ -81,7 +81,11 @@ export default (props) => {
     let createdCampaign,
       createdAdGroup,
       createdAdCreative = null;
-
+    return AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+      createdAdGroup = adGroupRes;
+      console.log('adGroupRes', adGroupRes);
+      // adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
+    });
     setCurrentStep('google_campaign');
     CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
       createdCampaign = campaignRes;
