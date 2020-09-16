@@ -11,7 +11,7 @@ export default ({ ageFromProps, ageToProps }) => {
             <TextField
               name='targetings[age_from]'
               label='Age From'
-              defaultValue='15'
+              defaultValue='18'
               style={{ width: 200 }}
             />
           </Grid>
@@ -19,7 +19,7 @@ export default ({ ageFromProps, ageToProps }) => {
             <TextField
               name='targetings[age_to]'
               label='Age To'
-              defaultValue='50'
+              defaultValue='70'
               style={{ width: 200 }}
             />
           </Grid>

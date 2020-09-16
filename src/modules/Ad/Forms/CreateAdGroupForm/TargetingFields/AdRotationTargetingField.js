@@ -8,7 +8,7 @@ const options = [
 ];
 
 export default () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('optimize');
 
   return (
     <PanelField

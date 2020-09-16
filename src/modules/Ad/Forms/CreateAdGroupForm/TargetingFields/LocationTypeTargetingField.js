@@ -9,7 +9,7 @@ const options = [
 ];
 
 export default ({ props }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('living');
 
   return (
     <PanelField

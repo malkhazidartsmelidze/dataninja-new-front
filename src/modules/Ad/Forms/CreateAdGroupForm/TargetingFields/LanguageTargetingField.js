@@ -9,6 +9,7 @@ export default () => {
 
   const onLanguageAutoCompleteChange = (e, newValues) => {
     if (!Array.isArray(newValues)) return;
+    if (newValues.length && newValues[0].value === '') newValues.splice(0, 1);
     setLanguages(newValues.map((opt) => opt.value));
   };
 
@@ -29,6 +30,7 @@ export default () => {
           <AutocompleteField
             placeholder='Enter Languages'
             options={languageValues || []}
+            defaultValue={[{ name: 'All', value: '' }]}
             onChange={onLanguageAutoCompleteChange}
           />
         </Fragment>
