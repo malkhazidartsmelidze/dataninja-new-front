@@ -28,6 +28,14 @@ class AudienceService {
   static sync(network) {
     return api.call('post', `/${network}/audience/sync`).then(api.getData);
   }
+
+  static browseInMarketTree() {
+    return api.call('get', 'google/audience/browse-inmarket-tree').then(api.getData);
+  }
+
+  static browseAffinityTree() {
+    return api.call('get', 'google/audience/browse-affinity-tree').then(api.getData);
+  }
 }
 
 export default AudienceService;

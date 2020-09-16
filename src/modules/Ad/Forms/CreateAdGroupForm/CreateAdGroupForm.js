@@ -13,6 +13,7 @@ import HouseHoldIncomeTargetingField from './TargetingFields/HouseHoldIncomeTarg
 import ParentalStatusTargetingField from './TargetingFields/ParentalStatusTargetingField';
 import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
 import AdRotationTargetingField from './TargetingFields/AdRotationTargetingField';
+import InterestTargetingField from './TargetingFields/InterestTargetingField';
 import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansionTargetingField';
 import LocationTargetingField from './TargetingFields/LocationTargetingField';
 import ChooseAudienceField from './ChooseAudienceField';
@@ -20,6 +21,7 @@ import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
 import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
+import { CategoryTree } from 'modules/Audiences/Forms/components/Google';
 
 export default (props) => {
   const { campaign, network } = props;
@@ -67,6 +69,9 @@ export default (props) => {
         <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
         </ExpansionPanel>
+        <ExpansionPanel title='Interests' subTitle='Enter Interst Targeting'>
+          <InterestTargetingField />
+        </ExpansionPanel>
         <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />
         </ExpansionPanel>
@@ -84,6 +89,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
           <DeviceTargetingField />
+        </ExpansionPanel>
+        <ExpansionPanel title='Audience' subTitle='Select Audience Tree'>
+          <CategoryTree />
         </ExpansionPanel>
         <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
           <AdRotationTargetingField />
