@@ -8,6 +8,7 @@ import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 import React, { Fragment, useRef, useState } from 'react';
 import AdCreativeService from 'services/AdCreativeService';
 import AdGroupService from 'services/AdGroupService';
@@ -18,7 +19,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const [networks, setNetworks] = useState(['facebook', 'google']);
+  const { networks, setNetworks, isNetworkSelected } = useCreateAd();
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
@@ -46,39 +47,6 @@ export default (props) => {
     setNetworks([n]);
   };
 
-  const turnOffNetwork = (n) => {
-    setNetworks((o) => {
-      o.splice(o.indexOf(n), 1);
-      return [...o];
-    });
-  };
-
-  const turnOnNetwork = (n) => {
-    setNetworks((o) => {
-      if (o.indexOf(n) !== -1) return o;
-
-      return [...o, n];
-    });
-  };
-
-  const createCampaign = (data) => {
-    CampaignService.createCampaign('google', data).then((res) => {
-      console.log(res);
-    });
-  };
-
-  const createAdGroup = (data) => {
-    AdGroupService.createAdGroup('google', data).then((res) => {
-      console.log(res);
-    });
-  };
-
-  const createAdCreative = (data) => {
-    AdCreativeService.createAdCreative('google', data).then((res) => {
-      console.log(res);
-    });
-  };
-
   const createGoogleAd = () => {
     setSuccessModal(true);
 
@@ -93,11 +61,7 @@ export default (props) => {
     let createdCampaign,
       createdAdGroup,
       createdAdCreative = null;
-    // return AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
-    //   createdAdGroup = adGroupRes;
-    //   console.log('adGroupRes', adGroupRes);
-    //   // adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
-    // });
+
     setCurrentStep('google_campaign');
     CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
       createdCampaign = campaignRes;
@@ -121,18 +85,6 @@ export default (props) => {
 
   const createAd = () => {
     return createGoogleAd();
-    // timeOutSteps(setExisting, setCurrentStep);
-    // setSuccessModal(true);
-    const adgroupData = new FormData(adGroupFormRef.current);
-    const adCreativeData = new FormData(adCreativeFormRef.current);
-    const campaignData = mergeFormData(new FormData(campaignFormRef.current), adgroupData);
-    const adGroupData = mergeFormData(adgroupData, campaignData);
-
-    // createCampaign(campaignData);
-
-    // createAdGroup(adgroupData);
-
-    createAdCreative(adCreativeData);
   };
 
   const handleNetworkChage = (e, newValue) => {
@@ -146,9 +98,6 @@ export default (props) => {
       previewRef.current.innerHTML = res;
     });
   };
-
-  window.turnOffNetwork = turnOffNetwork;
-  window.turnOnNetwork = turnOnNetwork;
 
   return (
     <Fragment>
@@ -166,7 +115,6 @@ export default (props) => {
             created={existing}
             currentStep={currentStep}
           />
-
           <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
             <form ref={campaignFormRef}>
               <CreateCampaignForm

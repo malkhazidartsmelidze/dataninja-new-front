@@ -42,10 +42,7 @@ export default (props) => {
         <ExpansionPanel title='Choose Facebook Headlines' subTitle='Choose Facebook Headlines'>
           <CreativeHeadlinesField />
         </ExpansionPanel>
-        <ExpansionPanel
-          title='Choose Facebook Descriptions'
-          subTitle='Choose Facebook Descriptions'
-        >
+        <ExpansionPanel title='Choose Facebook Descriptions' subTitle='Facebook Descriptions'>
           <CreativeDescriptionFields />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Facebook Description' subTitle='Choose Facebook Description'>

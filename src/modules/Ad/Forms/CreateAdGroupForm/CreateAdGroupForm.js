@@ -19,11 +19,12 @@ import ChooseAudienceField from './ChooseAudienceField';
 import ChooseExistingAdgroupField from './ChooseExistingAdgroupField';
 import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
-import AdGroupService from 'services/AdGroupService';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default (props) => {
   const { campaign, network } = props;
-  console.log(campaign);
+  const { isNetworkSelected } = useCreateAd();
+
   return (
     <Grid container>
       <Grid item>
@@ -47,9 +48,11 @@ export default (props) => {
         <ExpansionPanel title='Optimize Bid To' subTitle='Enter Bid Optimization'>
           <OptimizationGoal />
         </ExpansionPanel>
-        <ExpansionPanel title='Billing Event' subTitle='Enter When You are paying'>
-          <AdGroupBillingEventField />
-        </ExpansionPanel>
+        {isNetworkSelected('facebook') && (
+          <ExpansionPanel title='Billing Event' subTitle='Enter When You are paying'>
+            <AdGroupBillingEventField />
+          </ExpansionPanel>
+        )}
         <ExpansionPanel title='Bid Value' subTitle='Enter Bid Value'>
           <FacebookBidValue />
         </ExpansionPanel>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { TextField, Grid } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
-export default (props) => {
+export default () => {
   const [value, setValue] = useState('clicks');
+  const { turnOffNetwork, turnOnNetwork, networks, isNetworkSelected } = useCreateAd();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -12,19 +13,29 @@ export default (props) => {
     if (value == 'page_views') {
       if (window.confirm('Are you sure you want to choose this strategy? Google will turn off')) {
         setValue(value);
-        window.turnOffNetwork('google');
-        window.turnOnNetwork('facebook');
+        turnOffNetwork('google');
+        turnOnNetwork('facebook');
       }
     }
 
     if (value == 'maximize_clicks') {
       if (window.confirm('Are you sure you want to choose this strategy? Facebook will turn off')) {
         setValue(value);
-        window.turnOffNetwork('facebook');
-        window.turnOnNetwork('google');
+        turnOffNetwork('facebook');
+        turnOnNetwork('google');
       }
     }
   };
+
+  useEffect(() => {
+    if (isNetworkSelected('facebook') && value === 'maximize_clicks') {
+      setValue('clicks');
+    }
+
+    if (isNetworkSelected('google') && value === 'page_views') {
+      setValue('clicks');
+    }
+  }, [networks]);
 
   return (
     <PanelField

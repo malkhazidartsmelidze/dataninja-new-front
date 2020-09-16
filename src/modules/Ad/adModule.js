@@ -4,6 +4,7 @@ import P from 'paths';
 import { NewAdContextProvider } from 'store/NewAdContext';
 import IndexPage from './Pages/IndexPage';
 import CreateAdPage from './Pages/CreateAdPage';
+import { CreateAdContextProvider } from './store/CreateAdContext';
 
 export default () => {
   const mod = new Module({
@@ -21,5 +22,5 @@ export default () => {
     ],
   });
 
-  return <NewAdContextProvider>{mod.render()}</NewAdContextProvider>;
+  return <CreateAdContextProvider>{mod.render()}</CreateAdContextProvider>;
 };
