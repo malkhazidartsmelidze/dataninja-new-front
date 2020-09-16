@@ -15,6 +15,7 @@ import CallToActionsField from './components/CallToActionsField';
 import CreativeDescriptionFields from './components/CreativeDescriptionFields';
 import CreativeBusinessNameField from './components/CreativeBusinessNameField';
 import CreativeParametersField from './components/CreativeParametersField';
+import CreativeLogoImageField from './components/CreativeLogoImageField';
 
 export default (props) => {
   return (
@@ -34,6 +35,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel expanded title='Choose Image Image' subTitle='Choose Image Image'>
           <CreativeImageField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Choose Logo' subTitle='Choose Logo'>
+          <CreativeLogoImageField />
         </ExpansionPanel>
         <ExpansionPanel
           expanded
