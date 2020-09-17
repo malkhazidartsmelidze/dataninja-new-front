@@ -22,7 +22,8 @@ import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 import AudienceCategoryTree from './TargetingFields/AudienceCategoryTree';
-import AdGroupCreativePlacementsField from './AdGroupCreativePlacementsField';
+import AdGroupCreativePlacementsField from './TargetingFields/AdGroupCreativePlacementsField';
+import OperatingSystemTargetingField from './TargetingFields/OperatingSystemTargetingField';
 
 export default (props) => {
   const { campaign, network } = props;
@@ -87,6 +88,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
           <DeviceTargetingField />
+        </ExpansionPanel>
+        <ExpansionPanel title='OS Targetings' subTitle='Select OS'>
+          <OperatingSystemTargetingField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Facebook Detailed Targeting' subTitle='Enter Facebook'>
           <TargetingSearchField />
