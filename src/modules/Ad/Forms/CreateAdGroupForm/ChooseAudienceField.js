@@ -6,11 +6,13 @@ import { SelectField } from 'components/Fields';
 import { Audience } from 'Models/Audience';
 import SyncAudienceButton from 'modules/Audiences/components/SyncAudienceButton';
 import AudienceService from 'services/AudienceService';
+import useUser from 'store/UserContext';
 
 export default () => {
   const [audienceModalOpen, setAudienceModalOpen] = useState(false);
   const [googleAudiences, setGoogleAudiences] = useState([]);
   const [facebookAudiences, setFacebookAudiences] = useState([]);
+  const { defaultAccounts } = useUser();
 
   const handleClose = () => {
     setAudienceModalOpen(false);
@@ -35,8 +37,11 @@ export default () => {
 
   useEffect(() => {
     fetchFacebookAudiences();
+  }, [defaultAccounts.facebook]);
+
+  useEffect(() => {
     fetchGoogleAudiences();
-  }, []);
+  }, [defaultAccounts.google]);
 
   return (
     <PanelField

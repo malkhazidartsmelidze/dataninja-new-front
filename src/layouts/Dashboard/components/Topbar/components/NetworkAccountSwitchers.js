@@ -5,7 +5,7 @@ import useUser from 'store/UserContext';
 import AdAccount from 'Models/AdAccount/AdAccount';
 
 export default () => {
-  const { config } = useUser();
+  const { config, setDefaultAccounts, defaultAccounts } = useUser();
 
   const [googleAccount, setGoogleAccount] = useState(config.getDefaultAccountId('google'));
   const [facebookAccount, setFacebookAccount] = useState(config.getDefaultAccountId('facebook'));
@@ -28,12 +28,14 @@ export default () => {
   const onChangeGoogleAccount = (accountId) => {
     AdAccount.service.setDefaultGoogleAccount(accountId).then(() => {
       setGoogleAccount(accountId);
+      setDefaultAccounts({ ...defaultAccounts, google: accountId });
     });
   };
 
   const onChangeFacebookAccount = (accountId) => {
     AdAccount.service.setDefaultFacebookAccount(accountId).then(() => {
       setFacebookAccount(accountId);
+      setDefaultAccounts({ ...defaultAccounts, facebook: accountId });
     });
   };
 

@@ -10,6 +10,10 @@ export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(new User({}));
   const [userConfig, setUserConfig] = useState(null);
   const [auth, setAuth] = useState(true);
+  const [defaultAccounts, setDefaultAccounts] = useState({
+    google: null,
+    facebook: null,
+  });
 
   const login = (user) => {
     setUser(user);
@@ -54,6 +58,8 @@ export const UserContextProvider = ({ children }) => {
         auth: auth,
         user: user,
         config: userConfig,
+        defaultAccounts: defaultAccounts,
+        setDefaultAccounts: setDefaultAccounts,
         login: login,
         logout: logout,
       }}
@@ -63,4 +69,6 @@ export const UserContextProvider = ({ children }) => {
   );
 };
 
-export default () => useContext(UserContext);
+const useUser = () => useContext(UserContext);
+
+export default useUser;
