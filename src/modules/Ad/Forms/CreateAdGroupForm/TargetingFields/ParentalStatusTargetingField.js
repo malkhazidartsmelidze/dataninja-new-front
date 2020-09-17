@@ -5,9 +5,9 @@ import { FormControl, FormControlLabel, Checkbox, Tooltip, Radio } from '@materi
 import { RadioField } from 'components/Fields';
 
 const options = [
+  { name: 'Unspecified', value: '' },
   { name: 'Parents', value: 'parents' },
   { name: 'Not parents', value: 'not_parents' },
-  { name: 'Unspecified', value: 'unspecified' },
 ];
 
 export default (props) => {
