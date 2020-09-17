@@ -21,7 +21,6 @@ import {
 import { mdiClose, mdiMinus, mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import AdForm from 'Models/Ad/AdForm';
 import { SelectField } from 'components/Fields';
 import FacebookTargetingService from 'services/FacebookTargetingService';
 

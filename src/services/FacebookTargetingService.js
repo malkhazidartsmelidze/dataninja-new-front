@@ -18,8 +18,11 @@ class FacebookTargetingService {
   }
 
   static getSuggestions(params) {
-    console.log(params);
     return api.call('post', '/facebook/targeting/targeting-suggestions', params).then(api.getData);
+  }
+
+  static searchLanguages(query) {
+    return api.call('post', '/facebook/targeting/search-languages', { q: query }).then(api.getData);
   }
 }
 
