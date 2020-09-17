@@ -22,6 +22,7 @@ import AdGroupBillingEventField from './AdGroupBillingEventField';
 import AdGroupBudgetField from './AdGroupBudgetField';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 import AudienceCategoryTree from './TargetingFields/AudienceCategoryTree';
+import AdGroupCreativePlacementsField from './AdGroupCreativePlacementsField';
 
 export default (props) => {
   const { campaign, network } = props;
@@ -98,6 +99,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
           <TargetingExpansionTargetingField />
+        </ExpansionPanel>
+        <ExpansionPanel title='Placements' subTitle='Choose Placements'>
+          <AdGroupCreativePlacementsField />
         </ExpansionPanel>
         <input type='hidden' value='display' name='google_ad_type' />
       </Grid>
