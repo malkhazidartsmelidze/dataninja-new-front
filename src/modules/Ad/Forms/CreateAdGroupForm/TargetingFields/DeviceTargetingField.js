@@ -8,6 +8,7 @@ const options = [
   { name: 'Mobile', value: 'mobile' },
   { name: 'Tablet', value: 'tablet' },
 ];
+
 export default () => {
   return (
     <PanelField
@@ -15,7 +16,6 @@ export default () => {
         <Grid container spacing={4}>
           <Grid item>
             <CheckboxField
-              onChange={() => {}}
               options={options}
               name='targetings[devices][]'
               value={['desktop', 'mobile', 'tablet']}

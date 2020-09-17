@@ -23,6 +23,7 @@ import Icon from '@mdi/react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import AdForm from 'Models/Ad/AdForm';
 import { SelectField } from 'components/Fields';
+import FacebookTargetingService from 'services/FacebookTargetingService';
 
 export default () => {
   const classes = useStyles();
@@ -36,7 +37,7 @@ export default () => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm.length < 3) return;
       setLoading(true);
-      AdForm.service.searchLocation(searchTerm).then((data) => {
+      FacebookTargetingService.searchLocations(searchTerm).then((data) => {
         console.log(data);
         if (!Array.isArray(data)) return;
         setLoading(false);

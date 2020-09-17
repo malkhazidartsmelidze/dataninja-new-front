@@ -7,6 +7,10 @@ class FacebookTargetingService {
       .then(api.getData);
   }
 
+  static searchLocations(query) {
+    return api.call('post', '/facebook/targeting/search-locations', { q: query }).then(api.getData);
+  }
+
   static searchTargetings(query) {
     return api
       .call('get', '/facebook/targeting/search-targetings', { params: { q: query } })

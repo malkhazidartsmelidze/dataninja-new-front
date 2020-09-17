@@ -1,7 +1,6 @@
 import React, { lazy } from 'react';
 import Module from 'modules/Module';
 import P from 'paths';
-import { NewAdContextProvider } from 'store/NewAdContext';
 import IndexPage from './Pages/IndexPage';
 import CreateAdPage from './Pages/CreateAdPage';
 import { CreateAdContextProvider } from './store/CreateAdContext';

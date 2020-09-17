@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useNewAdContext } from 'store/NewAdContext';
-import { CircularProgress } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { useEffect } from 'react';
 import { SelectField } from 'components/Fields';

@@ -18,7 +18,7 @@ export default (props) => {
   };
 
   useEffect(() => {
-    onChange(values);
+    if (typeof onChange === 'function') onChange(values);
   }, [values]);
 
   const isChecked = (val) => {
