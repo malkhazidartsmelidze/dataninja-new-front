@@ -58,11 +58,38 @@ export default () => {
                   ),
                 }}
               />
-
+              <SelectField
+                label='Facebook Exclude Audiences'
+                name='targetings[exclude_audiences][facebook]'
+                options={facebookAudiences}
+                style={{ width: 200, marginRight: 16 }}
+                InputProps={{
+                  startAdornment: (
+                    <SyncAudienceButton
+                      network='facebook'
+                      onDone={() => fetchFacebookAudiences()}
+                    />
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid item xs={12}>
               <SelectField
                 label='Choose Google Audience'
                 options={googleAudiences}
                 name='targetings[audiences][google]'
+                style={{ width: 200 }}
+                InputProps={{
+                  startAdornment: (
+                    <SyncAudienceButton network='google' onDone={() => fetchGoogleAudiences()} />
+                  ),
+                }}
+              />
+
+              <SelectField
+                label='Google Exclude Audiences'
+                options={googleAudiences}
+                name='targetings[exclude_audiences][google]'
                 style={{ width: 200 }}
                 InputProps={{
                   startAdornment: (

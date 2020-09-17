@@ -13,7 +13,7 @@ import HouseHoldIncomeTargetingField from './TargetingFields/HouseHoldIncomeTarg
 import ParentalStatusTargetingField from './TargetingFields/ParentalStatusTargetingField';
 import DeviceTargetingField from './TargetingFields/DeviceTargetingField';
 import AdRotationTargetingField from './TargetingFields/AdRotationTargetingField';
-import InterestTargetingField from './TargetingFields/InterestTargetingField';
+import TargetingSearchField from './TargetingFields/TargetingSearchField';
 import TargetingExpansionTargetingField from './TargetingFields/TargetingExpansionTargetingField';
 import LocationTargetingField from './TargetingFields/LocationTargetingField';
 import ChooseAudienceField from './ChooseAudienceField';
@@ -87,8 +87,8 @@ export default (props) => {
         <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
           <DeviceTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Facebook Interests' subTitle='Enter Facebook'>
-          <InterestTargetingField />
+        <ExpansionPanel expanded title='Facebook Detailed Targeting' subTitle='Enter Facebook'>
+          <TargetingSearchField />
         </ExpansionPanel>
         <ExpansionPanel title='Audience' subTitle='Select Audience Tree'>
           <AudienceCategoryTree />

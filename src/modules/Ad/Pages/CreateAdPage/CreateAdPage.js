@@ -19,7 +19,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const { networks, setNetworks, isNetworkSelected } = useCreateAd();
+  const { networks, setNetworks, isNetworkSelected, turnOffNetwork } = useCreateAd();
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
@@ -33,7 +33,7 @@ export default (props) => {
       ad: null,
     },
     facebook: {
-      campaign: null,
+      campaign: true,
       adgroup: null,
       ad: null,
     },
@@ -47,9 +47,9 @@ export default (props) => {
     setNetworks([n]);
   };
 
-  const createGoogleAd = () => {
+  const createFacebookAd = () => {
     setSuccessModal(true);
-
+    console.log(existing);
     const adGroupFormData = new FormData(adGroupFormRef.current);
     const campaignFormData = new FormData(campaignFormRef.current);
     const adCreativeFormData = new FormData(adCreativeFormRef.current);
@@ -61,34 +61,72 @@ export default (props) => {
     let createdCampaign,
       createdAdGroup,
       createdAdCreative = null;
-    return AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
-      createdAdGroup = adGroupRes;
-      console.log('adGroupRes', adGroupRes);
-      // adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
-    });
-    setCurrentStep('google_campaign');
-    CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
-      createdCampaign = campaignRes;
-      console.log('campaignRes', campaignRes);
-      adGroupData.append('adgroup_campaign_id', createdCampaign.id);
 
-      setCurrentStep('google_adgroup');
-      AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
-        createdAdGroup = adGroupRes;
-        console.log('adGroupRes', adGroupRes);
-        adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
+    if (!existing.facebook.campaign) {
+      CampaignService.createCampaign('facebook', campaignData).then((campaignRes) => {
+        createdCampaign = campaignRes;
+        console.log('campaignRes', campaignRes);
+        adGroupData.append('adgroup_facebook_campaign_id', createdCampaign.id);
+        setExisting((o) => {
+          o.facebook.campaign = createdCampaign.id;
+          return { ...o };
+        });
 
-        setCurrentStep('google_ad');
-        AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
-          createdAdCreative = adCreativeRes;
-          console.log('adCreativeRes', adCreativeRes);
+        AdGroupService.createAdGroup('facebook', adGroupData).then((adGroupRes) => {
+          createdAdGroup = adGroupRes;
+          console.log('adGroupRes', adGroupRes);
+          adCreativeData.append('creative_facebook_adset_id', createdAdGroup.id);
+          setExisting((o) => {
+            o.facebook.adgroup = createdAdGroup.id;
+            return { ...o };
+          });
+
+          AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
+            createdAdCreative = adCreativeRes;
+            console.log('adCreativeRes', adCreativeRes);
+            setExisting((o) => {
+              o.facebook.ad = adCreativeRes.id;
+              return { ...o };
+            });
+          });
         });
       });
-    });
+    } else if (!existing.facebook.adgroup) {
+      adGroupData.append('adgroup_facebook_campaign_id', existing.facebook.campaign);
+      AdGroupService.createAdGroup('facebook', adGroupData).then((adGroupRes) => {
+        createdAdGroup = adGroupRes;
+        console.log('adGroupRes', adGroupRes);
+        adCreativeData.append('creative_facebook_adset_id', createdAdGroup.id);
+        setExisting((o) => {
+          o.facebook.adgroup = createdAdGroup.id;
+          return { ...o };
+        });
+
+        AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
+          createdAdCreative = adCreativeRes;
+          console.log('adCreativeRes', adCreativeRes);
+          setExisting((o) => {
+            o.facebook.ad = adCreativeRes.id;
+            return { ...o };
+          });
+        });
+      });
+    } else if (!existing.facebook.ad) {
+      adGroupData.append('creative_facebook_adset_id', existing.facebook.adgroup);
+
+      AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
+        createdAdCreative = adCreativeRes;
+        console.log('adCreativeRes', adCreativeRes);
+        setExisting((o) => {
+          o.facebook.ad = adCreativeRes.id;
+          return { ...o };
+        });
+      });
+    }
   };
 
   const createAd = () => {
-    return createGoogleAd();
+    return createFacebookAd();
   };
 
   const handleNetworkChage = (e, newValue) => {
@@ -127,7 +165,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
+          <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
             <form ref={adGroupFormRef}>
               <CreateAdGroupForm
                 campaign={existingCampaign}
@@ -218,3 +256,43 @@ const timeOutSteps = (setExisting, setCurrentStep) => {
     // }, 8000);
   }, 1000);
 };
+
+// const createGoogleAd = () => {
+//   setSuccessModal(true);
+
+//   const adGroupFormData = new FormData(adGroupFormRef.current);
+//   const campaignFormData = new FormData(campaignFormRef.current);
+//   const adCreativeFormData = new FormData(adCreativeFormRef.current);
+
+//   const campaignData = mergeFormData(campaignFormData, adGroupFormData);
+//   const adGroupData = mergeFormData(adGroupFormData, campaignFormData);
+//   const adCreativeData = adCreativeFormData;
+
+//   let createdCampaign,
+//     createdAdGroup,
+//     createdAdCreative = null;
+//   return AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+//     createdAdGroup = adGroupRes;
+//     console.log('adGroupRes', adGroupRes);
+//     // adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
+//   });
+//   setCurrentStep('google_campaign');
+//   CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
+//     createdCampaign = campaignRes;
+//     console.log('campaignRes', campaignRes);
+//     adGroupData.append('adgroup_campaign_id', createdCampaign.id);
+
+//     setCurrentStep('google_adgroup');
+//     AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+//       createdAdGroup = adGroupRes;
+//       console.log('adGroupRes', adGroupRes);
+//       adCreativeData.append('creative_adgroup_id', createdAdGroup.id);
+
+//       setCurrentStep('google_ad');
+//       AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
+//         createdAdCreative = adCreativeRes;
+//         console.log('adCreativeRes', adCreativeRes);
+//       });
+//     });
+//   });
+// };

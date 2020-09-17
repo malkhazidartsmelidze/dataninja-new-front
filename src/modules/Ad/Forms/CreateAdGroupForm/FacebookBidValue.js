@@ -39,18 +39,18 @@ export default () => {
                     name='adgroup_bid_strategy'
                   />
                 )}
+                {bidType === 'manual' && (
+                  <TextField
+                    InputProps={{
+                      startAdornment: <InputAdornment>$</InputAdornment>,
+                    }}
+                    name='adgroup_facebook_bid_amount'
+                    label='Bid Amount'
+                    style={{ width: 300 }}
+                  />
+                )}
               </Grid>
             )}
-            <Grid item xs={12}>
-              <TextField
-                InputProps={{
-                  startAdornment: <InputAdornment>$</InputAdornment>,
-                }}
-                name='adgroup_bid_amount'
-                label='Bid Amount'
-                style={{ width: 300 }}
-              />
-            </Grid>
           </Grid>
           {isNetworkSelected('google') && (
             <Grid item xs={6}>
@@ -64,6 +64,16 @@ export default () => {
                     />
                   }
                   label='Enhanced Bid'
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  InputProps={{
+                    startAdornment: <InputAdornment>$</InputAdornment>,
+                  }}
+                  name='adgroup_google_bid_amount'
+                  label='Bid Amount'
+                  style={{ width: 300 }}
                 />
               </Grid>
             </Grid>

@@ -3,7 +3,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-export default ({ options, label, placeholder, ...rest }) => {
+export default ({ options, label, _ref, placeholder, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -15,6 +15,7 @@ export default ({ options, label, placeholder, ...rest }) => {
         renderInput={(params) => (
           <TextField {...params} variant='standard' label={label} placeholder={placeholder} />
         )}
+        ref={_ref}
         {...rest}
       />
     </div>

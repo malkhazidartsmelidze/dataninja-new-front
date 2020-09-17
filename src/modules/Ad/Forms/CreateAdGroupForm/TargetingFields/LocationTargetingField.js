@@ -110,7 +110,7 @@ export default () => {
                     <input
                       type='hidden'
                       name={`targetings[included_locations][${loc.type}][]`}
-                      value={k}
+                      value={loc.key}
                     />
                     <Chip
                       color='primary'
@@ -151,7 +151,7 @@ export default () => {
                     <input
                       type='hidden'
                       name={`targetings[excluded_locations][${loc.type}][]`}
-                      value={k}
+                      value={loc.key}
                     />
                     <Chip
                       color='primary'
