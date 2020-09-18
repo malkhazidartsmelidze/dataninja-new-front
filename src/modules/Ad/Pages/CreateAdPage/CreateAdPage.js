@@ -19,7 +19,15 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const { networks, setNetworks, isNetworkSelected, turnOffNetwork } = useCreateAd();
+  const {
+    networks,
+    setNetworks,
+    isNetworkSelected,
+    turnOffNetwork,
+    campaignFormData,
+    adGroupFormData,
+    creativeFormData,
+  } = useCreateAd();
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
@@ -50,13 +58,13 @@ export default (props) => {
   const createFacebookAd = () => {
     setSuccessModal(true);
     console.log(existing);
-    const adGroupFormData = new FormData(adGroupFormRef.current);
-    const campaignFormData = new FormData(campaignFormRef.current);
-    const adCreativeFormData = new FormData(adCreativeFormRef.current);
+    const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
+    const cform = mergeFormData(campaignFormData, new FormData(campaignFormRef.current));
+    const crform = mergeFormData(creativeFormData, new FormData(adCreativeFormRef.current));
 
-    const campaignData = mergeFormData(campaignFormData, adGroupFormData);
-    const adGroupData = mergeFormData(adGroupFormData, campaignFormData);
-    const adCreativeData = adCreativeFormData;
+    const campaignData = mergeFormData(cform, afrom);
+    const adGroupData = mergeFormData(afrom, cform);
+    const adCreativeData = crform;
 
     let createdCampaign,
       createdAdGroup,
@@ -112,7 +120,7 @@ export default (props) => {
         });
       });
     } else if (!existing.facebook.ad) {
-      adGroupData.append('creative_facebook_adset_id', existing.facebook.adgroup);
+      adCreativeData.append('creative_facebook_adset_id', existing.facebook.adgroup);
 
       AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
         createdAdCreative = adCreativeRes;

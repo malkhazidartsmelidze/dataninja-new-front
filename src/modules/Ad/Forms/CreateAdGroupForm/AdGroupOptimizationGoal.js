@@ -16,6 +16,7 @@ export default () => {
         turnOffNetwork('google');
         turnOnNetwork('facebook');
       }
+      return;
     }
 
     if (value == 'maximize_clicks') {
@@ -24,7 +25,9 @@ export default () => {
         turnOffNetwork('facebook');
         turnOnNetwork('google');
       }
+      return;
     }
+    setValue(value);
   };
 
   useEffect(() => {

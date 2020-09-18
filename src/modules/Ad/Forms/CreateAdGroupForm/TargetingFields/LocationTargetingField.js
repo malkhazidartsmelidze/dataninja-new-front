@@ -4,8 +4,10 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Checkbox,
   Chip,
   CircularProgress,
+  FormControlLabel,
   Grid,
   IconButton,
   InputAdornment,
@@ -264,8 +266,9 @@ export default () => {
 
 const RadiusInput = () => {
   const [value, setValue] = useState(10);
-  const [unit, setUnit] = useState('km');
+  const [unit, setUnit] = useState('kilometer');
   const [max, setMax] = useState(100);
+  const [showRadius, setShowRadius] = useState(0);
 
   const valueChange = (_, value) => {
     setValue(value);
@@ -284,33 +287,50 @@ const RadiusInput = () => {
       <Grid container spacing={2}>
         <Grid item xs={3}>
           <SelectField
-            name='targetings[distance_unit]'
-            value={unit}
+            name='targetings[with_radius]'
+            value={showRadius}
             label='Choose Unit'
             fullWidth
             options={[
-              { name: 'Km', value: 'kilometer' },
-              { name: 'Mile', value: 'mile' },
+              { name: 'Include Radius', value: '1' },
+              { name: 'Not Include Radius', value: '0' },
             ]}
-            onChange={(e) => setUnit(e.target.value)}
+            onChange={(e) => setShowRadius(e.target.value)}
           />
         </Grid>
-        <Grid item xs={3}>
-          <TextField
-            name='targetings[radius]'
-            value={value}
-            label='Radius'
-            fullWidth
-            onChange={(e) => setValue(e.target.value)}
-            InputProps={{
-              endAdornment: <InputAdornment>{unit}</InputAdornment>,
-            }}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant='body2'>Choose Radius</Typography>
-          <Slider onChange={valueChange} defaultValue={20} max={max} />
-        </Grid>
+        {showRadius == '1' && (
+          <Fragment>
+            <Grid item xs={3}>
+              <SelectField
+                name='targetings[distance_unit]'
+                value={unit}
+                label='Choose Unit'
+                fullWidth
+                options={[
+                  { name: 'Kilometer', value: 'kilometer' },
+                  { name: 'Mile', value: 'mile' },
+                ]}
+                onChange={(e) => setUnit(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                name='targetings[radius]'
+                value={value}
+                label='Radius'
+                fullWidth
+                onChange={(e) => setValue(e.target.value)}
+                InputProps={{
+                  endAdornment: <InputAdornment>{unit}</InputAdornment>,
+                }}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <Typography variant='body2'>Choose Radius</Typography>
+              <Slider onChange={valueChange} defaultValue={20} max={max} />
+            </Grid>
+          </Fragment>
+        )}
       </Grid>
     </Fragment>
   );

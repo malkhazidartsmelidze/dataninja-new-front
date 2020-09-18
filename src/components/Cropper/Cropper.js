@@ -13,7 +13,6 @@ export default function Cropper(props) {
   const [imageRef, setImageRef] = useState(null);
   const [croppedImageUrl, setCroppedImageUrl] = useState(null);
   const [open, setOpen] = useState(props.open);
-  const [fileBlob, setFileBlob] = useState(null);
 
   useEffect(() => {
     if (!props.file) return;
@@ -76,6 +75,7 @@ export default function Cropper(props) {
 
     return new Promise((resolve, reject) => {
       canvas.toBlob((blob) => {
+        props.onBlob && props.onBlob(blob);
         if (!blob) {
           console.error('Canvas is empty');
           return;
@@ -97,7 +97,6 @@ export default function Cropper(props) {
     props.onImageChoose &&
       props.onImageChoose({
         url: croppedImageUrl,
-        blob: fileBlob,
       });
     setOpen(false);
   };

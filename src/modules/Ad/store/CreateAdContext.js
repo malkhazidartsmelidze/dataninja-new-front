@@ -5,6 +5,9 @@ export const CreateAdContext = createContext({});
 export const CreateAdContextProvider = ({ children }) => {
   const [networks, setNetworks] = useState(['facebook', 'google']);
   const [state, setState] = useState({});
+  const [campaignFormData] = useState(new FormData());
+  const [adGroupFormData] = useState(new FormData());
+  const [creativeFormData] = useState(new FormData());
 
   const turnOffNetwork = (n) => {
     setNetworks((o) => {
@@ -30,6 +33,9 @@ export const CreateAdContextProvider = ({ children }) => {
       value={{
         networks,
         state,
+        campaignFormData,
+        adGroupFormData,
+        creativeFormData,
         setState,
         setNetworks,
         turnOnNetwork,
