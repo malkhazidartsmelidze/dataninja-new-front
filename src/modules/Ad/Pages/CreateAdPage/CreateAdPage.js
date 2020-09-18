@@ -24,8 +24,6 @@ export default (props) => {
   const {
     networks,
     setNetworks,
-    isNetworkSelected,
-    turnOffNetwork,
     campaignFormData,
     adGroupFormData,
     creativeFormData,

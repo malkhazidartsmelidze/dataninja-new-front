@@ -61,6 +61,7 @@ export default () => {
                       name='adgroup_google_enhanced_bid'
                       onChange={(e) => setEnhancedBid(e.target.checked)}
                       checked={enhancedBid}
+                      value={enhancedBid ? 1 : 0}
                     />
                   }
                   label='Enhanced Bid'

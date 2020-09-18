@@ -7,6 +7,7 @@ const options = [
   { name: 'Desktop', value: 'desktop' },
   { name: 'Mobile', value: 'mobile' },
   { name: 'Tablet', value: 'tablet' },
+  { name: 'TV', value: 'connected_tv' },
 ];
 
 export default () => {
