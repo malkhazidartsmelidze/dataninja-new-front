@@ -3,7 +3,7 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
-export default (props) => {
+export default () => {
   const [disabled, setDisabled] = useState(false);
   const { state, setState } = useCreateAd();
 
@@ -12,7 +12,7 @@ export default (props) => {
   useEffect(() => {
     if (state.optimization_goal === 'views') {
       setDisabled(true);
-      setState({ billing_event: 'clicks' });
+      setState({ billing_event: 'views' });
     } else {
       setDisabled(false);
     }
