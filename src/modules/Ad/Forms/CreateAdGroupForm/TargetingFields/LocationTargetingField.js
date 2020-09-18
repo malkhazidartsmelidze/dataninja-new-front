@@ -28,12 +28,17 @@ import FacebookTargetingService from 'services/FacebookTargetingService';
 
 export default () => {
   const classes = useStyles();
-  const [targetedLocations, setTargetedlocations] = useState({});
-  const [excludedLocations, setExcludedLocations] = useState({});
+  const [facebookLocations, setFacebookLocations] = useState({
+    included: {},
+    excluded: {},
+  });
+  const [googleLocations, setGoogleLocations] = useState({});
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  console.log(targetedLocations, excludedLocations);
+  const [googleSuggestions, setGoogleSuggestions] = useState([]);
+  const [facebookCurrentLocationKey, setFacebookCurrentLocationKey] = useState(null);
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm.length < 3) return;
@@ -50,20 +55,25 @@ export default () => {
   }, [searchTerm]);
 
   const handleInputChange = (e) => {
+    setGoogleSuggestions([]);
     setSearchTerm(e.target.value);
   };
 
   const isLocationTargetted = (key) => {
-    return targetedLocations[key] !== undefined;
+    return facebookLocations.included[key] !== undefined;
   };
 
   const isLocationExcluded = (key) => {
-    return excludedLocations[key] !== undefined;
+    return facebookLocations.excluded[key] !== undefined;
   };
 
   const targetLocation = (location) => {
     if (!location.key || isLocationTargetted(location.key)) return;
-    setTargetedlocations({ ...targetedLocations, [location.key]: location });
+    addGoogleLocations(location);
+    setFacebookLocations((o) => {
+      o.included[location.key] = location;
+      return { ...o };
+    });
     if (isLocationExcluded(location.key)) {
       deleteFromExcluded(location.key);
     }
@@ -71,28 +81,46 @@ export default () => {
 
   const excludeLocation = (location) => {
     if (!location.key || isLocationExcluded(location.key)) return;
-    setExcludedLocations({ ...excludedLocations, [location.key]: location });
+    setFacebookLocations((o) => {
+      o.excluded[location.key] = location;
+      return { ...o };
+    });
+    addGoogleLocations(location);
     if (isLocationTargetted(location.key)) {
       deleteFromTargetted(location.key);
     }
   };
 
   const deleteFromExcluded = (key) => {
-    setExcludedLocations((old) => {
-      delete old[key];
+    setFacebookLocations((old) => {
+      delete old.excluded[key];
       return { ...old };
     });
   };
 
   const deleteFromTargetted = (key) => {
-    setTargetedlocations((old) => {
-      delete old[key];
+    setFacebookLocations((old) => {
+      delete old.included[key];
       return { ...old };
     });
   };
 
+  const addGoogleLocations = (location) => {
+    setGoogleSuggestions([]);
+    if (googleLocations[location.key]) return;
+    FacebookTargetingService.searchLocationInGoogle(location.name).then((data) => {
+      setGoogleSuggestions(data);
+      setFacebookCurrentLocationKey(location.key);
+    });
+  };
+
+  const googleLocationChoosen = (e) => {
+    setGoogleLocations({ ...googleLocations, [facebookCurrentLocationKey]: e.target.value });
+    setGoogleSuggestions([]);
+  };
+
   const renderIncludedLocations = () => {
-    const locs = Object.values(targetedLocations);
+    const locs = Object.values(facebookLocations.included);
 
     return (
       <Card>
@@ -114,8 +142,15 @@ export default () => {
                       name={`targetings[included_locations][${loc.type}][]`}
                       value={loc.key}
                     />
+                    {googleLocations[loc.key] && (
+                      <input
+                        type='hidden'
+                        name={`targetings[google_included_locations][]`}
+                        value={googleLocations[loc.key]}
+                      />
+                    )}
                     <Chip
-                      color='primary'
+                      color={googleLocations[loc.key] ? 'primary' : 'secondary'}
                       size='small'
                       label={`${loc.name} (${loc.type})`}
                       className={classes.chip}
@@ -133,7 +168,7 @@ export default () => {
   };
 
   const renderExcludedLocations = () => {
-    const locs = Object.values(excludedLocations);
+    const locs = Object.values(facebookLocations.excluded);
 
     return (
       <Card>
@@ -155,8 +190,15 @@ export default () => {
                       name={`targetings[excluded_locations][${loc.type}][]`}
                       value={loc.key}
                     />
+                    {googleLocations[loc.key] && (
+                      <input
+                        type='hidden'
+                        name={`targetings[google_excluded_locations][]`}
+                        value={googleLocations[loc.key]}
+                      />
+                    )}
                     <Chip
-                      color='primary'
+                      color={googleLocations[loc.key] ? 'primary' : 'secondary'}
                       label={`${loc.name} (${loc.type})`}
                       size='small'
                       className={classes.chip}
@@ -184,7 +226,7 @@ export default () => {
             <Grid item xs={6}>
               {renderExcludedLocations()}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={googleSuggestions.length ? 6 : 12}>
               <TextField
                 label='Enter Location'
                 onChange={handleInputChange}
@@ -197,6 +239,7 @@ export default () => {
                       <IconButton
                         onClick={() => {
                           setOptions([]);
+                          setGoogleSuggestions([]);
                           setSearchTerm('');
                         }}
                       >
@@ -207,6 +250,19 @@ export default () => {
                 }}
               />
             </Grid>
+            {googleSuggestions.length > 0 && (
+              <Grid item xs={6}>
+                <SelectField
+                  label='Choose In Google'
+                  options={googleSuggestions.map((s) => {
+                    return { name: `${s.name} - ${s.type}`, value: s.criteria_id };
+                  })}
+                  fullWidth
+                  onChange={googleLocationChoosen}
+                />
+              </Grid>
+            )}
+
             <Grid item xs={12}>
               <Card className={classes.card} elevation={4}>
                 {loading ? (

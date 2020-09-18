@@ -7,6 +7,7 @@ export default function mergeFormData(form1, form2) {
   const entries = form2.entries();
 
   for (var pair of entries) {
+    // form1.delete(pair[0]);
     form1.append(pair[0], pair[1]);
   }
 

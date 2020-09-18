@@ -40,7 +40,7 @@ export default (props) => {
         <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
           <AdGroupNameField />
         </ExpansionPanel>
-        <ExpansionPanel title='Enter Adset Budget' subTitle='Choose Budget here'>
+        <ExpansionPanel title='Enter Budget' subTitle='Choose Budget here'>
           <AdGroupBudgetField />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Audience' subTitle='Choose Existing Audince Or Creat New One'>

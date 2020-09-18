@@ -20,7 +20,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const [N, setN] = useState('facebook');
+  const [N, setN] = useState('google');
   const {
     networks,
     setNetworks,
@@ -136,7 +136,7 @@ export default (props) => {
   };
 
   const createGoogleAd = () => {
-    setSuccessModal(true);
+    // setSuccessModal(true);
     console.log(existing);
     const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
     const cform = mergeFormData(campaignFormData, new FormData(campaignFormRef.current));
@@ -214,9 +214,9 @@ export default (props) => {
   };
 
   const createAd = () => {
-    if (N == 'facebook') {
+    if (N === 'facebook') {
       return createFacebookAd();
-    } else if (N == 'google') {
+    } else if (N === 'google') {
       return createGoogleAd();
     }
   };
