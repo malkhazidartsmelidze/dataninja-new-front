@@ -5,6 +5,7 @@ import { mdiAbTesting, mdiFacebook, mdiGoogle } from '@mdi/js';
 import Icon from '@mdi/react';
 import mergeFormData from 'common/mergeFormData';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
+import { SelectField } from 'components/Fields';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
@@ -19,6 +20,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
+  const [N, setN] = useState('facebook');
   const {
     networks,
     setNetworks,
@@ -133,6 +135,84 @@ export default (props) => {
     }
   };
 
+  const createGoogleAd = () => {
+    setSuccessModal(true);
+    console.log(existing);
+    const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
+    const cform = mergeFormData(campaignFormData, new FormData(campaignFormRef.current));
+    const crform = mergeFormData(creativeFormData, new FormData(adCreativeFormRef.current));
+
+    const campaignData = mergeFormData(cform, afrom);
+    const adGroupData = mergeFormData(afrom, cform);
+    const adCreativeData = crform;
+
+    let createdCampaign,
+      createdAdGroup,
+      createdAdCreative = null;
+
+    if (!existing.google.campaign) {
+      CampaignService.createCampaign('google', campaignData).then((campaignRes) => {
+        createdCampaign = campaignRes;
+        console.log('campaignRes', campaignRes);
+        adGroupData.append('adgroup_google_campaign_id', createdCampaign.id);
+        setExisting((o) => {
+          o.google.campaign = createdCampaign.id;
+          return { ...o };
+        });
+
+        AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+          createdAdGroup = adGroupRes;
+          console.log('adGroupRes', adGroupRes);
+          adCreativeData.append('creative_google_adset_id', createdAdGroup.id);
+          setExisting((o) => {
+            o.google.adgroup = createdAdGroup.id;
+            return { ...o };
+          });
+
+          AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
+            createdAdCreative = adCreativeRes;
+            console.log('adCreativeRes', adCreativeRes);
+            setExisting((o) => {
+              o.google.ad = adCreativeRes.id;
+              return { ...o };
+            });
+          });
+        });
+      });
+    } else if (!existing.google.adgroup) {
+      adGroupData.append('adgroup_google_campaign_id', existing.google.campaign);
+      AdGroupService.createAdGroup('google', adGroupData).then((adGroupRes) => {
+        createdAdGroup = adGroupRes;
+        console.log('adGroupRes', adGroupRes);
+        adCreativeData.append('creative_google_adset_id', createdAdGroup.id);
+        setExisting((o) => {
+          o.google.adgroup = createdAdGroup.id;
+          return { ...o };
+        });
+
+        AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
+          createdAdCreative = adCreativeRes;
+          console.log('adCreativeRes', adCreativeRes);
+          setExisting((o) => {
+            o.google.ad = adCreativeRes.id;
+            return { ...o };
+          });
+        });
+      });
+    } else if (!existing.google.ad) {
+      adCreativeData.append('creative_google_adset_id', existing.google.adgroup);
+
+      AdCreativeService.createAdCreative('google', adCreativeData).then((adCreativeRes) => {
+        createdAdCreative = adCreativeRes;
+        console.log('adCreativeRes', adCreativeRes);
+        setExisting((o) => {
+          o.google.ad = adCreativeRes.id;
+          return { ...o };
+        });
+      });
+    }
+  };
+
   const createAd = () => {
     return createFacebookAd();
   };
@@ -157,6 +237,15 @@ export default (props) => {
       <Button variant='contained' onClick={generatePreview}>
         Preview
       </Button>
+      <SelectField
+        style={{ width: 200 }}
+        options={[
+          { name: 'Facebook', value: 'facebook' },
+          { name: 'Google', value: 'google' },
+        ]}
+        value={N}
+        onChange={(e) => setN(e.target.value)}
+      />
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <NetworkSuccesses
