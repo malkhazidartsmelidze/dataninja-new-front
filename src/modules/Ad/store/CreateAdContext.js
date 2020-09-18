@@ -4,7 +4,10 @@ export const CreateAdContext = createContext({});
 
 export const CreateAdContextProvider = ({ children }) => {
   const [networks, setNetworks] = useState(['facebook', 'google']);
-  const [state, setState] = useState({});
+  const [state, _setState] = useState({
+    optimization_goal: 'clicks',
+    billing_event: 'clicks',
+  });
   const [campaignFormData] = useState(new FormData());
   const [adGroupFormData] = useState(new FormData());
   const [creativeFormData] = useState(new FormData());
@@ -26,6 +29,10 @@ export const CreateAdContextProvider = ({ children }) => {
 
   const isNetworkSelected = (n) => {
     return networks.indexOf(n) >= 0;
+  };
+
+  const setState = (obj) => {
+    _setState({ ...state, ...obj });
   };
 
   return (

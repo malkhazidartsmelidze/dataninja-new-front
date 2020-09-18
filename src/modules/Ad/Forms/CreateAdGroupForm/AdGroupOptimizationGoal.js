@@ -4,15 +4,22 @@ import { SelectField } from 'components/Fields';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default () => {
-  const [value, setValue] = useState('clicks');
-  const { turnOffNetwork, turnOnNetwork, networks, isNetworkSelected } = useCreateAd();
+  const {
+    turnOffNetwork,
+    turnOnNetwork,
+    networks,
+    isNetworkSelected,
+    state,
+    setState,
+  } = useCreateAd();
+  const value = state.optimization_goal;
 
   const handleChange = (e) => {
     const value = e.target.value;
 
     if (value == 'page_views') {
       if (window.confirm('Are you sure you want to choose this strategy? Google will turn off')) {
-        setValue(value);
+        setState({ optimization_goal: value });
         turnOffNetwork('google');
         turnOnNetwork('facebook');
       }
@@ -21,22 +28,22 @@ export default () => {
 
     if (value == 'maximize_clicks') {
       if (window.confirm('Are you sure you want to choose this strategy? Facebook will turn off')) {
-        setValue(value);
+        setState({ optimization_goal: value });
         turnOffNetwork('facebook');
         turnOnNetwork('google');
       }
       return;
     }
-    setValue(value);
+    setState({ optimization_goal: value });
   };
 
   useEffect(() => {
     if (isNetworkSelected('facebook') && value === 'maximize_clicks') {
-      setValue('clicks');
+      setState({ optimization_goal: 'clicks' });
     }
 
     if (isNetworkSelected('google') && value === 'page_views') {
-      setValue('clicks');
+      setState({ optimization_goal: 'clicks' });
     }
   }, [networks]);
 
