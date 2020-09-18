@@ -49,7 +49,7 @@ export default () => {
                         <Icon path={icons[n]} />
                         <input
                           type='hidden'
-                          name={`targetings[${n}_langauges][]`}
+                          name={`targetings[${n}_languages][]`}
                           value={l[n + '_id']}
                         />
                       </Fragment>

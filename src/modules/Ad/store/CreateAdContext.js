@@ -7,6 +7,7 @@ export const CreateAdContextProvider = ({ children }) => {
   const [state, _setState] = useState({
     optimization_goal: 'clicks',
     billing_event: 'clicks',
+    display_link: 'https://facebook.com',
   });
   const [campaignFormData] = useState(new FormData());
   const [adGroupFormData] = useState(new FormData());
