@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import { RadioField } from 'components/Fields';
+import { SelectField } from 'components/Fields';
 
 const options = [
   { name: 'Optimize: Prefer best performing ads (Recomended)', value: 'optimize' },
@@ -13,7 +13,7 @@ export default () => {
   return (
     <PanelField
       content={
-        <RadioField
+        <SelectField
           name='targetings[ad_rotation]'
           options={options}
           value={value}

@@ -3,10 +3,10 @@ import Module from 'modules/Module';
 import { AppLayout } from 'layouts';
 import { LinearProgress } from '@material-ui/core';
 import P from 'paths';
-
+import AdModule from 'modules/Ad';
 const UserModule = lazy(() => import('modules/User'));
 const CrmModule = lazy(() => import('modules/Crm'));
-const AdModule = lazy(() => import('modules/Ad'));
+// const AdModule = lazy(() => import('modules/Ad'));
 const DashboardModule = lazy(() => import('modules/Dashboard'));
 const BuilderModule = lazy(() => import('modules/Builder'));
 const AudiencesModule = lazy(() => import('modules/Audiences'));

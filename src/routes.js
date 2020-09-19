@@ -3,8 +3,8 @@ import { Redirect, Switch, Route as ReactRouter } from 'react-router-dom';
 import useUser from 'store/UserContext';
 import P from 'paths';
 import { Error404Page } from 'modules/Errors';
-
-const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
+import BootstrapAppModule from 'modules/BootstrapAppModule';
+// const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
 
 const AuthModule = lazy(() => import('modules/Auth'));
 
