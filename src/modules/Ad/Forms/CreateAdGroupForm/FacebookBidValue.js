@@ -6,7 +6,6 @@ import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default () => {
   const { state, setState } = useCreateAd();
-  const [bidType, setBidType] = useState('automatic');
   const [enhancedBid, setEnhancedBid] = useState(false);
   const { isNetworkSelected } = useCreateAd();
 
@@ -24,11 +23,11 @@ export default () => {
                   ]}
                   label='Choose Bid Type'
                   name='adgroup_bid_type'
-                  value={bidType}
-                  onChange={(e) => setBidType(e.target.value)}
+                  value={state.bid_type}
+                  onChange={(e) => setState({ bid_type: e.target.value })}
                   width={300}
                 />
-                {bidType === 'manual' && (
+                {state.bid_type === 'manual' && (
                   <RadioField
                     options={[
                       { name: 'Cost Cap', value: 'cost_cap' },
@@ -39,7 +38,7 @@ export default () => {
                     name='adgroup_bid_strategy'
                   />
                 )}
-                {bidType === 'manual' && (
+                {state.bid_type === 'manual' && (
                   <TextField
                     InputProps={{
                       startAdornment: <InputAdornment>$</InputAdornment>,

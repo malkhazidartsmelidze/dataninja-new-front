@@ -23,7 +23,11 @@ export default () => {
   }, [state.optimization_goal, state.bid_strategy]);
 
   const handleChange = (e) => {
-    if (state.bid_strategy === 'cost_cap' && e.target.value === 'clicks') {
+    if (
+      state.bid_strategy === 'cost_cap' &&
+      e.target.value === 'clicks' &&
+      state.bid_type === 'manual'
+    ) {
       e.preventDefault();
       return alert('Please choose bid cap');
     }
