@@ -16,7 +16,19 @@ export default () => {
     } else {
       setDisabled(false);
     }
-  }, [state.optimization_goal]);
+
+    if (state.bid_strategy === 'cost_cap') {
+      setState({ billing_event: 'views' });
+    }
+  }, [state.optimization_goal, state.bid_strategy]);
+
+  const handleChange = (e) => {
+    if (state.bid_strategy === 'cost_cap' && e.target.value === 'clicks') {
+      e.preventDefault();
+      return alert('Please choose bid cap');
+    }
+    setState({ billing_event: e.target.value });
+  };
 
   return (
     <PanelField
@@ -26,7 +38,7 @@ export default () => {
             { value: 'clicks', name: 'Pay Per Click' },
             { value: 'views', name: 'Pay Per Impressions' },
           ]}
-          onChange={(e) => setState({ billing_event: e.target.value })}
+          onChange={handleChange}
           width={400}
           value={value}
           disabled={disabled}

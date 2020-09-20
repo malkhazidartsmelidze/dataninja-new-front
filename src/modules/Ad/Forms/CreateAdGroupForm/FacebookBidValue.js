@@ -5,7 +5,7 @@ import { SelectField, RadioField } from 'components/Fields';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default () => {
-  const [bidStrategy, setBidStrategy] = useState('cost_cap');
+  const { state, setState } = useCreateAd();
   const [bidType, setBidType] = useState('automatic');
   const [enhancedBid, setEnhancedBid] = useState(false);
   const { isNetworkSelected } = useCreateAd();
@@ -34,8 +34,8 @@ export default () => {
                       { name: 'Cost Cap', value: 'cost_cap' },
                       { name: 'Bid Cap', value: 'bid_cap' },
                     ]}
-                    value={bidStrategy}
-                    onChange={(e) => setBidStrategy(e.target.value)}
+                    value={state.bid_strategy}
+                    onChange={(e) => setState({ bid_strategy: e.target.value })}
                     name='adgroup_bid_strategy'
                   />
                 )}
