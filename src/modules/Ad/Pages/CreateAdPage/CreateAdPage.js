@@ -270,7 +270,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
+          <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
             <form ref={adGroupFormRef}>
               <CreateAdGroupForm
                 campaign={existingCampaign}
@@ -278,7 +278,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
+          <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
             <form ref={adCreativeFormRef}>
               <CreateAdCreativeForm adgroup={existingAdGroup} />
             </form>

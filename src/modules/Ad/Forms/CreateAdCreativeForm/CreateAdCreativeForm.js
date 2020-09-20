@@ -21,49 +21,61 @@ export default (props) => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <ExpansionPanel title='Creative Name' subTitle='Enter Creative Name'>
+        <ExpansionPanel expanded title='Creative Name' subTitle='Enter Creative Name'>
           <CreativeNameField />
         </ExpansionPanel>
-        <ExpansionPanel title='Creative Link' subTitle='Enter Creative Link Here'>
+        <ExpansionPanel expanded title='Creative Link' subTitle='Enter Creative Link Here'>
           <CreativeUrlField />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Pixel' subTitle='Choose Facebook pixel Here'>
+        <ExpansionPanel expanded title='Choose Pixel' subTitle='Choose Facebook pixel Here'>
           <CreativePixelField />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Facebook Page' subTitle='Choose Facebook Page'>
+        <ExpansionPanel expanded title='Choose Facebook Page' subTitle='Choose Facebook Page'>
           <FacebookPageField />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Image Image' subTitle='Choose Image Image'>
+        <ExpansionPanel expanded title='Choose Image Image' subTitle='Choose Image Image'>
           <CreativeImageField name='creative_image' aspect={1.91} />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Logo' subTitle='Choose Logo'>
+        <ExpansionPanel expanded title='Choose Logo' subTitle='Choose Logo'>
           <CreativeImageField name='creative_logo_image' aspect={1} />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Facebook Headlines' subTitle='Choose Facebook Headlines'>
+        <ExpansionPanel
+          expanded
+          title='Choose Facebook Headlines'
+          subTitle='Choose Facebook Headlines'
+        >
           <CreativeHeadlinesField />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Facebook Descriptions' subTitle='Facebook Descriptions'>
+        <ExpansionPanel
+          expanded
+          title='Choose Facebook Descriptions'
+          subTitle='Facebook Descriptions'
+        >
           <CreativeDescriptionFields />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Facebook Description' subTitle='Choose Facebook Description'>
+        <ExpansionPanel
+          expanded
+          title='Choose Facebook Description'
+          subTitle='Choose Facebook Description'
+        >
           <CreativeLongHeadlineField />
         </ExpansionPanel>
-        <ExpansionPanel title='Primary Text' subTitle='Choose Facebook Primary Text'>
+        <ExpansionPanel expanded title='Primary Text' subTitle='Choose Facebook Primary Text'>
           <CreativePrimaryTextField />
         </ExpansionPanel>
-        <ExpansionPanel title='Business Name' subTitle='Choose Google Business Name'>
+        <ExpansionPanel expanded title='Business Name' subTitle='Choose Google Business Name'>
           <CreativeBusinessNameField />
         </ExpansionPanel>
-        <ExpansionPanel title='Enter Parameters' subTitle='Choose Ad Parameters'>
+        <ExpansionPanel expanded title='Enter Parameters' subTitle='Choose Ad Parameters'>
           <CreativeParametersField />
         </ExpansionPanel>
-        <ExpansionPanel title='Display Link' subTitle='Choose Facebook Display Link'>
+        <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
           <CreativeDisplayLinkField />
         </ExpansionPanel>
-        <ExpansionPanel title='Call To Actions' subTitle='Choose Call To Action'>
+        <ExpansionPanel expanded title='Call To Actions' subTitle='Choose Call To Action'>
           <CallToActionsField />
         </ExpansionPanel>
-        <ExpansionPanel title='Gmail Fields' subTitle='Enter Gmail Ad Fields'>
+        <ExpansionPanel expanded title='Gmail Fields' subTitle='Enter Gmail Ad Fields'>
           <CreativeGmailFields />
         </ExpansionPanel>
       </Grid>
