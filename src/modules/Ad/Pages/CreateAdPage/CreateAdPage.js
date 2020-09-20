@@ -36,8 +36,8 @@ export default (props) => {
   const [successModal, setSuccessModal] = useState(false);
   const [existing, setExisting] = useState({
     google: {
-      campaign: 46,
-      adgroup: 31,
+      campaign: null,
+      adgroup: null,
       ad: null,
     },
     facebook: {
@@ -55,7 +55,7 @@ export default (props) => {
     setNetworks([n]);
   };
 
-  const createFacebookAd = () => {
+  const createFacebookAd = (callback) => {
     setSuccessModal(true);
     console.log(existing);
     const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
@@ -133,7 +133,7 @@ export default (props) => {
     }
   };
 
-  const createGoogleAd = () => {
+  const createGoogleAd = (callback) => {
     // setSuccessModal(true);
     console.log(existing);
     const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
@@ -212,11 +212,14 @@ export default (props) => {
   };
 
   const createAd = () => {
-    if (N === 'facebook') {
-      return createFacebookAd();
-    } else if (N === 'google') {
-      return createGoogleAd();
-    }
+    createFacebookAd(() => {
+      createGoogleAd();
+    });
+    // if (N === 'facebook') {
+    //   return createFacebookAd();
+    // } else if (N === 'google') {
+    //   return ;
+    // }
   };
 
   const handleNetworkChage = (e, newValue) => {
