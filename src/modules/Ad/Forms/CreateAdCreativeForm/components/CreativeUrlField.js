@@ -5,7 +5,7 @@ import parseHostFromUrl from 'common/parseHostFromUrl';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default () => {
-  const [value, setValue] = useState('https://facebook.com');
+  const [value, setValue] = useState('https://github.com');
   const [error, setError] = useState(false);
   const { setState } = useCreateAd();
 

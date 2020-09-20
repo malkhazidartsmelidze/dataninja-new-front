@@ -131,6 +131,7 @@ export default (props) => {
         });
       });
     }
+    callback();
   };
 
   const createGoogleAd = (callback) => {
@@ -209,11 +210,12 @@ export default (props) => {
         });
       });
     }
+    callback();
   };
 
   const createAd = () => {
-    createFacebookAd(() => {
-      createGoogleAd();
+    createGoogleAd(() => {
+      createFacebookAd(() => {});
     });
     // if (N === 'facebook') {
     //   return createFacebookAd();

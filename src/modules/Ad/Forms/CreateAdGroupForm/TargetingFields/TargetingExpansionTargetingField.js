@@ -13,6 +13,7 @@ export default (props) => {
     <PanelField
       content={
         <Fragment>
+          <input type='hidden' name='targetings[targeting_expansion]' value={value} />
           <Typography gutterBottom>{value}%</Typography>
           <Slider defaultValue={value} onChange={handleFieldChange} />
         </Fragment>
