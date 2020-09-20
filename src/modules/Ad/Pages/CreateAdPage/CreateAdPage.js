@@ -36,7 +36,7 @@ export default (props) => {
   const [successModal, setSuccessModal] = useState(false);
   const [existing, setExisting] = useState({
     google: {
-      campaign: null,
+      campaign: 1,
       adgroup: null,
       ad: null,
     },
@@ -131,7 +131,7 @@ export default (props) => {
         });
       });
     }
-    callback();
+    callback && callback();
   };
 
   const createGoogleAd = (callback) => {
@@ -210,13 +210,14 @@ export default (props) => {
         });
       });
     }
-    callback();
+    callback && callback();
   };
 
   const createAd = () => {
-    createGoogleAd(() => {
+    createGoogleAd();
+    /* () => {
       createFacebookAd(() => {});
-    });
+    } */
     // if (N === 'facebook') {
     //   return createFacebookAd();
     // } else if (N === 'google') {

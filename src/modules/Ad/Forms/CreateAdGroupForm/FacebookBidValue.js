@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Checkbox, FormControlLabel, Grid, InputAdornment, TextField } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField, RadioField } from 'components/Fields';

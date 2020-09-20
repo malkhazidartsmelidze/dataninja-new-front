@@ -33,31 +33,35 @@ export default (props) => {
     <Grid container>
       <Grid item>
         {campaign && (
-          <ExpansionPanel title='Choose Existing Adset' subTitle=''>
+          <ExpansionPanel expanded title='Choose Existing Adset' subTitle=''>
             <ChooseExistingAdgroupField campaign={campaign} network={network} />
           </ExpansionPanel>
         )}
-        <ExpansionPanel title='Enter Adset Name' subTitle='Adset Name Field'>
+        <ExpansionPanel expanded title='Enter Adset Name' subTitle='Adset Name Field'>
           <AdGroupNameField />
         </ExpansionPanel>
-        <ExpansionPanel title='Enter Budget' subTitle='Choose Budget here'>
+        <ExpansionPanel expanded title='Enter Budget' subTitle='Choose Budget here'>
           <AdGroupBudgetField />
         </ExpansionPanel>
-        <ExpansionPanel title='Choose Audience' subTitle='Choose Existing Audince Or Creat New One'>
+        <ExpansionPanel
+          expanded
+          title='Choose Audience'
+          subTitle='Choose Existing Audince Or Creat New One'
+        >
           <ChooseAudienceField />
         </ExpansionPanel>
-        <ExpansionPanel title='Enter Dates' subTitle='Start And End Dates'>
+        <ExpansionPanel expanded title='Enter Dates' subTitle='Start And End Dates'>
           <AdGroupDatesField />
         </ExpansionPanel>
-        <ExpansionPanel title='Optimize Bid To' subTitle='Enter Bid Optimization'>
+        <ExpansionPanel expanded title='Optimize Bid To' subTitle='Enter Bid Optimization'>
           <OptimizationGoal />
         </ExpansionPanel>
         {isNetworkSelected('facebook') && (
-          <ExpansionPanel title='Billing Event' subTitle='Enter When You are paying'>
+          <ExpansionPanel expanded title='Billing Event' subTitle='Enter When You are paying'>
             <AdGroupBillingEventField />
           </ExpansionPanel>
         )}
-        <ExpansionPanel title='Bid Value' subTitle='Enter Bid Value'>
+        <ExpansionPanel expanded title='Bid Value' subTitle='Enter Bid Value'>
           <FacebookBidValue />
         </ExpansionPanel>
         <ExpansionPanel
@@ -68,43 +72,43 @@ export default (props) => {
         >
           <GenderTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Audience Age' subTitle='Choose Ages'>
+        <ExpansionPanel expanded title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Locations' subTitle='Enter Locations in both networks'>
+        <ExpansionPanel expanded title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Location Type' subTitle='Enter Location Type'>
+        <ExpansionPanel expanded title='Location Type' subTitle='Enter Location Type'>
           <LocationTypeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Languages' subTitle='Enter Languages'>
+        <ExpansionPanel expanded title='Languages' subTitle='Enter Languages'>
           <LanguageTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Income Targeting' subTitle='Enter HouseHold Income'>
+        <ExpansionPanel expanded title='Income Targeting' subTitle='Enter HouseHold Income'>
           <HouseHoldIncomeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Parental Status' subTitle='Select Parental Status'>
+        <ExpansionPanel expanded title='Parental Status' subTitle='Select Parental Status'>
           <ParentalStatusTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Device Targetings' subTitle='Select Devices'>
+        <ExpansionPanel expanded title='Device Targetings' subTitle='Select Devices'>
           <DeviceTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='OS Targetings' subTitle='Select OS'>
+        <ExpansionPanel expanded title='OS Targetings' subTitle='Select OS'>
           <OperatingSystemTargetingField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Facebook Detailed Targeting' subTitle='Enter Facebook'>
           <TargetingSearchField />
         </ExpansionPanel>
-        <ExpansionPanel title='Audience' subTitle='Select Audience Tree'>
+        <ExpansionPanel expanded title='Audience' subTitle='Select Audience Tree'>
           <AudienceCategoryTree />
         </ExpansionPanel>
-        <ExpansionPanel title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
+        <ExpansionPanel expanded title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
           <AdRotationTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
+        <ExpansionPanel expanded title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
           <TargetingExpansionTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel title='Placements' subTitle='Choose Placements'>
+        <ExpansionPanel expanded title='Placements' subTitle='Choose Placements'>
           <AdGroupCreativePlacementsField />
         </ExpansionPanel>
         <input type='hidden' value='display' name='google_ad_type' />
