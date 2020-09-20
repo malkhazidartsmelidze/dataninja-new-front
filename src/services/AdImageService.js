@@ -1,8 +1,8 @@
 import api from 'common/api';
 
 class AdImageService {
-  static getImages(network) {
-    return api.call('get', `/${network}/image/all`).then(api.getData);
+  static getImages(network, params) {
+    return api.call('get', `/${network}/image/all`, { params }).then(api.getData);
   }
 }
 
