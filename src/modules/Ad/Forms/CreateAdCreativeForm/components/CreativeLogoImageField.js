@@ -2,14 +2,15 @@ import { Button, Card, CardActionArea, CardActions, CardMedia } from '@material-
 import { mdiFileUpload } from '@mdi/js';
 import Icon from '@mdi/react';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import React, { Fragment, PureComponent, useState } from 'react';
-import ReactCrop from 'react-image-crop';
+import React, { Fragment, useEffect, useState } from 'react';
 import 'react-image-crop/dist/ReactCrop.css';
 import Cropper from 'components/Cropper';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
-export default function CreativeLogoImageField(props) {
+export default function CreativeImageField(props) {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState({});
+  const { creativeFormData } = useCreateAd();
 
   const onSelectFile = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -18,15 +19,17 @@ export default function CreativeLogoImageField(props) {
   };
 
   const imageChosen = (src) => {
-    console.log(src);
     setImage(src);
+  };
+
+  const blobChanged = (blob) => {
+    creativeFormData.append(props.name, blob, 'creativeName.jpg');
   };
 
   return (
     <PanelField
       content={
         <Fragment>
-          <input type='hidden' name='creative_logo_image' value={image && image.url} />
           <Card>
             <CardActionArea>
               <CardMedia image={image.url} style={{ height: 150, backgroundSize: 'contain' }} />
@@ -44,7 +47,13 @@ export default function CreativeLogoImageField(props) {
             </CardActions>
           </Card>
 
-          <Cropper file={file} open={Boolean(file)} aspect={1} onImageChoose={imageChosen} />
+          <Cropper
+            name='creative_media_test'
+            onBlob={blobChanged}
+            file={file}
+            open={Boolean(file)}
+            onImageChoose={imageChosen}
+          />
         </Fragment>
       }
     />

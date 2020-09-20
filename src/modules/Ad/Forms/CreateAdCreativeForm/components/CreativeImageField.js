@@ -23,6 +23,7 @@ export default function CreativeImageField(props) {
   };
 
   const blobChanged = (blob) => {
+    creativeFormData.delete(props.name);
     creativeFormData.append(props.name, blob, 'creativeName.jpg');
   };
 
@@ -51,6 +52,7 @@ export default function CreativeImageField(props) {
             name='creative_media_test'
             onBlob={blobChanged}
             file={file}
+            aspect={props.aspect || 16 / 9}
             open={Boolean(file)}
             onImageChoose={imageChosen}
           />

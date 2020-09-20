@@ -34,10 +34,10 @@ export default (props) => {
           <FacebookPageField />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Image Image' subTitle='Choose Image Image'>
-          <CreativeImageField name='creative_image' />
+          <CreativeImageField name='creative_image' aspect={1.91} />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Logo' subTitle='Choose Logo'>
-          <CreativeLogoImageField name='facebook_creative_square' />
+          <CreativeImageField name='creative_logo_image' aspect={1} />
         </ExpansionPanel>
         <ExpansionPanel title='Choose Facebook Headlines' subTitle='Choose Facebook Headlines'>
           <CreativeHeadlinesField />
