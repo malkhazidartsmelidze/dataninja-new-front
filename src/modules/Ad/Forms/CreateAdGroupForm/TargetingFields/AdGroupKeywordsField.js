@@ -3,7 +3,7 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 import { TextField, Grid, Typography } from '@material-ui/core';
 
 export default () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('[asdf]\n"asda"\nasqwwe\n"qwewew"\n[asdfsdfdf]');
   const [keywords, setKeywords] = useState({});
 
   const parseValues = () => {
