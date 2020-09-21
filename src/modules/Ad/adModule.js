@@ -4,6 +4,7 @@ import P from 'paths';
 import IndexPage from './Pages/IndexPage';
 import CreateAdPage from './Pages/CreateAdPage';
 import { CreateAdContextProvider } from './store/CreateAdContext';
+import CreateSearchAdPage from './Pages/CreateSearchAdPage';
 
 export default () => {
   const mod = new Module({
@@ -12,6 +13,11 @@ export default () => {
         path: P.AD_MODULE,
         exact: true,
         component: IndexPage,
+      },
+      {
+        path: P.AD_CREATE_SEARCH,
+        exact: true,
+        component: CreateSearchAdPage,
       },
       {
         path: P.AD_CREATE,

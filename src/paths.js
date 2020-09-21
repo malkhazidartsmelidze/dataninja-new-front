@@ -10,9 +10,7 @@ export default {
 
   AD_MODULE: '/app/ad/',
   AD_CREATE: '/app/ad/create',
-  AD_CREATE_NEW: '/app/ad/new/:network/:goal',
-  AD_CREATE_EXISTING: '/app/ad/existing/:network/:campaign/:adset?',
-  AD_VIEW_ALL: '/app/ad/all',
+  AD_CREATE: '/app/ad/create/search',
 
   BUILDER_MODULE: '/app/builder/',
 
