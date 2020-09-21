@@ -51,6 +51,9 @@ export default function CreativeImageField(props) {
       content={
         <Fragment>
           <Card>
+            {chosenImages.map((id) => {
+              return <input type='hidden' name={`${props.name}_ids[]`} key={id} value={id} />;
+            })}
             <CardActionArea>
               <CardMedia image={image.url} style={{ height: 150, backgroundSize: 'contain' }} />
             </CardActionArea>
