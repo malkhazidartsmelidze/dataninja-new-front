@@ -24,6 +24,7 @@ import useCreateAd from 'modules/Ad/store/CreateAdContext';
 import AudienceCategoryTree from './TargetingFields/AudienceCategoryTree';
 import AdGroupCreativePlacementsField from './TargetingFields/AdGroupCreativePlacementsField';
 import OperatingSystemTargetingField from './TargetingFields/OperatingSystemTargetingField';
+import AdGroupKeywordsField from './TargetingFields/AdGroupKeywordsField';
 
 export default (props) => {
   const { campaign, network } = props;
@@ -74,6 +75,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel expanded title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
+        </ExpansionPanel>
+        <ExpansionPanel expanded title='Keywords' subTitle='Enter Keywords'>
+          <AdGroupKeywordsField />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />

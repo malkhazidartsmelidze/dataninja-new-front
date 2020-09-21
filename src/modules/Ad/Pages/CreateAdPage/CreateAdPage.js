@@ -214,8 +214,8 @@ export default (props) => {
   };
 
   const createAd = () => {
-    // createGoogleAd();
-    createFacebookAd(() => {});
+    createGoogleAd();
+    // createFacebookAd(() => {});
     /* () => {
     } */
     // if (N === 'facebook') {
@@ -270,7 +270,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
+          <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
             <form ref={adGroupFormRef}>
               <CreateAdGroupForm
                 campaign={existingCampaign}
@@ -278,7 +278,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
+          <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
             <form ref={adCreativeFormRef}>
               <CreateAdCreativeForm adgroup={existingAdGroup} />
             </form>

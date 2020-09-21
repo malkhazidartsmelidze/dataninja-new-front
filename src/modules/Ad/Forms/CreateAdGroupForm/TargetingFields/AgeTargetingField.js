@@ -2,7 +2,7 @@ import React from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { TextField, Grid } from '@material-ui/core';
 
-export default ({ ageFromProps, ageToProps }) => {
+export default () => {
   return (
     <PanelField
       content={
