@@ -1,7 +1,6 @@
 import { Button, Grid } from '@material-ui/core';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { mdiAbTesting, mdiFacebook, mdiGoogle } from '@mdi/js';
 import Icon from '@mdi/react';
 import mergeFormData from 'common/mergeFormData';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
@@ -20,7 +19,7 @@ export default (props) => {
   const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const [N, setN] = useState('facebook');
+  const N = 'google';
   const {
     networks,
     setNetworks,
@@ -41,11 +40,6 @@ export default (props) => {
       adgroup: null,
       ad: null,
     },
-    facebook: {
-      campaign: 868,
-      adgroup: 6857,
-      ad: null,
-    },
   });
 
   const existingCampaignChoosed = (c) => {
@@ -56,86 +50,7 @@ export default (props) => {
     setNetworks([n]);
   };
 
-  const createFacebookAd = (callback) => {
-    setSuccessModal(true);
-    console.log(existing);
-    const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
-    const cform = mergeFormData(campaignFormData, new FormData(campaignFormRef.current));
-    const crform = mergeFormData(creativeFormData, new FormData(adCreativeFormRef.current));
-
-    const campaignData = mergeFormData(cform, afrom);
-    const adGroupData = mergeFormData(afrom, cform);
-    const adCreativeData = crform;
-
-    let createdCampaign,
-      createdAdGroup,
-      createdAdCreative = null;
-
-    if (!existing.facebook.campaign) {
-      CampaignService.createCampaign('facebook', campaignData).then((campaignRes) => {
-        createdCampaign = campaignRes;
-        console.log('campaignRes', campaignRes);
-        adGroupData.append('adgroup_facebook_campaign_id', createdCampaign.id);
-        setExisting((o) => {
-          o.facebook.campaign = createdCampaign.id;
-          return { ...o };
-        });
-
-        AdGroupService.createAdGroup('facebook', adGroupData).then((adGroupRes) => {
-          createdAdGroup = adGroupRes;
-          console.log('adGroupRes', adGroupRes);
-          adCreativeData.append('creative_facebook_adset_id', createdAdGroup.id);
-          setExisting((o) => {
-            o.facebook.adgroup = createdAdGroup.id;
-            return { ...o };
-          });
-
-          AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
-            createdAdCreative = adCreativeRes;
-            console.log('adCreativeRes', adCreativeRes);
-            setExisting((o) => {
-              o.facebook.ad = adCreativeRes.id;
-              return { ...o };
-            });
-          });
-        });
-      });
-    } else if (!existing.facebook.adgroup) {
-      adGroupData.append('adgroup_facebook_campaign_id', existing.facebook.campaign);
-      AdGroupService.createAdGroup('facebook', adGroupData).then((adGroupRes) => {
-        createdAdGroup = adGroupRes;
-        console.log('adGroupRes', adGroupRes);
-        adCreativeData.append('creative_facebook_adset_id', createdAdGroup.id);
-        setExisting((o) => {
-          o.facebook.adgroup = createdAdGroup.id;
-          return { ...o };
-        });
-
-        AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
-          createdAdCreative = adCreativeRes;
-          console.log('adCreativeRes', adCreativeRes);
-          setExisting((o) => {
-            o.facebook.ad = adCreativeRes.id;
-            return { ...o };
-          });
-        });
-      });
-    } else if (!existing.facebook.ad) {
-      adCreativeData.append('creative_facebook_adset_id', existing.facebook.adgroup);
-
-      AdCreativeService.createAdCreative('facebook', adCreativeData).then((adCreativeRes) => {
-        createdAdCreative = adCreativeRes;
-        console.log('adCreativeRes', adCreativeRes);
-        setExisting((o) => {
-          o.facebook.ad = adCreativeRes.id;
-          return { ...o };
-        });
-      });
-    }
-    callback && callback();
-  };
-
-  const createGoogleAd = (callback) => {
+  const createGoogleSearchAd = (callback) => {
     // setSuccessModal(true);
     console.log(existing);
     const afrom = mergeFormData(adGroupFormData, new FormData(adGroupFormRef.current));
@@ -215,15 +130,7 @@ export default (props) => {
   };
 
   const createAd = () => {
-    createGoogleAd();
-    // createFacebookAd(() => {});
-    /* () => {
-    } */
-    // if (N === 'facebook') {
-    //   return createFacebookAd();
-    // } else if (N === 'google') {
-    //   return ;
-    // }
+    createGoogleSearchAd();
   };
 
   const handleNetworkChage = (e, newValue) => {
@@ -246,23 +153,8 @@ export default (props) => {
       <Button variant='contained' onClick={generatePreview}>
         Preview
       </Button>
-      <SelectField
-        style={{ width: 200 }}
-        options={[
-          { name: 'Facebook', value: 'facebook' },
-          { name: 'Google', value: 'google' },
-        ]}
-        value={N}
-        onChange={(e) => setN(e.target.value)}
-      />
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <NetworkSuccesses
-            key={successModal}
-            open={successModal}
-            created={existing}
-            currentStep={currentStep}
-          />
           <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
             <form ref={campaignFormRef}>
               <CreateCampaignForm
@@ -286,22 +178,6 @@ export default (props) => {
           </ExpansionPanel>
         </Grid>
         <Grid item xs={4}>
-          <ExpansionPanel expanded title='Choose Network'>
-            <ToggleButtonGroup value={networks} onChange={handleNetworkChage}>
-              <ToggleButton value='all'>
-                <Icon path={mdiAbTesting} />
-                All
-              </ToggleButton>
-              <ToggleButton value='google'>
-                <Icon path={mdiGoogle} />
-                Google
-              </ToggleButton>
-              <ToggleButton value='facebook'>
-                <Icon path={mdiFacebook} />
-                Facebook
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </ExpansionPanel>
           <ExpansionPanel expanded transparent titleBefore='Ad Preview' title='Preview'>
             <div ref={previewRef}></div>
           </ExpansionPanel>
@@ -309,56 +185,4 @@ export default (props) => {
       </Grid>
     </Fragment>
   );
-};
-
-const timeOutSteps = (setExisting, setCurrentStep) => {
-  setTimeout(() => {
-    setTimeout(() => {
-      setCurrentStep('facebook_campaign');
-      setExisting((old) => {
-        old.facebook.campaign = true;
-        return { ...old };
-      });
-    }, 1500);
-
-    setTimeout(() => {
-      setCurrentStep('facebook_adgroup');
-      setExisting((old) => {
-        old.facebook.adgroup = true;
-        return { ...old };
-      });
-    }, 2500);
-
-    setTimeout(() => {
-      setCurrentStep('facebook_ad');
-      setExisting((old) => {
-        old.facebook.ad = true;
-        return { ...old };
-      });
-    }, 4000);
-
-    // setTimeout(() => {
-    //   setCurrentStep('google_campaign');
-    //   setExisting((old) => {
-    //     old.google.campaign = true;
-    //     return { ...old };
-    //   });
-    // }, 5000);
-
-    // setTimeout(() => {
-    //   setCurrentStep('google_adgroup');
-    //   setExisting((old) => {
-    //     old.google.adgroup = true;
-    //     return { ...old };
-    //   });
-    // }, 6500);
-
-    // setTimeout(() => {
-    //   setCurrentStep('google_ad');
-    //   setExisting((old) => {
-    //     old.google.ad = true;
-    //     return { ...old };
-    //   });
-    // }, 8000);
-  }, 1000);
 };

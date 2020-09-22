@@ -3,11 +3,15 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 import { TextField, Grid, Typography } from '@material-ui/core';
 
 export default () => {
-  const [value, setValue] = useState('[asdf]\n"asda"\nasqwwe\n"qwewew"\n[asdfsdfdf]');
-  const [keywords, setKeywords] = useState({});
+  const [includedKeywords, setIncludedKeywords] = useState(
+    '[asdf]\n"asda"\nasqwwe\n"qwewew"\n[asdfsdfdf]'
+  );
+  const [excludedKeywords, setExcludedKeywords] = useState('"qwewew"\n[asdfsdfdf]');
+  const [excludedParseds, setExcludedParseds] = useState({});
+  const [includedParseds, setIncludedParseds] = useState({});
 
-  const parseValues = () => {
-    const splitted = value.split('\n');
+  const parseValues = (val) => {
+    const splitted = val.split('\n');
     const _keywords = {};
 
     for (let i = 0, l = splitted.length; i < l; i++) {
@@ -29,42 +33,82 @@ export default () => {
       }
     }
 
-    setKeywords(_keywords);
+    return _keywords;
   };
 
   useEffect(() => {
-    const deb = setTimeout(parseValues, 300);
+    const deb = setTimeout(() => {
+      const ks = parseValues(includedKeywords);
+      setIncludedParseds(ks);
+    }, 300);
     return () => clearTimeout(deb);
-  }, [value]);
+  }, [includedKeywords]);
+
+  useEffect(() => {
+    const deb = setTimeout(() => {
+      const ks = parseValues(excludedKeywords);
+      setExcludedParseds(ks);
+    }, 300);
+    return () => clearTimeout(deb);
+  }, [excludedKeywords]);
 
   return (
     <PanelField
       content={
         <Grid container spacing={2}>
-          <Grid item xs={8}>
+          <Grid item xs={5}>
             <TextField
               fullWidth
               label='Enter Keywords'
               variant='outlined'
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => setIncludedKeywords(e.target.value)}
               multiline
               rows={10}
-              value={value}
+              value={includedKeywords}
             />
-          </Grid>
-          <Grid item xs={8}>
-            {Object.keys(keywords).map((match_type) => {
+            {Object.keys(includedParseds).map((match_type) => {
               return (
                 <Typography
                   variant='body1'
                   key={match_type}
                   style={{ textTransform: 'capitalize' }}
                 >
-                  {match_type}: {keywords[match_type].join(', ')}
+                  {match_type}: {includedParseds[match_type].join(', ')}
                 </Typography>
               );
             })}
-            <input type='hidden' name='targetings[keywords]' value={JSON.stringify(keywords)} />
+            <input
+              type='hidden'
+              name='targetings[included_keywords]'
+              value={JSON.stringify(includedParseds)}
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <TextField
+              fullWidth
+              label='Enter Exclude Keywords'
+              variant='outlined'
+              onChange={(e) => setExcludedKeywords(e.target.value)}
+              multiline
+              rows={10}
+              value={excludedKeywords}
+            />
+            {Object.keys(excludedParseds).map((match_type) => {
+              return (
+                <Typography
+                  variant='body1'
+                  key={match_type}
+                  style={{ textTransform: 'capitalize' }}
+                >
+                  {match_type}: {excludedParseds[match_type].join(', ')}
+                </Typography>
+              );
+            })}
+            <input
+              type='hidden'
+              name='targetings[excluded_keywords]'
+              value={JSON.stringify(excludedParseds)}
+            />
           </Grid>
         </Grid>
       }
