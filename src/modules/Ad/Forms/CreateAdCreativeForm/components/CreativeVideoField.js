@@ -51,7 +51,12 @@ export default (props) => {
             Browse Videos
           </Button>
           <Button tooltip='Select new video file' startIcon={<Icon path={mdiVideoImage} />}>
-            <input type='file' accept='image/*' className='opacity-0 full-width-and-height' />
+            <input
+              type='file'
+              accept='video/*'
+              name='facebook_video'
+              className='opacity-0 full-width-and-height'
+            />
             Or Upload New
           </Button>
           <Gallery
