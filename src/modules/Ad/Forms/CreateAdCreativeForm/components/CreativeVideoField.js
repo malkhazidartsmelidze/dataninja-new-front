@@ -5,17 +5,19 @@ import { useEffect } from 'react';
 import { Button, CircularProgress } from '@material-ui/core';
 import FacebookPageService from 'services/FacebookPageService';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
+import { mdiVideoImage } from '@mdi/js';
+import Icon from '@mdi/react';
 
 export default (props) => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [videoIds, setVideoIds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { page_id } = useCreateAd();
+  const { state } = useCreateAd();
 
   const fetchVideos = () => {
     setLoading(true);
-    FacebookPageService.getPageVideos(page_id)
+    FacebookPageService.getPageVideos(state.page_id)
       .then((videos) => {
         if (!Array.isArray(videos)) return;
         setData(videos);
@@ -27,15 +29,15 @@ export default (props) => {
   };
 
   useEffect(() => {
-    if (!page_id) return;
+    if (!state.page_id) return;
     fetchVideos();
-  }, [page_id]);
+  }, [state.page_id]);
 
   if (loading) return <CircularProgress />;
 
-  if (!page_id) return <PanelField content={<div>Please Choose Page First</div>} />;
+  if (!state.page_id) return <PanelField content={<div>Please Choose Page First</div>} />;
 
-  if (page_id && !data.length)
+  if (state.page_id && !data.length)
     return <PanelField content={<div>No Videos Found On This Page</div>} />;
 
   return (
@@ -48,7 +50,8 @@ export default (props) => {
           <Button onClick={() => setOpen(true)} variant='contained'>
             Browse Videos
           </Button>
-          <Button onClick={() => setOpen(true)} variant='contained'>
+          <Button tooltip='Select new video file' startIcon={<Icon path={mdiVideoImage} />}>
+            <input type='file' accept='image/*' className='opacity-0 full-width-and-height' />
             Or Upload New
           </Button>
           <Gallery

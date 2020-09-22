@@ -10,6 +10,7 @@ export const CreateAdContextProvider = ({ children }) => {
     display_link: 'https://facebook.com',
     bid_strategy: 'cost_cap',
     bid_type: 'automatic',
+    page_id: 33,
   });
   const [campaignFormData] = useState(new FormData());
   const [adGroupFormData] = useState(new FormData());
