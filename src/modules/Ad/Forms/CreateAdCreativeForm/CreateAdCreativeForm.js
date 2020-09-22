@@ -15,7 +15,6 @@ import CallToActionsField from './components/CallToActionsField';
 import CreativeDescriptionFields from './components/CreativeDescriptionFields';
 import CreativeBusinessNameField from './components/CreativeBusinessNameField';
 import CreativeParametersField from './components/CreativeParametersField';
-import CreativeLogoImageField from './components/CreativeLogoImageField';
 
 export default (props) => {
   return (
