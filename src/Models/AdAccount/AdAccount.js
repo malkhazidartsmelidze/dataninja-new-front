@@ -1,5 +1,4 @@
 import api from 'common/api';
-import FacebookPage from 'Models/FacebookPage';
 
 class AdAccount {
   constructor(acc) {
@@ -27,21 +26,17 @@ class AdAccount {
     return this.id;
   };
 
-  getPages = (callback) => {
-    if (this.pages.length) return this.pages;
-
-    return FacebookPage.service.getByAccountId(this.getId()).then((res) => {
-      if (!Array.isArray(res)) return [];
-
-      const pages = res.map((page) => {
-        return new FacebookPage(page);
-      });
-
-      this.pages = pages;
-
-      if (typeof callback === 'function') callback(this.getPages());
-    });
-  };
+  // getPages = (callback) => {
+  //   if (this.pages.length) return this.pages;
+  //   return FacebookPage.service.getByAccountId(this.getId()).then((res) => {
+  //     if (!Array.isArray(res)) return [];
+  //     const pages = res.map((page) => {
+  //       return new FacebookPage(page);
+  //     });
+  //     this.pages = pages;
+  //     if (typeof callback === 'function') callback(this.getPages());
+  //   });
+  // };
 }
 
 AdAccount.service = {
