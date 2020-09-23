@@ -12,7 +12,7 @@ const options = [
 ];
 
 export default () => {
-  const { type } = useCreateAd();
+  const { isSearch } = useCreateAd();
 
   return (
     <PanelField
@@ -25,7 +25,7 @@ export default () => {
               value={['desktop', 'mobile', 'tablet']}
             />
           </Grid>
-          {!type === 'search' && (
+          {!isSearch && (
             <Grid item>
               <FormControlLabel
                 control={<Checkbox name='targetings[only_wifi]' value='true' />}

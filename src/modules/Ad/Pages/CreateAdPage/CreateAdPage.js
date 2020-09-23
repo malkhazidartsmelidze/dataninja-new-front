@@ -17,7 +17,7 @@ import CampaignService from 'services/CampaignService';
 import NetworkSuccesses from './components/NetworkSuccesses';
 
 export default (props) => {
-  const [ad, setAd] = useState();
+  const { state, isSearch } = useCreateAd();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
   const [N, setN] = useState('google');
@@ -36,9 +36,9 @@ export default (props) => {
   const [successModal, setSuccessModal] = useState(false);
   const [existing, setExisting] = useState({
     google: {
-      campaign: 1,
+      campaign: null,
       // adgroup: 38,
-      adgroup: 38,
+      adgroup: null,
       ad: null,
     },
     facebook: {
@@ -227,6 +227,9 @@ export default (props) => {
   };
 
   const handleNetworkChage = (e, newValue) => {
+    if (newValue.indexOf('facebook') >= -1 && isSearch) {
+      return alert("Can't run search on facebook");
+    }
     setNetworks(newValue);
   };
 

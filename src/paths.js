@@ -10,7 +10,6 @@ export default {
 
   AD_MODULE: '/app/ad/',
   AD_CREATE: '/app/ad/create',
-  AD_CREATE: '/app/ad/create/search',
 
   BUILDER_MODULE: '/app/builder/',
 

@@ -12,7 +12,7 @@ export default () => {
   const [googleAudiences, setGoogleAudiences] = useState([]);
   const [facebookAudiences, setFacebookAudiences] = useState([]);
   const { defaultAccounts } = useUser();
-  const { type } = useCreateAd();
+  const { isSearch } = useCreateAd();
   const [audiences, setAudiences] = useState({
     facebook: {
       include: [],
@@ -50,8 +50,6 @@ export default () => {
       return { ...o };
     });
   };
-
-  const isSearch = type === 'search';
 
   return (
     <PanelField

@@ -6,7 +6,7 @@ import CampaignService from 'services/CampaignService';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default (props) => {
-  const { type } = useCreateAd();
+  const { isSearch } = useCreateAd();
   const [campaigns, setCampaigns] = useState([]);
   const [campaign, setCampaign] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,15 +35,14 @@ export default (props) => {
   }, [campaign]);
 
   useEffect(() => {
-    console.log(type);
-    if (type === 'search') {
-      setNetworks((o) => {
-        o.facebook.disabled = true;
-        return { ...o };
-      });
-      setNetwork('google');
-    }
-  }, [type]);
+    if (!isSearch) return;
+
+    setNetworks((o) => {
+      o.facebook.disabled = true;
+      return { ...o };
+    });
+    setNetwork('google');
+  }, [isSearch]);
 
   return (
     <PanelField
