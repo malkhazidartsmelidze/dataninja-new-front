@@ -16,7 +16,7 @@ export default (props) => {
             {helper}
           </Typography>
         )}
-        {content}
+        {content ? content : props.children}
       </Grid>
     </Grid>
   );
