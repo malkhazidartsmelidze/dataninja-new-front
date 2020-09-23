@@ -5,6 +5,7 @@ import CampaignNameField from './fields/CampaignNameField';
 import CampaignTypeField from './fields/CampaignTypeField';
 import CampaignStatusField from './fields/CampaignStatusField';
 import ExistingCampaignField from './fields/ExistingCampaignField';
+import CampaignPartnersSwitch from './fields/CampaignPartnersSwitch';
 
 export default (props) => {
   const { onExistingChoose, onNetworkChange } = props;
@@ -23,6 +24,9 @@ export default (props) => {
         </ExpansionPanel>
         <ExpansionPanel title='Campaign Objective' subTitle='Choose Campaign Objective'>
           <CampaignTypeField />
+        </ExpansionPanel>
+        <ExpansionPanel title='Include Partners' subTitle='Inlcude Partners'>
+          <CampaignPartnersSwitch />
         </ExpansionPanel>
         <ExpansionPanel title='Campaign Status' subTitle='Choose Campaign Status'>
           <CampaignStatusField />

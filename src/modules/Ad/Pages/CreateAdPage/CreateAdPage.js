@@ -38,7 +38,7 @@ export default (props) => {
     google: {
       campaign: 1,
       // adgroup: 38,
-      adgroup: null,
+      adgroup: 38,
       ad: null,
     },
     facebook: {

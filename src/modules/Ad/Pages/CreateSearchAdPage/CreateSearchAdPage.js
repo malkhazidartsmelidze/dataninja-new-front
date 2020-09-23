@@ -60,7 +60,8 @@ export default (props) => {
     const campaignData = mergeFormData(cform, afrom);
     const adGroupData = mergeFormData(afrom, cform);
     const adCreativeData = crform;
-
+    campaignData.delete('campaign_type');
+    campaignData.append('campaign_type', 'search');
     let createdCampaign,
       createdAdGroup,
       createdAdCreative = null;
