@@ -6,18 +6,12 @@ export default () => {
   return (
     <PanelField
       content={
-        <Fragment>
-          <SelectField
-            name='campaign_partner_networks'
-            defaultValue='1'
-            options={partnerNetworksOption}
-          />
-          <SelectField
-            name='campaign_display_networks'
-            defaultValue='1'
-            options={displayNetworksOption}
-          />
-        </Fragment>
+        <SelectField
+          name='campaign_partner_networks'
+          label='Partner network'
+          defaultValue='1'
+          options={partnerNetworksOption}
+        />
       }
     />
   );
@@ -26,9 +20,4 @@ export default () => {
 const partnerNetworksOption = [
   { name: 'Include Partner Search Network', value: '1' },
   { name: "Don't Include Partner Search Network", value: '0' },
-];
-
-const displayNetworksOption = [
-  { name: 'Include Display Network', value: '1' },
-  { name: "Don't Include Display Network", value: '0' },
 ];

@@ -2,6 +2,7 @@ import React from 'react';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import CheckboxField from 'components/Fields/CheckboxField';
 import { Checkbox, FormControlLabel, Grid } from '@material-ui/core';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 const options = [
   { name: 'Desktop', value: 'desktop' },
@@ -11,6 +12,8 @@ const options = [
 ];
 
 export default () => {
+  const { type } = useCreateAd();
+
   return (
     <PanelField
       content={
@@ -22,12 +25,14 @@ export default () => {
               value={['desktop', 'mobile', 'tablet']}
             />
           </Grid>
-          <Grid item>
-            <FormControlLabel
-              control={<Checkbox name='targetings[only_wifi]' value='true' />}
-              label='Only On Wifi Network'
-            />
-          </Grid>
+          {!type === 'search' && (
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox name='targetings[only_wifi]' value='true' />}
+                label='Only On Wifi Network'
+              />
+            </Grid>
+          )}
         </Grid>
       }
     />

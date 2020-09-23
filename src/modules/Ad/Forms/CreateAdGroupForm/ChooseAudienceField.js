@@ -2,18 +2,17 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { Button, Dialog, DialogContent, Grid } from '@material-ui/core';
 import { CreateAudiencePage } from 'modules/Audiences/Pages';
 import PanelField from 'components/ExpansionPanel/PanelField';
-import { SelectField } from 'components/Fields';
-import { Audience } from 'Models/Audience';
-import SyncAudienceButton from 'modules/Audiences/components/SyncAudienceButton';
 import AudienceService from 'services/AudienceService';
 import useUser from 'store/UserContext';
 import AutocompleteField from 'components/Fields/AutocompleteField';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default () => {
   const [audienceModalOpen, setAudienceModalOpen] = useState(false);
   const [googleAudiences, setGoogleAudiences] = useState([]);
   const [facebookAudiences, setFacebookAudiences] = useState([]);
   const { defaultAccounts } = useUser();
+  const { type } = useCreateAd();
   const [audiences, setAudiences] = useState({
     facebook: {
       include: [],
@@ -52,6 +51,8 @@ export default () => {
     });
   };
 
+  const isSearch = type === 'search';
+
   return (
     <PanelField
       content={
@@ -70,22 +71,26 @@ export default () => {
               });
             });
           })}
-          <Grid item xs={12}>
-            <AutocompleteField
-              placeholder='Enter Choose Facebook Audience'
-              options={facebookAudiences}
-              onChange={(_, n) => handleAudienceChange('facebook', 'include', n)}
-              name='targetings[include_audiences][facebook][]'
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <AutocompleteField
-              placeholder='Exclude Facebook Audience'
-              name='targetings[exclude_audiences][facebook][]'
-              options={facebookAudiences}
-              onChange={(_, n) => handleAudienceChange('facebook', 'exclude', n)}
-            />
-          </Grid>
+          {!isSearch && (
+            <Grid item xs={12}>
+              <AutocompleteField
+                placeholder='Enter Choose Facebook Audience'
+                options={facebookAudiences}
+                onChange={(_, n) => handleAudienceChange('facebook', 'include', n)}
+                name='targetings[include_audiences][facebook][]'
+              />
+            </Grid>
+          )}
+          {!isSearch && (
+            <Grid item xs={12}>
+              <AutocompleteField
+                placeholder='Exclude Facebook Audience'
+                name='targetings[exclude_audiences][facebook][]'
+                options={facebookAudiences}
+                onChange={(_, n) => handleAudienceChange('facebook', 'exclude', n)}
+              />
+            </Grid>
+          )}
           <Grid item xs={12}>
             <AutocompleteField
               name='targetings[include_audiences][google][]'
