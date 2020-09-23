@@ -3,17 +3,18 @@ import { TextField, Grid } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
 import CampaignService from 'services/CampaignService';
-
-const networks = [
-  { name: 'Facebook', value: 'facebook' },
-  { name: 'Google', value: 'google' },
-];
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default (props) => {
-  const [network, setNetwork] = useState('');
+  const { type } = useCreateAd();
   const [campaigns, setCampaigns] = useState([]);
   const [campaign, setCampaign] = useState('');
   const [loading, setLoading] = useState(false);
+  const [network, setNetwork] = useState('');
+  const [networks, setNetworks] = useState({
+    facebook: { name: 'Facebook', value: 'facebook', diabled: true },
+    google: { name: 'Google', value: 'google' },
+  });
 
   useEffect(() => {
     if (!network) return;
@@ -33,6 +34,17 @@ export default (props) => {
     props.onNetworkChange && props.onNetworkChange(network);
   }, [campaign]);
 
+  useEffect(() => {
+    console.log(type);
+    if (type === 'search') {
+      setNetworks((o) => {
+        o.facebook.disabled = true;
+        return { ...o };
+      });
+      setNetwork('google');
+    }
+  }, [type]);
+
   return (
     <PanelField
       content={
@@ -41,7 +53,8 @@ export default (props) => {
             <SelectField
               label='Choose Network'
               fullWidth
-              options={networks}
+              options={Object.values(networks)}
+              value={network}
               onChange={(e) => setNetwork(e.target.value)}
             />
           </Grid>

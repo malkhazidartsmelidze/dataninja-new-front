@@ -10,7 +10,7 @@ export default (p) => {
   return (
     <TextField autoComplete='off' style={style} select={true} {...rest}>
       {options.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
+        <MenuItem key={option.value} value={option.value} disabled={option.disabled}>
           {option.name}
         </MenuItem>
       ))}

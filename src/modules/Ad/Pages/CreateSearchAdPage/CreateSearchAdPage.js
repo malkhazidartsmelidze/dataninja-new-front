@@ -1,38 +1,24 @@
 import { Button, Grid } from '@material-ui/core';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import Icon from '@mdi/react';
 import mergeFormData from 'common/mergeFormData';
 import ExpansionPanel from 'components/ExpansionPanel/ExpansionPanel';
-import { SelectField } from 'components/Fields';
 import CreateAdCreativeForm from 'modules/Ad/Forms/CreateAdCreativeForm';
 import CreateAdGroupForm from 'modules/Ad/Forms/CreateAdGroupForm';
 import CreateCampaignForm from 'modules/Ad/Forms/CreateCampaignForm';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import AdCreativeService from 'services/AdCreativeService';
 import AdGroupService from 'services/AdGroupService';
 import CampaignService from 'services/CampaignService';
-import NetworkSuccesses from './components/NetworkSuccesses';
 
 export default (props) => {
-  const [ad, setAd] = useState();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const N = 'google';
-  const {
-    networks,
-    setNetworks,
-    campaignFormData,
-    adGroupFormData,
-    creativeFormData,
-  } = useCreateAd();
+  const { networks, campaignFormData, adGroupFormData, creativeFormData } = useCreateAd();
   const campaignFormRef = useRef();
   const adGroupFormRef = useRef();
   const adCreativeFormRef = useRef();
   const previewRef = useRef();
-  const [currentStep, setCurrentStep] = useState('');
-  const [successModal, setSuccessModal] = useState(false);
+  const { setType } = useCreateAd();
   const [existing, setExisting] = useState({
     google: {
       campaign: 1,
@@ -46,9 +32,9 @@ export default (props) => {
     setExistingCampaign(c);
   };
 
-  const onNetworkChange = (n) => {
-    setNetworks([n]);
-  };
+  useEffect(() => {
+    setType('search');
+  }, []);
 
   const createGoogleSearchAd = (callback) => {
     // setSuccessModal(true);
@@ -134,34 +120,16 @@ export default (props) => {
     createGoogleSearchAd();
   };
 
-  const handleNetworkChage = (e, newValue) => {
-    setNetworks(newValue);
-  };
-
-  const generatePreview = () => {
-    const adCreativeData = new FormData(adCreativeFormRef.current);
-    AdCreativeService.generatePreview(adCreativeData).then((res) => {
-      console.log(res);
-      previewRef.current.innerHTML = res;
-    });
-  };
-
   return (
     <Fragment>
       <Button variant='contained' onClick={createAd}>
         Submit
       </Button>
-      <Button variant='contained' onClick={generatePreview}>
-        Preview
-      </Button>
       <Grid container spacing={2}>
         <Grid item xs={8}>
           <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
             <form ref={campaignFormRef}>
-              <CreateCampaignForm
-                onExistingChoose={existingCampaignChoosed}
-                onNetworkChange={onNetworkChange}
-              />
+              <CreateCampaignForm onExistingChoose={existingCampaignChoosed} />
             </form>
           </ExpansionPanel>
           <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>

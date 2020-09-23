@@ -6,18 +6,17 @@ import CampaignTypeField from './fields/CampaignTypeField';
 import CampaignStatusField from './fields/CampaignStatusField';
 import ExistingCampaignField from './fields/ExistingCampaignField';
 import CampaignPartnersSwitch from './fields/CampaignPartnersSwitch';
+import useCreateAd from 'modules/Ad/store/CreateAdContext';
 
 export default (props) => {
   const { onExistingChoose, onNetworkChange } = props;
+  const { type } = useCreateAd();
 
   return (
     <Grid container>
       <Grid item xs={12}>
         <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
-          <ExistingCampaignField
-            onCampaignChoose={onExistingChoose}
-            onNetworkChange={onNetworkChange}
-          />
+          <ExistingCampaignField onCampaignChoose={onExistingChoose} />
         </ExpansionPanel>
         <ExpansionPanel title='Campaign Name' subTitle='Enter Campaign Name'>
           <CampaignNameField />
@@ -25,9 +24,11 @@ export default (props) => {
         <ExpansionPanel title='Campaign Objective' subTitle='Choose Campaign Objective'>
           <CampaignTypeField />
         </ExpansionPanel>
-        <ExpansionPanel title='Include Partners' subTitle='Inlcude Partners'>
-          <CampaignPartnersSwitch />
-        </ExpansionPanel>
+        {type === 'search' && (
+          <ExpansionPanel title='Include Partners' subTitle='Inlcude Partners'>
+            <CampaignPartnersSwitch />
+          </ExpansionPanel>
+        )}
         <ExpansionPanel title='Campaign Status' subTitle='Choose Campaign Status'>
           <CampaignStatusField />
         </ExpansionPanel>
