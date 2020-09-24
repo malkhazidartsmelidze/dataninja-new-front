@@ -56,6 +56,6 @@ const options = {
 };
 
 const searchOptions = {
-  cpl: { name: 'Get More Traffic', value: 'search_traffic' },
+  cpl: { name: 'Get More Clicks', value: 'search_traffic' },
   cpa: { name: 'Get More Conversions', value: 'search_conversions' },
 };
