@@ -18,6 +18,7 @@ import CreativeParametersField from './components/CreativeParametersField';
 import CreativeVideoField from './components/CreativeVideoField';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
 import CreativeResponsiveField from './components/CreativeResponsiveField';
+import CreativePathsField from './components/CreativePathsField';
 
 export default () => {
   const { isSearch, isNetworkSelected } = useCreateAd();
@@ -37,6 +38,11 @@ export default () => {
         <ExpansionPanel expanded title='Creative Link' subTitle='Enter Creative Link Here'>
           <CreativeUrlField />
         </ExpansionPanel>
+        {isSearch && (
+          <ExpansionPanel expanded title='Creative Paths' subTitle='Enter Creative Paths'>
+            <CreativePathsField />
+          </ExpansionPanel>
+        )}
         {facebookSelected && (
           <ExpansionPanel expanded title='Choose Pixel' subTitle='Choose Facebook pixel Here'>
             <CreativePixelField />

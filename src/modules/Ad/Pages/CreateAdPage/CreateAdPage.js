@@ -140,7 +140,10 @@ export default (props) => {
 
     const afrom = mergeFormData(new FormData(adGroupFormRef.current), adGroupFormData);
     const cform = mergeFormData(new FormData(campaignFormRef.current), campaignFormData);
-    const crform = mergeFormData(new FormData(adCreativeFormRef.current), creativeFormData);
+    const crform = mergeFormData(
+      mergeFormData(new FormData(adCreativeFormRef.current), creativeFormData),
+      cform
+    );
 
     const campaignData = mergeFormData(cform, afrom);
     const adGroupData = mergeFormData(afrom, cform);
@@ -274,7 +277,7 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel expanded transparent titleBefore='Adset Configuration' title='Adset'>
+          <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
             <form ref={adGroupFormRef}>
               <CreateAdGroupForm
                 campaign={existingCampaign}
@@ -282,14 +285,14 @@ export default (props) => {
               />
             </form>
           </ExpansionPanel>
-          <ExpansionPanel titleBefore='Ad Creative Configuration' title='Ad Creative'>
+          <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
             <form ref={adCreativeFormRef}>
               <CreateAdCreativeForm adgroup={existingAdGroup} />
             </form>
           </ExpansionPanel>
         </Grid>
         <Grid item xs={4}>
-          <ExpansionPanel expanded title='Choose Network'>
+          <ExpansionPanel title='Choose Network'>
             <ToggleButtonGroup value={networks} onChange={handleNetworkChage}>
               <ToggleButton value='all'>
                 <Icon path={mdiAbTesting} />
