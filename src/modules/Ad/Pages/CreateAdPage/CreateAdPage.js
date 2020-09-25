@@ -37,13 +37,14 @@ export default (props) => {
   const [existing, setExisting] = useState({
     google: {
       campaign: null,
-      campaign: 57,
-      adgroup: 39,
+      // campaign: 57,
+      // adgroup: 39,
+      adgroup: null,
       ad: null,
     },
     facebook: {
-      campaign: 868,
-      adgroup: 6857,
+      campaign: null,
+      adgroup: null,
       ad: null,
     },
   });
@@ -218,8 +219,9 @@ export default (props) => {
   };
 
   const createAd = () => {
-    createGoogleAd();
-    // createFacebookAd(() => {});
+    createGoogleAd(() => {
+      createFacebookAd(() => {});
+    });
     /* () => {
     } */
     // if (N === 'facebook') {
