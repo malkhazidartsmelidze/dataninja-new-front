@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   button: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textDecoration: 'none',
     fontFamily: 'FiraGO',
     background: '#2c7df0',
     color: '#ffffff',
@@ -153,9 +157,9 @@ function Footer() {
       </Typography>
 
       <Grid item align='center'>
-        <Button className={classes.button} variant='filled' color='primary'>
+        <a href='#header' className={classes.button} variant='filled' color='primary'>
           Try Beta For Free
-        </Button>
+        </a>
       </Grid>
 
       {/* <Grid item className={classes.grid}> */}

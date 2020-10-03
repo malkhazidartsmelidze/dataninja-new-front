@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { InputBase } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import HomePageService from 'services/HomePageService';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
   //modal style
@@ -122,12 +124,27 @@ const useStyles = makeStyles({
       background: '#2c7df0',
     },
   },
+  savedButton: {
+    color: 'white !important',
+    background: 'green',
+    '& *': {
+      color: 'white !important',
+    },
+  },
 });
 
 function MobileHeader() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [saved, setSaved] = useState(false);
 
+  const saveEmail = () => {
+    if (email.length <= 10) return;
+    HomePageService.saveEmail(email).then((e) => {
+      setSaved(true);
+    });
+  };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -181,12 +198,20 @@ function MobileHeader() {
               <Grid className={classes.flex}>
                 <Grid className={classes.inputStyle_first}>
                   <img className={classes.img} alt='mail' src='/images/home/mail.svg' />
-                  <InputBase className={classes.inputStyle} label='test' placeholder='Your mail' />
+                  <InputBase
+                    disabled={saved}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={classes.inputStyle}
+                    label='test'
+                    placeholder='Your mail'
+                  />
                 </Grid>
               </Grid>
               <Grid className={classes.flex}>
-                <Button className={classes.inputStyles_second}>
-                  <Typography className={classes.contact_txt}>Contact Me</Typography>
+                <Button className={clsx(classes.inputStyles_second, saved && classes.savedButton)}>
+                  <Button className={classes.contact_txt} onClick={saveEmail} disabled={saved}>
+                    {saved ? 'Your Email Successfully Saved' : 'Contact Me'}
+                  </Button>
                 </Button>
               </Grid>
             </Grid>

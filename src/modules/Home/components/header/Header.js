@@ -142,8 +142,13 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
   const classes = useStyles();
   const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <Grid container className={`${classes.container} ${menuOpen ? classes.orange : ''}`}>
+    <Grid
+      id='header'
+      container
+      className={`${classes.container} ${menuOpen ? classes.orange : ''}`}
+    >
       <Grid item className={classes.logo}>
         <img style={{ marginRight: '10px' }} alt='ninja' src='/images/home/dataninja.svg' />
         <p className={classes.paragraph}>DataNinja</p>

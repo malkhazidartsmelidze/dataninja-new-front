@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { InputBase } from '@material-ui/core';
+import HomePageService from 'services/HomePageService';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -133,10 +135,22 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  savedButton: {
+    backgroundColor: 'green',
+  },
 }));
 
 function TitleBlock() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [saved, setSaved] = useState(false);
+
+  const saveEmail = () => {
+    if (email.length <= 10) return;
+    HomePageService.saveEmail(email).then((e) => {
+      setSaved(true);
+    });
+  };
 
   return (
     <Grid className={classes.root}>
@@ -151,15 +165,27 @@ function TitleBlock() {
       </Typography>
       <Grid container className={classes.container}>
         <Grid item className={classes.inputStyles}>
-          <img className={classes.img} alt='mail' src={'/images/home/mail.svg'} />
-          <InputBase className={classes.inputStyle} label='test' placeholder='Your mail' />
+          <img className={classes.img} alt='mail' src='/images/home/mail.svg' />
+          <InputBase
+            className={classes.inputStyle}
+            disabled={saved}
+            label='test'
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder='Your mail'
+          />
         </Grid>
         <Grid item>
-          <Button className={classes.button}>Contact Me</Button>
+          <Button
+            disabled={saved}
+            className={clsx(classes.button, saved && classes.savedButton)}
+            onClick={saveEmail}
+          >
+            {saved ? 'Your Email Successfully Saved' : 'Contact Me'}
+          </Button>
         </Grid>
       </Grid>
       <Grid className={classes.imageContainer} item>
-        <img className={classes.image} alt='dataninja' src={'/images/home/dataninjapage.png'} />
+        <img className={classes.image} alt='dataninja' src='/images/home/dataninjapage.png' />
       </Grid>
     </Grid>
   );
