@@ -79,12 +79,16 @@ export default () => {
         <ExpansionPanel expanded title='Choose  Descriptions' subTitle=' Descriptions'>
           <CreativeDescriptionFields />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Choose  Description' subTitle='Choose  Description'>
-          <CreativeLongHeadlineField />
-        </ExpansionPanel>
-        <ExpansionPanel expanded title='Primary Text' subTitle='Choose  Primary Text'>
-          <CreativePrimaryTextField />
-        </ExpansionPanel>
+        {facebookSelected && (
+          <ExpansionPanel expanded title='Choose  Description' subTitle='Choose  Description'>
+            <CreativeLongHeadlineField />
+          </ExpansionPanel>
+        )}
+        {facebookSelected && (
+          <ExpansionPanel expanded title='Primary Text' subTitle='Choose  Primary Text'>
+            <CreativePrimaryTextField />
+          </ExpansionPanel>
+        )}
         {!isSearch && (
           <ExpansionPanel expanded title='Business Name' subTitle='Choose Google Business Name'>
             <CreativeBusinessNameField />
@@ -93,9 +97,11 @@ export default () => {
         <ExpansionPanel expanded title='Enter Parameters' subTitle='Choose Ad Parameters'>
           <CreativeParametersField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
-          <CreativeDisplayLinkField />
-        </ExpansionPanel>
+        {facebookSelected && (
+          <ExpansionPanel expanded title='Display Link' subTitle='Choose Facebook Display Link'>
+            <CreativeDisplayLinkField />
+          </ExpansionPanel>
+        )}
         {!isSearch && (
           <ExpansionPanel expanded title='Call To Actions' subTitle='Choose Call To Action'>
             <CallToActionsField />

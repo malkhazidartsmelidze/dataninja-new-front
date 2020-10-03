@@ -28,7 +28,7 @@ import AdGroupKeywordsField from './TargetingFields/AdGroupKeywordsField';
 
 export default (props) => {
   const { campaign, network } = props;
-  const { isNetworkSelected } = useCreateAd();
+  const { isNetworkSelected, isSearch } = useCreateAd();
 
   return (
     <Grid container>
@@ -100,21 +100,31 @@ export default (props) => {
         <ExpansionPanel expanded title='OS Targetings' subTitle='Select OS'>
           <OperatingSystemTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Facebook Detailed Targeting' subTitle='Enter Facebook'>
-          <TargetingSearchField />
-        </ExpansionPanel>
+        {!isSearch && (
+          <ExpansionPanel expanded title='Facebook Detailed Targeting' subTitle='Enter Facebook'>
+            <TargetingSearchField />
+          </ExpansionPanel>
+        )}
         <ExpansionPanel expanded title='Audience' subTitle='Select Audience Tree'>
           <AudienceCategoryTree />
         </ExpansionPanel>
         <ExpansionPanel expanded title='Ad Rotation' subTitle='Choose Ad Rotation Type'>
           <AdRotationTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Targeting Expansion' subTitle='Choose Targeting Expansion'>
-          <TargetingExpansionTargetingField />
-        </ExpansionPanel>
-        <ExpansionPanel expanded title='Placements' subTitle='Choose Placements'>
-          <AdGroupCreativePlacementsField />
-        </ExpansionPanel>
+        {isSearch && (
+          <ExpansionPanel
+            expanded
+            title='Targeting Expansion'
+            subTitle='Choose Targeting Expansion'
+          >
+            <TargetingExpansionTargetingField />
+          </ExpansionPanel>
+        )}
+        {isSearch && (
+          <ExpansionPanel expanded title='Placements' subTitle='Choose Placements'>
+            <AdGroupCreativePlacementsField />
+          </ExpansionPanel>
+        )}
         <input type='hidden' value='display' name='google_ad_type' />
       </Grid>
     </Grid>

@@ -4,6 +4,7 @@ import useUser from 'store/UserContext';
 import P from 'paths';
 import { Error404Page } from 'modules/Errors';
 import BootstrapAppModule from 'modules/BootstrapAppModule';
+import HomePageModule from 'modules/Home/HomePageModule';
 // const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
 
 const AuthModule = lazy(() => import('modules/Auth'));
@@ -12,7 +13,7 @@ export const routes = [
   {
     path: P.HOME,
     exact: true,
-    component: () => <Redirect to={P.LOGIN} />,
+    component: HomePageModule,
   },
   {
     path: P.LOGIN_MODULE,

@@ -43,9 +43,9 @@ export default (props) => {
       ad: null,
     },
     facebook: {
-      campaign: null,
-      adgroup: null,
-      ad: null,
+      campaign: 1,
+      adgroup: 1,
+      ad: 1,
     },
   });
 

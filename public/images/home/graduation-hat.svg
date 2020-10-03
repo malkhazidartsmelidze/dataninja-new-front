@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="14" viewBox="0 0 17 14">
+    <defs>
+        <style>
+            .cls-1{fill:#ff4e00}
+        </style>
+    </defs>
+    <g id="graduation-hat" transform="translate(0 -37.27)">
+        <g id="Group_1201" transform="translate(0 37.27)">
+            <g id="Group_1200">
+                <path id="Path_313" d="M0 47.278a1.443 1.443 0 0 1 1-1.352v-4.973l-1-.4 8.5-3.283 8.5 3.287-8.5 3.287-6.508-2.505v4.588a1.413 1.413 0 0 1 .143 2.647l.828 2.393-.945.3-.524-1.515L.97 51.27l-.945-.3.828-2.393A1.435 1.435 0 0 1 0 47.278z" class="cls-1" transform="translate(0 -37.27)"/>
+            </g>
+        </g>
+        <g id="Group_1203" transform="translate(4.083 43.098)">
+            <g id="Group_1202">
+                <path id="Path_314" d="M125.417 222.593l4.417-1.773v1.28c0 1.4-1.9 2.454-4.417 2.454S121 223.5 121 222.1v-1.28z" class="cls-1" transform="translate(-121 -220.82)"/>
+            </g>
+        </g>
+    </g>
+</svg>
