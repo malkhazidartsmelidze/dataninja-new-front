@@ -136,7 +136,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   savedButton: {
-    backgroundColor: 'green',
+    color: 'white !important',
+    background: 'green',
+    '& *': {
+      color: 'white !important',
+    },
   },
 }));
 
@@ -149,6 +153,7 @@ function TitleBlock() {
     if (email.length <= 10) return;
     HomePageService.saveEmail(email).then((e) => {
       setSaved(true);
+      setEmail('');
     });
   };
 
@@ -170,6 +175,7 @@ function TitleBlock() {
             className={classes.inputStyle}
             disabled={saved}
             label='test'
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder='Your mail'
           />

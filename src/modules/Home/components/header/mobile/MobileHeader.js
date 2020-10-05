@@ -142,6 +142,7 @@ function MobileHeader() {
   const saveEmail = () => {
     if (email.length <= 10) return;
     HomePageService.saveEmail(email).then((e) => {
+      setEmail('');
       setSaved(true);
     });
   };
@@ -201,6 +202,7 @@ function MobileHeader() {
                   <InputBase
                     disabled={saved}
                     onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     className={classes.inputStyle}
                     label='test'
                     placeholder='Your mail'

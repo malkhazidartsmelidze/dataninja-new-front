@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       textAlign: 'center',
       marginBottom: '20px',
-      display: 'none',
+      // display: 'none',
     },
   },
   icon: {
@@ -165,11 +165,12 @@ function Footer() {
       {/* <Grid item className={classes.grid}> */}
       <Grid item className={classes.nested_grid}>
         <Grid item className={classes.copyright}>
-          LTD Dataninja © 2020
+          Dataninja LLC © 2020
         </Grid>
         <Grid item className={classes._container}>
           <Link href='#' className={classes.link}>
-            Tbilisi, Georgia
+            Legal address: Georgia, Tbilisi, Saburtalo district, Adam Mickiewicz str., bl. No1,
+            floor 1, apt., No67
           </Link>
           <Link href='#' className={classes.link}>
             I/C 405383393
