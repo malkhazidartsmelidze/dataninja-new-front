@@ -96,68 +96,62 @@ export default (props) => {
     setNetworks([n]);
   };
 
+  const campaignFormSubmitted = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+  };
+
   return (
-    <form onSubmit={formSubmitted}>
-      <input onChange={(e) => setAd(e.target.value)} />
-      <Grid container>
-        <Grid item xs={9}>
-          <ExpansionPanel
-            transparent
-            title='Choose Campaign Config'
-            subtitle='Enter Campaign Config Here'
-          >
-            <CreateCampaignForm
-              onExistingChoose={existingCampaignChoosed}
-              onNetworkChange={onNetworkChange}
-            />
-          </ExpansionPanel>
-          <ExpansionPanel
-            expanded
-            transparent
-            title='Ad Group Config'
-            subtitle='Set Ad Group Config'
-          >
-            <CreateAdGroupForm campaign={existingCampaign} />
-          </ExpansionPanel>
-          <ExpansionPanel expanded title='Create Ad Config' subtitle='Set Ad Config'>
-            {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}
-            <Grid container>
-              <Grid item xs={12}>
-                <ExpansionPanel title='Creative Name' subTitle='Enter Creative Name'>
-                  <CreativeNameField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Choose Facebook Page' subTitle='Choose Facebook Page'>
-                  <FacebookPageField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Choose Facebook Image' subTitle='Choose Facebook Image'>
-                  <CreativeFacebookImageField />
-                </ExpansionPanel>
-                <ExpansionPanel
-                  title='Choose Facebook Headlines'
-                  subTitle='Choose Facebook Headlines'
-                >
-                  <CreativeHeadlinesField />
-                </ExpansionPanel>
-                <ExpansionPanel
-                  title='Choose Facebook Description'
-                  subTitle='Choose Facebook Description'
-                >
-                  <CreativeLongHeadlineField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Primary Text' subTitle='Choose Facebook Primary Text'>
-                  <CreativePrimaryTextField />
-                </ExpansionPanel>
-                <ExpansionPanel title='Display Link' subTitle='Choose Facebook Display Link'>
-                  <CreativeDisplayLinkField />
-                </ExpansionPanel>
-              </Grid>
+    <Grid container>
+      <Grid item xs={9}>
+        <ExpansionPanel transparent titleBefore='Campaign Configuration' title='Campaign'>
+          <CreateCampaignForm
+            onExistingChoose={existingCampaignChoosed}
+            onNetworkChange={onNetworkChange}
+            onSubmit={campaignFormSubmitted}
+          />
+        </ExpansionPanel>
+        <ExpansionPanel transparent titleBefore='Adset Configuration' title='Adset'>
+          <CreateAdGroupForm campaign={existingCampaign} />
+        </ExpansionPanel>
+        <ExpansionPanel expanded titleBefore='Ad Creative Configuration' title='Ad Creative'>
+          {/* <CreateAdCreativeForm networks={[network]} context={ad} setContext={setAd} /> */}
+          <Grid container>
+            <Grid item xs={12}>
+              <ExpansionPanel title='Creative Name' subTitle='Enter Creative Name'>
+                <CreativeNameField />
+              </ExpansionPanel>
+              <ExpansionPanel title='Choose Facebook Page' subTitle='Choose Facebook Page'>
+                <FacebookPageField />
+              </ExpansionPanel>
+              <ExpansionPanel title='Choose Facebook Image' subTitle='Choose Facebook Image'>
+                <CreativeFacebookImageField />
+              </ExpansionPanel>
+              <ExpansionPanel
+                title='Choose Facebook Headlines'
+                subTitle='Choose Facebook Headlines'
+              >
+                <CreativeHeadlinesField />
+              </ExpansionPanel>
+              <ExpansionPanel
+                title='Choose Facebook Description'
+                subTitle='Choose Facebook Description'
+              >
+                <CreativeLongHeadlineField />
+              </ExpansionPanel>
+              <ExpansionPanel title='Primary Text' subTitle='Choose Facebook Primary Text'>
+                <CreativePrimaryTextField />
+              </ExpansionPanel>
+              <ExpansionPanel title='Display Link' subTitle='Choose Facebook Display Link'>
+                <CreativeDisplayLinkField />
+              </ExpansionPanel>
             </Grid>
-          </ExpansionPanel>
-        </Grid>
-        <Grid item xs={3}>
-          Config
-        </Grid>
+          </Grid>
+        </ExpansionPanel>
       </Grid>
-    </form>
+      <Grid item xs={3}>
+        Config
+      </Grid>
+    </Grid>
   );
 };

@@ -7,27 +7,29 @@ import CampaignStatusField from './fields/CampaignStatusField';
 import ExistingCampaignField from './fields/ExistingCampaignField';
 
 export default (props) => {
-  const { onExistingChoose, onNetworkChange } = props;
+  const { onExistingChoose, onNetworkChange, onSubmit } = props;
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
-          <ExistingCampaignField
-            onCampaignChoose={onExistingChoose}
-            onNetworkChange={onNetworkChange}
-          />
-        </ExpansionPanel>
-        <ExpansionPanel title='Campaign Name' subTitle='Enter Campaign Name'>
-          <CampaignNameField />
-        </ExpansionPanel>
-        <ExpansionPanel title='Campaign Objective' subTitle='Choose Campaign Objective'>
-          <CampaignObjectiveField />
-        </ExpansionPanel>
-        <ExpansionPanel title='Campaign Status' subTitle='Choose Campaign Status'>
-          <CampaignStatusField />
-        </ExpansionPanel>
+    <form onSubmit={onSubmit}>
+      <Grid container>
+        <Grid item xs={12}>
+          <ExpansionPanel title='Existing Campaign' subTitle='Choose Existing Campaign'>
+            <ExistingCampaignField
+              onCampaignChoose={onExistingChoose}
+              onNetworkChange={onNetworkChange}
+            />
+          </ExpansionPanel>
+          <ExpansionPanel title='Campaign Name' subTitle='Enter Campaign Name'>
+            <CampaignNameField />
+          </ExpansionPanel>
+          <ExpansionPanel title='Campaign Objective' subTitle='Choose Campaign Objective'>
+            <CampaignObjectiveField />
+          </ExpansionPanel>
+          <ExpansionPanel title='Campaign Status' subTitle='Choose Campaign Status'>
+            <CampaignStatusField />
+          </ExpansionPanel>
+        </Grid>
       </Grid>
-    </Grid>
+    </form>
   );
 };
