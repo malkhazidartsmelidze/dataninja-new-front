@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import api from 'common/api';
 import { User, UserConfig } from 'Models/User';
 import { tokenKey } from 'consts';
-import AuthService from 'services/AuthService';
+import UserService from 'services/UserService';
 
 const UserContext = createContext('user');
 
@@ -23,12 +23,17 @@ export const UserContextProvider = ({ children }) => {
 
   const logout = () => {
     setUser();
+    setAuth(false);
     api.setToken(null);
   };
 
   useEffect(() => {
-    if (!localStorage.getItem(tokenKey)) return;
-    AuthService.bootstrap()
+    // if (!localStorage.getItem(tokenKey)) return;
+    refreshUser();
+  }, [auth]);
+
+  const refreshUser = () => {
+    UserService.bootstrap()
       .then((data) => {
         if (typeof data.user !== 'object') throw 'Undefined User';
         configAndLoginuser(data);
@@ -37,7 +42,7 @@ export const UserContextProvider = ({ children }) => {
         console.error(e);
         logout();
       });
-  }, []);
+  };
 
   const configAndLoginuser = (data) => {
     const user = new User(data.user);
@@ -59,6 +64,7 @@ export const UserContextProvider = ({ children }) => {
         config: userConfig,
         defaultAccounts: defaultAccounts,
         setDefaultAccounts: setDefaultAccounts,
+        refreshUser: refreshUser,
         login: login,
         logout: logout,
       }}

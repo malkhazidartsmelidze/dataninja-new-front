@@ -43,9 +43,9 @@ export default (props) => {
       ad: null,
     },
     facebook: {
-      campaign: 1,
-      adgroup: 1,
-      ad: 1,
+      campaign: null,
+      adgroup: null,
+      ad: null,
     },
   });
 
@@ -219,9 +219,8 @@ export default (props) => {
   };
 
   const createAd = () => {
-    createGoogleAd(() => {
-      createFacebookAd(() => {});
-    });
+    createFacebookAd(() => {});
+    // createGoogleAd(() => {});
     /* () => {
     } */
     // if (N === 'facebook') {

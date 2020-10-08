@@ -1,5 +1,5 @@
 import api from 'common/api';
-import AuthService from 'services/AuthService';
+import UserService from 'services/UserService';
 
 class User {
   constructor(obj) {
@@ -21,7 +21,7 @@ class User {
   }
 
   changeLanguage(languageCode) {
-    return AuthService.changeLanguage(languageCode).then(() => {
+    return UserService.changeLanguage(languageCode).then(() => {
       api.setLanguageCode(languageCode);
     });
   }

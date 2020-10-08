@@ -1,7 +1,7 @@
 import api from 'common/api';
 import { User } from 'Models/User';
 
-class AuthService {
+class UserService {
   static bootstrap = () => {
     return api.call('get', '/user/bootstrap').then(api.getData);
   };
@@ -17,6 +17,10 @@ class AuthService {
     return api.setToken(null).call('post', '/auth/logout');
   };
 
+  static facebookLogin = (data) => {
+    return api.call('post', '/auth/facebook/save-token', data).then(api.getData);
+  };
+
   static changeLanguage = (code) => {
     return api
       .call('post', '/user/action/change-language', {
@@ -26,4 +30,4 @@ class AuthService {
   };
 }
 
-export default AuthService;
+export default UserService;

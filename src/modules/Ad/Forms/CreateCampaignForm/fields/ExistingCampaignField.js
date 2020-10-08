@@ -4,6 +4,7 @@ import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
 import CampaignService from 'services/CampaignService';
 import useCreateAd from 'modules/Ad/store/CreateAdContext';
+import SyncCampaignButton from 'modules/Ad/components/SyncCampaignButton';
 
 export default (props) => {
   const { isSearch } = useCreateAd();
@@ -21,11 +22,7 @@ export default (props) => {
 
     setLoading(true);
     setCampaigns([]);
-    CampaignService.getCampaigns(network)
-      .then((data) => {
-        setCampaigns(data.map((c) => ({ name: c.name, value: c.id })));
-      })
-      .then(() => setLoading(false));
+    fetchCampaigns();
   }, [network]);
 
   useEffect(() => {
@@ -43,6 +40,14 @@ export default (props) => {
     });
     setNetwork('google');
   }, [isSearch]);
+
+  const fetchCampaigns = () => {
+    CampaignService.getCampaigns(network)
+      .then((data) => {
+        setCampaigns(data.map((c) => ({ name: c.name, value: c.id })));
+      })
+      .then(() => setLoading(false));
+  };
 
   return (
     <PanelField
@@ -64,6 +69,11 @@ export default (props) => {
               disabled={loading}
               options={campaigns}
               onChange={(e) => setCampaign(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <SyncCampaignButton network={network} onDone={() => fetchCampaigns()} />
+                ),
+              }}
             />
           </Grid>
         </Grid>
