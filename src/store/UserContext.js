@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import api from 'common/api';
 import { User, UserConfig } from 'Models/User';
 import { tokenKey } from 'consts';
+import AuthService from 'services/AuthService';
 
 const UserContext = createContext('user');
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(new User({}));
   const [userConfig, setUserConfig] = useState(null);
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const [defaultAccounts, setDefaultAccounts] = useState({
     google: null,
     facebook: null,
@@ -27,15 +28,13 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!localStorage.getItem(tokenKey)) return;
-    User.service
-      .bootstrap()
+    AuthService.bootstrap()
       .then((data) => {
         if (typeof data.user !== 'object') throw 'Undefined User';
         configAndLoginuser(data);
       })
       .catch((e) => {
-        // logout()
-        console.log(e);
+        logout();
       });
   }, []);
 

@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import useUser from 'store/UserContext';
-import User from 'Models/User/User';
+import AuthService from 'services/AuthService';
 
 export default () => {
   const classes = useStyles();
@@ -25,11 +25,10 @@ export default () => {
     e.preventDefault();
     setLoading(true);
     setError(false);
-    User.service
-      .login({
-        email: state.email,
-        password: state.password,
-      })
+    AuthService.login({
+      email: state.email,
+      password: state.password,
+    })
       .then((user) => {
         console.log(user);
         loginUser(user);
