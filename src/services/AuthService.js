@@ -7,21 +7,22 @@ class AuthService {
   };
 
   static login = (credentials) => {
-    return api.call('post', '/login', credentials).then((res) => {
+    return api.call('post', '/auth/login', credentials).then((res) => {
       api.setToken(res.data.token);
       return new User(res.data.user);
     });
   };
 
   static logout = () => {
-    return api.setToken(null).call('post', '/logout');
+    return api.setToken(null).call('post', '/auth/logout');
   };
 
   static changeLanguage = (code) => {
-    return api.call('post', '/user/actions', {
-      action: 'change-language',
-      language: code,
-    });
+    return api
+      .call('post', '/user/action/change-language', {
+        language: code,
+      })
+      .then(api.getData);
   };
 }
 

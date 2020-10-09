@@ -34,13 +34,14 @@ export const UserContextProvider = ({ children }) => {
         configAndLoginuser(data);
       })
       .catch((e) => {
+        console.error(e);
         logout();
       });
   }, []);
 
   const configAndLoginuser = (data) => {
     const user = new User(data.user);
-    const _userConfg = new UserConfig(data.config);
+    const _userConfg = new UserConfig(data.user.config);
     _userConfg.setDefaultAccounts(data.default_accounts).setAdAccounts(data.ad_accounts);
 
     ReactDOM.unstable_batchedUpdates(() => {
@@ -50,7 +51,6 @@ export const UserContextProvider = ({ children }) => {
     });
   };
 
-  console.log('rendered auth context');
   return (
     <UserContext.Provider
       value={{

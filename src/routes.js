@@ -5,7 +5,6 @@ import P from 'paths';
 import { Error404Page } from 'modules/Errors';
 import BootstrapAppModule from 'modules/BootstrapAppModule';
 import HomePageModule from 'modules/Home/HomePageModule';
-// const BootstrapAppModule = lazy(() => import('modules/BootstrapAppModule'));
 
 const AuthModule = lazy(() => import('modules/Auth'));
 

@@ -42,11 +42,11 @@ class UserConfig {
   };
 
   setDefaultAccounts = (accounts) => {
-    if (typeof accounts.google === 'object') {
+    if (accounts.google) {
       this.defaultAccounts.google = new AdAccount(accounts.google).setNetwork('google');
     }
 
-    if (typeof accounts.facebook === 'object') {
+    if (accounts.facebook) {
       this.defaultAccounts.facebook = new AdAccount(accounts.facebook).setNetwork('facebook');
     }
 
