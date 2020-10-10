@@ -20,7 +20,7 @@ export default (props) => {
   const { state, isSearch } = useCreateAd();
   const [existingCampaign, setExistingCampaign] = useState(null);
   const [existingAdGroup, setExistingAdGroup] = useState(null);
-  const [N, setN] = useState('google');
+  const [N, setN] = useState('facebook');
   const {
     networks,
     setNetworks,

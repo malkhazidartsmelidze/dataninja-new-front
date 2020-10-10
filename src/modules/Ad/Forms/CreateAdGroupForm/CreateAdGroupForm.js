@@ -76,9 +76,11 @@ export default (props) => {
         <ExpansionPanel expanded title='Audience Age' subTitle='Choose Ages'>
           <AgeTargetingField />
         </ExpansionPanel>
-        <ExpansionPanel expanded title='Keywords' subTitle='Enter Keywords'>
-          <AdGroupKeywordsField />
-        </ExpansionPanel>
+        {isNetworkSelected('google') && (
+          <ExpansionPanel expanded title='Keywords' subTitle='Enter Keywords'>
+            <AdGroupKeywordsField />
+          </ExpansionPanel>
+        )}
         <ExpansionPanel expanded title='Locations' subTitle='Enter Locations in both networks'>
           <LocationTargetingField />
         </ExpansionPanel>

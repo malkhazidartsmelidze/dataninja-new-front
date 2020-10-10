@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 export const CreateAdContext = createContext({});
 
 export const CreateAdContextProvider = ({ children }) => {
-  const [networks, setNetworks] = useState(['facebook', 'google']);
+  const [networks, setNetworks] = useState(['facebook']);
   const [state, _setState] = useState({
     campaign_objective: 'traffic',
     optimization_goal: 'clicks',

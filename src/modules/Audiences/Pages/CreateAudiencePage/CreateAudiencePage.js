@@ -11,8 +11,8 @@ import FacebookLookalikeAudienceForm from 'modules/Audiences/Forms/FacebookLooka
 
 export default () => {
   const classes = useStyles();
-  const [network, setNetwork] = useState('google');
-  const [audienceType, setAudienceType] = useState('remarketing');
+  const [network, setNetwork] = useState('facebook');
+  const [audienceType, setAudienceType] = useState('video');
 
   const audienceTypeChanged = (e) => {
     setAudienceType(e.target.value);

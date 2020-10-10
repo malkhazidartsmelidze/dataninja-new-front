@@ -15,7 +15,7 @@ const aviableLanguages = [
 ];
 
 export const LanguageContextProvider = ({ children }) => {
-  const [language, setLangauge] = useState(localStorage.getItem(languageKey) || defaultLanguage);
+  const [language, setLangauge] = useState(defaultLanguage);
   const { user } = useUser();
   const [messages, setMessages] = useState(defaultMessages);
 
