@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { TextField, Grid } from '@material-ui/core';
 import PanelField from 'components/ExpansionPanel/PanelField';
 import { SelectField } from 'components/Fields';
@@ -19,9 +20,11 @@ export default (props) => {
   useEffect(() => {
     console.log(campaign);
     if (!campaign) return;
-    setAdGroup('');
-    setLoading(true);
-    setAdGroups([]);
+    ReactDOM.unstable_batchedUpdates(() => {
+      setAdGroup('');
+      setLoading(true);
+      setAdGroups([]);
+    });
     AdGroupService.getCampaignAdGroups(network, campaign)
       .then((data) => {
         console.log(data);
