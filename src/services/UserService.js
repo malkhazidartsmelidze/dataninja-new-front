@@ -28,6 +28,10 @@ class UserService {
       })
       .then(api.getData);
   };
+
+  static getGoogleLoginUrl = () => {
+    return api.call('post', '/auth/google/redirect-url').then(api.getData);
+  };
 }
 
 export default UserService;
