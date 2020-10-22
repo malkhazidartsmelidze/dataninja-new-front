@@ -7,12 +7,17 @@ const options = [
   { name: 'Mobile', value: 'mobile' },
   { name: 'Tablet', value: 'tablet' },
 ];
-
 export default () => {
   return (
     <PanelField
       name='targetings[devices]'
-      content={<CheckboxField onChange={() => {}} options={options} />}
+      content={
+        <CheckboxField
+          onChange={() => {}}
+          options={options}
+          value={['desktop', 'mobile', 'tablet']}
+        />
+      }
     />
   );
 };

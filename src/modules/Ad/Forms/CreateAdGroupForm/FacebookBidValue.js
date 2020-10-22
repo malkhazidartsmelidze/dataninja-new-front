@@ -24,7 +24,6 @@ export default () => {
           />
           {bidType === 'manual' && (
             <Fragment>
-              <TextField name='adgroup_bid_amount' label='Bid Amount' style={{ width: 300 }} />
               <RadioField
                 options={[
                   { name: 'Cost Cap', value: 'cost_cap' },
@@ -36,6 +35,7 @@ export default () => {
               />
             </Fragment>
           )}
+          <TextField name='adgroup_bid_amount' label='Bid Amount' style={{ width: 300 }} />
         </Fragment>
       }
     />

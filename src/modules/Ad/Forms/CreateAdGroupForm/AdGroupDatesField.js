@@ -11,7 +11,7 @@ export default ({ dateStartProps, dateEndProps }) => {
             <TextField name='adgroup_date_from' label='Date from' defaultValue='2020-10-25' />
           </Grid>
           <Grid item xs={6}>
-            <TextField name='adgroup_date_to' label='Date to' defaultValue='2020-11-25' />
+            <TextField name='adgroup_date_to' label='Date to' defaultValue='' />
           </Grid>
         </Grid>
       }
