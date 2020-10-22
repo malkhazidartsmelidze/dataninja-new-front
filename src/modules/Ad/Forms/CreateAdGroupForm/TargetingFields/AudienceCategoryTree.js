@@ -1,11 +1,9 @@
 import React, { Fragment, useState } from 'react';
-import PanelField from 'components/ExpansionPanel/PanelField';
-import { TextField, AppBar, Tabs, Tab, Box, Typography, Grid, Checkbox } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box, Grid, Checkbox } from '@material-ui/core';
 import { useEffect } from 'react';
-import Audience from 'Models/Audience/Audience';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { mdiArrowLeft, mdiArrowRight, mdiArrowTopLeft } from '@mdi/js';
+import { mdiArrowRight, mdiArrowTopLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import AudienceService from 'services/AudienceService';
 
